@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //get selection
-                mMapView.onStop();
                 choice = parent.getItemAtPosition(position).toString();
                 textView.setText(choice);
 
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-        /*try {
+        try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.breastkml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
