@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MapTest</string>
+    <string name="google_map_api_key">AIzaSyBsp4RgrmSeEFYxuBowSLqb5EssVry4IwI</string>
+    <string-array name="clinic_choices">
+        <item>CHAS clinics</item>
+        <item>Breast screening centres</item>
+        <item>Cervical screening centres</item>
+    </string-array>
+</resources>
