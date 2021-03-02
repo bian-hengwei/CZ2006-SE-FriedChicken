@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-        try {
+        /*try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.breastkml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
