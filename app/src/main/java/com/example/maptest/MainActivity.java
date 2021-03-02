@@ -113,18 +113,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 10f));
 
         //chas clinics
-        try {
+        /*try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.chaskml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
 
-        /*try {
+        try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.breastkml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-        try {
+        /*try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.cervicalkml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
