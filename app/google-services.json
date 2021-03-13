@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "453244400401",
+    "project_id": "boxwood-harmony-306207",
+    "storage_bucket": "boxwood-harmony-306207.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453244400401:android:47889482b62fca784a52b0",
+        "android_client_info": {
+          "package_name": "com.example.maptest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453244400401-210ji24btnoet63m21h8etq0sf0eohho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGzeA5idcTILximKUsWg6Yjtet_8TMWF0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453244400401-210ji24btnoet63m21h8etq0sf0eohho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

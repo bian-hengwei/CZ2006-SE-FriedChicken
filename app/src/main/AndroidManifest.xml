@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.maptest">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <uses-feature
@@ -16,13 +18,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MapTest">
-        <activity android:name=".MainActivity">
+        <activity android:name=".EditProfileActivity"></activity>
+        <activity android:name=".ForgetPassword" />
+        <activity android:name=".Homepage" />
+        <activity android:name=".Register" />
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ScreeningCentresSearch" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -33,7 +40,8 @@
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false" />
+            android:required="false"
+            tools:ignore="WrongManifestParent" />
     </application>
 
 </manifest>

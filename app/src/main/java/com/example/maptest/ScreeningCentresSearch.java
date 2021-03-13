@@ -1,37 +1,25 @@
 package com.example.maptest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.kml.KmlLayer;
 
-import org.json.JSONException;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class ScreeningCentresSearch extends AppCompatActivity implements OnMapReadyCallback {
     public MapView mMapView;
     public String choice;
     private static final String MAPVIEW_BUNDLE_KEY = "MapViewBundleKey";
@@ -39,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_screeningcentressearch);
 
         // *** IMPORTANT ***
         // MapView requires that the Bundle you pass contain _ONLY_ MapView SDK
@@ -112,18 +100,18 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 10f));
 
         //chas clinics
-        /*try {
+        try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.chaskml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
 
 
-        try {
+        /*try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.breastkml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
@@ -133,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
 
-        /*try {
+        try {
             KmlLayer kmllayer = new KmlLayer(map, R.raw.cervicalkml, this);
             kmllayer.addLayerToMap();
         } catch (XmlPullParserException e) {
