@@ -18,11 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MapTest">
-        <activity android:name=".EditProfileActivity"></activity>
-        <activity android:name=".ForgetPassword" />
-        <activity android:name=".Homepage" />
-        <activity android:name=".Register" />
-        <activity android:name=".Login">
+        <activity android:name=".EditProfileUI"></activity>
+        <activity android:name=".ForgetPasswordUI" />
+        <activity android:name=".HomepageUI" />
+        <activity android:name=".RegisterUI" />
+        <activity android:name=".LoginUI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

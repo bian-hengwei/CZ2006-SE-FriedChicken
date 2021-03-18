@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Register">
+    tools:context=".RegisterUI">
 
     <TextView
         android:id="@+id/textView3"
@@ -22,7 +22,7 @@
         android:id="@+id/FullName"
         android:layout_width="245dp"
         android:layout_height="49dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="textPersonName"
@@ -58,12 +58,10 @@
         android:id="@+id/Password_register"
         android:layout_width="245dp"
         android:layout_height="49dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/Registerbtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DateOfBirth" />
@@ -72,7 +70,7 @@
         android:id="@+id/DateOfBirth"
         android:layout_width="245dp"
         android:layout_height="49dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="24dp"
         android:hint="Date of Birth"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +81,8 @@
         android:id="@+id/Registerbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="164dp"
+        android:layout_marginBottom="128dp"
+        android:onClick="registerAccount"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,5 +99,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Registerbtn"
         app:layout_constraintVertical_bias="0.843"
-        android:onClick="BacktoLoginpage"/>
+        android:onClick="backtoLoginpage"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

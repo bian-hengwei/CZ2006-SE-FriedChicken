@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class ForgetPassword extends AppCompatActivity {
+public class ForgetPasswordUI extends AppCompatActivity {
 
     FirebaseAuth fAuth;
     private EditText forgetpasswordemail;
@@ -61,16 +61,18 @@ public class ForgetPassword extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(ForgetPassword.this, "Check your email to reset your password!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ForgetPasswordUI.this, "Check your email to reset your password!", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(ForgetPassword.this, "Error occurred", Toast.LENGTH_LONG).show();
+                    //firebase will check if the email is registered as an account
+                    Toast.makeText(ForgetPasswordUI.this, "Email does not exist in database", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
 
-    public void BacktoLoginpage(View view) {
-        startActivity(new Intent(getApplicationContext(),Login.class));
+    //same function in RegisterUI, find a way to use the same function
+    public void backtoLoginpage(View view) {
+        startActivity(new Intent(getApplicationContext(), LoginUI.class));
         finish();
     }
 }

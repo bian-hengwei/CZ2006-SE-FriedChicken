@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileUI extends AppCompatActivity {
 
     private EditText mFullName, mEmail, mPhoneNumber;
     private TextView mDisplayDate;
@@ -57,7 +57,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 int day = cal.get(Calendar.DAY_OF_MONTH); //get current day
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        EditProfileActivity.this,
+                        EditProfileUI.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year,month,day); //set the default date to current date
@@ -115,97 +115,79 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
 
-
-
         fAuth = FirebaseAuth.getInstance(); //get instance of firebase
         msavechangesbtn = (Button)findViewById(R.id.savechangesbtn);
         mFullName = (EditText) findViewById(R.id.editprofileName);
         mEmail = (EditText) findViewById(R.id.editprofileEmail);
         mPhoneNumber = (EditText) findViewById(R.id.editprofilePhoneNumber);
         mDateOfBirth= (TextView) findViewById(R.id.editprofileDateOfBirth);
-
-        msavechangesbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = mEmail.getText().toString().trim(); //get email from EditText
-                String fullName = mFullName.getText().toString().trim();
-                String phoneNumber = mPhoneNumber.getText().toString().trim();
-                String dateOfBirth = mDateOfBirth.getText().toString().trim();
-
-                //check if email is empty
-                if(TextUtils.isEmpty(email)){
-                    mEmail.setError("Email is required.");
-                    mEmail.requestFocus();
-                    return;
-                }
-
-                //check if email is valid
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    mEmail.setError("Please provide valid email");
-                    mEmail.requestFocus();
-                    return;
-                }
-
-                //check if fullName is empty
-                if(TextUtils.isEmpty(fullName)){
-                    mFullName.setError("Name is required.");
-                    mFullName.requestFocus();
-                    return;
-                }
-
-                //check if phoneNumber is empty
-                if(TextUtils.isEmpty(phoneNumber)){
-                    mPhoneNumber.setError("Phone Number is required.");
-                    mPhoneNumber.requestFocus();
-                    return;
-                }
-
-                //check if date of birth is empty
-                if(TextUtils.isEmpty(dateOfBirth)){
-                    mDateOfBirth.setError("Birth date is required.");
-                    mDateOfBirth.requestFocus();
-                    return;
-                }
-
-                user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        //Toast.makeText(EditProfileActivity.this, "Email is changed", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-
-
-
-                //make the changes in realtime database
-                reference.child(userID).child("fullName").setValue(fullName);
-                reference.child(userID).child("dateOfBirth").setValue(dateOfBirth);
-                reference.child(userID).child("email").setValue(email);
-                reference.child(userID).child("phoneNumber").setValue(phoneNumber);
-
-                Toast.makeText(EditProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
-
-
-
-            }
-        });
-
-
-
-
     }
 
-
-
-
-
-    public void BacktoHomepage(View view) {
-        startActivity(new Intent(getApplicationContext(),Homepage.class));
+    public void backtoHomepage(View view) {
+        startActivity(new Intent(getApplicationContext(), HomepageUI.class));
         finish();
+    }
+
+    public void saveAccountdetails(View view) {
+        String email = mEmail.getText().toString().trim(); //get email from EditText
+        String fullName = mFullName.getText().toString().trim();
+        String phoneNumber = mPhoneNumber.getText().toString().trim();
+        String dateOfBirth = mDateOfBirth.getText().toString().trim();
+
+        //check if email is empty
+        if(TextUtils.isEmpty(email)){
+            mEmail.setError("Email is required.");
+            mEmail.requestFocus();
+            return;
+        }
+
+        //check if email is valid
+        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            mEmail.setError("Please provide valid email");
+            mEmail.requestFocus();
+            return;
+        }
+
+        //check if fullName is empty
+        if(TextUtils.isEmpty(fullName)){
+            mFullName.setError("Name is required.");
+            mFullName.requestFocus();
+            return;
+        }
+
+        //check if phoneNumber is empty
+        if(TextUtils.isEmpty(phoneNumber)){
+            mPhoneNumber.setError("Phone Number is required.");
+            mPhoneNumber.requestFocus();
+            return;
+        }
+
+        //check if date of birth is empty
+        if(TextUtils.isEmpty(dateOfBirth)){
+            mDateOfBirth.setError("Birth date is required.");
+            mDateOfBirth.requestFocus();
+            return;
+        }
+
+        /*user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                //Toast.makeText(EditProfileActivity.this, "Email is changed", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(EditProfileUI.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        //make the changes in realtime database
+        reference.child(userID).child("fullName").setValue(fullName);
+        reference.child(userID).child("dateOfBirth").setValue(dateOfBirth);
+        reference.child(userID).child("email").setValue(email);
+        reference.child(userID).child("phoneNumber").setValue(phoneNumber);
+
+        Toast.makeText(EditProfileUI.this, "Changes saved", Toast.LENGTH_SHORT).show();
+
     }
 }

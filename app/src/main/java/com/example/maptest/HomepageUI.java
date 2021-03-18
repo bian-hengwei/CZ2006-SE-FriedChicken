@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,11 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Homepage extends AppCompatActivity {
+public class HomepageUI extends AppCompatActivity {
 
     private FirebaseUser user;
     private DatabaseReference reference;
-
     private String userID;
 
 
@@ -73,12 +71,12 @@ public class Homepage extends AppCompatActivity {
     public void logout(View view){
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(getApplicationContext(), "Logging out", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(getApplicationContext(),Login.class));
+        startActivity(new Intent(getApplicationContext(), LoginUI.class));
         finish();
     }
 
     public void editUserProfileActivity(View view) {
-        startActivity(new Intent(getApplicationContext(),EditProfileActivity.class));
+        startActivity(new Intent(getApplicationContext(), EditProfileUI.class));
         finish();
     }
 }

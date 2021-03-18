@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".LoginUI">
 
     <TextView
         android:id="@+id/textView2"
@@ -52,7 +52,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Passwordlogin" />
+        app:layout_constraintTop_toBottomOf="@+id/Passwordlogin"
+        android:onClick="login"/>
 
     <TextView
         android:id="@+id/forget_password"
@@ -64,7 +65,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Loginbtn"
-        android:onClick="ForgetPassword"/>
+        android:onClick="forgetPassword"/>
 
     <TextView
         android:id="@+id/Register_account"
@@ -77,6 +78,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/forget_password"
         app:layout_constraintVertical_bias="0.049"
-        android:onClick="Register"/>
+        android:onClick="goToRegisterPage"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
