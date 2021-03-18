@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailValid = verifyEmail();
         if(passwordValid && emailValid) {
             // add to firebase
-            Intent i = new Intent(this, ListActivity.class);
+            Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
         }
     }

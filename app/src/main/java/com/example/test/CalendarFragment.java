@@ -55,8 +55,6 @@ public class CalendarFragment extends Fragment {
         }
     }
 
-    // listen to change in date and show corresponding details in details fragment
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
