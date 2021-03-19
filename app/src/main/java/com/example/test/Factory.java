@@ -21,6 +21,6 @@ public class Factory {
     }
 
     public Schedule getSchedule() {
-        return new Schedule();
+        return Schedule.getInstance();
     }
 }
