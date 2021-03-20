@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.model;
 
 public class Factory {
     public Entry getEntry(String entryType) {

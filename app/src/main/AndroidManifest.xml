@@ -10,11 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
         <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".ListActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
