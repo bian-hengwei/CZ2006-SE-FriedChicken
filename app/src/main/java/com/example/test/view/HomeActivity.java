@@ -1,4 +1,4 @@
-package com.example.test;
+package com.example.test.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.example.test.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.view.MenuItem;
@@ -18,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     private FrameLayout navFrame;
     private CalendarFragment calendarFragment;
     private ScheduleFragment scheduleFragment;
-    private HomeFragment homeFragment;
+    private UserHomeFragment userHomeFragment;
     private SettingFragment settingFragment;
 
     @Override
@@ -31,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
 
         calendarFragment = new CalendarFragment();
         scheduleFragment = new ScheduleFragment();
-        homeFragment = new HomeFragment();
+        userHomeFragment = new UserHomeFragment();
         settingFragment = new SettingFragment();
 
         setFragment(calendarFragment);
@@ -52,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
                     case R.id.navHome:
-                        setFragment(homeFragment);
+                        setFragment(userHomeFragment);
                         return true;
 
 

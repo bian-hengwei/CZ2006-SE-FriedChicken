@@ -11,7 +11,7 @@ public class MedicationEntry extends Entry{
     // not really sure here
     String dosage; // what is dosage here? i thought should be int
     ArrayList<LocalTime> time = new ArrayList<LocalTime>();
-    String repeat;
+    String repeat; // notification repeat for the day, should be array of enum
 
     public void setDosage(String dosage) {
         this.dosage = dosage;

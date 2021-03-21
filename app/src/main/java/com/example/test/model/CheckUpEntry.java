@@ -3,7 +3,7 @@ package com.example.test.model;
 import java.util.Calendar;
 
 public class CheckUpEntry extends Entry {
-    String clinic; // shoould we save a ScreeningCentre object?
+    String clinic; // should we save a ScreeningCentre object?
     Calendar time = Calendar.getInstance(); // return current date and time
 
     public void setClinic(String clinic) {

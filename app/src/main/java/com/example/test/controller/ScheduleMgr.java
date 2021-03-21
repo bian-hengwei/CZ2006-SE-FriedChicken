@@ -8,4 +8,5 @@ public class ScheduleMgr {
     public void deleteEntry(){} //
     public void reminder(){} // sends notification || How to implement?
     public Schedule getSchedule(){return null;}
+    public void modifyEntry() {}
 }

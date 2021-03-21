@@ -16,11 +16,11 @@ public class Factory {
         return null;
     }
 
-    public ScreeningCentre getScreeningCentre() {
+    /*public ScreeningCentre getScreeningCentre() {
         return new ScreeningCentre();
     }
 
     public Schedule getSchedule() {
         return Schedule.getInstance();
-    }
+    }*/
 }
