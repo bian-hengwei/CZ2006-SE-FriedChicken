@@ -1,4 +1,4 @@
-package com.example.maptest;
+package com.example.maptest.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.maptest.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginUI extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity{
     private Button loginbutton;
     private EditText mEmail, mPassword;
     FirebaseAuth fAuth;
@@ -32,20 +33,20 @@ public class LoginUI extends AppCompatActivity{
 
         //check if user is already logged in. If user is logged in, send user to homepage
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), HomepageUI.class));
+            startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
             finish();
         }
     }
 
     //function for register text to go to register page
     public void goToRegisterPage(View view) {
-        startActivity(new Intent(getApplicationContext(), RegisterUI.class));
+        startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
         finish();
     }
 
     //function for forget password text to go to forget password page
     public void forgetPassword(View view) {
-        startActivity(new Intent(getApplicationContext(), ForgetPasswordUI.class));
+        startActivity(new Intent(getApplicationContext(), ForgetPasswordActivity.class));
         finish();
     }
 
@@ -73,7 +74,7 @@ public class LoginUI extends AppCompatActivity{
                     //check if account is verified
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     if(user.isEmailVerified()){
-                        startActivity(new Intent(getApplicationContext(), HomepageUI.class));
+                        startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
                         Toast.makeText(getApplicationContext(),"Logged in Successfully",Toast.LENGTH_SHORT).show();
                     }else{
                         //user.sendEmailVerification(); //email already sent during registration

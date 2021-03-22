@@ -1,4 +1,4 @@
-package com.example.maptest;
+package com.example.maptest.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.maptest.R;
+import com.example.maptest.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
-public class EditProfileUI extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity {
 
     private EditText mFullName, mEmail, mPhoneNumber;
     private TextView mDisplayDate;
@@ -57,7 +57,7 @@ public class EditProfileUI extends AppCompatActivity {
                 int day = cal.get(Calendar.DAY_OF_MONTH); //get current day
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        EditProfileUI.this,
+                        EditProfileActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year,month,day); //set the default date to current date
@@ -124,7 +124,7 @@ public class EditProfileUI extends AppCompatActivity {
     }
 
     public void backtoHomepage(View view) {
-        startActivity(new Intent(getApplicationContext(), HomepageUI.class));
+        startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
         finish();
     }
 
@@ -187,7 +187,7 @@ public class EditProfileUI extends AppCompatActivity {
         reference.child(userID).child("email").setValue(email);
         reference.child(userID).child("phoneNumber").setValue(phoneNumber);
 
-        Toast.makeText(EditProfileUI.this, "Changes saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditProfileActivity.this, "Changes saved", Toast.LENGTH_SHORT).show();
 
     }
 }

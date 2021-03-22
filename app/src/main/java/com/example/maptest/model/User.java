@@ -1,10 +1,9 @@
-package com.example.maptest;
+package com.example.maptest.model;
 
 public class User {
     public String fullName, dateOfBirth, email, phoneNumber;
 
     public User(){
-
     }
 
     public User(String fullName, String dateOfBirth, String email, String phoneNumber){

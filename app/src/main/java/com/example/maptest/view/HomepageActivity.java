@@ -1,4 +1,4 @@
-package com.example.maptest;
+package com.example.maptest.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.maptest.R;
+import com.example.maptest.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -17,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class HomepageUI extends AppCompatActivity {
+public class HomepageActivity extends AppCompatActivity {
 
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -71,12 +73,17 @@ public class HomepageUI extends AppCompatActivity {
     public void logout(View view){
         FirebaseAuth.getInstance().signOut();
         Toast.makeText(getApplicationContext(), "Logging out", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(getApplicationContext(), LoginUI.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
 
     public void editUserProfileActivity(View view) {
-        startActivity(new Intent(getApplicationContext(), EditProfileUI.class));
+        startActivity(new Intent(getApplicationContext(), EditProfileActivity.class));
+        finish();
+    }
+
+    public void screeningcentrepage(View view) {
+        startActivity(new Intent(getApplicationContext(), Screening_CentreActivity.class));
         finish();
     }
 }

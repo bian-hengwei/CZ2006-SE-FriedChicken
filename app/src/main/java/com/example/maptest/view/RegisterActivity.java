@@ -1,4 +1,4 @@
-package com.example.maptest;
+package com.example.maptest.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.maptest.R;
+import com.example.maptest.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class RegisterUI extends AppCompatActivity{
+public class RegisterActivity extends AppCompatActivity{
     private static final String TAG = "RegisterActivity";
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -51,7 +53,7 @@ public class RegisterUI extends AppCompatActivity{
                 int day = cal.get(Calendar.DAY_OF_MONTH); //get current day
 
                 DatePickerDialog dialog = new DatePickerDialog(
-                        RegisterUI.this,
+                        RegisterActivity.this,
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year,month,day); //set the default date to current date
@@ -81,7 +83,7 @@ public class RegisterUI extends AppCompatActivity{
 
     //function for back button onclick to go back to login activity
     public void backtoLoginpage(View view) {
-        startActivity(new Intent(getApplicationContext(), LoginUI.class));
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
 

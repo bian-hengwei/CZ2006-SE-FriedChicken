@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.mapFragment_default">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapview"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="432dp"></com.google.android.gms.maps.MapView>
+
+    <Button
+        android:id="@+id/searchbutton"
+        android:layout_width="104dp"
+        android:layout_height="58dp"
+        android:layout_alignBottom="@+id/mapview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="-69dp"
+        android:text="Search" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="278dp"
+        android:layout_height="58dp"
+        android:layout_alignBottom="@+id/mapview"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="-69dp"
+        android:entries="@array/clinic_choices" />
+
+</RelativeLayout>
