@@ -23,12 +23,13 @@ public class SearchClinicActivity extends AppCompatActivity {
     //display Singapore map
     }
 
-    public void displayClinic(View v){
-    //display clinics on map
-    }
-
     public void displayClinicInfo(View v){
     //display the chosen clinic's info
+    }
+
+    //
+    public void displayClinic(View v){
+        //display clinics on map
     }
 
     public void addToSchedule(View v){
