@@ -1,5 +1,9 @@
 package com.ntu.medcheck.model;
 
+/**
+ * User object
+ * keeps track of current user details
+ */
 public class User {
     private String userName;
     private char gender;

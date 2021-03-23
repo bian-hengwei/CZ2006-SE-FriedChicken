@@ -7,6 +7,10 @@ import androidx.annotation.RequiresApi;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * Medication entry is a subclass of entry
+ * type of entry that stores medication details
+ */
 public class MedicationEntry extends Entry{
     // not really sure here
     String dosage; // what is dosage here? i thought should be int

@@ -2,6 +2,11 @@ package com.ntu.medcheck.model;
 
 import java.util.ArrayList;
 
+/**
+ * Schedule class
+ * stores a list of two types of entries
+ * Singleton method
+ */
 public class Schedule {
     ArrayList<Entry> scheduleList= new ArrayList<Entry>();
     // singleton pattern

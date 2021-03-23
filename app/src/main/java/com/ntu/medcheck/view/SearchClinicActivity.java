@@ -8,6 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 
+/**
+ * This class allows user to search for different types of checkup
+ * and display clinics of different types on the Singapore map
+ * When user clicks on a clinic, its information will be shown below the map
+ * The class calls AddCheckupActivity if user wants to add a clinic to checkup schedule
+ */
 public class SearchClinicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

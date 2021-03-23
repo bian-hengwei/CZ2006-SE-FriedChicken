@@ -1,12 +1,16 @@
 package com.ntu.medcheck.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ntu.medcheck.R;
 
+/**
+ * The class displays setting page for users
+ * User can change various settings on the page
+ */
 public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

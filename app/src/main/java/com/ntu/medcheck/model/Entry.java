@@ -1,5 +1,9 @@
 package com.ntu.medcheck.model;
 
+/**
+ * General entry class
+ * extended by checkup and medication entry
+ */
 public class Entry {
     String name;
     String comment;

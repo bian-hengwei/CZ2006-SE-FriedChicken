@@ -2,6 +2,10 @@ package com.ntu.medcheck.model;
 
 import java.util.Calendar;
 
+/**
+ * Check up entry is the entry object
+ * storing health screening time and other details
+ */
 public class CheckUpEntry extends Entry {
     String clinic; // should we save a ScreeningCentre object?
     Calendar time = Calendar.getInstance(); // return current date and time

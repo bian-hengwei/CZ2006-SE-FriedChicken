@@ -6,6 +6,10 @@ import androidx.annotation.RequiresApi;
 
 import java.time.LocalTime;
 
+/**
+ * Health screening centre
+ * Keep tracks of all types of centre details
+ */
 public class ScreeningCentre {
     String typeOfCheckup;
     String clinicName;

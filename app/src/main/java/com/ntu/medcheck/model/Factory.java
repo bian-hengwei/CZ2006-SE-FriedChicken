@@ -1,8 +1,9 @@
 package com.ntu.medcheck.model;
 
-import com.ntu.medcheck.model.CheckUpEntry;
-import com.ntu.medcheck.model.MedicationEntry;
-
+/**
+ * Entry factory
+ * returns entry when needed
+ */
 public class Factory {
     public Entry getEntry(String entryType) {
         if(entryType == null) {

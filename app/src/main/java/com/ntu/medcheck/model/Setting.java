@@ -1,5 +1,9 @@
 package com.ntu.medcheck.model;
 
+/**
+ * Setting class
+ * deals with loading and saving of app settings
+ */
 public class Setting {
     private String language = "english";
     private int fontSize = 3;

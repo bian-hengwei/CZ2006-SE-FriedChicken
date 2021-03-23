@@ -1,13 +1,17 @@
 package com.ntu.medcheck.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ntu.medcheck.R;
 
+/**
+ * This page displays register page for users
+ * and calls HomeActivity after successful registration
+ */
 public class RegisterActivity extends AppCompatActivity {
 
     @Override

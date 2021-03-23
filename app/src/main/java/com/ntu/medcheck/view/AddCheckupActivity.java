@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 
+/**
+ * Add check up page
+ * contains textfields prompting check up entry details
+ * calls schedule manager to add check up entry
+ */
 public class AddCheckupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,11 +1,15 @@
 package com.ntu.medcheck.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ntu.medcheck.R;
+
+/**
+ * The class allows users to reset password if they forget the current password
+ */
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 

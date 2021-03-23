@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 
-import com.ntu.medcheck.controller.LoginMgr;
-
+/**
+ * This class displays login page for users
+ * and calls the HomeActivity when successfully logged in
+ * The class also calls RegisterActivity when user clicks on register button
+ * It will call the forgetPassword if user clicks on forget password button
+ */
 public class LoginActivity extends AppCompatActivity {
 
     /**

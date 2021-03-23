@@ -4,10 +4,10 @@ public class LoginMgr {
 
 
     /**
-     *
-     * @param usrname
-     * @param pwd
-     * @return
+     * use firebase to verify if login is successful
+     * @param usrname username
+     * @param pwd password
+     * @return true if successful
      */
     // takes in the information from LoginActivity and verifies with fAuth
     // try to use context or bundle??

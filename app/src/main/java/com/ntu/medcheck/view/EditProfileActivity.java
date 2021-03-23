@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 
+/**
+ * Edit profile page
+ * contains textfield to edit user
+ */
 public class EditProfileActivity extends AppCompatActivity {
 
     @Override

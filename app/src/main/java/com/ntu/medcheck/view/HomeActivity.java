@@ -16,6 +16,10 @@ import com.ntu.medcheck.view.fragment.ScheduleFragment;
 import com.ntu.medcheck.view.fragment.SettingFragment;
 import com.ntu.medcheck.view.fragment.UserHomeFragment;
 
+/**
+ * This activity calls different fragments like SettingFragment, ScheduleFragment, MapFragment
+ * It also displays the navigation bars
+ */
 public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigation;

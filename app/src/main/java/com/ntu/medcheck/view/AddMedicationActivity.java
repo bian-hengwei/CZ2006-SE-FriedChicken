@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 
+/**
+ * Add medication page
+ * contains textfields prompting medication entry details
+ * calls schedule manager to add medication entry
+ */
 public class AddMedicationActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
