@@ -18,7 +18,14 @@ public class MapFragment extends Fragment /*implements OnMapReadyCallback*/ {
     public MapFragment() {
     }
 
-    //function to display fragment
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View
+     * This function is called to inflate a view
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -26,14 +33,26 @@ public class MapFragment extends Fragment /*implements OnMapReadyCallback*/ {
     }
 
     //functions needed to display map
-    /*@Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    }
 
-
-    @Override
-    public void onMapReady(GoogleMap googleMap){
-    }*/
+//    /**
+//     *
+//     * @param view
+//     * @param savedInstanceState
+//     * This function is called after onCreateView to ensure that the fragment's root view is non-null
+//     */
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+//    }
+//
+//
+//    /**
+//     *
+//     * @param googleMap
+//     * This function is triggered when the map is ready to be used
+//     */
+//    @Override
+//    public void onMapReady(GoogleMap googleMap){
+//    }
 
 }
 
