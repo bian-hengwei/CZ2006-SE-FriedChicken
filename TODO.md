@@ -1,6 +1,7 @@
 # TODO  
   
- - [ ] Add firebase register  
+ - [x] Add firebase register  
+ - [ ] Modify details of firebase register
  - [ ] Add firebase login  
  - [ ] Use Splash activity to save login state  
  - [ ] Add firebase change password  
@@ -11,4 +12,3 @@
  - [ ] Notifications  
  - [ ] Map fragment and search for clinics page  
  - [ ] Settings  
-  
