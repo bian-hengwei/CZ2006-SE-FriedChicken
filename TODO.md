@@ -1,13 +1,14 @@
 # TODO  
   
-## M  
-  
-## V  
- - Check login credentials with SplashActivity  
- - Add observer for calendar / activities / settings
- - Why import error in HomeActivity?
- - Why merge add entries?
- - Notification
-  
-## C  
+ - [ ] Add firebase register  
+ - [ ] Add firebase login  
+ - [ ] Use Splash activity to save login state  
+ - [ ] Add firebase change password  
+ - [ ] Build schedule  
+ - [ ] Build schedule and activity page  
+ - [ ] Add observer  
+ - [ ] Add entry page  
+ - [ ] Notifications  
+ - [ ] Map fragment and search for clinics page  
+ - [ ] Settings  
   
