@@ -3,10 +3,12 @@ package com.ntu.medcheck.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.LoginMgr;
 
 /**
  * This class displays login page for users
@@ -36,14 +38,33 @@ public class LoginActivity extends AppCompatActivity {
         String password = null;
         boolean success = true; // later set to false
 
-        // read in email and password from ui
+        // use verifyLogin to check login
+        LoginMgr loginMgr = new LoginMgr();
+        success = loginMgr.verifyLogin(getMainEmailInput(), getMainPasswordInput());
 
         if(success) {
             // go to home activity
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
         }
+
+
+
     }
+
+    // get user input data
+    public String getMainEmailInput() {
+        EditText emailInput = (EditText)findViewById(R.id.mainEmailInput);
+        String email = emailInput.getText().toString();
+        return email;
+    }
+
+    public String getMainPasswordInput() {
+        EditText passwordInput = (EditText)findViewById(R.id.mainPasswordInput);
+        String password = passwordInput.getText().toString();
+        return password;
+    }
+
 
     /**
      *

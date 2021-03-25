@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "193960213697",
+    "project_id": "medcheck-8477a",
+    "storage_bucket": "medcheck-8477a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193960213697:android:bf81671f6662aec57ae840",
+        "android_client_info": {
+          "package_name": "com.ntu.medcheck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193960213697-h15n64ddh7cacr8utfcillumap41co3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4eXYrpqp1ERtExvf6vTP5W28yLxj1BBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193960213697-h15n64ddh7cacr8utfcillumap41co3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

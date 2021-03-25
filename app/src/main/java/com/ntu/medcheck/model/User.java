@@ -6,13 +6,13 @@ package com.ntu.medcheck.model;
  */
 public class User {
     private String userName;
-    private char gender;
+    private String gender;
     private int age;
     private String birthday;
     private String phoneNo;
     private String emailAddress;
 
-    public void User(String userName, char gender, int age, String birthday, String phoneNo, String emailAddress) {
+    public User(String userName, String gender, int age, String birthday, String phoneNo, String emailAddress) {
         this.userName = userName;
         this.gender = gender;
         this.age = age;
@@ -29,11 +29,11 @@ public class User {
         return userName;
     }
 
-    public void setGender(char gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public char getGender() {
+    public String getGender() {
         return gender;
     }
 

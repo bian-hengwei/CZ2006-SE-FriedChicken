@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.086" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/registerRePasswordInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -53,6 +53,7 @@
         android:id="@+id/registerRegisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
         android:onClick="register"
         android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,4 +61,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2"
         app:layout_constraintVertical_bias="0.414" />
+
+    <EditText
+        android:id="@+id/registerNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/registerEmailInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.891" />
 </androidx.constraintlayout.widget.ConstraintLayout>
