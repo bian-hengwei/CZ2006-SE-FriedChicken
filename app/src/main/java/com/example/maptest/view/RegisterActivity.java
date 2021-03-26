@@ -2,6 +2,7 @@ package com.example.maptest.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -71,7 +72,6 @@ public class RegisterActivity extends AppCompatActivity{
                 mDisplayDate.setText(date);
             }
         };
-
         mFullName = (EditText) findViewById(R.id.FullName);
         mEmail = (EditText) findViewById(R.id.Email_register);
         mPassword = (EditText) findViewById(R.id.Password_register);

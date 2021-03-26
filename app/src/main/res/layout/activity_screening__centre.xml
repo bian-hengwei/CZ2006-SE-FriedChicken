@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.Screening_CentreActivity">
 
-
     <FrameLayout
         android:id="@+id/Container"
         android:layout_width="match_parent"
