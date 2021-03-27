@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,82 +11,100 @@
         android:id="@+id/mapview"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="407dp"></com.google.android.gms.maps.MapView>
+        android:layout_height="407dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.262"></com.google.android.gms.maps.MapView>
 
     <Button
         android:id="@+id/searchbutton"
-        android:layout_width="104dp"
-        android:layout_height="58dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/mapview"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="17dp"
-        android:layout_marginBottom="-69dp"
-        android:text="Search" />
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toEndOf="@+id/spinner"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="278dp"
-        android:layout_height="58dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/mapview"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="132dp"
-        android:layout_marginBottom="-69dp"
-        android:entries="@array/clinic_choices" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:entries="@array/clinic_choices"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/clinic_name"
-        android:layout_width="317dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mapview"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mapview" />
 
     <TextView
         android:id="@+id/clinic_streetname"
-        android:layout_width="316dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/clinic_name"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clinic_name" />
 
     <TextView
         android:id="@+id/clinic_postalcode"
-        android:layout_width="236dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/clinic_streetname"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clinic_streetname" />
 
     <TextView
         android:id="@+id/clinic_hyperlink"
-        android:layout_width="332dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/clinic_postalcode"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="20dp" />
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clinic_postalcode" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="109dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/clinic_hyperlink"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="301dp"
-        android:text="Back" />
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

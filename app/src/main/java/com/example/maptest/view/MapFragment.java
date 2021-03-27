@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.maptest.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -56,6 +57,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private TextView text_clinic_hyperlink;
 
 
+    //constructor
     public MapFragment() {
         // Required empty public constructor
     }
@@ -71,9 +73,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         text_clinic_postalcode = mView.findViewById(R.id.clinic_postalcode);
         text_clinic_hyperlink = mView.findViewById(R.id.clinic_hyperlink);
 
-
+        //dropdown box for selection of clinics
         clinic_choice = mView.findViewById(R.id.spinner);
-        clinic_choice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        clinic_choice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //listen whenever an option in dropdown box selected
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //get selection
@@ -85,13 +87,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        search = mView.findViewById(R.id.searchbutton);
+        search = mView.findViewById(R.id.searchbutton); //get search button
+
+        //Make changes whenever search button is clicked
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 if(choice.equals("Cervical screening centres")){
                     try {
                         cervicalLayer();
+                        //resetting all textviews to be empty
                         text_clinic_name.setText("");
                         text_clinic_hyperlink.setText("");
                         text_clinic_postalcode.setText("");
@@ -194,6 +199,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     //adding cervical screening centres on the map
     public void cervicalLayer() throws IOException, JSONException{
+        //create geojson layer
         GeoJsonLayer cervicalgeojsonlayer = new GeoJsonLayer(map, R.raw.cervicalgeojson, getContext());
 
         //reset the map before adding layers onto it
@@ -231,6 +237,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     //adding breast screening centres on the map
     public void breastLayer() throws IOException, JSONException{
+        //create geojson layer
         GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map, R.raw.breastgeojson, getContext());
 
         //reset the map before adding layers onto it
@@ -257,16 +264,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
 
                 String clinicName = description.substring(name_index+14, photourl_index-31);
-                text_clinic_name.setText("Clinic: "+ clinicName);
+                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name to textview
 
                 String hyperLink = description.substring(hyperlink_index+19, landxaddresspoint_index-38);
-                text_clinic_hyperlink.setText("Website: " + hyperLink);
+                text_clinic_hyperlink.setText("Website: " + hyperLink); //set website to textview
             }
         });
     }
 
     //adding chas clinic centres on the map
     public void chasLayer() throws IOException, JSONException{
+        //create geojson layer
         GeoJsonLayer chasgeojsonlayer = new GeoJsonLayer(map, R.raw.chasgeojson, getContext());
 
         //reset the map before adding layers onto it
@@ -276,6 +284,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         chasgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
+                Log.i("id", "ID is " + feature.getProperty("Name"));
                 String description = feature.getProperty("Description");
                 int hciname_index = description.lastIndexOf("HCI_NAME"); //start of HCI_NAME
                 int licence_type_index = description.lastIndexOf("LICENCE_TYPE"); //start of LICENCE_TYPE
@@ -292,7 +301,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
 
                 String clinicName = description.substring(hciname_index+18, licence_type_index-38);
-                text_clinic_name.setText("Clinic: "+ clinicName);
+                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name on textview
             }
         });
     }
@@ -304,6 +313,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 enableUserLocation();
             }else{
                 //show a dialog that permission is not granted
+                Toast.makeText(getContext(),"Location service is not granted", Toast.LENGTH_SHORT).show();
             }
         }
     }
