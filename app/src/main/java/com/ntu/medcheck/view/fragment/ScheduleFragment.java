@@ -1,13 +1,20 @@
 package com.ntu.medcheck.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.view.SearchClinicActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,5 +70,20 @@ public class ScheduleFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_schedule, container, false);
     }
 
-    public void addEntry(View v) {}
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
+        addNewCheckup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewCheckup(v);
+            }
+        });
+    }
+    //onclick button
+    public void addNewCheckup(View v) {
+        Intent i = new Intent(ScheduleFragment.this.getActivity(), SearchClinicActivity.class);
+        startActivity(i);
+    }
 }

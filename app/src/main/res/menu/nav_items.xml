@@ -18,4 +18,5 @@
         android:id="@+id/navSetting"
         android:icon="@drawable/baseline_settings_black_24dp"
         android:title="@string/nav_setting" />
+
 </menu>

@@ -11,10 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.view.fragment.CalendarFragment;
-import com.ntu.medcheck.view.fragment.ScheduleFragment;
-import com.ntu.medcheck.view.fragment.SettingFragment;
-import com.ntu.medcheck.view.fragment.UserHomeFragment;
+import com.ntu.medcheck.view.fragment.*;
 
 /**
  * This activity calls different fragments like SettingFragment, ScheduleFragment, MapFragment
@@ -80,4 +77,9 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.navigationFrame, fragment);
         fragmentTransaction.commit();
     }
+
+
+
+
+
 }

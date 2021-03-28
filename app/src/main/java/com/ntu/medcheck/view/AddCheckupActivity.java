@@ -1,11 +1,12 @@
 package com.ntu.medcheck.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.view.fragment.ScheduleFragment;
 
 /**
  * Add check up page
@@ -17,7 +18,9 @@ public class AddCheckupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_checkup);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
     public void changeCheckupType(View v){
     //take input of type of checkup
@@ -33,5 +36,10 @@ public class AddCheckupActivity extends AppCompatActivity {
 
     public void inputComment(View v){
     //take inputted comments
+    }
+
+    public void returnToScheduleFrag(View v) {
+        Intent i = new Intent(this, ScheduleFragment.class);
+        startActivity(i);
     }
 }

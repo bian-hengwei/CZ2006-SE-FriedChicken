@@ -43,5 +43,7 @@ public class SearchClinicActivity extends AppCompatActivity {
         Intent i = new Intent(this, AddCheckupActivity.class);
         startActivity(i);
     }
+
+
 }
 
