@@ -101,7 +101,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         search = mView.findViewById(R.id.searchbutton); //get search button
 
-        //Make changes whenever search button is clicked
+        //Conduct search whenever search button is clicked
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -179,6 +179,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         map = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
+        //user location
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             enableUserLocation();
         } else {
@@ -211,12 +212,86 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     //adding cervical screening centres on the map
     public void cervicalLayer() throws IOException, JSONException{
-        //create geojson layer
-        GeoJsonLayer cervicalgeojsonlayer = new GeoJsonLayer(map, R.raw.cervicalgeojson, getContext());
-
         //reset the map before adding layers onto it
         map.clear();
 
+        mQueue = Volley.newRequestQueue(getContext());
+        String apiUrl = "https://data.gov.sg/api/action/resource_show?id=21c6f2dd-7b8d-418a-8d7c-c5f8de1ca184";
+
+        //get json file from apiUrl
+        JsonObjectRequest apiObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String resultString = null;
+                        try {
+                            resultString = response.getJSONObject("result").toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        int url_index = resultString.indexOf("https");
+                        int datastore_active = resultString.lastIndexOf("datastore_active");
+
+                        String website = resultString.substring(url_index, datastore_active-3); //getting geojson file website string
+                        String cervicalUrl = website.replace("\\", ""); //removing backslash characters from website string
+
+                        //get cervical geojson file from breastUrl
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                                (Request.Method.GET, cervicalUrl, null, new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        GeoJsonLayer cervicalgeojsonlayer = new GeoJsonLayer(map,response); //creating layer
+                                        cervicalgeojsonlayer.addLayerToMap(); //putting layer on google map
+                                        //set onclick listener for the markers placed on the map
+                                        cervicalgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+                                            @Override
+                                            public void onFeatureClick(Feature feature) {
+                                                String description = feature.getProperty("Description");
+                                                int addresspostalcode_index = description.lastIndexOf("ADDRESSPOSTALCODE"); //start of ADDRESSPOSTALCODE
+                                                int addressstreetname_index = description.lastIndexOf("ADDRESSSTREETNAME"); //start of ADDRESSTREETNAME
+                                                int addresstype_index = description.lastIndexOf("ADDRESSTYPE"); //start of ADDRESSTYPE
+                                                int name_index = description.lastIndexOf("NAME"); //start of NAME
+                                                int photourl_index = description.lastIndexOf("PHOTOURL"); //start of PHOTOURL
+                                                int hyperlink_index = description.lastIndexOf("HYPERLINK"); //start of HYPERLINK
+                                                int landxaddresspoint_index = description.lastIndexOf("LANDXADDRESSPOINT"); //start of LANDXADDRESSPOINT
+
+
+                                                String postalCode = description.substring(addresspostalcode_index+28, addressstreetname_index-38);
+                                                text_clinic_postalcode.setText("Postal code: " + postalCode); //set postal code on textview
+
+                                                String streetName = description.substring(addressstreetname_index+27, addresstype_index-31);
+                                                text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
+
+                                                String clinicName = description.substring(name_index+14, photourl_index-31);
+                                                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name to textview
+
+                                                String hyperLink = description.substring(hyperlink_index+19, landxaddresspoint_index-38);
+                                                text_clinic_hyperlink.setText("Website: " + hyperLink); //set website to textview
+                                            }
+                                        });
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        error.printStackTrace();
+                                    }
+                                });
+                        // Access the RequestQueue through your singleton class.
+                        mQueue.add(jsonObjectRequest);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        // Access the RequestQueue through your singleton class.
+        mQueue.add(apiObjectRequest);
+
+
+        //This is the offline way of doing it, by downloading the file and putting the geojson file into the raw folder
+        //create geojson layer
+        /*GeoJsonLayer cervicalgeojsonlayer = new GeoJsonLayer(map, R.raw.cervicalgeojson, getContext());
         cervicalgeojsonlayer.addLayerToMap();
         cervicalgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
             @Override
@@ -244,7 +319,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 text_clinic_hyperlink.setText("Website: " + hyperLink);
 
             }
-        });
+        });*/
     }
 
     //adding breast screening centres on the map
@@ -253,8 +328,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         map.clear();
 
         mQueue = Volley.newRequestQueue(getContext());
-
         String apiUrl = "https://data.gov.sg/api/action/resource_show?id=7ca09c2e-112f-4e8d-b476-738e5a91fc7f";
+        //get json file from apiUrl
         JsonObjectRequest apiObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -268,8 +343,52 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         int url_index = resultString.indexOf("https");
                         int datastore_active = resultString.lastIndexOf("datastore_active");
 
-                        String breasturl = resultString.substring(url_index, datastore_active-3); //getting geojson file website string
-                        String breasturl2 = breasturl.replace("\\", ""); //removing \ characters from string
+                        String website = resultString.substring(url_index, datastore_active-3); //getting geojson file website string
+                        String breastUrl = website.replace("\\", ""); //removing backslash characters from website string
+
+                        //get breast geojson file from breastUrl
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                                (Request.Method.GET, breastUrl, null, new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map,response); //creating layer
+                                        breastgeojsonlayer.addLayerToMap(); //putting layer on google map
+                                        //set onclick listener for the markers placed on the map
+                                        breastgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+                                            @Override
+                                            public void onFeatureClick(Feature feature) {
+                                                String description = feature.getProperty("Description");
+                                                int addresspostalcode_index = description.lastIndexOf("ADDRESSPOSTALCODE"); //start of ADDRESSPOSTALCODE
+                                                int addressstreetname_index = description.lastIndexOf("ADDRESSSTREETNAME"); //start of ADDRESSTREETNAME
+                                                int addresstype_index = description.lastIndexOf("ADDRESSTYPE"); //start of ADDRESSTYPE
+                                                int name_index = description.lastIndexOf("NAME"); //start of NAME
+                                                int photourl_index = description.lastIndexOf("PHOTOURL"); //start of PHOTOURL
+                                                int hyperlink_index = description.lastIndexOf("HYPERLINK"); //start of HYPERLINK
+                                                int landxaddresspoint_index = description.lastIndexOf("LANDXADDRESSPOINT"); //start of LANDXADDRESSPOINT
+
+
+                                                String postalCode = description.substring(addresspostalcode_index+28, addressstreetname_index-38);
+                                                text_clinic_postalcode.setText("Postal code: " + postalCode); //set postal code on textview
+
+                                                String streetName = description.substring(addressstreetname_index+27, addresstype_index-31);
+                                                text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
+
+                                                String clinicName = description.substring(name_index+14, photourl_index-31);
+                                                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name to textview
+
+                                                String hyperLink = description.substring(hyperlink_index+19, landxaddresspoint_index-38);
+                                                text_clinic_hyperlink.setText("Website: " + hyperLink); //set website to textview
+                                            }
+                                        });
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        error.printStackTrace();
+                                    }
+                                });
+                        // Access the RequestQueue through your singleton class.
+                        mQueue.add(jsonObjectRequest);
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -277,65 +396,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         error.printStackTrace();
                     }
                 });
-
         // Access the RequestQueue through your singleton class.
         mQueue.add(apiObjectRequest);
 
 
-        String breastUrl = "https://geo.data.gov.sg/breastscreen/2020/02/12/geojson/breastscreen.geojson";
-        
-
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                (Request.Method.GET, breastUrl, null, new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.i("Response", "JSON object is" + response.toString());
-                        GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map,response);
-                        breastgeojsonlayer.addLayerToMap();
-
-                        breastgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
-                            @Override
-                            public void onFeatureClick(Feature feature) {
-                                String description = feature.getProperty("Description");
-                                int addresspostalcode_index = description.lastIndexOf("ADDRESSPOSTALCODE"); //start of ADDRESSPOSTALCODE
-                                int addressstreetname_index = description.lastIndexOf("ADDRESSSTREETNAME"); //start of ADDRESSTREETNAME
-                                int addresstype_index = description.lastIndexOf("ADDRESSTYPE"); //start of ADDRESSTYPE
-                                int name_index = description.lastIndexOf("NAME"); //start of NAME
-                                int photourl_index = description.lastIndexOf("PHOTOURL"); //start of PHOTOURL
-                                int hyperlink_index = description.lastIndexOf("HYPERLINK"); //start of HYPERLINK
-                                int landxaddresspoint_index = description.lastIndexOf("LANDXADDRESSPOINT"); //start of LANDXADDRESSPOINT
-
-
-                                String postalCode = description.substring(addresspostalcode_index+28, addressstreetname_index-38);
-                                text_clinic_postalcode.setText("Postal code: " + postalCode); //set postal code on textview
-
-                                String streetName = description.substring(addressstreetname_index+27, addresstype_index-31);
-                                text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
-
-                                String clinicName = description.substring(name_index+14, photourl_index-31);
-                                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name to textview
-
-                                String hyperLink = description.substring(hyperlink_index+19, landxaddresspoint_index-38);
-                                text_clinic_hyperlink.setText("Website: " + hyperLink); //set website to textview
-                            }
-                        });
-
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
-                        error.printStackTrace();
-                    }
-                });
-
-        // Access the RequestQueue through your singleton class.
-        mQueue.add(jsonObjectRequest);
-
-        //create geojson layer
-        //GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map, R.raw.breastgeojson, getContext());
-
-        /*breastgeojsonlayer.addLayerToMap();
+        //This is the offline way of doing it, by downloading the file and putting the geojson file into the raw folder
+        /*create geojson layer
+        GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map, R.raw.breastgeojson, getContext());
+        breastgeojsonlayer.addLayerToMap();
         breastgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
@@ -366,12 +434,83 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     //adding chas clinic centres on the map
     public void chasLayer() throws IOException, JSONException{
-        //create geojson layer
-        GeoJsonLayer chasgeojsonlayer = new GeoJsonLayer(map, R.raw.chasgeojson, getContext());
-
         //reset the map before adding layers onto it
         map.clear();
 
+        mQueue = Volley.newRequestQueue(getContext());
+        String apiUrl = "https://data.gov.sg/api/action/resource_show?id=cb94adc3-aaf6-4352-982e-01014f6a5716";
+        //get json file from apiUrl
+        JsonObjectRequest apiObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String resultString = null;
+                        try {
+                            resultString = response.getJSONObject("result").toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        int url_index = resultString.indexOf("https"); //index of the start of the website
+                        int datastore_active = resultString.lastIndexOf("datastore_active"); //index of the string where datastore_active is
+
+                        String website = resultString.substring(url_index, datastore_active-3); //getting geojson file website string
+                        String chasUrl = website.replace("\\", ""); //removing backslash characters from website string
+
+                        //get chas geojson file from breastUrl
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                                (Request.Method.GET, chasUrl, null, new Response.Listener<JSONObject>() {
+                                    @Override
+                                    public void onResponse(JSONObject response) {
+                                        GeoJsonLayer chasgeojsonlayer = new GeoJsonLayer(map,response); //creating layer
+                                        chasgeojsonlayer.addLayerToMap(); //putting layer on google map
+                                        //set onclick listener for the markers placed on the map
+                                        chasgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+                                            @Override
+                                            public void onFeatureClick(Feature feature) {
+                                                String description = feature.getProperty("Description");
+                                                int hciname_index = description.lastIndexOf("HCI_NAME"); //start of HCI_NAME
+                                                int licence_type_index = description.lastIndexOf("LICENCE_TYPE"); //start of LICENCE_TYPE
+                                                int streetname_index = description.lastIndexOf("STREET_NAME"); //start of ADDRESSTYPE
+                                                int buildingname_index = description.lastIndexOf("BUILDING_NAME"); //start of NAME
+                                                int postalcd_index = description.lastIndexOf("POSTAL_CD"); //start of POSTAL_CD
+                                                int addrtype_index = description.lastIndexOf("ADDR_TYPE"); //start of ADDR_TYPE
+
+
+                                                String postalCode = description.substring(postalcd_index+19, addrtype_index-31);
+                                                text_clinic_postalcode.setText("Postal code: " + postalCode); //set postal code on textview
+
+                                                String streetName = description.substring(streetname_index+21, buildingname_index-38);
+                                                text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
+
+                                                String clinicName = description.substring(hciname_index+18, licence_type_index-38);
+                                                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name on textview
+                                            }
+                                        });
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        error.printStackTrace();
+                                    }
+                                });
+                        // Access the RequestQueue through your singleton class.
+                        mQueue.add(jsonObjectRequest);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+        // Access the RequestQueue through your singleton class.
+        mQueue.add(apiObjectRequest);
+
+
+
+
+        //This is the offline way of doing it, by downloading the file and putting the geojson file into the raw folder
+        //create geojson layer
+        /*GeoJsonLayer chasgeojsonlayer = new GeoJsonLayer(map, R.raw.chasgeojson, getContext());
         chasgeojsonlayer.addLayerToMap();
         chasgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
             @Override
@@ -395,7 +534,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 String clinicName = description.substring(hciname_index+18, licence_type_index-38);
                 text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name on textview
             }
-        });
+        });*/
     }
 
     @Override
