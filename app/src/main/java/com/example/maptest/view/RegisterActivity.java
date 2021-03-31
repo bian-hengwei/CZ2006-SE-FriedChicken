@@ -91,9 +91,9 @@ public class RegisterActivity extends AppCompatActivity{
     public void registerAccount(View view) {
         String email = mEmail.getText().toString().trim(); //get email from EditText
         String password = mPassword.getText().toString().trim(); //get password from EditText
-        String fullName = mFullName.getText().toString().trim();
-        String phoneNumber = mPhoneNumber.getText().toString().trim();
-        String dateOfBirth = mDateOfBirth.getText().toString().trim();
+        String fullName = mFullName.getText().toString().trim(); //get full name from EditText
+        String phoneNumber = mPhoneNumber.getText().toString().trim(); //get phone number from EditText
+        String dateOfBirth = mDateOfBirth.getText().toString().trim(); //get date of birth from EditText
 
         //check if fullName is empty
         if(TextUtils.isEmpty(fullName)){

@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.maptest.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -34,9 +41,12 @@ import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.kml.KmlLayer;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -55,6 +65,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private TextView text_clinic_streetname;
     private TextView text_clinic_postalcode;
     private TextView text_clinic_hyperlink;
+
+    private RequestQueue mQueue;
 
 
     //constructor
@@ -237,13 +249,93 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     //adding breast screening centres on the map
     public void breastLayer() throws IOException, JSONException{
-        //create geojson layer
-        GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map, R.raw.breastgeojson, getContext());
-
         //reset the map before adding layers onto it
         map.clear();
 
-        breastgeojsonlayer.addLayerToMap();
+        mQueue = Volley.newRequestQueue(getContext());
+
+        String apiUrl = "https://data.gov.sg/api/action/resource_show?id=7ca09c2e-112f-4e8d-b476-738e5a91fc7f";
+        JsonObjectRequest apiObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        String resultString = null;
+                        try {
+                            resultString = response.getJSONObject("result").toString();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        int url_index = resultString.indexOf("https");
+                        int datastore_active = resultString.lastIndexOf("datastore_active");
+
+                        String breasturl = resultString.substring(url_index, datastore_active-3); //getting geojson file website string
+                        String breasturl2 = breasturl.replace("\\", ""); //removing \ characters from string
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        mQueue.add(apiObjectRequest);
+
+
+        String breastUrl = "https://geo.data.gov.sg/breastscreen/2020/02/12/geojson/breastscreen.geojson";
+        
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                (Request.Method.GET, breastUrl, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.i("Response", "JSON object is" + response.toString());
+                        GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map,response);
+                        breastgeojsonlayer.addLayerToMap();
+
+                        breastgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
+                            @Override
+                            public void onFeatureClick(Feature feature) {
+                                String description = feature.getProperty("Description");
+                                int addresspostalcode_index = description.lastIndexOf("ADDRESSPOSTALCODE"); //start of ADDRESSPOSTALCODE
+                                int addressstreetname_index = description.lastIndexOf("ADDRESSSTREETNAME"); //start of ADDRESSTREETNAME
+                                int addresstype_index = description.lastIndexOf("ADDRESSTYPE"); //start of ADDRESSTYPE
+                                int name_index = description.lastIndexOf("NAME"); //start of NAME
+                                int photourl_index = description.lastIndexOf("PHOTOURL"); //start of PHOTOURL
+                                int hyperlink_index = description.lastIndexOf("HYPERLINK"); //start of HYPERLINK
+                                int landxaddresspoint_index = description.lastIndexOf("LANDXADDRESSPOINT"); //start of LANDXADDRESSPOINT
+
+
+                                String postalCode = description.substring(addresspostalcode_index+28, addressstreetname_index-38);
+                                text_clinic_postalcode.setText("Postal code: " + postalCode); //set postal code on textview
+
+                                String streetName = description.substring(addressstreetname_index+27, addresstype_index-31);
+                                text_clinic_streetname.setText("Street name: " + streetName); //set street name on textview
+
+                                String clinicName = description.substring(name_index+14, photourl_index-31);
+                                text_clinic_name.setText("Clinic: "+ clinicName); //set clinic name to textview
+
+                                String hyperLink = description.substring(hyperlink_index+19, landxaddresspoint_index-38);
+                                text_clinic_hyperlink.setText("Website: " + hyperLink); //set website to textview
+                            }
+                        });
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO: Handle error
+                        error.printStackTrace();
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        mQueue.add(jsonObjectRequest);
+
+        //create geojson layer
+        //GeoJsonLayer breastgeojsonlayer = new GeoJsonLayer(map, R.raw.breastgeojson, getContext());
+
+        /*breastgeojsonlayer.addLayerToMap();
         breastgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
@@ -269,7 +361,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 String hyperLink = description.substring(hyperlink_index+19, landxaddresspoint_index-38);
                 text_clinic_hyperlink.setText("Website: " + hyperLink); //set website to textview
             }
-        });
+        });*/
     }
 
     //adding chas clinic centres on the map
