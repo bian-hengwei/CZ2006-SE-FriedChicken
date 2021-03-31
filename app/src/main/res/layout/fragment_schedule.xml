@@ -26,6 +26,6 @@
         android:clickable="true"
         android:src="@android:drawable/ic_input_add"
         android:translationX="200px"
-        android:translationY="1300px" />
+        android:translationY="1200px" />
 
 </FrameLayout>

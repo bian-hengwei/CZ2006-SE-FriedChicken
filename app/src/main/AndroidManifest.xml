@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
-        <activity android:name=".view.SearchClinicActivity" android:label = "New Checkup"
+        <activity android:name=".view.SearchClinicActivity" android:label = "New Checkup-make appointment"
             android:parentActivityName=".view.HomeActivity" ></activity>
+        //parentActivityName: create an arrow to return to the last page
+        <activity android:name=".view.AddCheckupActivity" android:label = "New Checkup-schedule"
+            android:parentActivityName=".view.SearchClinicActivity" ></activity>
         //parentActivityName: create an arrow to return to the last page
         <activity android:name="com.ntu.medcheck.view.HomeActivity"></activity>
         <activity android:name="com.ntu.medcheck.view.EditProfileActivity" />
@@ -25,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
