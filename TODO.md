@@ -1,7 +1,8 @@
 # TODO  
   
  - [x] Add firebase register  
- - [ ] Modify details of firebase register
+ - [ ] Fix toast in registermgr
+ - [ ] Explore how to use strings.xml in non activity classes
  - [ ] Add firebase login  
  - [ ] Use Splash activity to save login state  
  - [ ] Add firebase change password  

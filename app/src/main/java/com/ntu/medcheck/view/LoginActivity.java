@@ -34,13 +34,15 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void login(View v) {
         // verify
-        String email = null;
-        String password = null;
+        EditText email = findViewById(R.id.loginEmailInput);
+        EditText password = findViewById(R.id.loginPasswordInput);
+        String emailString = email.toString().trim();
+        String passwordString = null;
         boolean success = true; // later set to false
 
         // use verifyLogin to check login
         LoginMgr loginMgr = new LoginMgr();
-        success = loginMgr.verifyLogin(getMainEmailInput(), getMainPasswordInput());
+        success = loginMgr.verifyLogin(emailString, passwordString);
 
         if(success) {
             // go to home activity
@@ -54,13 +56,13 @@ public class LoginActivity extends AppCompatActivity {
 
     // get user input data
     public String getMainEmailInput() {
-        EditText emailInput = (EditText)findViewById(R.id.mainEmailInput);
+        EditText emailInput = (EditText)findViewById(R.id.loginEmailInput);
         String email = emailInput.getText().toString();
         return email;
     }
 
     public String getMainPasswordInput() {
-        EditText passwordInput = (EditText)findViewById(R.id.mainPasswordInput);
+        EditText passwordInput = (EditText)findViewById(R.id.loginPasswordInput);
         String password = passwordInput.getText().toString();
         return password;
     }

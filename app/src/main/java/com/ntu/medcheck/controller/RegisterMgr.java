@@ -1,56 +1,42 @@
 package com.ntu.medcheck.controller;
 
+import android.content.Context;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.model.User;
-import com.ntu.medcheck.view.RegisterActivity;
+
+import java.util.Objects;
 
 public class RegisterMgr {
 
-    public boolean register(String userName, String emailAddress, String password, String rePassword) {
+    public void register(String userName, String emailAddress, String password, String rePassword, Context context) {
         // hard coded for testing
-        userName = "yinan";
-        password = "CZ2006";
-        rePassword = "CZ2006";
         String gender = "Female";
         int age = 20;
         String birthday = "12/12/2000";
         String phoneNo = "12345678";
-        emailAddress = "HEYI0003@e.ntu.edu.sg";
-
-        User user = new User(userName, gender, age, birthday, phoneNo, emailAddress);
-
-        String finalUserName = userName;
-        String finalEmailAddress = emailAddress;
 
         FirebaseAuth fAuth;
         fAuth = FirebaseAuth.getInstance();
 
-        fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                System.out.println("2");
+        // additional checkings that firebase do not provide
+        boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, age, birthday, phoneNo, context);
+
+        if(valid) {
+            fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
                 //if successful register
                 if (task.isSuccessful()) {
-                    User user = new User(finalUserName, gender, age, birthday, phoneNo, finalEmailAddress);
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            System.out.println("3");
-                            if (task.isSuccessful()) {
-                                System.out.println("Success");
-                            } else {
-                                System.out.println("failed");
-                                ;
-                            }
+                    User user1 = new User(userName, gender, age, birthday, phoneNo, emailAddress);
+                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user1).addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()) {
+                            Toast.makeText(context, "Registration successful, please verify email and login", Toast.LENGTH_LONG).show();
+                        } else {
+                            System.out.println("failed");
+                            Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -58,13 +44,30 @@ public class RegisterMgr {
                     FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
                     //send verification email
                     User.sendEmailVerification();
-
-                } else {
-                    System.out.println("failed");
                 }
-            }
-        });
+                else {
+                    try {
+                        throw task.getException();
+                    } catch(FirebaseAuthWeakPasswordException e) {
+                        Toast.makeText(context, "Registration unsuccessful, password too weak", Toast.LENGTH_LONG).show();
+                    }
+                    catch(FirebaseAuthUserCollisionException e) {
+                        Toast.makeText(context, "Registration unsuccessful, email already used", Toast.LENGTH_LONG).show();
+                    }
+                    catch(Exception e) {
+                        System.out.println("Unknown Error");
+                    }
+                }
+            });
+        }
+    }
 
+    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, String birthday, String phoneNo, Context context) {
+        // check password = rePassword
+        if(!password.equals(rePassword)) {
+            Toast.makeText(context, "Registration unsuccessful, re-entered password is different from password", Toast.LENGTH_LONG).show();
+            return false;
+        }
         return true;
     }
 }

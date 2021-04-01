@@ -23,38 +23,31 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View v) {
-        boolean success = false;
         RegisterMgr registerMgr = new RegisterMgr();
-        success = registerMgr.register(getName(), getEmail(), getPassword(), getRePassword());
-
-        if(success) { // successfully registered
-            // add to firebase
-            Intent i = new Intent(this, HomeActivity.class);
-            startActivity(i);
-        }
+        registerMgr.register(getName(), getEmail(), getPassword(), getRePassword(), getApplicationContext());
     }
 
     public String getName() {
-        EditText nameInput = (EditText)findViewById(R.id.registerNameInput);
-        String name = nameInput.getText().toString();
+        EditText nameInput = findViewById(R.id.registerNameInput);
+        String name = nameInput.getText().toString().trim();
         return name;
     }
 
     public String getEmail() {
-        EditText emailInput = (EditText)findViewById(R.id.registerEmailInput);
-        String email = emailInput.getText().toString();
+        EditText emailInput = findViewById(R.id.registerEmailInput);
+        String email = emailInput.getText().toString().trim();
         return email;
     }
 
     public String getPassword() {
-        EditText passwordInput = (EditText)findViewById(R.id.registerPasswordInput);
-        String password = passwordInput.getText().toString();
+        EditText passwordInput = findViewById(R.id.registerPasswordInput);
+        String password = passwordInput.getText().toString().trim();
         return password;
     }
 
     public String getRePassword() {
         EditText rePasswordInput = (EditText)findViewById(R.id.registerRePasswordInput);
-        String rePassword = rePasswordInput.getText().toString();
+        String rePassword = rePasswordInput.getText().toString().trim();
         return rePassword;
     }
 
