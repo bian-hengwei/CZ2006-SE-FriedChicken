@@ -26,40 +26,42 @@ public class RegisterMgr {
         // additional checkings that firebase do not provide
         boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, age, birthday, phoneNo, context);
 
-        if(valid) {
-            fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
-                //if successful register
-                if (task.isSuccessful()) {
-                    User user1 = new User(userName, gender, age, birthday, phoneNo, emailAddress);
-                    FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user1).addOnCompleteListener(task1 -> {
-                        if (task1.isSuccessful()) {
-                            Toast.makeText(context, "Registration successful, please verify email and login", Toast.LENGTH_LONG).show();
-                        } else {
-                            System.out.println("failed");
-                            Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
-                        }
-                    });
-
-                    //get instance of current user
-                    FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
-                    //send verification email
-                    User.sendEmailVerification();
-                }
-                else {
-                    try {
-                        throw task.getException();
-                    } catch(FirebaseAuthWeakPasswordException e) {
-                        Toast.makeText(context, "Registration unsuccessful, password too weak", Toast.LENGTH_LONG).show();
-                    }
-                    catch(FirebaseAuthUserCollisionException e) {
-                        Toast.makeText(context, "Registration unsuccessful, email already used", Toast.LENGTH_LONG).show();
-                    }
-                    catch(Exception e) {
-                        System.out.println("Unknown Error");
-                    }
-                }
-            });
+        if(!valid) {
+            return;
         }
+
+        fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
+            //if successful register
+            if (task.isSuccessful()) {
+                User user1 = new User(userName, gender, age, birthday, phoneNo, emailAddress);
+                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user1).addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(context, "Registration successful, please verify email and login", Toast.LENGTH_LONG).show();
+                    } else {
+                        System.out.println("failed");
+                        Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                //get instance of current user
+                FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+                //send verification email
+                User.sendEmailVerification();
+            }
+            else {
+                try {
+                    throw task.getException();
+                } catch(FirebaseAuthWeakPasswordException e) {
+                    Toast.makeText(context, "Registration unsuccessful, password too weak", Toast.LENGTH_LONG).show();
+                }
+                catch(FirebaseAuthUserCollisionException e) {
+                    Toast.makeText(context, "Registration unsuccessful, email already used", Toast.LENGTH_LONG).show();
+                }
+                catch(Exception e) {
+                    System.out.println("Unknown Error");
+                }
+            }
+        });
     }
 
     public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, String birthday, String phoneNo, Context context) {

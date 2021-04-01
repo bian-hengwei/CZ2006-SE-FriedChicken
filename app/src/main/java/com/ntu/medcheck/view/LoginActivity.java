@@ -34,24 +34,36 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void login(View v) {
         // verify
-        EditText email = findViewById(R.id.loginEmailInput);
-        EditText password = findViewById(R.id.loginPasswordInput);
-        String emailString = email.toString().trim();
-        String passwordString = null;
-        boolean success = true; // later set to false
+        String emailString = getEmail();
+        String passwordString = getPassword();
+
+        boolean success = false; // later set to false
 
         // use verifyLogin to check login
         LoginMgr loginMgr = new LoginMgr();
-        success = loginMgr.verifyLogin(emailString, passwordString);
-
+        loginMgr.verifyLogin(emailString, passwordString, getApplicationContext());
+        /*
         if(success) {
             // go to home activity
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
-        }
+        }*/
+    }
 
+    public String getEmail() {
+        EditText email = findViewById(R.id.loginEmailInput);
+        String emailString = email.getText().toString().trim();
+        System.out.println("!!!!!!!!!!!!!!!getemail!!!!!!!!!!!!!!");
+        System.out.println(emailString);
+        return emailString;
+    }
 
-
+    public String getPassword() {
+        EditText password = (EditText)findViewById(R.id.loginPasswordInput);
+        String passwordString = password.getText().toString();
+        System.out.println("!!!!!!!!!!!!!!!getPassword!!!!!!!!!!!!!!");
+        System.out.println(passwordString);
+        return passwordString;
     }
 
     // get user input data
