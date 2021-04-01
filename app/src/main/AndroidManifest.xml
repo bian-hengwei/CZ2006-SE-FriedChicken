@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ntu.medcheck">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Test">
+        <activity
+            android:name=".view.SearchClinicActivity"
+            android:label = "New Checkup-make appointment"
+            android:parentActivityName=".view.HomeActivity" >
+        </activity>
+        //parentActivityName: create an arrow to return to the last page
+        <activity
+            android:name=".view.AddCheckupActivity"
+            android:label = "New Checkup-schedule"
+            android:parentActivityName=".view.SearchClinicActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        //parentActivityName: create an arrow to return to the last page
+        <activity
+            android:name=".view.AddMedicationActivity"
+            android:label = "New Medication-reminder"
+            android:parentActivityName=".view.HomeActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        //parentActivityName: create an arrow to return to the last page
+
+        <activity android:name="com.ntu.medcheck.view.HomeActivity">
+        </activity>
+        <activity android:name="com.ntu.medcheck.view.EditProfileActivity" />
+        <activity android:name="com.ntu.medcheck.view.ForgetPasswordActivity" />
+        <activity android:name="com.ntu.medcheck.view.RegisterActivity" />
+        <activity android:name="com.ntu.medcheck.view.LoginActivity">
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
