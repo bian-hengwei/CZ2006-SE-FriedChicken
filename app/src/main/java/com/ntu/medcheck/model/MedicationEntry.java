@@ -63,4 +63,12 @@ public class MedicationEntry extends Entry{
     public String getRepeat() {
         return repeat;
     }
+
+    public String getEntryType() {
+        return entryType;
+    }
+
+    public void setEntryType() {
+        this.entryType = "medication";
+    }
 }
