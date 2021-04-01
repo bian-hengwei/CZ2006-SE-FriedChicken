@@ -1,5 +1,7 @@
 package com.ntu.medcheck.controller;
 
+import android.content.Context;
+
 import com.ntu.medcheck.model.User;
 
 public class UserProfileMgr {
@@ -21,7 +23,7 @@ public class UserProfileMgr {
      * reset password using firebase and email verification
      * @return result
      */
-    public boolean reset() {return true;}
+    public boolean resetPassword(Context context) {return true;}
 
     /**
      * return current user object

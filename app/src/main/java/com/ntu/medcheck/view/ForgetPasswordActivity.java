@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.UserProfileMgr;
 
 /**
  * The class allows users to reset password if they forget the current password
@@ -21,8 +22,8 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     }
 
     public void resetPassword(View v) {
-        // onclick
-        // UserProfileMgr.reset()
+        UserProfileMgr userProfileMgr = new UserProfileMgr();
+        userProfileMgr.resetPassword(getApplicationContext());
     }
 
 }
