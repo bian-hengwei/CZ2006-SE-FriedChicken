@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">买的柴克</string>
+    <string name="title_activity_home">主活动</string>
+    <string name="title_home">主界面</string>
+    <string name="title_dashboard">大师包</string>
+    <string name="title_notifications">诺踢飞开深思</string>
+    <string name="hello_blank_fragment">哈咯</string>
+    <string name="nav_calendar">日历</string>
+    <string name="nav_schedule">时间表</string>
+    <string name="nav_home">主界面</string>
+    <string name="nav_setting">设置</string>
+    <string name="password_register">密码</string>
+    <string name="register_name">注册</string>
+    <string name="name">姓名</string>
+</resources>

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.view.AddMedicationActivity;
 import com.ntu.medcheck.view.SearchClinicActivity;
 
 /**
@@ -74,16 +75,25 @@ public class ScheduleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
-        addNewCheckup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addNewCheckup(v);
+        addNewCheckup.setOnClickListener(mListener);
+        FloatingActionButton addNewMedication = view.findViewById(R.id.addNewMedication);
+        addNewMedication.setOnClickListener(mListener);
+    }
+
+    private final View.OnClickListener mListener = new View.OnClickListener() {
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.addNewCheckup:
+                    Intent i = new Intent(ScheduleFragment.this.getActivity(), SearchClinicActivity.class);
+                    startActivity(i);
+                    break;
+                case R.id.addNewMedication:
+                    Intent j = new Intent(ScheduleFragment.this.getActivity(), AddMedicationActivity.class);
+                    startActivity(j);
+                    break;
             }
-        });
-    }
-    //onclick button
-    public void addNewCheckup(View v) {
-        Intent i = new Intent(ScheduleFragment.this.getActivity(), SearchClinicActivity.class);
-        startActivity(i);
-    }
+        }
+    };
+
+
 }

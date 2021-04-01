@@ -9,10 +9,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.model.User;
 
-import java.util.Objects;
-
 public class RegisterMgr {
 
+    // TODO: aca stuff
     public void register(String userName, String emailAddress, String password, String rePassword, Context context) {
         // hard coded for testing
         String gender = "Female";
@@ -20,15 +19,15 @@ public class RegisterMgr {
         String birthday = "12/12/2000";
         String phoneNo = "12345678";
 
-        FirebaseAuth fAuth;
-        fAuth = FirebaseAuth.getInstance();
-
-        // additional checkings that firebase do not provide
+        // additional checkings that firebase does not provide
         boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, age, birthday, phoneNo, context);
 
         if(!valid) {
             return;
         }
+
+        FirebaseAuth fAuth;
+        fAuth = FirebaseAuth.getInstance();
 
         fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
             //if successful register

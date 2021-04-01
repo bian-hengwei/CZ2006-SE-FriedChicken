@@ -22,7 +22,7 @@ public class AddCheckupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_checkup);
 
-        FloatingActionButton addButton1 = findViewById(R.id.backToPrev1);
+        FloatingActionButton addButton1 = findViewById(R.id.editType);
         addButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,7 +31,7 @@ public class AddCheckupActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton addButton2 = findViewById(R.id.backToPrev2);
+        FloatingActionButton addButton2 = findViewById(R.id.editClinic);
         addButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

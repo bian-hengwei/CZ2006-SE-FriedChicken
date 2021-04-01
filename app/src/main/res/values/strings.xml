@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">test</string>
+    <string name="app_name">medCheck</string>
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -10,10 +10,13 @@
     <string name="nav_schedule">Schedule</string>
     <string name="nav_home">Home</string>
     <string name="nav_setting">Settings</string>
+    <string name="password_register">Password</string>
+    <string name="register_name">Register</string>
     <string-array name="checkupList">
         <item>Please select</item>
         <item>Cervical screening</item>
         <item>Breast screening</item>
         <item>General checkup</item>
     </string-array>
+    <string name="name">Name</string>
 </resources>

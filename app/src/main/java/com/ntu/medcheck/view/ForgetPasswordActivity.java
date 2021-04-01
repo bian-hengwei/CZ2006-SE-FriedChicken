@@ -1,5 +1,7 @@
 package com.ntu.medcheck.view;
 
+import android.os.Bundle;
+import android.view.View;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +24,11 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
+    }
+
+    public void resetPassword(View v) {
+        // onclick
+        // UserProfileMgr.reset()
 
 
         Button forgetPasswordBtn = findViewById(R.id.forgetPasswordResetPasswordButton);

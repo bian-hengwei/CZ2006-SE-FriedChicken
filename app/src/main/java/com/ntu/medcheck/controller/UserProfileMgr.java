@@ -59,7 +59,7 @@ public class UserProfileMgr {
             }
         });
 
-       // Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("emailAddress").equalTo(email);
+        // Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("emailAddress").equalTo(email);
 
 
     }

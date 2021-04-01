@@ -12,6 +12,11 @@ public class User {
     private String phoneNo;
     private String emailAddress;
 
+    private Schedule userSchedule = Schedule.getInstance();
+
+    public User() {
+    }
+
     public User(String userName, String gender, int age, String birthday, String phoneNo, String emailAddress) {
         this.userName = userName;
         this.gender = gender;
@@ -21,51 +26,59 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getUserName() {
         return userName;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getGender() {
         return gender;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getBirthday() {
         return birthday;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getEmailAddress() {
         return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public Schedule getUserSchedule() {
+        return userSchedule;
+    }
+
+    public void setUserSchedule(Schedule userSchedule) {
+        this.userSchedule = userSchedule;
     }
 }
