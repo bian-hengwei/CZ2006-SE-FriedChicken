@@ -66,8 +66,37 @@ public class RegisterMgr {
 
     public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, String birthday, String phoneNo, Context context) {
         // check password = rePassword
-        if(!password.equals(rePassword)) {
+
+        if(userName.isEmpty()) {
+            Toast.makeText(context, "Registration unsuccessful, username is empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(emailAddress.isEmpty()) {
+            Toast.makeText(context, "Registration unsuccessful, email address is empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(password.isEmpty()) {
+            Toast.makeText(context, "Registration unsuccessful, password is empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(!password.equals(rePassword)) {
             Toast.makeText(context, "Registration unsuccessful, re-entered password is different from password", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(gender.isEmpty()) {
+            Toast.makeText(context, "Registration unsuccessful, gender is empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(age == 0) {
+            Toast.makeText(context, "Registration unsuccessful, age cannot be 0", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(birthday.isEmpty()) {
+            Toast.makeText(context, "Registration unsuccessful, birthday is empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        else if(phoneNo.isEmpty()) {
+            Toast.makeText(context, "Registration unsuccessful, phone number is empty", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

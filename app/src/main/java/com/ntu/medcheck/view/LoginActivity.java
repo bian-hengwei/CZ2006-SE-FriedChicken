@@ -34,10 +34,10 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void login(View v) {
         // verify
-        String emailString = getEmail();
-        String passwordString = getPassword();
-
-        boolean success = false; // later set to false
+        String emailString = "";
+        emailString = getEmail();
+        String passwordString = "";
+        passwordString = getPassword();
 
         // use verifyLogin to check login
         LoginMgr loginMgr = new LoginMgr();
