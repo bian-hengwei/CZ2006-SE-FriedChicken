@@ -3,6 +3,7 @@ package com.ntu.medcheck.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,29 +27,36 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Button loginBtn = findViewById(R.id.button);
+        System.out.println("2");
+        loginBtn.setOnClickListener(v1 -> {
+            System.out.println("1111111111111111111111111111111111111111111");
+            LoginMgr loginMgr = new LoginMgr();
+            loginMgr.verifyLogin(getApplicationContext(), this);
+        });
     }
 
     /**
      *
      * @param v
      */
-    public void login(View v) {
+    /*public void login(View v) {
         // TODO: aca replace getEmail etc.
         // verify
-        String emailString = "";
-        emailString = getEmail();
-        String passwordString = "";
-        passwordString = getPassword();
+
+        String emailString = getEmail();
+        String passwordString = getPassword();
 
         // use verifyLogin to check login
         LoginMgr loginMgr = new LoginMgr();
-        loginMgr.verifyLogin(emailString, passwordString, getApplicationContext(), this);
+        loginMgr.verifyLogin(getApplicationContext(), this);
         /*
         if(success) {
             // go to home activity
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
-        }*/
+        }
     }
 
     public String getEmail() {
@@ -65,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         System.out.println("!!!!!!!!!!!!!!!getPassword!!!!!!!!!!!!!!");
         System.out.println(passwordString);
         return passwordString;
-    }
+    }*/
 
 
     /**

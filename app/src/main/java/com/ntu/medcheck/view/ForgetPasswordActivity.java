@@ -24,38 +24,47 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
-    }
 
-    public void resetPassword(View v) {
-        // onclick
-        // UserProfileMgr.reset()
+        System.out.println("hello");
 
-
+        System.out.println("1");
         Button forgetPasswordBtn = findViewById(R.id.forgetPasswordResetPasswordButton);
-        forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+        System.out.println("2");
+        forgetPasswordBtn.setOnClickListener(v1 -> {
+            //System.out.println("1111111111111111111111111111111111111111111");
+            //forgetPassword(v1);
 
-            @Override
-            public void onClick(View v) {
-                forgetPassword(v);
-            }
+            UserProfileMgr userProfileMgr = new UserProfileMgr();
+            Context context = getApplicationContext();
+            userProfileMgr.resetPassword(this, context);
         });
     }
 
+    /*
+    public void resetPassword(View v) {
+        // onclick
+        // UserProfileMgr.reset()
+        System.out.println("1");
+        Button forgetPasswordBtn = findViewById(R.id.forgetPasswordResetPasswordButton);
+        System.out.println("2");
+        forgetPasswordBtn.setOnClickListener(v1 -> {
+            System.out.println("1111111111111111111111111111111111111111111");
+            forgetPassword(v1);
+        });
+    }*/
 
-
-
-
-    public void forgetPassword(View v) {
+    /*public void forgetPassword(View v) {
         UserProfileMgr userProfileMgr = new UserProfileMgr();
         String email = getEmail();
         Context context = getApplicationContext();
         userProfileMgr.resetPassword(email, context);
-    }
+    }*/
 
+    /*
     public String getEmail() {
         EditText email = findViewById(R.id.forgetPasswordEmailInput);
         String emailString = email.getText().toString().trim();
         return emailString;
-    }
+    }*/
 
 }

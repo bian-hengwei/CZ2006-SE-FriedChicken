@@ -1,18 +1,34 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
 
 public class RegisterMgr {
 
     // TODO: aca stuff
-    public void register(String userName, String emailAddress, String password, String rePassword, Context context) {
+    public void register(AppCompatActivity aca,  Context context) {
+
+        EditText userNameInput = aca.findViewById(R.id.registerNameInput);
+        EditText emailAddressInput = aca.findViewById(R.id.registerEmailInput);
+        EditText passwordInput = aca.findViewById(R.id.registerPasswordInput);
+        EditText rePasswordInput = aca.findViewById(R.id.registerRePasswordInput);
+
+        String userName = userNameInput.getText().toString().trim();
+        String emailAddress = emailAddressInput.getText().toString().trim();
+        String password = passwordInput.getText().toString().trim();
+        String rePassword = rePasswordInput.getText().toString().trim();
+
         // hard coded for testing
         String gender = "Female";
         int age = 20;

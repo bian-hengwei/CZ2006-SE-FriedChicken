@@ -2,15 +2,18 @@ package com.ntu.medcheck.controller;
 
 import android.content.Context;
 import android.util.Patterns;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
 
 import java.util.regex.Pattern;
@@ -33,11 +36,12 @@ public class UserProfileMgr {
     /**
      * reset password using firebase and email verification
      */
-    public void resetPassword(String email, Context context) {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(email);
+    public void resetPassword(AppCompatActivity aca, Context context) {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        EditText emailInput = aca.findViewById(R.id.forgetPasswordEmailInput);
+        String email = emailInput.getText().toString().trim();
 
         boolean valid = checkValid(email, context);
         if(!valid){
