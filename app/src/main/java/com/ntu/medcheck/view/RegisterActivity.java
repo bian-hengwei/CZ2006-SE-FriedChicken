@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View v) {
+        // TODO: add boolean to check next page (stay / login / back)
         RegisterMgr registerMgr = new RegisterMgr();
         registerMgr.register(getName(), getEmail(), getPassword(), getRePassword(), getApplicationContext());
     }

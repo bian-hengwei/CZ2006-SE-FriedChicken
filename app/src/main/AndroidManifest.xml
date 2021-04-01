@@ -18,7 +18,10 @@
         <activity android:name="com.ntu.medcheck.view.HomeActivity"></activity>
         <activity android:name="com.ntu.medcheck.view.EditProfileActivity" />
         <activity android:name="com.ntu.medcheck.view.ForgetPasswordActivity" />
-        <activity android:name="com.ntu.medcheck.view.RegisterActivity" />
+        <activity
+            android:name="com.ntu.medcheck.view.RegisterActivity"
+            android:label="@string/register_name"
+            android:parentActivityName=".view.LoginActivity"/>
         <activity android:name="com.ntu.medcheck.view.LoginActivity">
 
 

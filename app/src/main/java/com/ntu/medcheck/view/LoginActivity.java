@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param v
      */
     public void login(View v) {
+        // TODO: aca replace getEmail etc.
         // verify
         String emailString = "";
         emailString = getEmail();
@@ -41,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // use verifyLogin to check login
         LoginMgr loginMgr = new LoginMgr();
-        loginMgr.verifyLogin(emailString, passwordString, getApplicationContext());
+        loginMgr.verifyLogin(emailString, passwordString, getApplicationContext(), this);
         /*
         if(success) {
             // go to home activity
@@ -64,19 +65,6 @@ public class LoginActivity extends AppCompatActivity {
         System.out.println("!!!!!!!!!!!!!!!getPassword!!!!!!!!!!!!!!");
         System.out.println(passwordString);
         return passwordString;
-    }
-
-    // get user input data
-    public String getMainEmailInput() {
-        EditText emailInput = (EditText)findViewById(R.id.loginEmailInput);
-        String email = emailInput.getText().toString();
-        return email;
-    }
-
-    public String getMainPasswordInput() {
-        EditText passwordInput = (EditText)findViewById(R.id.loginPasswordInput);
-        String password = passwordInput.getText().toString();
-        return password;
     }
 
 
