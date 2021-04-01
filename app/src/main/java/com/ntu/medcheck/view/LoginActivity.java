@@ -41,14 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         passwordString = getPassword();
 
         // use verifyLogin to check login
-        LoginMgr loginMgr = new LoginMgr();
-        loginMgr.verifyLogin(emailString, passwordString, getApplicationContext(), this);
-        /*
-        if(success) {
+        //LoginMgr loginMgr = new LoginMgr();
+        //loginMgr.verifyLogin(emailString, passwordString, getApplicationContext(), this);
+
+        if(true) {
             // go to home activity
             Intent i = new Intent(this, HomeActivity.class);
             startActivity(i);
-        }*/
+        }
     }
 
     public String getEmail() {

@@ -61,7 +61,8 @@ public class SearchClinicActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String types = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),types, Toast.LENGTH_SHORT).show();
+        // Msg shown on the bottom of the page
+        // Toast.makeText(parent.getContext(),types, Toast.LENGTH_SHORT).show();
     }
 
     @Override
