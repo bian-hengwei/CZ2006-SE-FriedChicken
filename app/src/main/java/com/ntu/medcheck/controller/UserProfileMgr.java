@@ -1,8 +1,19 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.util.Patterns;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.ntu.medcheck.model.User;
+
+import java.util.regex.Pattern;
 
 public class UserProfileMgr {
 
@@ -21,9 +32,37 @@ public class UserProfileMgr {
 
     /**
      * reset password using firebase and email verification
-     * @return result
      */
-    public boolean resetPassword(Context context) {return true;}
+    public void resetPassword(String email, Context context) {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(email);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        boolean valid = checkValid(email, context);
+        if(!valid){
+            return;
+        }
+
+        auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>(){
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(context, "Check your email and reset password", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show();
+
+                }
+            }
+        });
+
+       // Query checkUser = FirebaseDatabase.getInstance().getReference("Users").orderByChild("emailAddress").equalTo(email);
+
+
+    }
 
     /**
      * return current user object
@@ -41,5 +80,16 @@ public class UserProfileMgr {
      */
     public void logout(){} // called by UserHomeFragment
 
+    public boolean checkValid(String email, Context context) {
+        if(email.isEmpty()) {
+            Toast.makeText(context, "Email is empty", Toast.LENGTH_LONG).show();
+            return false;
+        }
+       /* else if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(context, "Email is not valid", Toast.LENGTH_LONG).show();
+            return false;
+        }*/
+        return true;
+    }
 }
 

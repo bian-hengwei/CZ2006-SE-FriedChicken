@@ -19,9 +19,9 @@
         android:text="Home Fragment" />
 
     <Button
-        android:id="@+id/userHomeResetPassword"
+        android:id="@+id/userHomeChangePassword"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:text="Reset password" />
+        android:text="Change password" />
 
 </FrameLayout>

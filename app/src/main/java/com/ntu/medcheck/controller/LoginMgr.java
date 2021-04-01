@@ -48,8 +48,7 @@ public class LoginMgr {
                     context.startActivity(i);
                     Toast.makeText(context.getApplicationContext(),"Logged in Successfully",Toast.LENGTH_SHORT).show();
                 }else{
-                    //user.sendEmailVerification(); //email already sent during registration
-                    Toast.makeText(context.getApplicationContext(), "Check ur email to verify your account", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context.getApplicationContext(), "Check your email to verify your account", Toast.LENGTH_LONG).show();
                 }
             }else {
                 try {
