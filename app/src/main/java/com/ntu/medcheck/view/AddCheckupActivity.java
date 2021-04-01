@@ -3,8 +3,11 @@ package com.ntu.medcheck.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.view.fragment.ScheduleFragment;
 
@@ -18,7 +21,25 @@ public class AddCheckupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_checkup);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        FloatingActionButton addButton1 = findViewById(R.id.backToPrev1);
+        addButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
+                startActivity(i);
+            }
+        });
+
+        FloatingActionButton addButton2 = findViewById(R.id.backToPrev2);
+        addButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
 
@@ -40,6 +61,6 @@ public class AddCheckupActivity extends AppCompatActivity {
 
     public void returnToScheduleFrag(View v) {
         Intent i = new Intent(this, ScheduleFragment.class);
-        startActivity(i);
-    }
+        startActivity(i);}
+
 }
