@@ -44,11 +44,23 @@ public class Schedule {
     }
 
     // should put these into schedule manager, used to separate medication and checkup schedule
-    public ArrayList<Entry> getCheckUpSchedule() {
-        return null;
+    public ArrayList<CheckUpEntry> getCheckUpSchedule() {
+        ArrayList<CheckUpEntry> checkUpSchedule = new ArrayList<CheckUpEntry>();
+        for(Entry e : scheduleList) {
+            if(e.getEntryType().equals("checkup")) {
+                checkUpSchedule.add((CheckUpEntry) e);
+            }
+        }
+        return checkUpSchedule;
     }
 
-    public ArrayList<Entry> getMedicationSchedule() {
-        return null;
+    public ArrayList<MedicationEntry> getMedicationSchedule() {
+        ArrayList<MedicationEntry> medicationSchedule = new ArrayList<MedicationEntry>();
+        for(Entry e : scheduleList) {
+            if(e.getEntryType().equals("medication")) {
+                medicationSchedule.add((MedicationEntry) e);
+            }
+        }
+        return medicationSchedule;
     }
 }
