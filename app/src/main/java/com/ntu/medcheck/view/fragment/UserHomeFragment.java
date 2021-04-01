@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +25,8 @@ public class UserHomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button changePasswordBtn;
 
     public UserHomeFragment() {
         // Required empty public constructor
@@ -59,11 +62,36 @@ public class UserHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_user_home, container, false);
+        changePasswordBtn = view.findViewById(R.id.userHomeChangePassword);
+        changePasswordBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("!!!!!!!!!!!!!!!!!!clicked!!!!!!!!!!!!!!!");
+                //Intent i = new Intent(getActivity(), ForgetPasswordActivity.class);
+                //startActivity(i);
+                changePassword();
+            }
+        });
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_home, container, false);
+        return view;
     }
 
     public void edit(View v) {} // edit profile
 
     public void logout(View v) {} // log out
+
+    /* PROBLEM: not sure why this cannot work
+    public void resetPassword (View v) {
+        // onClick of register button
+        Intent i = new Intent(getActivity(), RegisterActivity.class);
+        startActivity(i);
+    }*/
+
+    public void changePassword() {
+        //Intent i = new Intent(getActivity(), *** wrong*** ForgetPasswordActivity.class);
+        //startActivity(i);
+        System.out.println("havnt write yet");
+    }
 }

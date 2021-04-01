@@ -1,7 +1,9 @@
 package com.ntu.medcheck.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -77,9 +79,4 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.navigationFrame, fragment);
         fragmentTransaction.commit();
     }
-
-
-
-
-
 }
