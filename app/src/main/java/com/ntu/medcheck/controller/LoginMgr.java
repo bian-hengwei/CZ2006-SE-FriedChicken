@@ -27,19 +27,29 @@ public class LoginMgr {
 
     /**
      * use firebase to verify if login is successful
-     * @param password, email
+     * @param context, aca
      * @return true if successful
      */
     // takes in the information from LoginActivity and verifies with fAuth
     // try to use context or bundle??
-    public void verifyLogin(String email, String password, Context context, AppCompatActivity aca) {
+    public void verifyLogin(Context context, AppCompatActivity aca) {
+
+        System.out.println("hello0");
+
+        EditText emailText = aca.findViewById(R.id.loginEmailInput);
+        EditText passwordText = aca.findViewById(R.id.loginPasswordInput);
+
+        String email = emailText.getText().toString().trim();
+        String password = passwordText.getText().toString();
 
         boolean valid = checkInputValid(email, password, context);
+
+        System.out.println(email);
+        System.out.println(password);
 
         if(!valid) {
             return;
         }
-
         fAuth = FirebaseAuth.getInstance();
 
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
@@ -63,6 +73,7 @@ public class LoginMgr {
                     Toast.makeText(context, "Login failed, invalid user", Toast.LENGTH_LONG).show();
                 }
                 catch(FirebaseAuthInvalidCredentialsException e) {
+                    System.out.println("1");
                     Toast.makeText(context, "Login failed, wrong password", Toast.LENGTH_LONG).show();
                 }
                 catch(Exception e) {

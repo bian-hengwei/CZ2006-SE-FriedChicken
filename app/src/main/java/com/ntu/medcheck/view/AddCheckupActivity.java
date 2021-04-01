@@ -61,6 +61,7 @@ public class AddCheckupActivity extends AppCompatActivity {
 
     public void returnToScheduleFrag(View v) {
         Intent i = new Intent(this, ScheduleFragment.class);
-        startActivity(i);}
+        startActivity(i);
+    }
 
 }

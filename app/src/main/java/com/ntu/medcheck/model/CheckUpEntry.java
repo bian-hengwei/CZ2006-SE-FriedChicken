@@ -38,4 +38,8 @@ public class CheckUpEntry extends Entry {
         this.time.set(Calendar.MINUTE, minute);
     }
 
+    public void setEntryType() {
+        this.entryType = "checkup";
+    }
+
 }
