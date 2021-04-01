@@ -10,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
@@ -49,7 +50,9 @@ public class RegisterMgr {
             //if successful register
             if (task.isSuccessful()) {
                 User user1 = new User(userName, gender, age, birthday, phoneNo, emailAddress);
-                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user1).addOnCompleteListener(task1 -> {
+                FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference uRef = fDatabase.getReference("Users");
+                uRef.child(fAuth.getCurrentUser().getUid()).setValue(user1).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
                         Toast.makeText(context, "Registration successful, please verify email and login", Toast.LENGTH_LONG).show();
                     } else {
@@ -57,6 +60,17 @@ public class RegisterMgr {
                         Toast.makeText(context, "Registration failed", Toast.LENGTH_LONG).show();
                     }
                 });
+                uRef.keepSynced(true);
+                DatabaseReference sRef = fDatabase.getReference("Schedules");
+                sRef.child(fAuth.getCurrentUser().getUid()).setValue(user1.getUserSchedule()).addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        Toast.makeText(context, "Schedule successful, please verify email and login", Toast.LENGTH_LONG).show();
+                    } else {
+                        System.out.println("failed");
+                        Toast.makeText(context, "Schedule failed", Toast.LENGTH_LONG).show();
+                    }
+                });
+                sRef.keepSynced(true);
 
                 //get instance of current user
                 FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();

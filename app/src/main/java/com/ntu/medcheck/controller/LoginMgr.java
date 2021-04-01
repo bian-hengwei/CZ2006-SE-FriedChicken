@@ -50,7 +50,6 @@ public class LoginMgr {
         if(!valid) {
             return;
         }
-
         fAuth = FirebaseAuth.getInstance();
 
         fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {

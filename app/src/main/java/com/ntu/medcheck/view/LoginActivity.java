@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.LoginMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 
 /**
  * This class displays login page for users
@@ -30,10 +30,14 @@ public class LoginActivity extends AppCompatActivity {
 
         Button loginBtn = findViewById(R.id.button);
         System.out.println("2");
-        loginBtn.setOnClickListener(v1 -> {
-            System.out.println("1111111111111111111111111111111111111111111");
-            LoginMgr loginMgr = new LoginMgr();
-            loginMgr.verifyLogin(getApplicationContext(), this);
+        AppCompatActivity aca = this;
+        loginBtn.setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                System.out.println("1111111111111111111111111111111111111111111");
+                LoginMgr loginMgr = new LoginMgr();
+                loginMgr.verifyLogin(getApplicationContext(), aca);
+            }
         });
     }
 
