@@ -3,4 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.CalendarFragment"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.CalendarFragment">
+
+
+    <org.naishadhparmar.zcustomcalendar.CustomCalendar
+        android:id="@+id/custom_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:day_of_week_length="1"
+        app:day_of_week_start_from="sunday"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.093"
+        app:left_button_src="@drawable/ic_keyboard_arrow_left_black_24dp"
+        app:month_year_format="full_month__with_year"
+        app:right_button_src="@drawable/ic_keyboard_arrow_right_black_24dp"
+        app:row_height="50dp"
+        tools:layout_editor_absoluteX="-34dp" />
+
+    <TextView
+        android:id="@+id/calendarDate"
+        android:layout_width="186dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/custom_calendar"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
