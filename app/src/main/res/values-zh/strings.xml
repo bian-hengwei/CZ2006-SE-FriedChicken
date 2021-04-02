@@ -13,4 +13,8 @@
     <string name="password_register">密码</string>
     <string name="register_name">注册</string>
     <string name="name">姓名</string>
+    <string name="welcome_back">欢迎回来，</string>
+    <string name="userProfile">还没写</string>
+    <string name="male_label">男</string>
+    <string name="female_label">女</string>
 </resources>

@@ -28,4 +28,14 @@
     </string-array>
 
     <string name="name">Name</string>
+    <string name="welcome_back">"Welcome back, "</string>
+    <string name="userProfile" >User Profile</string>
+    <string name="emailLabel">Email</string>
+    <string name="username_text">Username</string>
+    <string name="male_label" >Male</string>
+    <string name="female_label">Female</string>
+    <string name="gender_label">Gender</string>
+    <string name="birthday_label">Birthday</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="confirm_text">Confirm</string>
 </resources>

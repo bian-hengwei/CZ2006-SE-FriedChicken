@@ -15,6 +15,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
 
+import java.util.Calendar;
+
 public class RegisterMgr {
 
     // TODO: aca stuff
@@ -33,7 +35,10 @@ public class RegisterMgr {
         // hard coded for testing
         String gender = "Female";
         int age = 20;
-        String birthday = "12/12/2000";
+        Calendar birthday = null;
+        birthday.set(Calendar.YEAR, 2000);
+        birthday.set(Calendar.MONTH, 10);
+        birthday.set(Calendar.DAY_OF_MONTH, 8);
         String phoneNo = "12345678";
 
         // additional checkings that firebase does not provide
@@ -93,7 +98,7 @@ public class RegisterMgr {
         });
     }
 
-    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, String birthday, String phoneNo, Context context) {
+    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, Calendar birthday, String phoneNo, Context context) {
         // check password = rePassword
 
         if(userName.isEmpty()) {
@@ -120,7 +125,7 @@ public class RegisterMgr {
             Toast.makeText(context, "Registration unsuccessful, age cannot be 0", Toast.LENGTH_LONG).show();
             return false;
         }
-        else if(birthday.isEmpty()) {
+        else if(birthday == null) {
             Toast.makeText(context, "Registration unsuccessful, birthday is empty", Toast.LENGTH_LONG).show();
             return false;
         }

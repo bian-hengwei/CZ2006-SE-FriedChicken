@@ -18,7 +18,10 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.view.HomeActivity;
+
+import java.util.Calendar;
 
 public class LoginMgr {
 
@@ -33,6 +36,16 @@ public class LoginMgr {
     // takes in the information from LoginActivity and verifies with fAuth
     // try to use context or bundle??
     public void verifyLogin(Context context, AppCompatActivity aca) {
+
+        Calendar birthday = Calendar.getInstance();
+        User user1 = User.getInstance();
+
+        birthday.set(Calendar.DAY_OF_MONTH, 8);
+        birthday.set(Calendar.MONTH, 11);
+        birthday.set(Calendar.YEAR, 2000);
+
+        user1.setBirthday(birthday);
+
 
         System.out.println("hello0");
 

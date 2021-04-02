@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.UserProfileMgr;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,16 +66,11 @@ public class UserHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
-        changePasswordBtn = view.findViewById(R.id.userHomeChangePassword);
-        changePasswordBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("!!!!!!!!!!!!!!!!!!clicked!!!!!!!!!!!!!!!");
-                //Intent i = new Intent(getActivity(), ForgetPasswordActivity.class);
-                //startActivity(i);
-                changePassword();
-            }
-        });
+
+        UserProfileMgr userProfileMgr = new UserProfileMgr();
+
+        // 1st display current information, disable the edittexts
+        userProfileMgr.displayInfoOnUserHome((AppCompatActivity) getActivity(), view);
 
         // Inflate the layout for this fragment
         return view;

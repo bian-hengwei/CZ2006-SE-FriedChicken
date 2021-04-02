@@ -1,29 +1,43 @@
 package com.ntu.medcheck.model;
 
+import java.util.Calendar;
+
 /**
  * User object
  * keeps track of current user details
  */
 public class User {
-    private String userName;
-    private String gender;
-    private int age;
-    private String birthday;
-    private String phoneNo;
-    private String emailAddress;
+    private String userName = "yinan";
+    private String gender = "female";
+    private int age = 20;
+    private Calendar birthday = Calendar.getInstance();
+    private String phoneNo = "12345678";
+    private String emailAddress = "heyi0003@e.ntu.edu.sg";
+
+
+    private static User userInstance = new User();
 
     private Schedule userSchedule = Schedule.getInstance();
 
-    public User() {
+    private User() {
     }
 
-    public User(String userName, String gender, int age, String birthday, String phoneNo, String emailAddress) {
+    public User(String userName, String gender, int age, Calendar birthday, String phoneNo, String emailAddress) {
         this.userName = userName;
         this.gender = gender;
         this.age = age;
-        this.birthday = birthday;
+        this.birthday = Calendar.getInstance();
         this.phoneNo = phoneNo;
         this.emailAddress = emailAddress;
+        birthday.set(Calendar.DAY_OF_MONTH, 8);
+        birthday.set(Calendar.MONTH, 11);
+        birthday.set(Calendar.YEAR, 2000);
+
+
+    }
+
+    public static User getInstance() {
+        return userInstance;
     }
 
     public String getUserName() {
@@ -50,11 +64,11 @@ public class User {
         this.age = age;
     }
 
-    public String getBirthday() {
+    public Calendar getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Calendar birthday) {
         this.birthday = birthday;
     }
 
