@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,8 @@ import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonLineStringStyle;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.ScreeningCentreMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
+import com.ntu.medcheck.view.AddCheckupActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -168,6 +171,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             mapView.onResume();
             mapView.getMapAsync(this);
         }
+
+        view.findViewById(R.id.addtoschedule).setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                Intent i = new Intent(MapFragment.this.getActivity(), AddCheckupActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     //called when the map is ready
