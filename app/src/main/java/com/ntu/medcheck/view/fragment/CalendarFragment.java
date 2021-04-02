@@ -214,9 +214,7 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    if(position == 0) {
-                        System.out.println(title.get(0));
-                    }
+                    System.out.println(title.get(position));
                 }
             });
 /////////////////////////END//////////////////////////////////////////////////////////////////////////////
