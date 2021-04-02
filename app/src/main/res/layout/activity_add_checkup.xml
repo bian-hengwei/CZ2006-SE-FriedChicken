@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toTopOf="@+id/add"
+        app:layout_constraintBottom_toTopOf="@+id/addCheckUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.681"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.565" />
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/addCheckUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"

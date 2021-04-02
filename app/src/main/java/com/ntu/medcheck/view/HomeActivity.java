@@ -1,9 +1,7 @@
 package com.ntu.medcheck.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -16,7 +14,7 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.view.fragment.*;
 
 /**
- * This activity calls different fragments like SettingFragment, ScheduleFragment, MapFragment
+ * This activity calls different fragments like MedicineFragment, ScheduleFragment, MapFragment
  * It also displays the navigation bars
  */
 public class HomeActivity extends AppCompatActivity {
@@ -26,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment calendarFragment;
     private Fragment scheduleFragment;
     private Fragment userHomeFragment;
-    private Fragment settingFragment;
+    private Fragment medicineFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         calendarFragment = new CalendarFragment();
         scheduleFragment = new ScheduleFragment();
         userHomeFragment = new UserHomeFragment();
-        settingFragment = new SettingFragment();
+        medicineFragment = new MedicineFragment();
 
         setFragment(calendarFragment);
 
@@ -63,8 +61,8 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
 
 
-                    case R.id.navSetting:
-                        setFragment(settingFragment);
+                    case R.id.navMedicine:
+                        setFragment(medicineFragment);
                         return true;
 
                     default:

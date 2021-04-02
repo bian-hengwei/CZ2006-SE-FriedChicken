@@ -9,7 +9,7 @@
     <string name="nav_calendar">Calendar</string>
     <string name="nav_schedule">Schedule</string>
     <string name="nav_home">Home</string>
-    <string name="nav_setting">Settings</string>
+    <string name="nav_medicine">Medicine</string>
     <string name="password_register">Password</string>
     <string name="register_name">Register</string>
     <!--    Types of checkup-->
@@ -21,9 +21,10 @@
     </string-array>
     <!--    Dosage units-->
     <string-array name="dosageUnit">
-        <item>Please select</item>
+        <item>Unit</item>
         <item>tablet</item>
         <item>droplet</item>
+        <item>package</item>
         <item>ml</item>
     </string-array>
 

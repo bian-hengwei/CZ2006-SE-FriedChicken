@@ -9,7 +9,7 @@
     <string name="nav_calendar">日历</string>
     <string name="nav_schedule">时间表</string>
     <string name="nav_home">主界面</string>
-    <string name="nav_setting">设置</string>
+    <string name="nav_medicine">用药记录</string>
     <string name="password_register">密码</string>
     <string name="register_name">注册</string>
     <string name="name">姓名</string>

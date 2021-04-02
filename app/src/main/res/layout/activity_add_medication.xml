@@ -19,53 +19,68 @@
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/commentText"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/imageText"
+    <Button
+        android:id="@+id/addImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Image:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:text="Add Image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintHorizontal_bias="0.064"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentText"
-        app:layout_constraintVertical_bias="0.577" />
-
-    <EditText
-        android:id="@+id/repeatTimes"
-        android:layout_width="80dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/commentMedication"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
-        app:layout_constraintStart_toEndOf="@+id/repeatInt" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.884" />
 
     <TextView
-        android:id="@+id/repeatInt"
+        android:id="@+id/repeatText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Repeat: Every"
+        android:text="Repeat: Once every "
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.503" />
+        app:layout_constraintVertical_bias="0.475" />
+
+    <EditText
+        android:id="@+id/repeatInt"
+        android:layout_width="40sp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:maxLength="3"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/repeatText2"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toEndOf="@+id/repeatText1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637" />
+
+    <TextView
+        android:id="@+id/repeatText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="day(s)"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time"
+        app:layout_constraintVertical_bias="0.475" />
 
     <TextView
         android:id="@+id/commentText"
@@ -79,19 +94,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatInt"
+        app:layout_constraintTop_toBottomOf="@+id/repeatText1"
         app:layout_constraintVertical_bias="0.004" />
 
     <Spinner
         android:id="@+id/unitList"
-        android:layout_width="196dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="38sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.846"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toEndOf="@+id/editDosageInt"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <TextView
         android:id="@+id/MedicationName"
@@ -143,6 +158,7 @@
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
         android:ems="10"
+        android:maxLength="3"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -164,88 +180,88 @@
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dosageInt"
-        app:layout_constraintVertical_bias="0.021" />
+        app:layout_constraintVertical_bias="0.035" />
 
     <Spinner
         android:id="@+id/mmin"
         android:layout_width="101dp"
         android:layout_height="39dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.823"
         app:layout_constraintStart_toEndOf="@+id/mhour"
         app:layout_constraintTop_toBottomOf="@+id/unitList"
-        app:layout_constraintVertical_bias="0.176" />
+        app:layout_constraintVertical_bias="0.176"
+        tools:visibility="visible" />
 
     <Spinner
         android:id="@+id/amin"
         android:layout_width="101dp"
         android:layout_height="39dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.857"
         app:layout_constraintStart_toEndOf="@+id/mhour"
         app:layout_constraintTop_toBottomOf="@+id/unitList"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.301"
+        tools:visibility="visible" />
 
     <Spinner
         android:id="@+id/nmin"
         android:layout_width="101dp"
         android:layout_height="39dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/mhour"
         app:layout_constraintTop_toBottomOf="@+id/unitList"
-        app:layout_constraintVertical_bias="0.431" />
+        app:layout_constraintVertical_bias="0.431"
+        tools:visibility="visible" />
 
     <Spinner
         android:id="@+id/mhour"
         android:layout_width="114dp"
         android:layout_height="38dp"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unitList"
-        app:layout_constraintVertical_bias="0.173" />
+        app:layout_constraintVertical_bias="0.173"
+        tools:visibility="visible" />
 
     <Spinner
         android:id="@+id/ahour"
         android:layout_width="114dp"
         android:layout_height="38dp"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unitList"
-        app:layout_constraintVertical_bias="0.301" />
+        app:layout_constraintVertical_bias="0.301"
+        tools:visibility="visible" />
 
     <Spinner
         android:id="@+id/nhour"
         android:layout_width="114dp"
         android:layout_height="38dp"
         android:textColor="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/unitList"
-        app:layout_constraintVertical_bias="0.432" />
-
-    <CheckBox
-        android:id="@+id/morningTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Morning"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/mhour"
-        app:layout_constraintHorizontal_bias="0.183"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308" />
+        app:layout_constraintVertical_bias="0.432"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/hour"
@@ -278,10 +294,22 @@
         android:text="Afternoon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ahour"
-        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintVertical_bias="0.44" />
+
+    <CheckBox
+        android:id="@+id/morningTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Morning"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mhour"
+        app:layout_constraintHorizontal_bias="0.367"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.335" />
 
     <CheckBox
         android:id="@+id/eveningTime"
@@ -290,10 +318,22 @@
         android:text="Evening"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nhour"
-        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintHorizontal_bias="0.386"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintVertical_bias="0.546" />
+
+    <Button
+        android:id="@+id/addMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,10 +2,15 @@ package com.ntu.medcheck.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +27,18 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medication);
+
+        Button addMedButton = findViewById(R.id.addMed);
+        addMedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast addMedToast = Toast.makeText(AddMedicationActivity.this, "Medication Added Successfully", Toast.LENGTH_LONG);
+                addMedToast.setGravity(Gravity.CENTER, 0,0);
+                addMedToast.show();
+                Intent i = new Intent(AddMedicationActivity.this, HomeActivity.class);
+                startActivity(i);
+            }
+        });
 
         Spinner unitList = findViewById(R.id.unitList);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.dosageUnit, android.R.layout.simple_spinner_item);
@@ -68,6 +85,51 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
         afternoonList2.setOnItemSelectedListener(this);
         eveningList2.setAdapter(adapter2);
         eveningList2.setOnItemSelectedListener(this);
+
+        CheckBox mtimeSel = findViewById(R.id.morningTime);
+        CheckBox atimeSel = findViewById(R.id.afternoonTime);
+        CheckBox ntimeSel = findViewById(R.id.eveningTime);
+        mtimeSel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    morningList1.setVisibility(View.VISIBLE);
+                    morningList2.setVisibility(View.VISIBLE);
+                }
+                else {
+                    morningList1.setVisibility(View.INVISIBLE);
+                    morningList2.setVisibility(View.INVISIBLE);
+                }
+            }
+
+        });
+        atimeSel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    afternoonList1.setVisibility(View.VISIBLE);
+                    afternoonList2.setVisibility(View.VISIBLE);
+                }
+                else {
+                    afternoonList1.setVisibility(View.INVISIBLE);
+                    afternoonList2.setVisibility(View.INVISIBLE);
+                }
+            }
+
+        });
+        ntimeSel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    eveningList1.setVisibility(View.VISIBLE);
+                    eveningList2.setVisibility(View.VISIBLE);
+                }
+                else {
+                    eveningList1.setVisibility(View.INVISIBLE);
+                    eveningList2.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
     }
 

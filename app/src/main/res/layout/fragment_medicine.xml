@@ -10,10 +10,24 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/checkUpWelcome1"
+        android:id="@+id/medicationWelcome2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You have"
+        android:text="medication(s)"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059" />
+
+    <TextView
+        android:id="@+id/medicationWelcome1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You are taking"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,35 +38,21 @@
         app:layout_constraintVertical_bias="0.059" />
 
     <TextView
-        android:id="@+id/addNewCheckUpText"
+        android:id="@+id/addNewMedicationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add New Check Up"
+        android:text="Add New Medication"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
-        app:layout_constraintStart_toEndOf="@+id/addNewCheckup"
+        app:layout_constraintStart_toEndOf="@+id/addNewMedication"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.78" />
 
-    <TextView
-        android:id="@+id/checkUpWelcome2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="scheduled check up(s)."
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.823"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.059" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewCheckup"
+        android:id="@+id/addNewMedication"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"

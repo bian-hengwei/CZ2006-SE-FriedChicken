@@ -76,22 +76,12 @@ public class ScheduleFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
         addNewCheckup.setOnClickListener(mListener);
-        FloatingActionButton addNewMedication = view.findViewById(R.id.addNewMedication);
-        addNewMedication.setOnClickListener(mListener);
     }
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.addNewCheckup:
-                    Intent i = new Intent(ScheduleFragment.this.getActivity(), SearchClinicActivity.class);
-                    startActivity(i);
-                    break;
-                case R.id.addNewMedication:
-                    Intent j = new Intent(ScheduleFragment.this.getActivity(), AddMedicationActivity.class);
-                    startActivity(j);
-                    break;
-            }
+            Intent i = new Intent(ScheduleFragment.this.getActivity(), SearchClinicActivity.class);
+            startActivity(i);
         }
     };
 

@@ -2,8 +2,10 @@ package com.ntu.medcheck.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,6 +38,18 @@ public class AddCheckupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
+                startActivity(i);
+            }
+        });
+
+        Button addCheckButton = findViewById(R.id.addCheckUp);
+        addCheckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast addCheckToast = Toast.makeText(AddCheckupActivity.this, "Check Up Added Successfully", Toast.LENGTH_LONG);
+                addCheckToast.setGravity(Gravity.CENTER,0,0);
+                addCheckToast.show();
+                Intent i = new Intent(AddCheckupActivity.this, HomeActivity.class);
                 startActivity(i);
             }
         });

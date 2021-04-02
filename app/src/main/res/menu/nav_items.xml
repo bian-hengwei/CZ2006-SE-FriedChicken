@@ -8,15 +8,15 @@
         android:title="@string/nav_calendar" />
     <item
         android:id="@+id/navSchedule"
-        android:icon="@drawable/baseline_schedule_black_24dp"
+        android:icon="@drawable/baseline_checkup_black"
         android:title="@string/nav_schedule" />
+    <item
+        android:id="@+id/navMedicine"
+        android:icon="@drawable/baseline_medicine_black"
+        android:title="@string/nav_medicine" />
     <item
         android:id="@+id/navHome"
         android:icon="@drawable/baseline_home_black_24dp"
         android:title="@string/nav_home" />
-    <item
-        android:id="@+id/navSetting"
-        android:icon="@drawable/baseline_settings_black_24dp"
-        android:title="@string/nav_setting" />
 
 </menu>
