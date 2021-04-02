@@ -13,6 +13,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -57,8 +58,18 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation 'com.google.firebase:firebase-auth'
 
+    //google services
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
+    //google locations
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
+    implementation 'com.google.maps.android:maps-utils-ktx:2.3.0'
+
+    //android volley for the jsonobject
+    compile 'com.android.volley:volley:1.1.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'org.naishadhparmar.zcustomcalendar:zcustomcalendar:1.0.1'
 

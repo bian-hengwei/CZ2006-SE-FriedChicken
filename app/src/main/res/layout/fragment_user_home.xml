@@ -1,27 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/userHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.UserHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="240dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="28dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.622"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileEmailInput" />
+
+    <EditText
+        android:id="@+id/userProfileEmailInput"
+        android:layout_width="239dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/userProfileUserName"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileUsernameInput" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/birthday_text"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/birthday_label"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
+
+    <TextView
+        android:id="@+id/userProfileEmail"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/emailLabel"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileUserName" />
+
+    <TextView
+        android:id="@+id/welcomeBackMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment" />
+        android:text="@string/welcome_back"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/welcomeMessageUserName"
+        android:layout_width="181dp"
+        android:layout_height="32dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/welcomeBackMessage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/userProfileLabel"
+        android:layout_width="86dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/userProfile"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeBackMessage" />
+
+    <TextView
+        android:id="@+id/userProfileUserName"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/username_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileLabel" />
+
+    <TextView
+        android:id="@+id/userProfileGender"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="80dp"
+        android:text="@string/gender_label"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthday_text" />
+
+    <EditText
+        android:id="@+id/userProfileUsernameInput"
+        android:layout_width="237dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/userProfileUserName"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileLabel" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="222dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker">
+
+        <RadioButton
+            android:id="@+id/maleRadioButton"
+            android:layout_width="220dp"
+            android:layout_height="27dp"
+            android:text="@string/male_label"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/femaleRadioButton"
+            android:layout_width="220dp"
+            android:layout_height="29dp"
+            android:text="@string/female_label"
+            android:textSize="12sp" />
+    </RadioGroup>
 
     <Button
-        android:id="@+id/userHomeChangePassword"
-        android:layout_width="190dp"
+        android:id="@+id/editProfileButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change password" />
+        android:layout_marginTop="16dp"
+        android:text="@string/edit_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:text="@string/confirm_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton"
+        app:layout_constraintVertical_bias="0.09" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
