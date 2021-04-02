@@ -17,8 +17,6 @@ public class User {
 
     private static User userInstance = new User();
 
-    private Schedule userSchedule = Schedule.getInstance();
-
     private User() {
     }
 
@@ -86,13 +84,5 @@ public class User {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
-    }
-
-    public Schedule getUserSchedule() {
-        return userSchedule;
-    }
-
-    public void setUserSchedule(Schedule userSchedule) {
-        this.userSchedule = userSchedule;
     }
 }

@@ -1,9 +1,7 @@
 package com.ntu.medcheck.view;
 
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,8 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View v) {
-        // TODO: add boolean to check next page (stay / login / back)
         RegisterMgr registerMgr = new RegisterMgr();
-        registerMgr.register(this, getApplicationContext());
+        registerMgr.register(this);
     }
 }

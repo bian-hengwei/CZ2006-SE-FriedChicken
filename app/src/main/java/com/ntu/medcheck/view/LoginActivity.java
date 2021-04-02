@@ -3,7 +3,6 @@ package com.ntu.medcheck.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,15 +27,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginBtn = findViewById(R.id.button);
-        System.out.println("2");
-        AppCompatActivity aca = this;
-        loginBtn.setOnClickListener(new SafeOnClickListener() {
+        findViewById(R.id.button).setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
-                System.out.println("1111111111111111111111111111111111111111111");
                 LoginMgr loginMgr = new LoginMgr();
-                loginMgr.verifyLogin(getApplicationContext(), aca);
+                loginMgr.verifyLogin(LoginActivity.this);
             }
         });
     }
@@ -45,49 +40,9 @@ public class LoginActivity extends AppCompatActivity {
      *
      * @param v
      */
-    /*public void login(View v) {
-        // TODO: aca replace getEmail etc.
-        // verify
-
-        String emailString = getEmail();
-        String passwordString = getPassword();
-
-        // use verifyLogin to check login
-        LoginMgr loginMgr = new LoginMgr();
-        loginMgr.verifyLogin(getApplicationContext(), this);
-        /*
-        if(success) {
-            // go to home activity
-            Intent i = new Intent(this, HomeActivity.class);
-            startActivity(i);
-        }
-    }
-
-    public String getEmail() {
-        EditText email = findViewById(R.id.loginEmailInput);
-        String emailString = email.getText().toString().trim();
-        System.out.println("!!!!!!!!!!!!!!!getemail!!!!!!!!!!!!!!");
-        System.out.println(emailString);
-        return emailString;
-    }
-
-    public String getPassword() {
-        EditText password = (EditText)findViewById(R.id.loginPasswordInput);
-        String passwordString = password.getText().toString();
-        System.out.println("!!!!!!!!!!!!!!!getPassword!!!!!!!!!!!!!!");
-        System.out.println(passwordString);
-        return passwordString;
-    }*/
-
-
-    /**
-     *
-     * @param v
-     */
     public void register (View v) {
         // onClick of register button
-        Intent i = new Intent(this, RegisterActivity.class);
-        startActivity(i);
+        startActivity(new Intent(this, RegisterActivity.class));
     }
 
     /**
@@ -96,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
      */
     public void forgetPassword(View v) {
         // onClick of forget password function
-        Intent i = new Intent(this, ForgetPasswordActivity.class);
-        startActivity(i);
+        startActivity(new Intent(this, ForgetPasswordActivity.class));
     }
 }

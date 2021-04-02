@@ -7,39 +7,37 @@ import java.util.Calendar;
  * storing health screening time and other details
  */
 public class CheckUpEntry extends Entry {
-    String clinic; // should we save a ScreeningCentre object?
-    Calendar time = Calendar.getInstance(); // return current date and time
 
-    public void setClinic(String clinic) {
-        this.clinic = clinic;
+    String title;
+    String clinic;
+    CheckUpTime time;
+
+    public CheckUpEntry() {
+        time = new CheckUpTime();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getClinic() {
         return clinic;
     }
 
-    public void setCalendarYear(int year) {
-        this.time.set(Calendar.YEAR, year);
+    public void setClinic(String clinic) {
+        this.clinic = clinic;
     }
 
-    public void setCalendarMonth(int month) {
-        this.time.set(Calendar.MONTH, month);
+    public CheckUpTime getTime() {
+        return time;
     }
 
-    public void setCalendarDay(int day) {
-        this.time.set(Calendar.DATE, day);
+    public void setTime(CheckUpTime time) {
+        this.time = time;
     }
-
-    public void setCalendarHour(int hour) {
-        this.time.set(Calendar.HOUR, hour);
-    }
-
-    public void setCalendarMinute(int minute) {
-        this.time.set(Calendar.MINUTE, minute);
-    }
-
-    public void setEntryType() {
-        this.entryType = "checkup";
-    }
-
 }
+

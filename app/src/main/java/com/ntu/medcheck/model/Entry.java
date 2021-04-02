@@ -7,8 +7,15 @@ package com.ntu.medcheck.model;
 public class Entry {
     String name;
     String comment;
-    String type; // type of medicine and type of checkup
-    String entryType;
+    String type;
+
+    public Entry() {
+    }
+
+    public Entry(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
 
     public String getName() {
         return name;
@@ -33,13 +40,4 @@ public class Entry {
     public void setType(String type) {
         this.type = type;
     }
-
-    public String getEntryType() {
-        return entryType;
-    }
-
-    public void setEntryType() {
-
-    }
-
 }

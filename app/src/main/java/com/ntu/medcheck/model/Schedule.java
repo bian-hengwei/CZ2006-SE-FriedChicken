@@ -47,7 +47,7 @@ public class Schedule {
     public ArrayList<CheckUpEntry> getCheckUpSchedule() {
         ArrayList<CheckUpEntry> checkUpSchedule = new ArrayList<CheckUpEntry>();
         for(Entry e : scheduleList) {
-            if(e.getEntryType().equals("checkup")) {
+            if(e.getType().equals("checkup")) {
                 checkUpSchedule.add((CheckUpEntry) e);
             }
         }
@@ -57,7 +57,7 @@ public class Schedule {
     public ArrayList<MedicationEntry> getMedicationSchedule() {
         ArrayList<MedicationEntry> medicationSchedule = new ArrayList<MedicationEntry>();
         for(Entry e : scheduleList) {
-            if(e.getEntryType().equals("medication")) {
+            if(e.getType().equals("medication")) {
                 medicationSchedule.add((MedicationEntry) e);
             }
         }
