@@ -22,6 +22,7 @@ import com.google.firebase.database.Query;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.utils.SafeOnClickListener;
+import com.ntu.medcheck.view.fragment.UserHomeFragment;
 
 import java.time.Year;
 import java.util.Calendar;
@@ -213,10 +214,11 @@ public class UserProfileMgr {
 
                 Toast.makeText(aca, "User profile saved", Toast.LENGTH_LONG).show();
 
+                // disable
+                displayInfoOnUserHome(aca, view);
+
             }
         });
-
-
 
     } // to be overridden
 }

@@ -1,12 +1,18 @@
 package com.ntu.medcheck.view.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ntu.medcheck.R;
@@ -16,6 +22,8 @@ import org.naishadhparmar.zcustomcalendar.OnDateSelectedListener;
 import org.naishadhparmar.zcustomcalendar.OnNavigationButtonClickedListener;
 import org.naishadhparmar.zcustomcalendar.Property;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +43,8 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    ListView listView;
 
     public CalendarFragment() {
         // Required empty public constructor
@@ -72,11 +82,7 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
                              Bundle savedInstanceState) {
 
         Toast.makeText(this.getContext(), getString(R.string.testw_str),Toast.LENGTH_SHORT).show();
-
-
-
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
-
 
         CustomCalendar customCalendar = view.findViewById(R.id.custom_calendar);
 
@@ -87,12 +93,7 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
             System.out.println("NOOOOOOOOOOO");
         }
 
-
-
-
-
         HashMap<Object, Property> descHashMap = new HashMap<Object, Property>();
-
 
         Property defaultProperty = new Property();
         defaultProperty.layoutResource = R.layout.default_view;
@@ -122,8 +123,6 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
 
         System.out.println("4");
 
-
-
         System.out.println(descHashMap.get("absent").toString());
         System.out.println(descHashMap.get("present").toString());
 
@@ -150,92 +149,9 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
         dateHashMap.put(30, "absent");
 
         customCalendar.setDate(calendar, dateHashMap);
-/*
-        customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.PREVIOUS, new OnNavigationButtonClickedListener() {
-            @Override
-            public Map[] onNavigationButtonClicked(int whichButton, Calendar newMonth) {
-                Map<Integer, Object>[] arr = new Map[2];
-                switch(newMonth.get(Calendar.MONTH)) {
-                    case Calendar.AUGUST:
-                        arr[0] = new HashMap<>(); //This is the map linking a date to its description
-                        arr[0].put(3, "absent");
-                        arr[0].put(6, "present");
-                        arr[0].put(21, "absent");
-                        arr[0].put(24, "present");
-                        arr[1] = null; //Optional: This is the map linking a date to its tag.
-                        break;
-                    case Calendar.JUNE:
-                        arr[0] = new HashMap<>();
-                        arr[0].put(5, "present");
-                        arr[0].put(10, "present");
-                        arr[0].put(19, "present");
-                        break;
-                }
-
-
-                return arr;
-            }
-        });
-        //customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.NEXT, (OnNavigationButtonClickedListener) this);
-
-        customCalendar.setOnDateSelectedListener((view1, selectedDate, desc) -> {
-
-
-            customCalendar.setOnDateSelectedListener(new OnDateSelectedListener() {
-                @Override
-                public void onDateSelected(View view, Calendar selectedDate, Object desc) {
-                    String sDate = selectedDate.get(Calendar.DAY_OF_MONTH)
-                            + "/" + (selectedDate.get(Calendar.MONTH) + 1)
-                            + "/" + selectedDate.get(Calendar.YEAR);
-                    TextView date = view.findViewById(R.id.calendarDate);
-                    date.setText(sDate);
-
-                    if(view.findViewById(R.id.calendarDate) == null) {
-                        System.out.println("yes");
-                    }
-                    else{
-                        System.out.println("NOOOOOOOOOOO");
-                    }
-                }
-            });*/////////////////////////////////////////////////////////
-
-            /*
-            // get string date
-            String sDate = selectedDate.get(Calendar.DAY_OF_MONTH)
-                    + "/" + (selectedDate.get(Calendar.MONTH) + 1)
-                    + "/" + selectedDate.get(Calendar.YEAR);
-
-            TextView date = view.findViewById(R.id.calendarDate);
-            date.setText(sDate);
-
-            if(view.findViewById(R.id.calendarDate) == null) {
-                System.out.println("yes");
-            }
-            else{
-                System.out.println("NOOOOOOOOOOO");
-            }
-        });  */
-
-
-/*
-        customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.PREVIOUS, (whichButton, newMonth) -> {
-            System.out.println("1a");
-            Map<Integer, Object>[] arr = new Map[2];
-            switch(newMonth.get(Calendar.MONTH)) {
-                default:
-                    arr[0] = new HashMap<>();
-
-            }
-
-        });  */
-
         customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.PREVIOUS, this);
-
         customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.NEXT, this);
-
         customCalendar.setDate(calendar, dateHashMap);
-
-
 
         customCalendar.setOnDateSelectedListener((view1, selectedDate, desc) -> {
             // get string date
@@ -252,11 +168,59 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
 
             TextView date = getActivity().findViewById(R.id.calendarDate);
             date.setText(sDate);
+
+//////////////////////////START/////////////////////////////////////////////////////////////////////////////
+
+            // dynamic reminder
+            ArrayList<String> title = new ArrayList<>();
+            title.add("heart checkup");
+            title.add("liver checkup");
+            title.add("lung checkup");
+
+
+            ArrayList<Calendar> time = new ArrayList<>();
+            Calendar checkupTime1 = Calendar.getInstance();
+            Calendar checkupTime2 = Calendar.getInstance();
+            Calendar checkupTime3 = Calendar.getInstance();
+            checkupTime1.set(Calendar.HOUR, 3);
+            checkupTime1.set(Calendar.MINUTE, 4);
+            checkupTime2.set(Calendar.HOUR, 1);
+            checkupTime2.set(Calendar.MINUTE, 2);
+            checkupTime3.set(Calendar.HOUR, 5);
+            checkupTime3.set(Calendar.MINUTE, 6);
+            time.add(checkupTime1);
+            time.add(checkupTime2);
+            time.add(checkupTime3);
+
+            ArrayList<String> location = new ArrayList<>();
+            location.add("hospital 1");
+            location.add("hospital 2");
+            location.add("hospital 3");
+
+            ArrayList<String> comments = new ArrayList<>();
+            comments.add("helloworld1");
+            comments.add("helloworld2");
+            comments.add("helloworld3");
+
+            dynamicReminder(title, location, time, comments);
+
+            //System.out.println(checkupTime1.get(Calendar.HOUR));
+            //System.out.println(checkupTime2.get(Calendar.HOUR));
+
+            listView = view.findViewById(R.id.listView);
+            MyAdapter adapter = new MyAdapter(this.getContext(), title, location, time, comments);
+            listView.setAdapter(adapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    if(position == 0) {
+                        System.out.println(title.get(0));
+                    }
+                }
+            });
+/////////////////////////END//////////////////////////////////////////////////////////////////////////////
         });
-
-
-
-
         // Inflate the layout for this fragment
         return view;
     }
@@ -281,5 +245,47 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
                 break;
         }
         return arr;
+    }
+
+    // pass in list of title (event eg.heart checkup), list of time, list of comment. get this list from ScheduleMgr.
+    public void dynamicReminder(ArrayList<String> title, ArrayList<String> location, ArrayList<Calendar> time, ArrayList<String> comments) {
+
+    }
+
+    class MyAdapter extends ArrayAdapter<String> {
+        Context context;
+        ArrayList<String> atitle;
+        ArrayList<String> alocation;
+        ArrayList<Calendar> atime;
+        ArrayList<String> acomments;
+        MyAdapter(Context context, ArrayList<String> title, ArrayList<String> location, ArrayList<Calendar> time, ArrayList<String> comments) {
+            super(context, R.layout.calendar_row, title);
+            this.context = context;
+            this.atitle = title;
+            this.alocation = location;
+            this.atime = time;
+            this.acomments = comments;
+
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View calendar_row = layoutInflater.inflate(R.layout.calendar_row, parent, false);
+            TextView title = calendar_row.findViewById(R.id.title);
+            TextView location = calendar_row.findViewById(R.id.location);
+            TextView time = calendar_row.findViewById(R.id.time);
+            TextView comments = calendar_row.findViewById(R.id.comments);
+
+            String dateStr = atime.get(position).get(Calendar.HOUR) + "(hr)" + atime.get(position).get(Calendar.MINUTE) + "(min)";
+
+            title.setText(atitle.get(position));
+            location.setText("Location: " + alocation.get(position));
+            time.setText("Time: " + dateStr);
+            comments.setText("Comments: " + acomments.get(position));
+
+            return calendar_row;
+        }
     }
 }
