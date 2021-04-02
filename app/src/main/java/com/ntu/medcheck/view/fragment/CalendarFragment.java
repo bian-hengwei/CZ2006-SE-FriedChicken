@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -69,6 +70,8 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Toast.makeText(this.getContext(), getString(R.string.testw_str),Toast.LENGTH_SHORT).show();
 
 
 

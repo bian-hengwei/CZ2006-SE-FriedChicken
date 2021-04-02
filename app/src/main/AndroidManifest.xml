@@ -9,42 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
-        <activity
-            android:name=".view.SearchClinicActivity"
-            android:label = "New Checkup-make appointment"
-            android:parentActivityName=".view.HomeActivity" >
-        </activity>
-        //parentActivityName: create an arrow to return to the last page
-        <activity
-            android:name=".view.AddCheckupActivity"
-            android:label = "New Checkup-schedule"
-            android:parentActivityName=".view.SearchClinicActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
-        //parentActivityName: create an arrow to return to the last page
-        <activity
-            android:name=".view.AddMedicationActivity"
-            android:label = "New Medication-reminder"
-            android:parentActivityName=".view.HomeActivity"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
-        //parentActivityName: create an arrow to return to the last page
-
-        <activity android:name="com.ntu.medcheck.view.HomeActivity">
-        </activity>
-        <activity android:name="com.ntu.medcheck.view.EditProfileActivity" />
-        <activity android:name="com.ntu.medcheck.view.ForgetPasswordActivity" />
-        <activity android:name="com.ntu.medcheck.view.RegisterActivity" />
-        <activity android:name="com.ntu.medcheck.view.LoginActivity">
-
-
+        <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".view.SearchClinicActivity"
+            android:label="New Checkup-make appointment"
+            android:parentActivityName=".view.HomeActivity"></activity>
+        <activity
+            android:name=".view.AddCheckupActivity"
+            android:label="New Checkup-schedule"
+            android:parentActivityName=".view.SearchClinicActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".view.AddMedicationActivity"
+            android:label="New Medication-reminder"
+            android:parentActivityName=".view.HomeActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".view.HomeActivity"></activity>
+        <activity android:name=".view.EditProfileActivity" />
+        <activity android:name=".view.ForgetPasswordActivity" />
+        <activity android:name=".view.RegisterActivity" />
+        <activity android:name=".view.LoginActivity">
+        </activity>
     </application>
 
 </manifest>
