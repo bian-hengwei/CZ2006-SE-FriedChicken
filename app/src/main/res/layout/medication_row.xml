@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Title"
+            android:text="@string/eventName"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Time"
+            android:text="@string/eventTime"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 
@@ -34,25 +34,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Dosage"
+            android:text="@string/newMedDosageText"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 
         <TextView
             android:id="@+id/frequencyMedicationRow"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Take every x days"
+            android:text="@string/newMedRepeat1"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
+
+        <!--ADD DYNAMIC HERE!!!-->
 
         <TextView
             android:id="@+id/commentMedicationRow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Comments"
+            android:text="@string/Comment"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 

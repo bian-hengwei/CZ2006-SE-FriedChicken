@@ -31,11 +31,11 @@
         </activity>
         <activity
             android:name=".view.SearchClinicActivity"
-            android:label="Search for screening centres"
+            android:label="@string/headerSearchClinic"
             android:parentActivityName=".view.AddCheckupActivity"></activity>
         <activity
             android:name=".view.EditCheckupActivity"
-            android:label="View checkup details"
+            android:label="@string/headerCheckupDetail"
             android:parentActivityName=".view.HomeActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -50,12 +50,12 @@
             android:value="AIzaSyBsp4RgrmSeEFYxuBowSLqb5EssVry4IwI" />
         <activity
             android:name=".view.AddCheckupActivity"
-            android:label="New Checkup-schedule"
+            android:label="@string/headerNewCheckup"
             android:parentActivityName=".view.HomeActivity"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".view.AddMedicationActivity"
-            android:label="New Medication-reminder"
+            android:label="@string/headerNewMedication"
             android:parentActivityName=".view.HomeActivity"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".view.HomeActivity"></activity>

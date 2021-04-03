@@ -1,44 +1,94 @@
+
 <resources>
+    <!--    Common Terms-->
+    <string name="timeH">Hour</string>
+    <string name="timeM">Minute</string>
+    <string name="timeMor">Morning</string>
+    <string name="timeAft">Afternoon</string>
+    <string name="timeEve">Evening</string>
+    <string name="Comment">Comment:</string>
+    <string name="AddButton">Add</string>
+    <string name="emailLabel">Email</string>
+    <string name="pwLabel">Password</string>
     <string name="app_name">medCheck</string>
-    <string name="title_activity_home">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="registerLabel">Register</string>
+    <string name="usernameLabel">Username</string>
+    <string name="confirmButton">Confirm</string>
+
+    <!--    navigation-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nav_calendar">Calendar</string>
     <string name="nav_schedule">Schedule</string>
     <string name="nav_home">Home</string>
     <string name="nav_medicine">Medicine</string>
-    <string name="password_register">Password</string>
-    <string name="register_name">Register</string>
-    <!--    Types of checkup-->
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!--    headers-->
+    <string name="headerSearchClinic">Searching for Screening Centres</string>
+    <string name="headerCheckupDetail">Checkup Detail</string>
+    <string name="headerNewCheckup">New Checkup Schedule</string>
+    <string name="headerNewMedication">New Medication Reminder</string>
+
+    <!--    entries = checkup/medication-->
+    <string name="eventName">Event</string>
+    <string name="clinicName">Clinic:</string>
+    <string name="eventDate">Date:</string>
+    <string name="eventTime">Time:</string>
+    <string name="addCheckupButton">Add New Checkup</string>
+    <string name="addMedButton">Add New Medication</string>
+
+    <!--    fragment_map.xml-->
+    <string name="searchButton">Search</string>
+        <!--clinicTypeSpinner-->
     <string-array name="clinic_choices">
-        <item>Breast screening centres</item>
-        <item>Cervical screening centres</item>
-        <item>CHAS clinics</item>
+        <item><string name="clinicTypeDefault">choose clinic type</string></item>
+        <item><string name="clinicTypeBreast">Breast Screening Centre</string></item>
+        <item><string name="clinicTypeCervical">Cervical Screening Centre</string></item>
+        <item><string name="clinicTypeCHAS">CHAS Clinics</string></item>
     </string-array>
-    <!--    Dosage units-->
+    <string name="confirmClinicButton">Confirm Clinic</string>
+
+    <!--    activity_add_checkup.xml-->
+    <string name="newCheckupType">Type of checkup:</string>
+
+    <!--    activity_add_medication.xml-->
+    <string name="newMedName">Medication Name:</string>
+    <string name="newMedDosageText">Dosage:</string>
+    <string name="newMedTimeText">Reminder Time:</string>
+    <string name="newMedRepeat1">Repeat: Once every</string>
+    <string name="newMedRepeat2">day(s)</string>
+    <string name="newMedAddimg">Add Image</string>
+        <!--unitListSpinner-->
     <string-array name="dosageUnit">
-        <item>Unit</item>
-        <item>tablet</item>
-        <item>droplet</item>
-        <item>package</item>
-        <item>ml</item>
+        <item><string name="unitListDefault">unit</string></item>
+        <item><string name="unitListTab">tablet</string></item>
+        <item><string name="unitListDrop">drop</string></item>
+        <item><string name="unitListMl">ml</string></item>
     </string-array>
 
-    <string name="name">Name</string>
-    <string name="welcome_back">"Welcome back, "</string>
+    <!--    activity_add_medication.xml-->
+    <string name="pwResetButton">Reset password</string>
+
+    <!--    activity_login.xml-->
+    <string name="loginButton">Log In</string>
+    <string name="forgotPwButton">Forgot Password?</string>
+
+    <!--    activity_register.xml-->
+    <string name="confirmPwButton">Confirm Password</string>
+
+    <!--    fragment_user_home.xml-->
+    <string name="welcomeBack">Welcome back, </string>
     <string name="userProfile" >User Profile</string>
-    <string name="emailLabel">Email</string>
-    <string name="username_text">Username</string>
+    <string name="genderLabel">Gender:</string>
     <string name="male_label" >Male</string>
     <string name="female_label">Female</string>
-    <string name="gender_label">Gender</string>
-    <string name="birthday_label">Birthday</string>
-    <string name="edit_profile">Edit profile</string>
-    <string name="confirm_text">Confirm</string>
+    <string name="birthdayLabel">Birthday:</string>
+    <string name="editProfileButton">Edit profile</string>
     <string name="logout" >Logout</string>
+
     <string name="editCheckup">Edit Checkup Schedule</string>
     <string name="phone_number">Phone Number</string>
     <string name="password">Password</string>

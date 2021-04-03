@@ -199,11 +199,11 @@ public class UserProfileMgr {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(context, "Check your email and reset password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.ResetPwEmail, Toast.LENGTH_LONG).show();
 
                 }
                 else {
-                    Toast.makeText(context, "Try again", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.retry, Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -230,7 +230,7 @@ public class UserProfileMgr {
 
     public boolean checkValid(String email, Context context) {
         if(email.isEmpty()) {
-            Toast.makeText(context, "Email is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.loginEmptyEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
        /* else if(Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -367,7 +367,7 @@ public class UserProfileMgr {
                     }
                     user.setGender(gender);
 
-                    Toast.makeText(aca, "User profile saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.saveSuccess, Toast.LENGTH_SHORT).show();
 
                     // disable
                     displayInfoOnUserHome(aca, view);
@@ -383,7 +383,7 @@ public class UserProfileMgr {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuth.signOut();
 
-        Toast.makeText(aca, "Logging out", Toast.LENGTH_LONG).show();
+        Toast.makeText(aca, R.string.logoutMessage, Toast.LENGTH_SHORT).show();
         aca.startActivity(new Intent(aca, LoginActivity.class));
         aca.finish();
 

@@ -51,22 +51,22 @@ public class LoginMgr {
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     aca.startActivity(i);
                     aca.finish();
-                    Toast.makeText(aca,"Logged in Successfully",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(aca, R.string.loginSuccess, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(aca, "Check your email to verify your account", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.verifyEmail, Toast.LENGTH_SHORT).show();
                 }
             } else {
                 try {
                     System.out.println(task.getException());
                     throw task.getException();
                 } catch (FirebaseAuthInvalidUserException e) {
-                    Toast.makeText(aca, "Login failed, invalid user", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.loginFailUser, Toast.LENGTH_SHORT).show();
                 }
                 catch(FirebaseAuthInvalidCredentialsException e) {
-                    Toast.makeText(aca, "Login failed, wrong password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.loginFailPw, Toast.LENGTH_SHORT).show();
                 }
                 catch(Exception e) {
-                    System.out.println("Login failed unknown Error");
+                    Toast.makeText(aca, R.string.loginFailUnknown, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -74,11 +74,11 @@ public class LoginMgr {
 
     public boolean checkInputValid(String email, String password, Context context) {
         if (email.isEmpty()) {
-            Toast.makeText(context, "Login failed, email is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.loginEmptyEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (password.isEmpty()) {
-            Toast.makeText(context, "Login failed, password is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.loginEmptyPw, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

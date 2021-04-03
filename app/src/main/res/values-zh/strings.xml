@@ -1,20 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    Common Terms-->
+    <string name="timeH">小时</string>
+    <string name="timeM">分钟</string>
+    <string name="timeMor">早晨</string>
+    <string name="timeAft">下午</string>
+    <string name="timeEve">晚上</string>
+    <string name="Comment">备注:</string>
+    <string name="AddButton">添加</string>
+    <string name="emailLabel">电子邮箱</string>
+    <string name="pwLabel">密码</string>
     <string name="app_name">买的柴克</string>
+    <string name="registerLabel">注册新账号</string>
+    <string name="usernameLabel">用户名</string>
+    <string name="confirmButton">确定修改</string>
+
+    <!--    navigation-->
+    <string name="hello_blank_fragment">哈咯</string>
+    <string name="nav_calendar">日历</string>
+    <string name="nav_schedule">健康检查</string>
+    <string name="nav_home">主界面</string>
+    <string name="nav_medicine">用药记录</string>
     <string name="title_activity_home">主活动</string>
     <string name="title_home">主界面</string>
     <string name="title_dashboard">大师包</string>
-    <string name="title_notifications">诺踢飞开深思</string>
-    <string name="hello_blank_fragment">哈咯</string>
-    <string name="nav_calendar">日历</string>
-    <string name="nav_schedule">时间表</string>
-    <string name="nav_home">主界面</string>
-    <string name="nav_medicine">用药记录</string>
-    <string name="password_register">密码</string>
-    <string name="register_name">注册</string>
-    <string name="name">姓名</string>
-    <string name="welcome_back">欢迎回来，</string>
-    <string name="userProfile">还没写</string>
+    <string name="title_notifications">消息通知</string>
+
+    <!--    headers-->
+    <string name="headerSearchClinic">搜索诊所</string>
+    <string name="headerCheckupDetail">健康检查信息</string>
+    <string name="headerNewCheckup">设定新健康检查记录</string>
+    <string name="headerNewMedication">设定新用药提醒</string>
+
+    <!--    entries = checkup/medication-->
+    <string name="eventName">事件</string>
+    <string name="clinicName">诊所:</string>
+    <string name="eventDate">日期:</string>
+    <string name="eventTime">时间:</string>
+    <string name="addCheckupButton">添加新健康检查记录</string>
+    <string name="addMedButton">添加新用药记录</string>
+
+    <!--    fragment_map.xml-->
+    <string name="searchButton">检索</string>
+        <!--clinicTypeSpinner-->
+    <string-array name="clinic_choices">
+        <item><string name="clinicTypeDefault">选择诊所种类</string></item>
+        <item><string name="clinicTypeBreast">乳腺检查中心</string></item>
+        <item><string name="clinicTypeCervical">宫颈检查中心</string></item>
+        <item><string name="clinicTypeCHAS">CHAS诊所</string></item>
+    </string-array>
+    <string name="confirmClinicButton">确定诊所</string>
+
+    <!--    activity_add_checkup.xml-->
+    <string name="newCheckupType">健康检查类型:</string>
+
+    <!--    activity_add_medication.xml-->
+    <string name="newMedName">药品名:</string>
+    <string name="newMedDosageText">计量:</string>
+    <string name="newMedTimeText">提醒时间:</string>
+    <string name="newMedRepeat1">重复提醒: 每</string>
+    <string name="newMedRepeat2">天</string>
+    <string name="newMedAddimg">添加图片</string>
+    <!--unitListSpinner-->
+    <string-array name="dosageUnit">
+        <item><string name="unitListDefault">单位</string></item>
+        <item><string name="unitListTab">片</string></item>
+        <item><string name="unitListDrop">滴</string></item>
+        <item><string name="unitListMl">毫升</string></item>
+    </string-array>
+
+    <!--    activity_add_medication.xml-->
+    <string name="pwResetButton">重置密码</string>
+
+    <!--    activity_login.xml-->
+    <string name="loginButton">登录</string>
+    <string name="forgotPwButton">忘了密码？</string>
+
+    <!--    activity_register.xml-->
+    <string name="confirmPwButton">确认密码</string>
+
+    <!--    fragment_user_home.xml-->
+    <string name="welcomeBack">欢迎回来，</string>
+    <string name="userProfile">用户信息</string>
+    <string name="genderLabel">性别:</string>
     <string name="male_label">男</string>
     <string name="female_label">女</string>
+    <string name="birthdayLabel">生日:</string>
+    <string name="editProfileButton">修改用户信息</string>
+    <string name="logout" >退出登录</string>
 </resources>
