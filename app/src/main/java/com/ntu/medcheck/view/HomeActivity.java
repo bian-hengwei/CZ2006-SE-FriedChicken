@@ -9,10 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.controller.CalendarMgr;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
 import com.ntu.medcheck.view.fragment.MedicineFragment;
-import com.ntu.medcheck.view.fragment.ScheduleFragment;
+import com.ntu.medcheck.view.fragment.CheckupFragment;
 import com.ntu.medcheck.view.fragment.UserHomeFragment;
 
 /**
@@ -67,7 +66,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initFragments() {
         calendarFragment = new CalendarFragment();
-        scheduleFragment = new ScheduleFragment();
+        scheduleFragment = new CheckupFragment();
         userHomeFragment = new UserHomeFragment();
         medicineFragment = new MedicineFragment();
         fragmentTransaction = getSupportFragmentManager().beginTransaction();

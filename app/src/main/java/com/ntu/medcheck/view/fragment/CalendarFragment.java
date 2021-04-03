@@ -230,7 +230,7 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
             TextView title = calendar_row.findViewById(R.id.title);
             TextView location = calendar_row.findViewById(R.id.location);
             TextView time = calendar_row.findViewById(R.id.time);
-            TextView comments = calendar_row.findViewById(R.id.comments);
+            TextView comments = calendar_row.findViewById(R.id.commentCheckupRow);
 
             String dateStr = atime.get(position).get(Calendar.HOUR) + "(hr)" + atime.get(position).get(Calendar.MINUTE) + "(min)";
 

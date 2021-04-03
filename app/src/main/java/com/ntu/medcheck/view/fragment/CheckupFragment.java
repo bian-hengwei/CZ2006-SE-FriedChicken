@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +13,15 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.view.AddMedicationActivity;
+import com.ntu.medcheck.controller.CheckUpMgr;
 import com.ntu.medcheck.view.SearchClinicActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ScheduleFragment#newInstance} factory method to
+ * Use the {@link CheckupFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ScheduleFragment extends Fragment {
+public class CheckupFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +32,9 @@ public class ScheduleFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ScheduleFragment() {
+    CheckUpMgr checkUpMgr = new CheckUpMgr();
+
+    public CheckupFragment() {
         // Required empty public constructor
     }
 
@@ -46,8 +47,8 @@ public class ScheduleFragment extends Fragment {
      * @return A new instance of fragment ScheduleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScheduleFragment newInstance(String param1, String param2) {
-        ScheduleFragment fragment = new ScheduleFragment();
+    public static CheckupFragment newInstance(String param1, String param2) {
+        CheckupFragment fragment = new CheckupFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,23 +68,38 @@ public class ScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_checkup, container, false);
+
+        ListView listView = view.findViewById(R.id.checkupListView);
+
+        if(listView == null) {
+            System.out.println("fragment list view is null");
+        }
+
+        checkUpMgr.dynamicDisplayCheckup(view);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        return view;
     }
 
-    @Override
+   /* @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
         addNewCheckup.setOnClickListener(mListener);
+
+
+
+
     }
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
         public void onClick(View view) {
-            Intent i = new Intent(ScheduleFragment.this.getActivity(), SearchClinicActivity.class);
+            Intent i = new Intent(CheckupFragment.this.getActivity(), SearchClinicActivity.class);
             startActivity(i);
         }
-    };
+    };*/
 
 
 }

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.view.fragment.ScheduleFragment;
+import com.ntu.medcheck.view.fragment.CheckupFragment;
 
 /**
  * Add check up page
@@ -74,7 +74,7 @@ public class AddCheckupActivity extends AppCompatActivity {
     }
 
     public void returnToScheduleFrag(View v) {
-        Intent i = new Intent(this, ScheduleFragment.class);
+        Intent i = new Intent(this, CheckupFragment.class);
         startActivity(i);
     }
 
