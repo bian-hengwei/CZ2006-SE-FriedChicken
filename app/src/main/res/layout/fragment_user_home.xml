@@ -171,19 +171,6 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="131dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmButton"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
         android:id="@+id/confirmButton"
         android:layout_width="132dp"
         android:layout_height="51dp"

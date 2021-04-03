@@ -76,24 +76,11 @@ public class UserHomeFragment extends Fragment {
         // 1st display current information, disable the edittexts
         userProfileMgr.displayInfoOnUserHome((AppCompatActivity) getActivity(), view);
 
-        Button logoutBtn = view.findViewById(R.id.logoutButton);
-
-        logoutBtn.setOnClickListener(new SafeOnClickListener() {
-            @Override
-            public void onOneClick(View v) {
-                logout();
-            }
-        });
-
         // Inflate the layout for this fragment
         return view;
     }
 
     public void edit(View v) {} // edit profile
-
-    public void logout() {
-        userProfileMgr.logout((AppCompatActivity) getActivity());
-    } // log out
 
     /* PROBLEM: not sure why this cannot work
     public void resetPassword (View v) {

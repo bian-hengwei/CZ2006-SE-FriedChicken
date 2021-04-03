@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.model.CheckUpTime;
 import com.ntu.medcheck.model.User;
 
 import java.util.Calendar;
@@ -33,12 +34,10 @@ public class RegisterMgr {
         // hard coded for testing
         String gender = "Female";
         int age = 20;
-        Calendar birthday = null;
-        birthday.set(Calendar.YEAR, 2000);
-        birthday.set(Calendar.MONTH, 10);
-        birthday.set(Calendar.DAY_OF_MONTH, 8);
-        String phoneNo = "12345678";
+        CheckUpTime birthday = new CheckUpTime("20001008");
 
+
+        String phoneNo = "87654321";
         boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, age, birthday, phoneNo, aca);
 
         if (!valid) {
@@ -87,7 +86,7 @@ public class RegisterMgr {
         });
     }
 
-    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, Calendar birthday, String phoneNo, Context context) {
+    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, CheckUpTime birthday, String phoneNo, Context context) {
 
         if (userName.isEmpty()) {
             Toast.makeText(context, "Registration unsuccessful, username is empty", Toast.LENGTH_LONG).show();

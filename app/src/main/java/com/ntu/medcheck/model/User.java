@@ -102,4 +102,8 @@ public class User {
     public void setBirthday(CheckUpTime birthday) {
         this.birthday = birthday;
     }
+
+    public static void setInstance(User user) {
+        userInstance = user;
+    }
 }

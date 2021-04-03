@@ -32,7 +32,7 @@ public class ScheduleMgr {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 schedule = dataSnapshot.getValue(Schedule.class);
                 Log.d("loading", "Loading data");
-                Log.d("schedule", schedule.toString());
+                Log.d("schedule", "abcde");
             }
 
             @Override

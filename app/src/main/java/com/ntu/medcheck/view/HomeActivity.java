@@ -11,6 +11,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.ScheduleMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
+import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
 import com.ntu.medcheck.view.fragment.MedicationFragment;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
@@ -36,6 +37,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+
         ScheduleMgr scheduleMgr = new ScheduleMgr();
         scheduleMgr.initialize();
 
@@ -46,7 +50,6 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottomNavigationBar);
 
         initFragments();
-
         bottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navCalendar:
