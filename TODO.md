@@ -1,16 +1,23 @@
-# TODO  
-  
- - [x] Add firebase register  
- - [ ] Fix toast in registermgr
- - [ ] Explore how to use strings.xml in non activity classes
- - [x] Add firebase login  
- - [x] Use Splash activity to save login state  
- - [x] Add firebase forget passwoord
- - [ ] Add firebase change password  
- - [ ] Build schedule  
- - [ ] Build schedule and activity page  
- - [ ] Add observer  
- - [ ] Add entry page  
- - [ ] Notifications  
- - [x] Map fragment and search for clinics page  
- - [x] User profile page
+ - [ ] TODO: Splash screen add stuff
+ - [ ] TODO: Beautify activities
+ - [ ] TODO: Fix all strings
+ - [ ] TODO: Add more language options
+ - [ ] TODO: Set listeners safe
+ - [ ] TODO: After login, correctly initialize user HENGWEI
+ - [ ] TODO: User set profile to firebase HENGWEI
+ - [ ] TODO: User change password HENGWEI
+ - [ ] TODO: Return to fragment instead of redrawing Home
+     - [ ] TODO: Also change for register etc.
+ - [ ] TODO: Medication entry data structure YINAN
+ - [ ] TODO: Medication database YINAN
+ - [ ] TODO: Medication display on fragment YINAN
+ - [ ] TODO: Add medication YINAN
+     - [ ] TODO: Dynamic time adding YINAN
+ - [ ] TODO: Modify / delete medication YINAN
+ - [ ] TODO: Add checkup HENGWEI
+     - [ ] TODO: Move clinic details to the other page HENGWEI
+     - [ ] TODO: Screening center manager MVC HENGWEI
+ - [ ] TODO: Modify / delete checkup HENGWEI
+ - [ ] TODO: Refresh calendar HENGWEI
+ - [ ] TODO: Notification YONGDING
+ - [ ] TODO: Pack adapter YINAN

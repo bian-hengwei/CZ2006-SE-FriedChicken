@@ -2,15 +2,12 @@ package com.ntu.medcheck.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.controller.UserProfileMgr;
 
 public class EditCheckupActivity extends AppCompatActivity {
     @Override

@@ -1,18 +1,13 @@
 package com.ntu.medcheck.view.fragment;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
@@ -20,13 +15,10 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CalendarMgr;
 
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
-import org.naishadhparmar.zcustomcalendar.OnNavigationButtonClickedListener;
 import org.naishadhparmar.zcustomcalendar.Property;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -121,104 +113,14 @@ public class CalendarFragment extends Fragment {
                     + "/" + (selectedDate.get(Calendar.MONTH) + 1)
                     + "/" + selectedDate.get(Calendar.YEAR);
 
-            String yearMonth = String.format("%04d%02d", selectedDate.get(Calendar.YEAR),
-                    selectedDate.get(Calendar.MONTH) + 1);
+            String yearMonth = String.format("%04d%02d", selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH) + 1);
 
             TextView date = getActivity().findViewById(R.id.calendarDate);
             date.setText(sDate);
 
-//////////////////////////START/////////////////////////////////////////////////////////////////////
-
             calendarMgr.setDateOnClick(view, yearMonth, selectedDate.get(Calendar.DAY_OF_MONTH));
-
-            /*// dynamic reminder
-            ArrayList<String> title = new ArrayList<>();
-            title.add("heart checkup");
-            title.add("liver checkup");
-            title.add("lung checkup");
-
-
-            ArrayList<Calendar> time = new ArrayList<>();
-            Calendar checkupTime1 = Calendar.getInstance();
-            Calendar checkupTime2 = Calendar.getInstance();
-            Calendar checkupTime3 = Calendar.getInstance();
-            checkupTime1.set(Calendar.HOUR, 3);
-            checkupTime1.set(Calendar.MINUTE, 4);
-            checkupTime2.set(Calendar.HOUR, 1);
-            checkupTime2.set(Calendar.MINUTE, 2);
-            checkupTime3.set(Calendar.HOUR, 5);
-            checkupTime3.set(Calendar.MINUTE, 6);
-            time.add(checkupTime1);
-            time.add(checkupTime2);
-            time.add(checkupTime3);
-
-            ArrayList<String> location = new ArrayList<>();
-            location.add("hospital 1");
-            location.add("hospital 2");
-            location.add("hospital 3");
-
-            ArrayList<String> comments = new ArrayList<>();
-            comments.add("helloworld1");
-            comments.add("helloworld2");
-            comments.add("helloworld3");
-
-            dynamicReminder(title, location, time, comments);
-
-            listView = view.findViewById(R.id.listView);
-            MyAdapter adapter = new MyAdapter(this.getContext(), title, location, time, comments);
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    System.out.println(title.get(position));
-                }
-            });*/
-/////////////////////////END////////////////////////////////////////////////////////////////////////
         });
         // Inflate the layout for this fragment
         return view;
-    }
-
-    // pass in list of title (event eg.heart checkup), list of time, list of comment. get this list from ScheduleMgr.
-    public void dynamicReminder(ArrayList<String> title, ArrayList<String> location, ArrayList<Calendar> time, ArrayList<String> comments) {
-
-    }
-
-    class MyAdapter extends ArrayAdapter<String> {
-        Context context;
-        ArrayList<String> atitle;
-        ArrayList<String> alocation;
-        ArrayList<Calendar> atime;
-        ArrayList<String> acomments;
-        MyAdapter(Context context, ArrayList<String> title, ArrayList<String> location, ArrayList<Calendar> time, ArrayList<String> comments) {
-            super(context, R.layout.calendar_row, title);
-            this.context = context;
-            this.atitle = title;
-            this.alocation = location;
-            this.atime = time;
-            this.acomments = comments;
-
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View calendar_row = layoutInflater.inflate(R.layout.calendar_row, parent, false);
-            TextView title = calendar_row.findViewById(R.id.title);
-            TextView location = calendar_row.findViewById(R.id.location);
-            TextView time = calendar_row.findViewById(R.id.time);
-            TextView comments = calendar_row.findViewById(R.id.commentCheckupRow);
-
-            String dateStr = atime.get(position).get(Calendar.HOUR) + "(hr)" + atime.get(position).get(Calendar.MINUTE) + "(min)";
-
-            title.setText(atitle.get(position));
-            location.setText("Location: " + alocation.get(position));
-            time.setText("Time: " + dateStr);
-            comments.setText("Comments: " + acomments.get(position));
-
-            return calendar_row;
-        }
     }
 }

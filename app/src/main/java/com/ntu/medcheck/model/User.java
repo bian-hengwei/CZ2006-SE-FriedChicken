@@ -1,15 +1,14 @@
 package com.ntu.medcheck.model;
 
-import java.util.Calendar;
-
 /**
  * User object
  * keeps track of current user details
  */
 public class User {
+
     private String userName;
     private String gender;
-    private CheckUpTime birthday = new CheckUpTime();
+    private Time birthday = new Time();
     private String phoneNo;
     private String emailAddress;
 
@@ -55,11 +54,11 @@ public class User {
         this.emailAddress = emailAddress;
     }
 
-    public CheckUpTime getBirthday() {
+    public Time getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(CheckUpTime birthday) {
+    public void setBirthday(Time birthday) {
         this.birthday = birthday;
     }
 

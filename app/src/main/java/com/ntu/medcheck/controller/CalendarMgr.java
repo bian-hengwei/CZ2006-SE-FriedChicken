@@ -30,14 +30,9 @@ import java.util.Map;
 
 public class CalendarMgr implements OnNavigationButtonClickedListener {
 
-    FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference sRef = fDatabase.getReference("Schedules");
-    DatabaseReference scheduleUserRef = sRef.child(fAuth.getCurrentUser().getUid());
-    DatabaseReference cuRef = scheduleUserRef.child("checkup");
-
     public CalendarMgr() {
         CheckUpMgr checkUpMgr = new CheckUpMgr();
+        // for testing only
         checkUpMgr.init();
         checkUpMgr.save();
     }
@@ -54,13 +49,11 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
         customCalendar.setDate(Calendar.getInstance(), map);
     }
 
-
     public void setListeners(View view) {
         CustomCalendar customCalendar = view.findViewById(R.id.custom_calendar);
         customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.PREVIOUS, this);
         customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.NEXT, this);
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -110,7 +103,6 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
             this.alocation = location;
             this.atime = time;
             this.acomments = comments;
-
         }
 
         @NonNull

@@ -8,10 +8,10 @@ public class CheckUpEntry extends Entry {
 
     String title;
     String clinic;
-    CheckUpTime time;
+    Time time;
 
     public CheckUpEntry() {
-        time = new CheckUpTime();
+        time = new Time();
     }
 
     public String getTitle() {
@@ -30,11 +30,11 @@ public class CheckUpEntry extends Entry {
         this.clinic = clinic;
     }
 
-    public CheckUpTime getTime() {
+    public Time getTime() {
         return time;
     }
 
-    public void setTime(CheckUpTime time) {
+    public void setTime(Time time) {
         this.time = time;
     }
 }

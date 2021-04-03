@@ -56,24 +56,8 @@ public class AddCheckupActivity extends AppCompatActivity {
 
     }
 
-
-    public void changeCheckupType(View v){
-    //take input of type of checkup
-    }
-
-    public void changeClinic(View v){
-    //take new clinic if user wants to change
-    }
-
-    public void chooseTime(View v){
-    //take date and time of scheduled checkup
-    }
-
-    public void inputComment(View v){
-    //take inputted comments
-    }
-
     public void returnToScheduleFrag(View v) {
+        // TODO: can go back to fragment?
         Intent i = new Intent(this, CheckupFragment.class);
         startActivity(i);
     }

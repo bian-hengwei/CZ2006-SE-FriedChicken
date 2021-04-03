@@ -11,9 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.view.HomeActivity;
 
 public class LoginMgr {
@@ -44,9 +42,6 @@ public class LoginMgr {
                 //check if account is verified
                 FirebaseUser user = fAuth.getCurrentUser();
                 if (user.isEmailVerified()) {
-                    //FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
-                    //fDatabase.getReference("Users").keepSynced(true);
-                    //fDatabase.getReference("Schedules").keepSynced(true);
                     Intent i = new Intent(aca, HomeActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     aca.startActivity(i);

@@ -1,21 +1,16 @@
 package com.ntu.medcheck.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.controller.ScreeningCentreMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
-import com.ntu.medcheck.utils.SafeOnClickListener;
-import com.ntu.medcheck.view.AddCheckupActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +28,7 @@ public class UserHomeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    UserProfileMgr userProfileMgr = new UserProfileMgr();
+    UserProfileMgr userProfileMgr;
 
     private Button changePasswordBtn;
 
@@ -74,25 +69,15 @@ public class UserHomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
 
         // 1st display current information, disable the edittexts
+        userProfileMgr = new UserProfileMgr();
         userProfileMgr.displayInfoOnUserHome((AppCompatActivity) getActivity(), view);
 
         // Inflate the layout for this fragment
         return view;
     }
 
-    public void edit(View v) {} // edit profile
-
-    /* PROBLEM: not sure why this cannot work
-    public void resetPassword (View v) {
-        // onClick of register button
-        Intent i = new Intent(getActivity(), RegisterActivity.class);
-        startActivity(i);
-    }*/
-
     public void changePassword() {
-        //Intent i = new Intent(getActivity(), *** wrong*** ForgetPasswordActivity.class);
-        //startActivity(i);
-        System.out.println("havnt write yet");
+        // TODO: change password
     }
 
 

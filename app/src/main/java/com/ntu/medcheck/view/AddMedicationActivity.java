@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 
 /**
@@ -101,8 +100,8 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                     morningList2.setVisibility(View.INVISIBLE);
                 }
             }
-
         });
+
         atimeSel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -115,8 +114,8 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                     afternoonList2.setVisibility(View.INVISIBLE);
                 }
             }
-
         });
+
         ntimeSel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -130,42 +129,14 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                 }
             }
         });
-
-    }
-
-    public void inputMedication(View v){
-    //take input of medication name
-    }
-
-    public void inputDosage(View v){
-    //take input of dosage
-    }
-
-    public void inputTime(View v){
-    //take input of time
-    }
-
-    public void repeat(View v){
-    //take input of repeat time
-    }
-
-    public void inputComment(View v){
-    //take comment input
-    }
-
-    public void uploadPic(View v){
-    //take uploaded pic
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //String types = parent.getItemAtPosition(position).toString();
-
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
 }

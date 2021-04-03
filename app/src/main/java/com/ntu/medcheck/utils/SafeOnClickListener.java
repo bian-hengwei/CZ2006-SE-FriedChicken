@@ -19,5 +19,4 @@ public abstract class SafeOnClickListener implements View.OnClickListener {
     }
 
     public abstract void onOneClick(View v);
-
 }

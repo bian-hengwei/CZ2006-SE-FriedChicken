@@ -2,6 +2,7 @@ package com.ntu.medcheck.view;
 
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,9 +14,12 @@ import com.ntu.medcheck.controller.ScheduleMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
 import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
-import com.ntu.medcheck.view.fragment.MedicationFragment;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
+import com.ntu.medcheck.view.fragment.MedicationFragment;
 import com.ntu.medcheck.view.fragment.UserHomeFragment;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This activity calls different fragments like MedicineFragment, ScheduleFragment, MapFragment
@@ -29,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment scheduleFragment;
     private Fragment userHomeFragment;
     private Fragment medicineFragment;
-    private Fragment lastFragment;
+    private String lastFragment;
     FragmentTransaction fragmentTransaction;
 
     @Override
@@ -37,18 +41,21 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        UserProfileMgr userProfileMgr = new UserProfileMgr();
+        userProfileMgr.initialize(this);
+
         ScheduleMgr scheduleMgr = new ScheduleMgr();
         scheduleMgr.initialize();
-
-        UserProfileMgr userProfileMgr = new UserProfileMgr();
-        userProfileMgr.init("Yinan", "123", "hbian001@e.ntu.edu.sg", "Male", "12345678");
-        userProfileMgr.initialize();
 
         navFrame = findViewById(R.id.navigationFrame);
         bottomNavigation = findViewById(R.id.bottomNavigationBar);
 
-        initFragments();
+        //initFragments();
         bottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            if (calendarFragment == null) {
+                Toast.makeText(this.getApplicationContext(), "please wait", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             switch (item.getItemId()) {
                 case R.id.navCalendar:
                     // set colour
@@ -73,7 +80,10 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private void initFragments() {
+    public void initFragments() {
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
         calendarFragment = new CalendarFragment();
         scheduleFragment = new CheckupFragment();
         userHomeFragment = new UserHomeFragment();
@@ -88,15 +98,63 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.navigationFrame, medicineFragment);
         fragmentTransaction.hide(medicineFragment);
         fragmentTransaction.commit();
-        lastFragment = calendarFragment;
-        setFragment(calendarFragment);
+        if (lastFragment == null) {
+            lastFragment = "calendarFragment";
+            setFragment(calendarFragment);
+        }
+        else {
+            setLastFragment();
+        }
     }
 
-    private void setFragment(Fragment fragment) { // any fragment can be passed in
+    private void setFragment(Fragment fragment) {
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.hide(lastFragment);
+        Fragment hideFragment;
+        switch (lastFragment) {
+            case "userHomeFragment":
+                hideFragment = userHomeFragment;
+                break;
+            case "scheduleFragment":
+                hideFragment = scheduleFragment;
+                break;
+            case "medicineFragment":
+                hideFragment = medicineFragment;
+                break;
+            default:
+                hideFragment = calendarFragment;
+        }
+        fragmentTransaction.hide(hideFragment);
         fragmentTransaction.show(fragment);
-        lastFragment = fragment;
+        if (userHomeFragment.equals(fragment)) {
+            lastFragment = "userHomeFragment";
+        } else if (scheduleFragment.equals(fragment)) {
+            lastFragment = "scheduleFragment";
+        } else if (medicineFragment.equals(fragment)) {
+            lastFragment = "medicineFragment";
+        } else {
+            lastFragment = "calendarFragment";
+        }
         fragmentTransaction.commit();
     }
+
+    private void setLastFragment() {
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Fragment showFragment;
+        switch (lastFragment) {
+            case "userHomeFragment":
+                showFragment = userHomeFragment;
+                break;
+            case "scheduleFragment":
+                showFragment = scheduleFragment;
+                break;
+            case "medicineFragment":
+                showFragment = medicineFragment;
+                break;
+            default:
+                showFragment = calendarFragment;
+        }
+        fragmentTransaction.show(showFragment);
+        fragmentTransaction.commit();
+    }
+
 }

@@ -1,18 +1,16 @@
 package com.ntu.medcheck.model;
 
-import com.ntu.medcheck.BuildConfig;
-
 import java.util.Calendar;
 
-public class CheckUpTime {
+public class Time {
 
     String year, month, day;
     String hour, minute;
 
-    public CheckUpTime() {
+    public Time() {
     }
 
-    public CheckUpTime(String time) {
+    public Time(String time) {
         year = time.substring(0, 4);
         month = time.substring(4, 6);
         day = time.substring(6, 8);

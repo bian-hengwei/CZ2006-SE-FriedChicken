@@ -1,17 +1,13 @@
 package com.ntu.medcheck.view;
 
-
 import android.os.Bundle;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.ScreeningCentreMgr;
-
 
 public class SearchClinicActivity extends AppCompatActivity {
 

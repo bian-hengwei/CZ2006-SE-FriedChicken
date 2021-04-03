@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -109,11 +107,11 @@ public class CheckUpMgr {
 
         listView = view.findViewById(R.id.checkupListView);
 
-        if(listView == null) {
+        if (listView == null) {
             System.out.println("list view is null");
         }
 
-        if(view.getContext() == null) {
+        if (view.getContext() == null) {
             System.out.println("context is null");
         }
         else {
@@ -122,21 +120,14 @@ public class CheckUpMgr {
 
         MyAdapter adapter = new MyAdapter(view.getContext(), title, date, time, location, comment);
 
-
-
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            // !!!!!!! on click, view in detail and can edit
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(title.get(position));
-                Intent i = new Intent(fragment.getActivity(),EditCheckupActivity.class);
-                fragment.startActivity(i);
-            }
+        // !!!!!!! on click, view in detail and can edit
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            System.out.println(title.get(position));
+            Intent i = new Intent(fragment.getActivity(),EditCheckupActivity.class);
+            fragment.startActivity(i);
         });
-
     }
 
     // adapter class
@@ -169,7 +160,6 @@ public class CheckUpMgr {
             TextView location = checkup_row.findViewById(R.id.locationCheckupRow);
             TextView comments = checkup_row.findViewById(R.id.commentCheckupRow);
 
-
             title.setText(atitle.get(position));
             date.setText("Date: " + adate.get(position).substring(6, 8) + " / " + adate.get(position).substring(4, 6) + " / " + adate.get(position).substring(0, 4));
             time.setText("Time: " + atime.get(position).substring(0, 2) + " : " + atime.get(position).substring(2, 4));
@@ -177,7 +167,6 @@ public class CheckUpMgr {
             comments.setText("Comments: " + acomment.get(position));
 
             return checkup_row;
-
         }
     }
 
@@ -189,7 +178,6 @@ public class CheckUpMgr {
         title.add("lung checkup");
         title.add("lung checkup");
         title.add("lung checkup");
-
         return title;
     }
 
@@ -201,7 +189,6 @@ public class CheckUpMgr {
         date.add("20210415");
         date.add("20210415");
         date.add("20210415");
-
         return date;
     }
 

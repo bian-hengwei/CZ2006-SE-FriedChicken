@@ -1,7 +1,6 @@
 package com.ntu.medcheck.view;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +17,4 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
     }
-
-    public void save(View v) {}
 }

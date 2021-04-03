@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,8 +65,7 @@ public class MedicationFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_medication, container, false);
         medicationMgr.dynamicDisplayMedication(view);
@@ -83,10 +81,8 @@ public class MedicationFragment extends Fragment {
         addNewMedication.setOnClickListener(mListener);
     }
 
-    private final View.OnClickListener mListener = new View.OnClickListener() {
-        public void onClick(View view) {
-            Intent i = new Intent(MedicationFragment.this.getActivity(), AddMedicationActivity.class);
-            startActivity(i);
-        }
+    private final View.OnClickListener mListener = view -> {
+        Intent i = new Intent(MedicationFragment.this.getActivity(), AddMedicationActivity.class);
+        startActivity(i);
     };
 }

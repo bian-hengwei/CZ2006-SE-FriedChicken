@@ -9,7 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ntu.medcheck.model.CheckUpEntry;
-import com.ntu.medcheck.model.CheckUpTime;
+import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.model.Schedule;
 
 import java.util.ArrayList;
@@ -38,9 +38,6 @@ public class ScheduleMgr {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 setSchedule(dataSnapshot);
                 Log.d("loading", "Loading data");
-
-                Log.d("schedule", "modified");
-
             }
 
             @Override
@@ -49,9 +46,7 @@ public class ScheduleMgr {
                 Log.w("Err", "loadPost:onCancelled", databaseError.toException());
             }
         };
-
         uRef.addValueEventListener(postListener);
-
     }
 
     private void setSchedule(DataSnapshot dataSnapshot) {
@@ -78,8 +73,7 @@ public class ScheduleMgr {
         checkUpEntry.setName((String) entry.child("name").getValue());
         checkUpEntry.setTitle((String) entry.child("title").getValue());
         checkUpEntry.setType((String) entry.child("type").getValue());
-        checkUpEntry.setTime(entry.child("time").getValue(CheckUpTime.class));
+        checkUpEntry.setTime(entry.child("time").getValue(Time.class));
         return checkUpEntry;
     }
-
 }

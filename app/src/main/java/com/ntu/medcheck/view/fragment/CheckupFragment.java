@@ -66,14 +66,13 @@ public class CheckupFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_checkup, container, false);
 
         ListView listView = view.findViewById(R.id.checkupListView);
 
-        if(listView == null) {
+        if (listView == null) {
             System.out.println("fragment list view is null");
         }
 
@@ -90,10 +89,8 @@ public class CheckupFragment extends Fragment {
         addNewCheckup.setOnClickListener(mListener);
     }
 
-    private final View.OnClickListener mListener = new View.OnClickListener() {
-        public void onClick(View view) {
-            Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
-            startActivity(i);
-        }
+    private final View.OnClickListener mListener = view -> {
+        Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
+        startActivity(i);
     };
 }

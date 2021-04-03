@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,13 +29,8 @@ public class MedicationMgr {
         listView = view.findViewById(R.id.medicationListView);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            // !!!!!!! on click, view in detail and can edit
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(title.get(position));
-            }
-        });
+        // !!!!!!! on click, view in detail and can edit
+        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
     }
 
     class MyAdapter extends ArrayAdapter<String> {
@@ -68,17 +62,16 @@ public class MedicationMgr {
             TextView frequency = medication_row.findViewById(R.id.frequencyMedicationRow);
             TextView comments = medication_row.findViewById(R.id.commentMedicationRow);
 
-
             title.setText(atitle.get(position));
             time.setText("Time: " + atime.get(position));
             dosage.setText("Dosage: " + adosage.get(position));
             frequency.setText("Frequency: " + afrequency.get(position));
             comments.setText("Comments: " + acomment.get(position));
-
             return medication_row;
         }
 
     }
+
     public ArrayList<String> getComment() {
         ArrayList<String> Comment = new ArrayList<>();
         Comment.add("comment1");

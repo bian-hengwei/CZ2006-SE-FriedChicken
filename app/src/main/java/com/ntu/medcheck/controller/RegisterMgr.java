@@ -14,10 +14,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.model.CheckUpTime;
 import com.ntu.medcheck.model.User;
-
-import java.util.Calendar;
 
 public class RegisterMgr {
 
@@ -32,17 +29,16 @@ public class RegisterMgr {
         EditText phoneNoInput = aca.findViewById(R.id.registerPhoneNo);
         DatePicker birthdayInput = aca.findViewById(R.id.registerDatePicker) ;
 
-
         String userName = userNameInput.getText().toString().trim();
         String emailAddress = emailAddressInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String rePassword = rePasswordInput.getText().toString().trim();
 
         String gender;
-        if(maleInput.isChecked()) {
+        if (maleInput.isChecked()) {
             gender = "male";
         }
-        else if(femaleInput.isChecked()) {
+        else if (femaleInput.isChecked()) {
             gender = "female";
         }
         else {
