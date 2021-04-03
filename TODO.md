@@ -3,7 +3,7 @@
  - [ ] TODO: Fix all strings
  - [ ] TODO: Add more language options
  - [ ] TODO: Set listeners safe
- - [ ] TODO: After login, correctly initialize user HENGWEI
+ - [x] TODO: After login, correctly initialize user HENGWEI
  - [ ] TODO: User set profile to firebase HENGWEI
  - [ ] TODO: User change password HENGWEI
  - [ ] TODO: Return to fragment instead of redrawing Home
