@@ -38,4 +38,5 @@
     <string name="birthday_label">Birthday</string>
     <string name="edit_profile">Edit profile</string>
     <string name="confirm_text">Confirm</string>
+    <string name="editCheckup">Edit Checkup Schedule</string>
 </resources>

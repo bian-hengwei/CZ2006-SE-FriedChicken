@@ -1,11 +1,15 @@
 package com.ntu.medcheck.view.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +18,11 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
+import com.ntu.medcheck.view.AddCheckupActivity;
+import com.ntu.medcheck.view.EditCheckupActivity;
 import com.ntu.medcheck.view.SearchClinicActivity;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,29 +85,24 @@ public class CheckupFragment extends Fragment {
             System.out.println("fragment list view is null");
         }
 
-        checkUpMgr.dynamicDisplayCheckup(view);
+        checkUpMgr.dynamicDisplayCheckup(this,view);
 
         // Inflate the layout for this fragment
         return view;
     }
 
-   /* @Override
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
         addNewCheckup.setOnClickListener(mListener);
 
-
-
-
     }
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
         public void onClick(View view) {
-            Intent i = new Intent(CheckupFragment.this.getActivity(), SearchClinicActivity.class);
+            Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
             startActivity(i);
         }
-    };*/
-
-
+    };
 }
