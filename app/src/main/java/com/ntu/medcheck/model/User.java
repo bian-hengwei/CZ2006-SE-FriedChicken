@@ -9,7 +9,7 @@ import java.util.Calendar;
 public class User {
     private String userName;
     private String gender;
-    private CheckUpTime birthday;
+    private CheckUpTime birthday = new CheckUpTime();
     private String phoneNo;
     private String emailAddress;
 
@@ -93,5 +93,13 @@ public class User {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public CheckUpTime getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(CheckUpTime birthday) {
+        this.birthday = birthday;
     }
 }

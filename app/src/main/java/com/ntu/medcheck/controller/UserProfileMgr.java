@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.model.CheckUpTime;
 import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.LoginActivity;
@@ -33,6 +34,15 @@ import java.util.regex.Pattern;
 public class UserProfileMgr {
 
     User user = getUser();
+
+    public void init(String name, String birthday, String email, String gender, String phoneno) {
+        User user = User.getInstance();
+        user.setUserName(name);
+        user.getBirthday().setTime("20000101");
+        user.setEmailAddress(email);
+        user.setGender(gender);
+        user.setPhoneNo(phoneno);
+    }
 
     public boolean checkRegister(String usr, String pwd, String confirmpwd){ return true; } // called by reg activity and communicates with fAuth
 
@@ -204,26 +214,9 @@ public class UserProfileMgr {
                 int month = birthdayInput.getMonth();
                 int year = birthdayInput.getYear();
 
-                String dayStr;
-                String monthStr;
-                String yearStr = Integer.toString(year);
 
-                if(day < 10) {
-                    dayStr = "0" + Integer.toString(day);
-                }
-                else {
-                    dayStr = Integer.toString(day);
-                }
-                if(month < 10) {
-                    monthStr = "0" + Integer.toString(month);
-                }
-                else {
-                    monthStr = Integer.toString(month);
-                }
+                user.setBirthday(new CheckUpTime(String.format("%04d%02d%02d", year, month, day)));
 
-                user.setBirthdayDay(dayStr);
-                user.setBirthdayMonth(Integer.toString(month));
-                user.setBirthdayYear(yearStr);
 
                 // gender
                 String gender;

@@ -51,13 +51,12 @@ public class RegisterMgr {
             //if successful register
             if (task.isSuccessful()) {
                 User user = User.getInstance();
-                user.setBirthdayYear("2020");
-                user.setBirthdayMonth("11");
-                user.setBirthdayDay("01");
-                user.setGender("Female");
-                user.setEmailAddress(emailAddress);
+
                 user.setUserName(userName);
-                user.setPhoneNo("12345678");
+                user.getBirthday().setTime("20000101");
+                user.setEmailAddress(emailAddress);
+                user.setGender(gender);
+                user.setPhoneNo(phoneNo);
 
                 FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference uRef = fDatabase.getReference("Users");

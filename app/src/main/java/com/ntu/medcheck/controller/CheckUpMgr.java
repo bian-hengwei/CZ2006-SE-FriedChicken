@@ -1,6 +1,7 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
 
+import com.ntu.medcheck.view.EditCheckupActivity;
 import com.ntu.medcheck.model.Schedule;
 
 
@@ -95,7 +99,7 @@ public class CheckUpMgr {
         suRef.setValue(schedule);
     }
 
-    public void dynamicDisplayCheckup(View view) {
+    public void dynamicDisplayCheckup(Fragment fragment, View view) {
         ListView listView;
         ArrayList<String> title = getTitle();
         ArrayList<String> date = getDate();
@@ -121,9 +125,17 @@ public class CheckUpMgr {
 
 
         listView.setAdapter(adapter);
-        // !!!!!!! on click, view in detail and can edit
-        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            // !!!!!!! on click, view in detail and can edit
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(title.get(position));
+                Intent i = new Intent(fragment.getActivity(),EditCheckupActivity.class);
+                fragment.startActivity(i);
+            }
+        });
 
     }
 

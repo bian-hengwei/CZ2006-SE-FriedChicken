@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.view.HomeActivity;
 
 public class LoginMgr {

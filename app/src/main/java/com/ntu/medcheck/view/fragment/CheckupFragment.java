@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
-import com.ntu.medcheck.view.SearchClinicActivity;
+import com.ntu.medcheck.view.AddCheckupActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,7 +77,7 @@ public class CheckupFragment extends Fragment {
             System.out.println("fragment list view is null");
         }
 
-        checkUpMgr.dynamicDisplayCheckup(view);
+        checkUpMgr.dynamicDisplayCheckup(this,view);
 
         // Inflate the layout for this fragment
         return view;
@@ -92,10 +92,8 @@ public class CheckupFragment extends Fragment {
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
         public void onClick(View view) {
-            Intent i = new Intent(CheckupFragment.this.getActivity(), SearchClinicActivity.class);
+            Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
             startActivity(i);
         }
     };
-
-
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.ScheduleMgr;
+import com.ntu.medcheck.controller.UserProfileMgr;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
 import com.ntu.medcheck.view.fragment.MedicationFragment;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
@@ -37,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
 
         ScheduleMgr scheduleMgr = new ScheduleMgr();
         scheduleMgr.initialize();
+
+        UserProfileMgr userProfileMgr = new UserProfileMgr();
+        userProfileMgr.init("fuck", "123", "hbian001@e.ntu.edu.sg", "Male", "12345678");
 
         navFrame = findViewById(R.id.navigationFrame);
         bottomNavigation = findViewById(R.id.bottomNavigationBar);

@@ -2,6 +2,8 @@ package com.ntu.medcheck.model;
 
 import com.ntu.medcheck.BuildConfig;
 
+import java.util.Calendar;
+
 public class CheckUpTime {
 
     String year, month, day;
@@ -10,16 +12,26 @@ public class CheckUpTime {
     public CheckUpTime() {
     }
 
-    public void setTime(String time) {
-        if (BuildConfig.DEBUG && time.length() != 12) {
-            throw new AssertionError("Assertion failed");
-        }
+    public CheckUpTime(String time) {
         year = time.substring(0, 4);
         month = time.substring(4, 6);
         day = time.substring(6, 8);
-        hour = time.substring(8, 10);
-        minute = time.substring(10, 12);
+        if (time.length() == 12) {
+            hour = time.substring(8, 10);
+            minute = time.substring(10, 12);
+        }
     }
+
+    public void setTime(String time) {
+        year = time.substring(0, 4);
+        month = time.substring(4, 6);
+        day = time.substring(6, 8);
+        if (time.length() == 12) {
+            hour = time.substring(8, 10);
+            minute = time.substring(10, 12);
+        }
+    }
+
 
     public String getYear() {
         return year;
@@ -59,5 +71,26 @@ public class CheckUpTime {
 
     public void setMinute(String minute) {
         this.minute = minute;
+    }
+
+    public Calendar toCalendar() {
+        Calendar calendar = Calendar.getInstance();
+        if (hour != null && hour != "")
+            calendar.set(
+                    Integer.parseInt(year),
+                    Integer.parseInt(month) - 1,
+                    Integer.parseInt(day),
+                    Integer.parseInt(hour),
+                    Integer.parseInt(minute)
+            );
+        else {
+            if (hour != null && hour != "")
+                calendar.set(
+                        Integer.parseInt(year),
+                        Integer.parseInt(month) - 1,
+                        Integer.parseInt(day)
+                );
+        }
+        return calendar;
     }
 }
