@@ -43,9 +43,9 @@ public class LoginMgr {
                 //check if account is verified
                 FirebaseUser user = fAuth.getCurrentUser();
                 if (user.isEmailVerified()) {
-                    FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
-                    fDatabase.getReference("Users").keepSynced(true);
-                    fDatabase.getReference("Schedules").keepSynced(true);
+                    //FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
+                    //fDatabase.getReference("Users").keepSynced(true);
+                    //fDatabase.getReference("Schedules").keepSynced(true);
                     Intent i = new Intent(aca, HomeActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     aca.startActivity(i);

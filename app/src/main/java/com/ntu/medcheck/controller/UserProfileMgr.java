@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.model.CheckUpTime;
 import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.fragment.UserHomeFragment;
@@ -132,12 +133,12 @@ public class UserProfileMgr {
 
         emailInput.setText(user.getEmailAddress());
 
-        Calendar birthday = user.getBirthday();
+        //Calendar birthday = user.getBirthday().toCalendar();
 
-        System.out.println(birthday.get(Calendar.YEAR));
+        /*System.out.println(birthday.get(Calendar.YEAR));
 
         birthdayInput.init(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DAY_OF_MONTH), null);
-
+*/
 
         String gender = user.getGender();
         if(gender.equals("male")) {
@@ -192,7 +193,7 @@ public class UserProfileMgr {
                 user.setEmailAddress(email);
 
                 // save birthday
-                int day = birthdayInput.getDayOfMonth();
+                /*int day = birthdayInput.getDayOfMonth();
                 int month = birthdayInput.getMonth();
                 int year = birthdayInput.getYear();
                 System.out.println(day);
@@ -200,8 +201,9 @@ public class UserProfileMgr {
                 birthday.set(Calendar.DAY_OF_MONTH, day);
                 birthday.set(Calendar.MONTH, month);
                 birthday.set(Calendar.YEAR, year);
-                user.setBirthday(birthday);
 
+                user.setBirthday(new CheckUpTime(String.format("%04d%02d%02d", year, month, day)));
+*/
                 // gender
                 String gender;
                 if(male.isChecked()) {

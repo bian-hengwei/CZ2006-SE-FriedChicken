@@ -1,6 +1,7 @@
 package com.ntu.medcheck.view.fragment;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.ntu.medcheck.R;
@@ -31,7 +33,7 @@ import java.util.Map;
  * Use the {@link CalendarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CalendarFragment extends Fragment implements OnNavigationButtonClickedListener {
+public class CalendarFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,6 +77,7 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -106,17 +109,12 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
 
         customCalendar.setMapDescToProp(descHashMap);
 
-        Map<Integer, Object> dateHashMap = new HashMap<>();
-
         Calendar calendar = Calendar.getInstance();
 
         CalendarMgr calendarMgr = new CalendarMgr();
         calendarMgr.getMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, view);
 
-        //calendarMgr.setListeners(view);
-
-        customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.PREVIOUS, this);
-        customCalendar.setOnNavigationButtonClickedListener(CustomCalendar.NEXT, this);
+        calendarMgr.setListeners(view);
 
         customCalendar.setOnDateSelectedListener((view1, selectedDate, desc) -> {
             String sDate = selectedDate.get(Calendar.DAY_OF_MONTH)
@@ -178,27 +176,6 @@ public class CalendarFragment extends Fragment implements OnNavigationButtonClic
         });
         // Inflate the layout for this fragment
         return view;
-    }
-
-    public Map<Integer, Object>[] onNavigationButtonClicked(int whichButton, Calendar newMonth) {
-        Map<Integer, Object>[] arr = new Map[2];
-        switch(newMonth.get(Calendar.MONTH)) {
-            case Calendar.AUGUST:
-                arr[0] = new HashMap<>(); //This is the map linking a date to its description
-                arr[0].put(3, "absent");
-                arr[0].put(6, "absent");
-                arr[0].put(21, "absent");
-                arr[0].put(24, "absent");
-                arr[1] = null; //Optional: This is the map linking a date to its tag.
-                break;
-            default:
-                arr[0] = new HashMap<>();
-                arr[0].put(5, "absent");
-                arr[0].put(10, "absent");
-                arr[0].put(19, "absent");
-                break;
-        }
-        return arr;
     }
 
     // pass in list of title (event eg.heart checkup), list of time, list of comment. get this list from ScheduleMgr.

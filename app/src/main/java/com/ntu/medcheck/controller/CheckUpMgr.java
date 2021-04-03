@@ -20,13 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
+
 import com.ntu.medcheck.view.EditCheckupActivity;
-import com.ntu.medcheck.view.SearchClinicActivity;
-import com.ntu.medcheck.view.fragment.CalendarFragment;
-import com.ntu.medcheck.view.fragment.CheckupFragment;
+import com.ntu.medcheck.model.Schedule;
+
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,8 +39,8 @@ public class CheckUpMgr {
 
     public void init() {
 
-        entries.put("202104", new ArrayList<CheckUpEntry>());
-        entries.put("202105", new ArrayList<CheckUpEntry>());
+        entries.put("202104", new ArrayList<>());
+        entries.put("202105", new ArrayList<>());
 
         CheckUpEntry c1 = new CheckUpEntry();
         c1.getTime().setTime("202104031220");
@@ -95,7 +94,9 @@ public class CheckUpMgr {
         FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
         DatabaseReference sRef = fDatabase.getReference("Schedules");
         DatabaseReference suRef = sRef.child(fAuth.getCurrentUser().getUid());
-        suRef.child("checkup").setValue(entries);
+        Schedule schedule = Schedule.getInstance();
+        schedule.setCheckup(entries);
+        suRef.setValue(schedule);
     }
 
     public void dynamicDisplayCheckup(Fragment fragment, View view) {
@@ -135,7 +136,6 @@ public class CheckUpMgr {
                 fragment.startActivity(i);
             }
         });
-
 
     }
 
@@ -228,14 +228,13 @@ public class CheckUpMgr {
     }
 
     public ArrayList<String> getComment() {
-        ArrayList<String> Comment = new ArrayList<>();
-        Comment.add("comment1");
-        Comment.add("comment2");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        return Comment;
+        ArrayList<String> comment = new ArrayList<>();
+        comment.add("comment1");
+        comment.add("comment2");
+        comment.add("comment3");
+        comment.add("comment3");
+        comment.add("comment3");
+        comment.add("comment3");
+        return comment;
     }
-
 }

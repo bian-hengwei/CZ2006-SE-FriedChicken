@@ -1,6 +1,8 @@
 package com.ntu.medcheck.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Schedule class
@@ -8,59 +10,32 @@ import java.util.ArrayList;
  * Singleton method
  */
 public class Schedule {
-    ArrayList<Entry> scheduleList= new ArrayList<Entry>();
+
+    Map<String, ArrayList<CheckUpEntry>> checkup;
+
     // singleton pattern
     private static Schedule scheduleInstance = new Schedule();
 
     // read schedule in from local database
 
     // constructor is made private
-    private Schedule() {}
+    private Schedule() {
+        checkup = new HashMap<>();
+    }
 
     public static Schedule getInstance() {
         return scheduleInstance;
     }
 
-    // setter and getter
-    public ArrayList<Entry> getSchedule() {
-        return scheduleList;
+    public Map<String, ArrayList<CheckUpEntry>> getCheckup() {
+        return checkup;
     }
 
-    public void addEntry(Entry entry) {
-        scheduleList.add(entry);
+    public void setCheckup(Map<String, ArrayList<CheckUpEntry>> checkup) {
+        this.checkup = checkup;
     }
 
-    // remove a schedule entry using entry name
-    // if entry is found and successfully removed, return true
-    // if entry is not found, return false
-    public boolean removeEntry(String name) {
-        for(Entry entry : scheduleList) {
-            if(entry.getName().equals(name)) {
-                scheduleList.remove(entry);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // should put these into schedule manager, used to separate medication and checkup schedule
-    public ArrayList<CheckUpEntry> getCheckUpSchedule() {
-        ArrayList<CheckUpEntry> checkUpSchedule = new ArrayList<CheckUpEntry>();
-        for(Entry e : scheduleList) {
-            if(e.getType().equals("checkup")) {
-                checkUpSchedule.add((CheckUpEntry) e);
-            }
-        }
-        return checkUpSchedule;
-    }
-
-    public ArrayList<MedicationEntry> getMedicationSchedule() {
-        ArrayList<MedicationEntry> medicationSchedule = new ArrayList<MedicationEntry>();
-        for(Entry e : scheduleList) {
-            if(e.getType().equals("medication")) {
-                medicationSchedule.add((MedicationEntry) e);
-            }
-        }
-        return medicationSchedule;
+    public String toString() {
+        return checkup.get("202104").get(0).getTitle();
     }
 }

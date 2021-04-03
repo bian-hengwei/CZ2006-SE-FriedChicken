@@ -50,7 +50,12 @@ public class RegisterMgr {
         fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
             //if successful register
             if (task.isSuccessful()) {
-                User user = new User(userName, gender, age, birthday, phoneNo, emailAddress);
+                User user = User.getInstance();
+                user.setUserName(userName);
+                user.getBirthday().setTime("20000101");
+                user.setEmailAddress(emailAddress);
+                user.setGender(gender);
+                user.setPhoneNo(phoneNo);
                 FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference uRef = fDatabase.getReference("Users");
                 uRef.child(fAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(task1 -> {
