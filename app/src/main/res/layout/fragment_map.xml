@@ -122,7 +122,7 @@
         android:id="@+id/addtoschedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add scheduled appointment"
+        android:text="Set Checkup Reminder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
