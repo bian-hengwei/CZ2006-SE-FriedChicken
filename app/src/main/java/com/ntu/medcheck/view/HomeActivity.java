@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.ScheduleMgr;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
 import com.ntu.medcheck.view.fragment.MedicineFragment;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
@@ -34,8 +35,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        navFrame = (FrameLayout) findViewById(R.id.navigationFrame);
-        bottomNavigation = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);
+        ScheduleMgr scheduleMgr = new ScheduleMgr();
+        scheduleMgr.initialize();
+
+        navFrame = findViewById(R.id.navigationFrame);
+        bottomNavigation = findViewById(R.id.bottomNavigationBar);
 
         initFragments();
 

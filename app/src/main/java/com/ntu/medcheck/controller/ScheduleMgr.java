@@ -1,35 +1,49 @@
 package com.ntu.medcheck.controller;
 
+import android.util.Log;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ntu.medcheck.model.Schedule;
-import com.ntu.medcheck.model.Entry;
 
 public class ScheduleMgr {
 
-    /**
-     * add new entry to schedule
-     * @param e entry to add
-     */
-    public void addEntry(Entry e) {}
+    Schedule schedule;
+    FirebaseDatabase fDatabase;
+    DatabaseReference uRef;
 
-    /**
-     * delete one entry from table
-     * @param e entry to delete
-     */
-    public void deleteEntry(Entry e){} //
 
-    /**
-     * set reminder for entries when modified or added
-     */
-    public void reminder(){} // sends notification || How to implement?
+    public ScheduleMgr() {
+        schedule = Schedule.getInstance();
+        fDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference sRef = fDatabase.getReference("Schedules");
+        uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    }
 
-    /**
-     * return current schedule object
-     * @return
-     */
-    public Schedule getSchedule(){return null;}
+    public void initialize() {
+        uRef.keepSynced(true);
 
-    /**
-     * modifies one entry and modifies the reminder
-     */
-    public void modifyEntry() {}
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                schedule = dataSnapshot.getValue(Schedule.class);
+                Log.d("loading", "Loading data");
+                Log.d("schedule", schedule.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("Err", "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+
+        uRef.addValueEventListener(postListener);
+
+    }
+
 }
