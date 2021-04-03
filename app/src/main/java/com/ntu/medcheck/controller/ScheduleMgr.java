@@ -8,7 +8,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ntu.medcheck.model.CheckUpEntry;
+import com.ntu.medcheck.model.CheckUpTime;
 import com.ntu.medcheck.model.Schedule;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ScheduleMgr {
 
@@ -30,9 +36,11 @@ public class ScheduleMgr {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                schedule = dataSnapshot.getValue(Schedule.class);
+                setSchedule(dataSnapshot);
                 Log.d("loading", "Loading data");
-                Log.d("schedule", "abcde");
+
+                Log.d("schedule", "modified");
+
             }
 
             @Override
@@ -44,6 +52,34 @@ public class ScheduleMgr {
 
         uRef.addValueEventListener(postListener);
 
+    }
+
+    private void setSchedule(DataSnapshot dataSnapshot) {
+        if (dataSnapshot.child("checkup").exists()) {
+            Map<String, ArrayList<CheckUpEntry>> checkup = new HashMap<>();
+            for (DataSnapshot yearMonth : dataSnapshot.child("checkup").getChildren()) {
+                checkup.put(yearMonth.getKey(), new ArrayList<>());
+                for (DataSnapshot entry : yearMonth.getChildren()) {
+                    checkup.get(yearMonth.getKey()).add(toEntry(entry));
+                }
+            }
+            schedule.setCheckup(checkup);
+            Log.d("tostring!", schedule.toString());
+        }
+        else {
+            schedule.setCheckup(new HashMap<>());
+        }
+    }
+
+    private CheckUpEntry toEntry(DataSnapshot entry) {
+        CheckUpEntry checkUpEntry = new CheckUpEntry();
+        checkUpEntry.setClinic((String) entry.child("clinic").getValue());
+        checkUpEntry.setComment((String) entry.child("comment").getValue());
+        checkUpEntry.setName((String) entry.child("name").getValue());
+        checkUpEntry.setTitle((String) entry.child("title").getValue());
+        checkUpEntry.setType((String) entry.child("type").getValue());
+        checkUpEntry.setTime(entry.child("time").getValue(CheckUpTime.class));
+        return checkUpEntry;
     }
 
 }

@@ -60,8 +60,14 @@
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".view.HomeActivity"></activity>
         <activity android:name=".view.EditProfileActivity" />
-        <activity android:name=".view.ForgetPasswordActivity" />
-        <activity android:name=".view.RegisterActivity" />
+        <activity
+            android:name=".view.ForgetPasswordActivity"
+            android:label="Reset Password"
+            android:parentActivityName=".view.LoginActivity"></activity>
+        <activity
+            android:name=".view.RegisterActivity"
+            android:label="Registration"
+            android:parentActivityName=".view.LoginActivity"></activity>
         <activity android:name=".view.LoginActivity">
         </activity>
         <meta-data
