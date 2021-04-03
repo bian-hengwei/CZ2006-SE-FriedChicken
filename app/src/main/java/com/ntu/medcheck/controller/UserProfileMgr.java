@@ -130,7 +130,7 @@ public class UserProfileMgr {
         if (gender == null) {
             male.setChecked(true);
         }
-        else if (gender.equals("Male")) {
+        else if (gender.equals("male")) {
             male.setChecked(true);
             female.setChecked(false);
         }
@@ -148,15 +148,12 @@ public class UserProfileMgr {
             }
         });
 
-
-
         editBtn.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
                 editProfile(aca, view);
             }
         });
-
     }
 
     /**
@@ -202,7 +199,7 @@ public class UserProfileMgr {
                     int month = birthdayInput.getMonth();
                     int year = birthdayInput.getYear();
 
-                    user.setBirthday(new Time(String.format("%04d%02d%02d", year, month, day)));
+                    user.setBirthday(new Time(String.format("%04d%02d%02d", year, month + 1, day)));
 
                     // gender
                     String gender;
@@ -218,11 +215,17 @@ public class UserProfileMgr {
 
                     // disable
                     displayInfoOnUserHome(aca, view);
+
+                    save();
                 }
             }
         });
 
     } // to be overridden
+
+    private void save() {
+        uRef.setValue(user);
+    }
 
     public void logout(AppCompatActivity aca) {
         FirebaseAuth mFirebaseAuth;
