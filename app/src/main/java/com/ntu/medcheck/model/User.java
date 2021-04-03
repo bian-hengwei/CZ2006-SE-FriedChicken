@@ -7,29 +7,16 @@ import java.util.Calendar;
  * keeps track of current user details
  */
 public class User {
-    private String userName = "yinan";
-    private String gender = "female";
-    private Calendar birthday = Calendar.getInstance();
-    private String phoneNo = "12345678";
-    private String emailAddress = "heyi0003@e.ntu.edu.sg";
+    private String userName;
+    private String gender;
+    private CheckUpTime birthday;
+    private String phoneNo;
+    private String emailAddress;
 
 
     private static User userInstance = new User();
 
     private User() {
-    }
-
-    public User(String userName, String gender, Calendar birthday, String phoneNo, String emailAddress) {
-        this.userName = userName;
-        this.gender = gender;
-        this.birthday = Calendar.getInstance();
-        this.phoneNo = phoneNo;
-        this.emailAddress = emailAddress;
-        birthday.set(Calendar.DAY_OF_MONTH, 8);
-        birthday.set(Calendar.MONTH, 11);
-        birthday.set(Calendar.YEAR, 2000);
-
-
     }
 
     public static User getInstance() {
@@ -52,12 +39,28 @@ public class User {
         this.gender = gender;
     }
 
-    public Calendar getBirthday() {
-        return birthday;
+    public String getBirthdayDay() {
+        return birthday.getDay();
     }
 
-    public void setBirthday(Calendar birthday) {
-        this.birthday = birthday;
+    public void setBirthdayDay(String day) {
+        this.birthday.setDay(day);
+    }
+
+    public String getBirthdayMonth() {
+        return birthday.getMonth();
+    }
+
+    public void setBirthdayMonth(String month) {
+        this.birthday.setMonth(month);
+    }
+
+    public String getBirthdayYear() {
+        return birthday.getYear();
+    }
+
+    public void setBirthdayYear(String year) {
+        this.birthday.setYear(year);
     }
 
     public String getPhoneNo() {

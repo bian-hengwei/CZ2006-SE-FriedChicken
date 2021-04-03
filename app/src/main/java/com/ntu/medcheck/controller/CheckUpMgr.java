@@ -18,6 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
 
+import com.ntu.medcheck.model.Schedule;
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +35,8 @@ public class CheckUpMgr {
 
     public void init() {
 
-        entries.put("202104", new ArrayList<CheckUpEntry>());
-        entries.put("202105", new ArrayList<CheckUpEntry>());
+        entries.put("202104", new ArrayList<>());
+        entries.put("202105", new ArrayList<>());
 
         CheckUpEntry c1 = new CheckUpEntry();
         c1.getTime().setTime("202104031220");
@@ -87,7 +90,9 @@ public class CheckUpMgr {
         FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
         DatabaseReference sRef = fDatabase.getReference("Schedules");
         DatabaseReference suRef = sRef.child(fAuth.getCurrentUser().getUid());
-        suRef.child("checkup").setValue(entries);
+        Schedule schedule = Schedule.getInstance();
+        schedule.setCheckup(entries);
+        suRef.setValue(schedule);
     }
 
     public void dynamicDisplayCheckup(View view) {
@@ -116,14 +121,8 @@ public class CheckUpMgr {
 
 
         listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            // !!!!!!! on click, view in detail and can edit
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(title.get(position));
-            }
-        });
+        // !!!!!!! on click, view in detail and can edit
+        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
 
 
     }
