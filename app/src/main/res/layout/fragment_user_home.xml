@@ -7,63 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.UserHomeFragment">
 
-
-    <DatePicker
-        android:id="@+id/datePicker"
-        android:layout_width="243dp"
-        android:layout_height="103dp"
-        android:layout_marginTop="204dp"
-        android:calendarViewShown="false"
-        android:datePickerMode="spinner"
-        app:layout_constraintBottom_toTopOf="@+id/timePickerAddCheckup"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/userProfileEmailInput"
-        android:layout_width="239dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/userProfileUserName"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileUsernameInput" />
-
-    <TextView
-        android:id="@+id/birthday_text"
-        android:layout_width="79dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/birthday_label"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
-
-    <TextView
-        android:id="@+id/userProfileEmail"
-        android:layout_width="79dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/emailLabel"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileUserName" />
-
     <TextView
         android:id="@+id/welcomeBackMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_back"
+        android:text="@string/welcomeBack"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,24 +49,12 @@
         android:layout_width="79dp"
         android:layout_height="21dp"
         android:layout_marginTop="20dp"
-        android:text="@string/username_text"
+        android:text="@string/usernameLabel"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userProfileLabel" />
-
-    <TextView
-        android:id="@+id/userProfileGender"
-        android:layout_width="79dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/gender_label"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.084"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birthday_text" />
 
     <EditText
         android:id="@+id/userProfileUsernameInput"
@@ -132,6 +68,69 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/userProfileUserName"
         app:layout_constraintTop_toBottomOf="@+id/userProfileLabel" />
+
+    <TextView
+        android:id="@+id/userProfileEmail"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/emailLabel"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileUserName" />
+
+    <EditText
+        android:id="@+id/userProfileEmailInput"
+        android:layout_width="239dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/userProfileUserName"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileUsernameInput" />
+
+    <TextView
+        android:id="@+id/birthday_text"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/birthdayLabel"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userProfileEmail" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="243dp"
+        android:layout_height="103dp"
+        android:layout_marginTop="204dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintBottom_toTopOf="@+id/timePickerAddCheckup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/userProfileGender"
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="64dp"
+        android:text="@string/genderLabel"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthday_text" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -165,10 +164,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="@string/edit_profile"
+        android:text="@string/editProfileButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/confirmButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.112"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileButton" />
 
     <Button
         android:id="@+id/logoutButton"
@@ -182,19 +193,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmButton"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/confirmButton"
-        android:layout_width="132dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/confirm_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.112"
-        app:layout_constraintTop_toBottomOf="@+id/editProfileButton" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

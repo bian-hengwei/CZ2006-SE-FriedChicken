@@ -32,7 +32,7 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
         addMedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast addMedToast = Toast.makeText(AddMedicationActivity.this, "Medication Added Successfully", Toast.LENGTH_LONG);
+                Toast addMedToast = Toast.makeText(AddMedicationActivity.this, R.string.AddMedicationSuccess, Toast.LENGTH_LONG);
                 addMedToast.setGravity(Gravity.CENTER, 0,0);
                 addMedToast.show();
                 Intent i = new Intent(AddMedicationActivity.this, HomeActivity.class);

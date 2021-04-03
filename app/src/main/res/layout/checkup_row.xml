@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Title"
+            android:text="@string/eventName"
             android:textColor="#000"
             android:textSize="14sp"
             android:textStyle="bold" />
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Date"
+            android:text="@string/eventDate"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Time"
+            android:text="@string/eventTime"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Location"
+            android:text="@string/clinicName"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="1dp"
-            android:text="Comments"
+            android:text="@string/Comment"
             android:textColor="#a9a9a9"
             android:textSize="12sp" />
 

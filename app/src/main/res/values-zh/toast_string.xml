@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Success Messages -->
+    <string name="loginSuccess">登录成功，欢迎！</string>
+    <string name="AddCheckupSuccess">新健康检查记录添加成功！</string>
+    <string name="AddMedicationSuccess">新用药记录添加成功！</string>
+    <string name="saveSuccess">已保存</string>
 
-    <string name="testw_str">ashajkas水啊水</string>
-    <string name="test_str">Gek</string>
+    <!-- Error Messages -->
+    <string name="loginFailUser">登录失败，无此用户</string>
+    <string name="loginFailPw">登录失败，密码错误</string>
+    <string name="loginFailUnknown">登陆失败，不明错误</string>
+    <string name="loginEmptyEmail">请填写电子邮箱</string>
+    <string name="loginEmptyPw">请填写密码</string>
 
+    <!-- login & account -->
+    <string name="verifyEmail">请检查您的邮箱来验证账户</string>
+    <string name="ResetPwEmail">请检查您的邮箱来重置密码</string>
+    <string name="retry">请再试一次</string>
+    <string name="logoutMessage">正在登出...</string>
 </resources>

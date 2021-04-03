@@ -7,112 +7,11 @@
     android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/commentMedication"
-        android:layout_width="365dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="start|bottom"
-        android:inputType="textMultiLine"
-        android:lines="2"
-        android:maxLines="5"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.413"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/commentText"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/addImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
-
-    <TextView
-        android:id="@+id/repeatText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Repeat: Once every "
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.475" />
-
-    <EditText
-        android:id="@+id/repeatInt"
-        android:layout_width="40sp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:maxLength="3"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/repeatText2"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toEndOf="@+id/repeatText1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.637" />
-
-    <TextView
-        android:id="@+id/repeatText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="day(s)"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.735"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time"
-        app:layout_constraintVertical_bias="0.475" />
-
-    <TextView
-        android:id="@+id/commentText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Comment:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.059"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatText1"
-        app:layout_constraintVertical_bias="0.004" />
-
-    <Spinner
-        android:id="@+id/unitList"
-        android:layout_width="wrap_content"
-        android:layout_height="38sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
-        app:layout_constraintStart_toEndOf="@+id/editDosageInt"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135" />
-
     <TextView
         android:id="@+id/MedicationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medication Name:"
+        android:text="@string/newMedName"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -141,7 +40,7 @@
         android:id="@+id/dosageInt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dosage:"
+        android:text="@string/newMedDosageText"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -156,7 +55,6 @@
         android:layout_width="50sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
         android:ems="10"
         android:maxLength="3"
         android:inputType="number"
@@ -167,12 +65,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.128" />
 
+    <Spinner
+        android:id="@+id/unitList"
+        android:layout_width="wrap_content"
+        android:layout_height="38sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toEndOf="@+id/editDosageInt"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.135" />
+
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Time:"
+        android:text="@string/newMedTimeText"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -267,7 +176,7 @@
         android:id="@+id/hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hour"
+        android:text="@string/timeH"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.58"
@@ -279,7 +188,7 @@
         android:id="@+id/minute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Minute"
+        android:text="@string/timeM"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.717"
@@ -288,22 +197,10 @@
         app:layout_constraintVertical_bias="0.264" />
 
     <CheckBox
-        android:id="@+id/afternoonTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Afternoon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ahour"
-        app:layout_constraintHorizontal_bias="0.42"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44" />
-
-    <CheckBox
         android:id="@+id/morningTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Morning"
+        android:text="@string/timeMor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/mhour"
         app:layout_constraintHorizontal_bias="0.367"
@@ -312,10 +209,22 @@
         app:layout_constraintVertical_bias="0.335" />
 
     <CheckBox
+        android:id="@+id/afternoonTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timeAft"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ahour"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <CheckBox
         android:id="@+id/eveningTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Evening"
+        android:text="@string/timeEve"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nhour"
         app:layout_constraintHorizontal_bias="0.386"
@@ -323,11 +232,101 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.546" />
 
+    <TextView
+        android:id="@+id/repeatText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/newMedRepeat1"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time"
+        app:layout_constraintVertical_bias="0.475" />
+
+    <EditText
+        android:id="@+id/repeatInt"
+        android:layout_width="40sp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:maxLength="3"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/repeatText2"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toEndOf="@+id/repeatText1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637" />
+
+    <TextView
+        android:id="@+id/repeatText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/newMedRepeat2"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.735"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time"
+        app:layout_constraintVertical_bias="0.475" />
+
+    <TextView
+        android:id="@+id/commentText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/Comment"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.059"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/repeatText1"
+        app:layout_constraintVertical_bias="0.004" />
+
+    <EditText
+        android:id="@+id/commentMedication"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|bottom"
+        android:inputType="textMultiLine"
+        android:lines="2"
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.413"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/commentText"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/addImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/newMedAddimg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.884" />
+
     <Button
         android:id="@+id/addMed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
+        android:text="@string/AddButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"

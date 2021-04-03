@@ -46,9 +46,9 @@ public class AddCheckupActivity extends AppCompatActivity {
         addCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast addCheckToast = Toast.makeText(AddCheckupActivity.this, "Check Up Added Successfully", Toast.LENGTH_LONG);
-                addCheckToast.setGravity(Gravity.CENTER,0,0);
-                addCheckToast.show();
+                Toast addCheckupToast = Toast.makeText(AddCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
+                addCheckupToast.setGravity(Gravity.CENTER,0,0);
+                addCheckupToast.show();
                 Intent i = new Intent(AddCheckupActivity.this, HomeActivity.class);
                 startActivity(i);
             }
