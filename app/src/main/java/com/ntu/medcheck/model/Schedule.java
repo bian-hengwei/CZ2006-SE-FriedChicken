@@ -1,5 +1,7 @@
 package com.ntu.medcheck.model;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,15 +29,28 @@ public class Schedule {
         return scheduleInstance;
     }
 
+    public static void setInstance(Schedule schedule) {
+        scheduleInstance = schedule;
+    }
+
     public Map<String, ArrayList<CheckUpEntry>> getCheckup() {
         return checkup;
     }
 
     public void setCheckup(Map<String, ArrayList<CheckUpEntry>> checkup) {
+        Log.d("wuwuwu", "setCheckup: ");
         this.checkup = checkup;
     }
 
     public String toString() {
-        return checkup.get("202104").get(0).getTitle();
+        String str = "";
+        for (ArrayList<CheckUpEntry> list : checkup.values()) {
+            str += "Hi";
+            for (CheckUpEntry checkUpEntry : list) {
+                str += checkUpEntry.getTitle();
+                str += "\n";
+            }
+        }
+        return str;
     }
 }

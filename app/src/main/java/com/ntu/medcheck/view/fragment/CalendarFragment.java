@@ -121,12 +121,17 @@ public class CalendarFragment extends Fragment {
                     + "/" + (selectedDate.get(Calendar.MONTH) + 1)
                     + "/" + selectedDate.get(Calendar.YEAR);
 
+            String yearMonth = String.format("%04d%02d", selectedDate.get(Calendar.YEAR),
+                    selectedDate.get(Calendar.MONTH) + 1);
+
             TextView date = getActivity().findViewById(R.id.calendarDate);
             date.setText(sDate);
 
 //////////////////////////START/////////////////////////////////////////////////////////////////////
 
-            // dynamic reminder
+            calendarMgr.setDateOnClick(view, yearMonth, selectedDate.get(Calendar.DAY_OF_MONTH));
+
+            /*// dynamic reminder
             ArrayList<String> title = new ArrayList<>();
             title.add("heart checkup");
             title.add("liver checkup");
@@ -159,9 +164,6 @@ public class CalendarFragment extends Fragment {
 
             dynamicReminder(title, location, time, comments);
 
-            //System.out.println(checkupTime1.get(Calendar.HOUR));
-            //System.out.println(checkupTime2.get(Calendar.HOUR));
-
             listView = view.findViewById(R.id.listView);
             MyAdapter adapter = new MyAdapter(this.getContext(), title, location, time, comments);
             listView.setAdapter(adapter);
@@ -171,7 +173,7 @@ public class CalendarFragment extends Fragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     System.out.println(title.get(position));
                 }
-            });
+            });*/
 /////////////////////////END////////////////////////////////////////////////////////////////////////
         });
         // Inflate the layout for this fragment
