@@ -40,4 +40,7 @@
     <string name="confirm_text">Confirm</string>
     <string name="logout" >Logout</string>
     <string name="editCheckup">Edit Checkup Schedule</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="rePassword">Re-password</string>
 </resources>

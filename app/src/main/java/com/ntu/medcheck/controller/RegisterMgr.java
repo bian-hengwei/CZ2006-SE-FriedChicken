@@ -1,7 +1,9 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,20 +27,36 @@ public class RegisterMgr {
         EditText emailAddressInput = aca.findViewById(R.id.registerEmailInput);
         EditText passwordInput = aca.findViewById(R.id.registerPasswordInput);
         EditText rePasswordInput = aca.findViewById(R.id.registerRePasswordInput);
+        RadioButton maleInput = aca.findViewById(R.id.maleRadioButton);
+        RadioButton femaleInput = aca.findViewById(R.id.femaleRadioButton);
+        EditText phoneNoInput = aca.findViewById(R.id.registerPhoneNo);
+        DatePicker birthdayInput = aca.findViewById(R.id.registerDatePicker) ;
+
 
         String userName = userNameInput.getText().toString().trim();
         String emailAddress = emailAddressInput.getText().toString().trim();
         String password = passwordInput.getText().toString().trim();
         String rePassword = rePasswordInput.getText().toString().trim();
 
-        // hard coded for testing
-        String gender = "Female";
-        int age = 20;
-        CheckUpTime birthday = new CheckUpTime("20001008");
+        String gender;
+        if(maleInput.isChecked()) {
+            gender = "male";
+        }
+        else if(femaleInput.isChecked()) {
+            gender = "female";
+        }
+        else {
+            gender = null;
+        }
 
+        int day = birthdayInput.getDayOfMonth();
+        int month = birthdayInput.getMonth();
+        int year = birthdayInput.getYear();
 
-        String phoneNo = "87654321";
-        boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, age, birthday, phoneNo, aca);
+        String birthdayStr = String.format("%04d%02d%02d", year, month, day);
+
+        String phoneNo = phoneNoInput.getText().toString().trim();
+        boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, birthdayStr, phoneNo, aca);
 
         if (!valid) {
             return;
@@ -52,7 +70,7 @@ public class RegisterMgr {
                 User user = User.getInstance();
 
                 user.setUserName(userName);
-                user.getBirthday().setTime("20000101");
+                user.getBirthday().setTime(birthdayStr);
                 user.setEmailAddress(emailAddress);
                 user.setGender(gender);
                 user.setPhoneNo(phoneNo);
@@ -86,7 +104,7 @@ public class RegisterMgr {
         });
     }
 
-    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, int age, CheckUpTime birthday, String phoneNo, Context context) {
+    public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, String birthday, String phoneNo, Context context) {
 
         if (userName.isEmpty()) {
             Toast.makeText(context, "Registration unsuccessful, username is empty", Toast.LENGTH_LONG).show();
@@ -104,12 +122,8 @@ public class RegisterMgr {
             Toast.makeText(context, "Registration unsuccessful, re-entered password is different from password", Toast.LENGTH_LONG).show();
             return false;
         }
-        else if (gender.isEmpty()) {
+        else if (gender == null) {
             Toast.makeText(context, "Registration unsuccessful, gender is empty", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        else if (age == 0) {
-            Toast.makeText(context, "Registration unsuccessful, age cannot be 0", Toast.LENGTH_LONG).show();
             return false;
         }
         else if (birthday == null) {

@@ -67,7 +67,7 @@ public class UserProfileMgr {
                 User.setInstance(dataSnapshot.getValue(User.class));
                 Log.d("loading", "Loading data");
 
-                Log.d("schedule", "modified");
+                Log.d("user", "modified");
 
             }
 
@@ -288,6 +288,17 @@ public class UserProfileMgr {
             male.setChecked(false);
         }
 
+        confirmBtn.setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                if(confirmBtn.getText().equals("Logout")) {
+                    logout(aca);
+                }
+            }
+        });
+
+
+
         editBtn.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
@@ -295,6 +306,7 @@ public class UserProfileMgr {
                 editProfile(aca, view);
             }
         });
+
     }
 
     /**
