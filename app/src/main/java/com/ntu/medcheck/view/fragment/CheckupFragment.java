@@ -83,15 +83,11 @@ public class CheckupFragment extends Fragment {
         return view;
     }
 
-   /* @Override
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
         addNewCheckup.setOnClickListener(mListener);
-
-
-
-
     }
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
@@ -99,7 +95,7 @@ public class CheckupFragment extends Fragment {
             Intent i = new Intent(CheckupFragment.this.getActivity(), SearchClinicActivity.class);
             startActivity(i);
         }
-    };*/
+    };
 
 
 }

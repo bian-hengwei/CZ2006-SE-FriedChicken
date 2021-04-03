@@ -7,8 +7,8 @@
     tools:context=".view.fragment.CheckupFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
 
+<!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -19,7 +19,7 @@
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addNewCheckup"
+            android:id="@+id/addNewMedication"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -27,11 +27,11 @@
             android:src="@android:drawable/ic_input_add" />
 
         <TextView
-            android:id="@+id/addNewCheckUpText"
+            android:id="@+id/addNewMedicationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="Add New Check Up"
+            android:text="Add New Medication"
             android:textColor="@color/black"
             android:textSize="20sp" />
 
@@ -41,7 +41,8 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/checkupListView"
+        android:id="@+id/medicationListView"
         ></ListView>
 
 </LinearLayout>
+

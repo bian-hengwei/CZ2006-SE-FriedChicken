@@ -120,7 +120,6 @@ public class CheckUpMgr {
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             // !!!!!!! on click, view in detail and can edit
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -220,17 +219,13 @@ public class CheckUpMgr {
     }
 
     public ArrayList<String> getComment() {
-        ArrayList<String> Comment = new ArrayList<>();
-        Comment.add("comment1");
-        Comment.add("comment2");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        return Comment;
+        ArrayList<String> comment = new ArrayList<>();
+        comment.add("comment1");
+        comment.add("comment2");
+        comment.add("comment3");
+        comment.add("comment3");
+        comment.add("comment3");
+        comment.add("comment3");
+        return comment;
     }
-
-
-
-
 }
