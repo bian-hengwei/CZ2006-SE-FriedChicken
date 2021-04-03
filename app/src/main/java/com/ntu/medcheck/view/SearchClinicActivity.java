@@ -8,8 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.view.fragment.MapFragment;
+import com.ntu.medcheck.controller.ScreeningCentreMgr;
 
 
 public class SearchClinicActivity extends AppCompatActivity {
@@ -24,8 +25,8 @@ public class SearchClinicActivity extends AppCompatActivity {
 
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        MapFragment defaultMap = null;
-        defaultMap = new MapFragment(); // creating map fragment
+        ScreeningCentreMgr defaultMap = null;
+        defaultMap = new ScreeningCentreMgr();// creating map fragment
         fragmentTransaction.add(R.id.Container, defaultMap); //putting map fragment on the activity
         fragmentTransaction.commit();
     }
