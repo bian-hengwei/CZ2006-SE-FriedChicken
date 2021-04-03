@@ -39,46 +39,6 @@ public class User {
         this.gender = gender;
     }
 
-    public String getBirthdayDay() {
-
-        if(birthday == null) {
-            return "01";
-        }
-        else{
-            return birthday.getDay();
-        }
-    }
-
-    public void setBirthdayDay(String day) {
-        this.birthday.setDay(day);
-    }
-
-    public String getBirthdayMonth() {
-        if(birthday == null) {
-            return "01";
-        }
-        else{
-            return birthday.getMonth();
-        }
-    }
-
-    public void setBirthdayMonth(String month) {
-        this.birthday.setMonth(month);
-    }
-
-    public String getBirthdayYear() {
-        if(birthday==null) {
-            return "2000";
-        }
-        else{
-            return birthday.getYear();
-        }
-    }
-
-    public void setBirthdayYear(String year) {
-        this.birthday.setYear(year);
-    }
-
     public String getPhoneNo() {
         return phoneNo;
     }

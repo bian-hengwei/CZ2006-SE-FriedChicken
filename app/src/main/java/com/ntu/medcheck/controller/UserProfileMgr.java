@@ -43,13 +43,43 @@ public class UserProfileMgr {
     FirebaseDatabase fDatabase;
     DatabaseReference uRef;
 
+    public UserProfileMgr() {
+        user = User.getInstance();
+        fDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference sRef = fDatabase.getReference("Users");
+        uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    }
+
     public void init(String name, String birthday, String email, String gender, String phoneno) {
-        User user = User.getInstance();
         user.setUserName(name);
         user.getBirthday().setTime("20000101");
         user.setEmailAddress(email);
         user.setGender(gender);
         user.setPhoneNo(phoneno);
+    }
+
+    public void initialize() {
+        uRef.keepSynced(true);
+
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User.setInstance(dataSnapshot.getValue(User.class));
+                Log.d("loading", "Loading data");
+
+                Log.d("schedule", "modified");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w("Err", "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+
+        uRef.addValueEventListener(postListener);
+
     }
 
     //////////////////new////////////////////////////////////////////////////////////////////////////////
@@ -234,9 +264,9 @@ public class UserProfileMgr {
 
         emailInput.setText(user.getEmailAddress());
 
-        String day = user.getBirthdayDay();
-        String month = user.getBirthdayMonth();
-        String year = user.getBirthdayYear();
+        String day = user.getBirthday().getDay();
+        String month = user.getBirthday().getMonth();
+        String year = user.getBirthday().getYear();
 
         //System.out.println(birthday.get(Calendar.YEAR));
 

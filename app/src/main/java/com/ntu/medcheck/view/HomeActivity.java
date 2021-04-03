@@ -37,14 +37,12 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
         ScheduleMgr scheduleMgr = new ScheduleMgr();
         scheduleMgr.initialize();
 
         UserProfileMgr userProfileMgr = new UserProfileMgr();
-        userProfileMgr.init("fuck", "123", "hbian001@e.ntu.edu.sg", "Male", "12345678");
+        userProfileMgr.init("Yinan", "123", "hbian001@e.ntu.edu.sg", "Male", "12345678");
+        userProfileMgr.initialize();
 
         navFrame = findViewById(R.id.navigationFrame);
         bottomNavigation = findViewById(R.id.bottomNavigationBar);
