@@ -9,7 +9,6 @@ import java.util.Calendar;
 public class User {
     private String userName = "yinan";
     private String gender = "female";
-    private int age = 20;
     private Calendar birthday = Calendar.getInstance();
     private String phoneNo = "12345678";
     private String emailAddress = "heyi0003@e.ntu.edu.sg";
@@ -20,10 +19,9 @@ public class User {
     private User() {
     }
 
-    public User(String userName, String gender, int age, Calendar birthday, String phoneNo, String emailAddress) {
+    public User(String userName, String gender, Calendar birthday, String phoneNo, String emailAddress) {
         this.userName = userName;
         this.gender = gender;
-        this.age = age;
         this.birthday = Calendar.getInstance();
         this.phoneNo = phoneNo;
         this.emailAddress = emailAddress;
@@ -52,14 +50,6 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public Calendar getBirthday() {
