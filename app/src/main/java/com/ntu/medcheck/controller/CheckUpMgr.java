@@ -121,7 +121,6 @@ public class CheckUpMgr {
 
 
         listView.setAdapter(adapter);
-
         // !!!!!!! on click, view in detail and can edit
         listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
 
@@ -217,17 +216,13 @@ public class CheckUpMgr {
     }
 
     public ArrayList<String> getComment() {
-        ArrayList<String> Comment = new ArrayList<>();
-        Comment.add("comment1");
-        Comment.add("comment2");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        return Comment;
+        ArrayList<String> comment = new ArrayList<>();
+        comment.add("comment1");
+        comment.add("comment2");
+        comment.add("comment3");
+        comment.add("comment3");
+        comment.add("comment3");
+        comment.add("comment3");
+        return comment;
     }
-
-
-
-
 }

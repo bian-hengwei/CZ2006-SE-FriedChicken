@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,15 +13,15 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.MedicationMgr;
 import com.ntu.medcheck.view.AddMedicationActivity;
-import com.ntu.medcheck.view.SearchClinicActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MedicineFragment#newInstance} factory method to
+ * Use the {@link MedicationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MedicineFragment extends Fragment {
+public class MedicationFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,7 +32,9 @@ public class MedicineFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public MedicineFragment() {
+    MedicationMgr medicationMgr = new MedicationMgr();
+
+    public MedicationFragment() {
         // Required empty public constructor
     }
 
@@ -44,8 +47,8 @@ public class MedicineFragment extends Fragment {
      * @return A new instance of fragment MedicineFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MedicineFragment newInstance(String param1, String param2) {
-        MedicineFragment fragment = new MedicineFragment();
+    public static MedicationFragment newInstance(String param1, String param2) {
+        MedicationFragment fragment = new MedicationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,8 +68,12 @@ public class MedicineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_medication, container, false);
+        medicationMgr.dynamicDisplayMedication(view);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_medicine, container, false);
+        return view;
     }
 
     @Override
@@ -78,7 +85,7 @@ public class MedicineFragment extends Fragment {
 
     private final View.OnClickListener mListener = new View.OnClickListener() {
         public void onClick(View view) {
-            Intent i = new Intent(MedicineFragment.this.getActivity(), AddMedicationActivity.class);
+            Intent i = new Intent(MedicationFragment.this.getActivity(), AddMedicationActivity.class);
             startActivity(i);
         }
     };
