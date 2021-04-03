@@ -1,5 +1,6 @@
 package com.ntu.medcheck.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.ScreeningCentreMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
+import com.ntu.medcheck.view.AddCheckupActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +32,8 @@ public class UserHomeFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    UserProfileMgr userProfileMgr = new UserProfileMgr();
 
     private Button changePasswordBtn;
 
@@ -67,10 +73,17 @@ public class UserHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
 
-        UserProfileMgr userProfileMgr = new UserProfileMgr();
-
         // 1st display current information, disable the edittexts
         userProfileMgr.displayInfoOnUserHome((AppCompatActivity) getActivity(), view);
+
+        Button logoutBtn = view.findViewById(R.id.logoutButton);
+
+        logoutBtn.setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                logout();
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;
@@ -78,7 +91,9 @@ public class UserHomeFragment extends Fragment {
 
     public void edit(View v) {} // edit profile
 
-    public void logout(View v) {} // log out
+    public void logout() {
+        userProfileMgr.logout((AppCompatActivity) getActivity());
+    } // log out
 
     /* PROBLEM: not sure why this cannot work
     public void resetPassword (View v) {
@@ -92,4 +107,6 @@ public class UserHomeFragment extends Fragment {
         //startActivity(i);
         System.out.println("havnt write yet");
     }
+
+
 }

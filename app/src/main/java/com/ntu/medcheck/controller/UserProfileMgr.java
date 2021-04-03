@@ -1,6 +1,7 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ import com.google.firebase.database.Query;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
 import com.ntu.medcheck.utils.SafeOnClickListener;
+import com.ntu.medcheck.view.LoginActivity;
 import com.ntu.medcheck.view.fragment.UserHomeFragment;
 
 import java.time.Year;
@@ -132,15 +134,21 @@ public class UserProfileMgr {
 
         emailInput.setText(user.getEmailAddress());
 
-        Calendar birthday = user.getBirthday();
+        String day = user.getBirthdayDay();
+        String month = user.getBirthdayMonth();
+        String year = user.getBirthdayYear();
 
-        System.out.println(birthday.get(Calendar.YEAR));
+        //System.out.println(birthday.get(Calendar.YEAR));
 
-        birthdayInput.init(birthday.get(Calendar.YEAR), birthday.get(Calendar.MONTH), birthday.get(Calendar.DAY_OF_MONTH), null);
+        birthdayInput.init(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), null);
 
 
         String gender = user.getGender();
-        if(gender.equals("male")) {
+
+        if(gender == null) {
+            male.setChecked(true);
+        }
+        else if(gender.equals("male")) {
             male.setChecked(true);
             female.setChecked(false);
         }
@@ -195,12 +203,27 @@ public class UserProfileMgr {
                 int day = birthdayInput.getDayOfMonth();
                 int month = birthdayInput.getMonth();
                 int year = birthdayInput.getYear();
-                System.out.println(day);
-                Calendar birthday = Calendar.getInstance();
-                birthday.set(Calendar.DAY_OF_MONTH, day);
-                birthday.set(Calendar.MONTH, month);
-                birthday.set(Calendar.YEAR, year);
-                user.setBirthday(birthday);
+
+                String dayStr;
+                String monthStr;
+                String yearStr = Integer.toString(year);
+
+                if(day < 10) {
+                    dayStr = "0" + Integer.toString(day);
+                }
+                else {
+                    dayStr = Integer.toString(day);
+                }
+                if(month < 10) {
+                    monthStr = "0" + Integer.toString(month);
+                }
+                else {
+                    monthStr = Integer.toString(month);
+                }
+
+                user.setBirthdayDay(dayStr);
+                user.setBirthdayMonth(Integer.toString(month));
+                user.setBirthdayYear(yearStr);
 
                 // gender
                 String gender;
@@ -221,5 +244,19 @@ public class UserProfileMgr {
         });
 
     } // to be overridden
+
+    public void logout(AppCompatActivity aca) {
+        FirebaseAuth mFirebaseAuth;
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseAuth.signOut();
+
+        Toast.makeText(aca, "Logging out", Toast.LENGTH_LONG).show();
+        aca.startActivity(new Intent(aca, LoginActivity.class));
+        aca.finish();
+
+    }
+
+
 }
 

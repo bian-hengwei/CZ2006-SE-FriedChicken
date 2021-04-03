@@ -40,7 +40,13 @@ public class User {
     }
 
     public String getBirthdayDay() {
-        return birthday.getDay();
+
+        if(birthday == null) {
+            return "01";
+        }
+        else{
+            return birthday.getDay();
+        }
     }
 
     public void setBirthdayDay(String day) {
@@ -48,7 +54,12 @@ public class User {
     }
 
     public String getBirthdayMonth() {
-        return birthday.getMonth();
+        if(birthday == null) {
+            return "01";
+        }
+        else{
+            return birthday.getMonth();
+        }
     }
 
     public void setBirthdayMonth(String month) {
@@ -56,7 +67,12 @@ public class User {
     }
 
     public String getBirthdayYear() {
-        return birthday.getYear();
+        if(birthday==null) {
+            return "2000";
+        }
+        else{
+            return birthday.getYear();
+        }
     }
 
     public void setBirthdayYear(String year) {
