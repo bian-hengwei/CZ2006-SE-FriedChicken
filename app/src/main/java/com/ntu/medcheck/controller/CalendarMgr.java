@@ -1,13 +1,19 @@
 package com.ntu.medcheck.controller;
 
+import android.content.Context;
 import android.os.Build;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
@@ -21,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
 
 public class CalendarMgr implements OnNavigationButtonClickedListener {
 
@@ -40,10 +45,8 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void getMonth(int year, int month, View view) {
         Map<Integer, Object> map = new HashMap<>();
-        String y = Integer.toString(year);
-        String m = String.format("%02d", month);
-        Log.d("test", y+m);
-        ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(y+m, new ArrayList<>());
+        String yearMonth = String.format("%04d%02d", year, month);
+        ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(yearMonth, new ArrayList<>());
         for (CheckUpEntry child : monthArray) {
             map.put(Integer.parseInt((child.getTime().getDay())), "absent");
         }
@@ -62,16 +65,72 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public Map<Integer, Object>[] onNavigationButtonClicked(int whichButton, Calendar newMonth) {
-        String y = Integer.toString(newMonth.get(Calendar.YEAR));
-        String m = String.format("%02d", newMonth.get(Calendar.MONTH)+1);
-        Log.d("test", y+m);
+        String yearMonth = String.format("%04d%02d", newMonth.get(Calendar.YEAR), newMonth.get(Calendar.MONTH)+1);
         Map<Integer, Object>[] arr = new Map[2];
         arr[0] = new HashMap<>();
-        ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(y+m, new ArrayList<>());
+        ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(yearMonth, new ArrayList<>());
         for (CheckUpEntry child : monthArray) {
             arr[0].put(Integer.parseInt((child.getTime().getDay())), "absent");
         }
-        Log.d("obbc", "onNavigationButtonClicked: ");
         return arr;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void setDateOnClick(View view, String yearMonth, int date) {
+        ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(yearMonth, new ArrayList<>());
+        ArrayList<String> title = new ArrayList<>();
+        ArrayList<Calendar> time = new ArrayList<>();
+        ArrayList<String> location = new ArrayList<>();
+        ArrayList<String> comments = new ArrayList<>();
+        for (CheckUpEntry child : monthArray) {
+            if (child.getTime().getDay().equals(String.format("%02d", date))) {
+                title.add(child.getTitle());
+                time.add(child.getTime().toCalendar());
+                location.add(child.getClinic());
+                comments.add(child.getComment());
+            }
+        }
+
+        ListView listView = view.findViewById(R.id.listView);
+        MyAdapter adapter = new MyAdapter(view.getContext(), title, location, time, comments);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
+    }
+
+    class MyAdapter extends ArrayAdapter<String> {
+        Context context;
+        ArrayList<String> atitle;
+        ArrayList<String> alocation;
+        ArrayList<Calendar> atime;
+        ArrayList<String> acomments;
+        MyAdapter(Context context, ArrayList<String> title, ArrayList<String> location, ArrayList<Calendar> time, ArrayList<String> comments) {
+            super(context, R.layout.calendar_row, title);
+            this.context = context;
+            this.atitle = title;
+            this.alocation = location;
+            this.atime = time;
+            this.acomments = comments;
+
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View calendar_row = layoutInflater.inflate(R.layout.calendar_row, parent, false);
+            TextView title = calendar_row.findViewById(R.id.title);
+            TextView location = calendar_row.findViewById(R.id.location);
+            TextView time = calendar_row.findViewById(R.id.time);
+            TextView comments = calendar_row.findViewById(R.id.commentCheckupRow);
+
+            String dateStr = atime.get(position).get(Calendar.HOUR) + "(hr)" + atime.get(position).get(Calendar.MINUTE) + "(min)";
+
+            title.setText(atitle.get(position));
+            location.setText("Location: " + alocation.get(position));
+            time.setText("Time: " + dateStr);
+            comments.setText("Comments: " + acomments.get(position));
+
+            return calendar_row;
+        }
     }
 }
