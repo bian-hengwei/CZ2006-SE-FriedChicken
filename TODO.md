@@ -1,20 +1,18 @@
- - [ ] TODO: Splash screen add stuff
- - [ ] TODO: Beautify activities
- - [ ] TODO: Fix all strings
- - [ ] TODO: Add more language options
- - [ ] TODO: Set listeners safe
+ - [ ] TODO: Splash screen add stuff X & J
+ - [ ] TODO: Beautify activities X & J
+ - [ ] TODO: Fix all strings X & J
+ - [ ] TODO: Add more language options X & J
+ - [ ] TODO: Set listeners safe X & J
  - [ ] TODO: User change password HENGWEI
- - [ ] TODO: Return to fragment instead of redrawing Home
-     - [ ] TODO: Also change for register etc.
- - [x] TODO: Medication entry data structure YINAN
- - [ ] TODO: Medication database YINAN
+ - [ ] TODO: Return to fragment instead of redrawing Home HENGWEI
+     - [ ] TODO: Also change for register etc. HENGWEI
  - [ ] TODO: Medication display on fragment YINAN
  - [ ] TODO: Add medication YINAN
      - [ ] TODO: Dynamic time adding YINAN
  - [ ] TODO: Modify / delete medication YINAN
  - [ ] TODO: Add checkup HENGWEI
-     - [ ] TODO: Move clinic details to the other page HENGWEI
-     - [ ] TODO: Screening center manager MVC HENGWEI
+     - [ ] TODO: Move clinic details to the other page YONGDING
+     - [ ] TODO: Screening center manager MVC YONGDING
  - [ ] TODO: Modify / delete checkup HENGWEI
  - [ ] TODO: Refresh calendar HENGWEI
  - [ ] TODO: Notification YONGDING

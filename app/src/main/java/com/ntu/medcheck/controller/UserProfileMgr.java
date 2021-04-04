@@ -90,7 +90,7 @@ public class UserProfileMgr {
 
     public boolean checkValid(String email, Context context) {
         if(email.isEmpty()) {
-            Toast.makeText(context, R.string.loginEmptyEmail, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.emptyEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
