@@ -3,6 +3,8 @@
     <!-- Success Messages -->
     <string name="loginSuccess">登录成功，欢迎！</string>
     <string name="AddCheckupSuccess">新健康检查记录添加成功！</string>
+    <string name="AddCheckupFailure">添加失败</string>
+    <string name="AddCheckupEmptyType">请选择检查项目和诊所</string>
     <string name="AddMedicationSuccess">新用药记录添加成功！</string>
     <string name="saveSuccess">已保存</string>
     <string name="regiSuccess">注册成功，请验证邮箱后再登录</string>

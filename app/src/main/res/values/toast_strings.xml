@@ -3,6 +3,8 @@
     <!-- Success Messages -->
     <string name="loginSuccess">Logged in Successfully, Welcome!</string>
     <string name="AddCheckupSuccess">New Check Up Added Successfully</string>
+    <string name="AddCheckupFailure">Failed</string>
+    <string name="AddCheckupEmptyType">Please select type of check up and clinic!</string>
     <string name="AddMedicationSuccess">New Medication Added Successfully</string>
     <string name="saveSuccess">Saved</string>
     <string name="regiSuccess">Registration successful, please verify email before login</string>
