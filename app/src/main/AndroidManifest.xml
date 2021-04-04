@@ -36,7 +36,13 @@
         <activity
             android:name=".view.EditCheckupActivity"
             android:label="@string/headerCheckupDetail"
-            android:parentActivityName=".view.HomeActivity"></activity>
+            android:parentActivityName=".view.HomeActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".view.EditMedicationActivity"
+            android:label="@string/headerMedicationDetail"
+            android:parentActivityName=".view.HomeActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

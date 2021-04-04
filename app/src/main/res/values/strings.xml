@@ -33,6 +33,7 @@
     <string name="headerCheckupDetail">Checkup Detail</string>
     <string name="headerNewCheckup">New Checkup Schedule</string>
     <string name="headerNewMedication">New Medication Reminder</string>
+    <string name="headerMedicationDetail">Medication Detail</string>
 
     <!--    entries = checkup/medication-->
     <string name="eventName">Event</string>

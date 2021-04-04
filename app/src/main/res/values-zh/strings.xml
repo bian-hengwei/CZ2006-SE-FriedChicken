@@ -33,6 +33,7 @@
     <string name="headerCheckupDetail">健康检查信息</string>
     <string name="headerNewCheckup">设定新健康检查记录</string>
     <string name="headerNewMedication">设定新用药提醒</string>
+    <string name="headerMedicationDetail">用药记录信息</string>
 
     <!--    entries = checkup/medication-->
     <string name="eventName">事件</string>

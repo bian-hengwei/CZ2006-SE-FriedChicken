@@ -39,8 +39,8 @@ public class AddCheckupActivity extends AppCompatActivity {
         String setClinicName = getIntent().getStringExtra("Clinic name set"); //get the string value from the intent
         clinic_name.setText(setClinicName);
 
-        FloatingActionButton addButton = findViewById(R.id.editClinic);
-        addButton.setOnClickListener(new SafeOnClickListener() {
+        FloatingActionButton editButton = findViewById(R.id.editClinic);
+        editButton.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
                 Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
