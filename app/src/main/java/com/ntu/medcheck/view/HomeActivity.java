@@ -48,7 +48,6 @@ public class HomeActivity extends AppCompatActivity {
 
         CheckUpMgr checkUpMgr = new CheckUpMgr();
         // for testing only
-        checkUpMgr.init();
         checkUpMgr.save();
 
         UserProfileMgr userProfileMgr = new UserProfileMgr();

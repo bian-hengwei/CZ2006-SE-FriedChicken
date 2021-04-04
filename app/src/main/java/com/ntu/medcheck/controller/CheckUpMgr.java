@@ -2,16 +2,22 @@ package com.ntu.medcheck.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,10 +39,7 @@ import java.util.Map;
 
 public class CheckUpMgr {
 
-    private Map<String, ArrayList<CheckUpEntry>> entries;
-
     public CheckUpMgr() {
-        entries = new HashMap<>();
     }
 
     public void dynamicDisplayCheckup(Fragment fragment, View view) {
@@ -55,23 +58,61 @@ public class CheckUpMgr {
                 if (entry.getTime().toCalendar().after(Calendar.getInstance())) {
                     Log.d("future entry", "dynamicDisplayCheckup: ");
                     title.add(entry.getTitle());
-                    date.add(entry.getTime().getDate());
-                    time.add(entry.getTime().getTimeOfDay());
+                    date.add(entry.getTime().getYear() + entry.getTime().getMonth() + entry.getTime().getDay());
+                    time.add(entry.getTime().getHour() + entry.getTime().getMinute());
                     location.add(entry.getClinic());
                     comment.add(entry.getComment());
                 }
             }
         }
-
         MyAdapter adapter = new MyAdapter(view.getContext(), title, date, time, location, comment);
-
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             System.out.println(title.get(position));
             Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
             fragment.startActivity(i);
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public boolean addCheckUp(AppCompatActivity aca) {
+        TextView type = aca.findViewById(R.id.confirmed_checkup_type);
+        TextView clinic = aca.findViewById(R.id.confirmed_clinic_name);
+        DatePicker date = aca.findViewById(R.id.datePickerAddCheckup);
+        TimePicker time = aca.findViewById(R.id.timePickerAddCheckup);
+        TextView comment = aca.findViewById(R.id.commentBox);
+        if (type.getText().toString() == null || type.getText().toString().isEmpty() ||
+            clinic.getText().toString() == null || clinic.getText().toString().isEmpty()) {
+            Toast.makeText(aca, R.string.AddCheckupEmptyType, Toast.LENGTH_SHORT);
+            return false;
+        }
+        CheckUpEntry checkup = new CheckUpEntry();
+        checkup.setName(type.getText().toString());
+        checkup.setType("checkup");
+        checkup.setComment(comment.getText().toString());
+        checkup.setTitle(type.getText().toString());
+        checkup.setClinic(clinic.getText().toString());
+        Time t = new Time();
+        int day = date.getDayOfMonth();
+        int month = date.getMonth() + 1;
+        int year = date.getYear();
+        t.setTime(String.format("%04d%02d%02d", year, month, day));
+        int minute = time.getMinute();
+        int hour = time.getHour();
+        t.setMinute(String.format("%02d", minute));
+        t.setHour(String.format("%02d", hour));
+        checkup.setTime(t);
+        Schedule schedule = Schedule.getInstance();
+        if (schedule.getCheckup().containsKey(String.format("%02d%02d", year, month))) {
+            schedule.getCheckup().get(String.format("%02d%02d", year, month)).add(checkup);
+        }
+        else {
+            ArrayList<CheckUpEntry> arr = new ArrayList<>();
+            arr.add(checkup);
+            schedule.getCheckup().put(String.format("%02d%02d", year, month), arr);
+        }
+        new ScheduleMgr().save();
+        return true;
     }
 
     // adapter class
@@ -112,125 +153,15 @@ public class CheckUpMgr {
 
             return checkup_row;
         }
-    }/*
-
-    public ArrayList<String> getTitle() {
-        ArrayList<String> title = new ArrayList<>();
-        title.add("heart checkup");
-        title.add("liver checkup");
-        title.add("lung checkup");
-        title.add("lung checkup");
-        title.add("lung checkup");
-        title.add("lung checkup");
-        return title;
     }
-
-    public ArrayList<String> getDate() {
-        ArrayList<String> date = new ArrayList<>();
-        date.add("20210410");
-        date.add("20210411");
-        date.add("20210415");
-        date.add("20210415");
-        date.add("20210415");
-        date.add("20210415");
-        return date;
-    }
-
-    public ArrayList<String> getTime() {
-        ArrayList<String> time = new ArrayList<>();
-        time.add("1230");
-        time.add("1330");
-        time.add("1530");
-        time.add("1530");
-        time.add("1530");
-        time.add("1530");
-        return time;
-    }
-
-    public ArrayList<String> getLocation() {
-        ArrayList<String> location = new ArrayList<>();
-        location.add("loc1");
-        location.add("loc2");
-        location.add("loc3");
-        location.add("loc3");
-        location.add("loc3");
-        location.add("loc3");
-        return location;
-    }
-
-    public ArrayList<String> getComment() {
-        ArrayList<String> comment = new ArrayList<>();
-        comment.add("comment1");
-        comment.add("comment2");
-        comment.add("comment3");
-        comment.add("comment3");
-        comment.add("comment3");
-        comment.add("comment3");
-        return comment;
-    }*/
-
-    public void init() {
-
-        entries.put("202104", new ArrayList<>());
-        entries.put("202105", new ArrayList<>());
-
-        CheckUpEntry c1 = new CheckUpEntry();
-        c1.getTime().setTime("202104031220");
-        c1.setName("c1!");
-        c1.setComment("c1Comment");
-        c1.setType("checkup");
-        c1.setClinic("cl1");
-        c1.setTitle("C1");
-
-        CheckUpEntry c2 = new CheckUpEntry();
-        c2.getTime().setTime("202104031221");
-        c2.setName("c2!");
-        c2.setComment("c2Comment");
-        c2.setType("checkup");
-        c2.setClinic("cl2");
-        c2.setTitle("C2");
-
-        CheckUpEntry c3 = new CheckUpEntry();
-        c3.getTime().setTime("202104041220");
-        c3.setName("c3!");
-        c3.setComment("c3Comment");
-        c3.setType("checkup");
-        c3.setClinic("cl3");
-        c3.setTitle("C3");
-
-        CheckUpEntry c4 = new CheckUpEntry();
-        c4.getTime().setTime("202105031220");
-        c4.setName("c4!");
-        c4.setComment("c4Comment");
-        c4.setType("checkup");
-        c4.setClinic("cl4");
-        c4.setTitle("C4");
-
-        CheckUpEntry c5 = new CheckUpEntry();
-        c5.getTime().setTime("202105041220");
-        c5.setName("c5!");
-        c5.setComment("c5Comment");
-        c5.setType("checkup");
-        c5.setClinic("cl5");
-        c5.setTitle("C5");
-
-        entries.get("202104").add(c1);
-        entries.get("202104").add(c2);
-        entries.get("202104").add(c3);
-        entries.get("202105").add(c4);
-        entries.get("202105").add(c5);
-    }
-
     public void save() {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
         DatabaseReference sRef = fDatabase.getReference("Schedules");
         DatabaseReference suRef = sRef.child(fAuth.getCurrentUser().getUid());
         Schedule schedule = Schedule.getInstance();
-        schedule.setCheckup(entries);
         schedule.setMedication(new ArrayList<>());
 
-        //////////////////////////////////////////////////////////////////////////////////
         MedicationEntry med1 = new MedicationEntry("med1");
         med1.setDosage("1");
         med1.setType("type1");
@@ -262,6 +193,6 @@ public class CheckUpMgr {
         schedule.getMedication().add(med1);
         schedule.getMedication().add(med2);
 
-        suRef.setValue(schedule);
+        suRef.child("medication").setValue(schedule.getMedication());
     }
 }

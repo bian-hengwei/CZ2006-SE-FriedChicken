@@ -109,12 +109,4 @@ public class Time {
         }
         return calendar;
     }
-
-    public String getDate() {
-        return year + month + day;
-    }
-
-    public String getTimeOfDay() {
-        return hour + minute;
-    }
 }
