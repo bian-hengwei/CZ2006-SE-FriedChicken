@@ -14,6 +14,7 @@ import java.util.Map;
 public class Schedule {
 
     Map<String, ArrayList<CheckUpEntry>> checkup;
+    ArrayList<MedicationEntry> medication;
 
     // singleton pattern
     private static Schedule scheduleInstance = new Schedule();
@@ -52,5 +53,14 @@ public class Schedule {
             }
         }
         return str;
+    }
+
+    public ArrayList<MedicationEntry> getMedication() {
+        return medication;
+    }
+
+    public void setMedication(ArrayList<MedicationEntry> medication) {
+        Log.d("medication", "setMedication: ");
+        this.medication = medication;
     }
 }

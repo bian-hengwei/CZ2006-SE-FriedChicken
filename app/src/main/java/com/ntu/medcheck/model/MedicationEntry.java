@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public class MedicationEntry extends Entry{
 
-    int dosage;
+    String dosage;
     String unit;
-    ArrayList<String> time = new ArrayList<>();
+    ArrayList<Time> time = new ArrayList<>();
 
     public MedicationEntry() {
     }
@@ -19,11 +19,11 @@ public class MedicationEntry extends Entry{
         super(name, "checkup");
     }
 
-    public int getDosage() {
+    public String getDosage() {
         return dosage;
     }
 
-    public void setDosage(int dosage) {
+    public void setDosage(String dosage) {
         this.dosage = dosage;
     }
 
@@ -35,24 +35,24 @@ public class MedicationEntry extends Entry{
         this.unit = unit;
     }
 
-    public ArrayList<String> getTime() {
+    public ArrayList<Time> getTime() {
         return time;
     }
 
-    public void setTime(ArrayList<String> time) {
+    public void setTime(ArrayList<Time> time) {
         this.time = time;
     }
 
-    public boolean addTime(String t) {
+    public boolean addTime(Time t) {
         for (int i = 0; i < time.size(); i++) {
-            if (time.get(i).equals(t)) {
+            if (time.get(i).getDay().equals(t.getDay()) && time.get(i).getMonth().equals(t.getMonth()) && time.get(i).getYear().equals(t.getYear()) && time.get(i).getHour().equals(t.getMinute())) {
                 return false;
             }
         }
         time.add(t);
         return true;
     }
-
+/*1
     public boolean removeTime(String t) {
         for (int i = 0; i < time.size(); i++) {
             if (time.get(i).equals(t)) {
@@ -61,5 +61,5 @@ public class MedicationEntry extends Entry{
             }
         }
         return false;
-    }
+    } */
 }

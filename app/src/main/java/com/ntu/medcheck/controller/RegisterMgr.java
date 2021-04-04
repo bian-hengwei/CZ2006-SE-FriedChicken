@@ -46,7 +46,7 @@ public class RegisterMgr {
         }
 
         int day = birthdayInput.getDayOfMonth();
-        int month = birthdayInput.getMonth();
+        int month = birthdayInput.getMonth() + 1;
         int year = birthdayInput.getYear();
 
         String birthdayStr = String.format("%04d%02d%02d", year, month, day);
