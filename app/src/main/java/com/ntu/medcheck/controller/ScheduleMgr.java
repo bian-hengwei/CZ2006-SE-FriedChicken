@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.model.Schedule;
+import com.ntu.medcheck.view.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ public class ScheduleMgr {
         uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
-    public void initialize() {
+    public void initialize(HomeActivity aca) {
         uRef.keepSynced(true);
 
         ValueEventListener postListener = new ValueEventListener() {
@@ -38,6 +39,7 @@ public class ScheduleMgr {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 setSchedule(dataSnapshot);
                 Log.d("loading", "Loading data");
+                aca.initFragments();
             }
 
             @Override

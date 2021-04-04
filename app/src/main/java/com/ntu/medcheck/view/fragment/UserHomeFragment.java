@@ -64,8 +64,7 @@ public class UserHomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
 
         // 1st display current information, disable the edittexts
@@ -79,6 +78,5 @@ public class UserHomeFragment extends Fragment {
     public void changePassword() {
         // TODO: change password
     }
-
 
 }

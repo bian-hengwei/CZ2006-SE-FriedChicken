@@ -47,6 +47,7 @@ public class UserProfileMgr {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User.setInstance(dataSnapshot.getValue(User.class));
                 user = User.getInstance();
+                Log.d("user", user.getUserName());
                 aca.initFragments();
                 Log.d("user", user.getUserName());
                 Log.d("user", user.getBirthday().toCalendar().toString());
@@ -123,7 +124,11 @@ public class UserProfileMgr {
         String month = user.getBirthday().getMonth();
         String year = user.getBirthday().getYear();
 
-        birthdayInput.init(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day), null);
+        try {
+            birthdayInput.init(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day), null);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
 
         String gender = user.getGender();
 
