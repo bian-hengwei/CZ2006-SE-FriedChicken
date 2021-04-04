@@ -103,7 +103,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         search.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
-                if(choice.equals(R.string.clinicCervical)){
+                if (choice.equals(mView.getResources().getString(R.string.clinicCervical))){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -118,7 +118,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         //e.printStackTrace();
                     }
-                }else if(choice.equals("Breast Screening Centre")){
+                }else if(choice.equals(mView.getResources().getString(R.string.clinicBreast))){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -133,7 +133,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else if(choice.equals("CHAS Clinics")){
+                } else if (choice.equals(mView.getResources().getString(R.string.clinicCHAS))) {
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -153,7 +153,6 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         });
         return mView;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

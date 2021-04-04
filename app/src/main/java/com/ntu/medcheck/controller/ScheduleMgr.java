@@ -21,58 +21,21 @@ import java.util.Map;
 public class ScheduleMgr {
 
     Schedule schedule;
-    FirebaseDatabase fDatabase;
     DatabaseReference uRef;
 
     public ScheduleMgr() {
         schedule = Schedule.getInstance();
-        fDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference sRef = fDatabase.getReference("Schedules");
-        uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-        System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        uRef = FirebaseDatabase.getInstance().getReference("Schedules").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
     public void initialize(HomeActivity aca) {
-
         uRef.keepSynced(true);
-
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 setSchedule(dataSnapshot);
-
-       /*         Log.d("Testing medication", schedule.getMedication().get(0).getName());
-                Log.d("Testing medication", schedule.getMedication().get(0).getDosage());
-                Log.d("Testing medication", schedule.getMedication().get(0).getUnit());
-                Log.d("Testing medication", schedule.getMedication().get(0).getType());
-                Log.d("Testing medication", schedule.getMedication().get(0).getComment());
-                if(schedule.getMedication().get(0).getTime().get(0).getHour() == null) {
-                    System.out.println(schedule.getMedication().get(0).getTime().get(0));
-                }
-                else {
-                    System.out.println("NOT NULLLL");
-                } */
-                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getHour());
-                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getMinute());
-                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getHour());
-                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getMinute());
-             /*   Log.d("Testing medication", schedule.getMedication().get(1).getName());
-                Log.d("Testing medication", schedule.getMedication().get(1).getDosage());
-                Log.d("Testing medication", schedule.getMedication().get(1).getUnit());
-                Log.d("Testing medication", schedule.getMedication().get(1).getType());
-                Log.d("Testing medication", schedule.getMedication().get(1).getComment());
-                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getHour());
-                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getMinute());
-                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getHour());
-                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getMinute());
-*/
-
-
-       Log.d("loading", "Loading data");
                 aca.initFragments();
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Getting Post failed, log a message
@@ -80,6 +43,10 @@ public class ScheduleMgr {
             }
         };
         uRef.addValueEventListener(postListener);
+    }
+
+    public void save() {
+        uRef.setValue(schedule);
     }
 
     private void setSchedule(DataSnapshot dataSnapshot) {

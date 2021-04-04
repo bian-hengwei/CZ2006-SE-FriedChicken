@@ -112,62 +112,7 @@ public class CheckUpMgr {
 
             return checkup_row;
         }
-    }/*
-
-    public ArrayList<String> getTitle() {
-        ArrayList<String> title = new ArrayList<>();
-        title.add("heart checkup");
-        title.add("liver checkup");
-        title.add("lung checkup");
-        title.add("lung checkup");
-        title.add("lung checkup");
-        title.add("lung checkup");
-        return title;
     }
-
-    public ArrayList<String> getDate() {
-        ArrayList<String> date = new ArrayList<>();
-        date.add("20210410");
-        date.add("20210411");
-        date.add("20210415");
-        date.add("20210415");
-        date.add("20210415");
-        date.add("20210415");
-        return date;
-    }
-
-    public ArrayList<String> getTime() {
-        ArrayList<String> time = new ArrayList<>();
-        time.add("1230");
-        time.add("1330");
-        time.add("1530");
-        time.add("1530");
-        time.add("1530");
-        time.add("1530");
-        return time;
-    }
-
-    public ArrayList<String> getLocation() {
-        ArrayList<String> location = new ArrayList<>();
-        location.add("loc1");
-        location.add("loc2");
-        location.add("loc3");
-        location.add("loc3");
-        location.add("loc3");
-        location.add("loc3");
-        return location;
-    }
-
-    public ArrayList<String> getComment() {
-        ArrayList<String> comment = new ArrayList<>();
-        comment.add("comment1");
-        comment.add("comment2");
-        comment.add("comment3");
-        comment.add("comment3");
-        comment.add("comment3");
-        comment.add("comment3");
-        return comment;
-    }*/
 
     public void init() {
 

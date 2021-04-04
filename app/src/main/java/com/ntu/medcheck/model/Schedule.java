@@ -30,10 +30,6 @@ public class Schedule {
         return scheduleInstance;
     }
 
-    public static void setInstance(Schedule schedule) {
-        scheduleInstance = schedule;
-    }
-
     public Map<String, ArrayList<CheckUpEntry>> getCheckup() {
         return checkup;
     }
