@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
 
 /**
@@ -25,27 +26,28 @@ public class AddCheckupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_checkup);
 
         FloatingActionButton addButton1 = findViewById(R.id.editType);
-        addButton1.setOnClickListener(new View.OnClickListener() {
+        addButton1.setOnClickListener(new SafeOnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onOneClick(View v) {
                 Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
                 startActivity(i);
             }
-        });
+        })
+        ;
 
         FloatingActionButton addButton2 = findViewById(R.id.editClinic);
-        addButton2.setOnClickListener(new View.OnClickListener() {
+        addButton2.setOnClickListener(new SafeOnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onOneClick(View v) {
                 Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
                 startActivity(i);
             }
         });
 
         Button addCheckButton = findViewById(R.id.addCheckUp);
-        addCheckButton.setOnClickListener(new View.OnClickListener() {
+        addCheckButton.setOnClickListener(new SafeOnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onOneClick(View v) {
                 Toast addCheckupToast = Toast.makeText(AddCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
                 addCheckupToast.setGravity(Gravity.CENTER,0,0);
                 addCheckupToast.show();

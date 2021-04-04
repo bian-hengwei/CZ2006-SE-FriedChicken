@@ -42,6 +42,12 @@
     <string name="addCheckupButton">添加新健康检查记录</string>
     <string name="addMedButton">添加新用药记录</string>
 
+    <!--    ScreeningCenterMgr.java-->
+    <string name="postalLabel">邮编: </string>
+    <string name="streetLabel">街道名: </string>
+    <string name="clinicLabel">诊所: </string>
+    <string name="webLabel">网站: </string>
+
     <!--    fragment_map.xml-->
     <string name="searchButton">检索</string>
         <!--clinicTypeSpinner-->
@@ -51,6 +57,9 @@
         <item><string name="clinicTypeCervical">宫颈检查中心</string></item>
         <item><string name="clinicTypeCHAS">CHAS诊所</string></item>
     </string-array>
+    <string name="clinicBreast">Breast Screening Centre</string>
+    <string name="clinicCervical">Cervical Screening Centre</string>
+    <string name="clinicCHAS">CHAS Clinics</string>
     <string name="confirmClinicButton">确定诊所</string>
 
     <!--    activity_add_checkup.xml-->

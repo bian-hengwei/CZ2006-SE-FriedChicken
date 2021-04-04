@@ -103,10 +103,10 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         search = mView.findViewById(R.id.searchbutton); //get search button
 
         //Conduct search whenever search button is clicked
-        search.setOnClickListener(new View.OnClickListener() {
+        search.setOnClickListener(new SafeOnClickListener() {
             @Override
-            public void onClick(View v){
-                if(choice.equals("Cervical Screening Centre")){
+            public void onOneClick(View v) {
+                if(choice.equals(R.string.clinicCervical)){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();

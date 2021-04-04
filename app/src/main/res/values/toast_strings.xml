@@ -22,6 +22,8 @@
     <string name="emptyGender">Please select gender</string>
     <string name="emptyBd">Please select birthday</string>
     <string name="emptyPhone">Please fill in phone number</string>
+    <string name="GPSfail">Location service is not granted</string>
+
 
 
 

@@ -42,6 +42,12 @@
     <string name="addCheckupButton">Add New Checkup</string>
     <string name="addMedButton">Add New Medication</string>
 
+    <!--    ScreeningCenterMgr.java-->
+    <string name="postalLabel">Postal Code: </string>
+    <string name="streetLabel">Street Name: </string>
+    <string name="clinicLabel">Clinic: </string>
+    <string name="webLabel">Website: </string>
+
     <!--    fragment_map.xml-->
     <string name="searchButton">Search</string>
         <!--clinicTypeSpinner-->
@@ -51,6 +57,9 @@
         <item><string name="clinicTypeCervical">Cervical Screening Centre</string></item>
         <item><string name="clinicTypeCHAS">CHAS Clinics</string></item>
     </string-array>
+    <string name="clinicBreast">Breast Screening Centre</string>
+    <string name="clinicCervical">Cervical Screening Centre</string>
+    <string name="clinicCHAS">CHAS Clinics</string>
     <string name="confirmClinicButton">Confirm Clinic</string>
 
     <!--    activity_add_checkup.xml-->

@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 
 /**
  * Add medication page
@@ -28,9 +29,9 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
         setContentView(R.layout.activity_add_medication);
 
         Button addMedButton = findViewById(R.id.addMed);
-        addMedButton.setOnClickListener(new View.OnClickListener() {
+        addMedButton.setOnClickListener(new SafeOnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onOneClick(View v) {
                 Toast addMedToast = Toast.makeText(AddMedicationActivity.this, R.string.AddMedicationSuccess, Toast.LENGTH_LONG);
                 addMedToast.setGravity(Gravity.CENTER, 0,0);
                 addMedToast.show();

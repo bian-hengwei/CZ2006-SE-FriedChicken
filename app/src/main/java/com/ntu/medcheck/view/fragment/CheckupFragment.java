@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.AddCheckupActivity;
 
 /**
@@ -86,11 +87,12 @@ public class CheckupFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
-        addNewCheckup.setOnClickListener(mListener);
+        addNewCheckup.setOnClickListener(new SafeOnClickListener(){
+            @Override
+            public void onOneClick(View v) {
+                Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
+                startActivity(i);
+            }
+        });
     }
-
-    private final View.OnClickListener mListener = view -> {
-        Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
-        startActivity(i);
-    };
 }

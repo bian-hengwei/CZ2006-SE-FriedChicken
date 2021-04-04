@@ -20,7 +20,8 @@
     <string name="emptyPw">请填写密码</string>
     <string name="emptyGender">请选择性别</string>
     <string name="emptyBd">请选择生日</string>
-    <string name="emptyPhone">请填写电话号码</string>
+    <string name="emptyPhone">请填写手机号码</string>
+    <string name="GPSfail">定位服务未授权</string>
 
 
     <!-- login & account -->
