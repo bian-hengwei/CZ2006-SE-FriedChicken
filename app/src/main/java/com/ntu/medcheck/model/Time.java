@@ -11,22 +11,31 @@ public class Time {
     }
 
     public Time(String time) {
-        year = time.substring(0, 4);
-        month = time.substring(4, 6);
-        day = time.substring(6, 8);
         if (time.length() == 12) {
             hour = time.substring(8, 10);
             minute = time.substring(10, 12);
+            year = time.substring(0, 4);
+            month = time.substring(4, 6);
+            day = time.substring(6, 8);
         }
     }
 
     public void setTime(String time) {
-        year = time.substring(0, 4);
-        month = time.substring(4, 6);
-        day = time.substring(6, 8);
         if (time.length() == 12) {
             hour = time.substring(8, 10);
             minute = time.substring(10, 12);
+            year = time.substring(0, 4);
+            month = time.substring(4, 6);
+            day = time.substring(6, 8);
+        }
+        else if(time.length() == 8) {
+            year = time.substring(0, 4);
+            month = time.substring(4, 6);
+            day = time.substring(6, 8);
+        }
+        else if(time.length() == 4) {
+            hour = time.substring(0, 2);
+            minute = time.substring(2, 4);
         }
     }
 

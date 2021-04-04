@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ntu.medcheck.model.CheckUpEntry;
+import com.ntu.medcheck.model.MedicationEntry;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.model.Schedule;
 
@@ -30,6 +31,7 @@ public class ScheduleMgr {
         uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
+
     public void initialize() {
         uRef.keepSynced(true);
 
@@ -37,6 +39,13 @@ public class ScheduleMgr {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 setSchedule(dataSnapshot);
+
+
+                /*///////////vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//////////*/
+                setMedicationSchedule(dataSnapshot);
+                /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
+
+
                 Log.d("loading", "Loading data");
             }
 
@@ -76,4 +85,31 @@ public class ScheduleMgr {
         checkUpEntry.setTime(entry.child("time").getValue(Time.class));
         return checkUpEntry;
     }
+
+
+
+/*///////////vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//////////*/
+    private void setMedicationSchedule(DataSnapshot dataSnapshot) {
+        if(dataSnapshot.child("medication").exists()) {
+            ArrayList<MedicationEntry> medication = new ArrayList<>();
+            for(DataSnapshot entry : dataSnapshot.child("medication").getChildren()) {
+                medication.add(toMedicationEntry(entry));
+            }
+        }
+    }
+
+    private MedicationEntry toMedicationEntry(DataSnapshot entry) {
+        MedicationEntry medicationEntry = new MedicationEntry();
+        medicationEntry.setDosage(Integer.parseInt((String)entry.child("dosage").getValue()));
+        medicationEntry.setUnit((String) entry.child("unit").getValue());
+        medicationEntry.setComment((String) entry.child("comment").getValue());
+        medicationEntry.setName((String) entry.child("name").getValue());
+        medicationEntry.setType((String) entry.child("type").getValue());
+
+        for(DataSnapshot timeEntry : )
+
+        medicationEntry.setTime();
+
+    }
 }
+/*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
