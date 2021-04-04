@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class MedicationEntry extends Entry{
 
-    int dosage;
+    String dosage;
     String unit;
     ArrayList<Time> time = new ArrayList<>();
 
@@ -19,11 +19,11 @@ public class MedicationEntry extends Entry{
         super(name, "checkup");
     }
 
-    public int getDosage() {
+    public String getDosage() {
         return dosage;
     }
 
-    public void setDosage(int dosage) {
+    public void setDosage(String dosage) {
         this.dosage = dosage;
     }
 
@@ -42,7 +42,6 @@ public class MedicationEntry extends Entry{
     public void setTime(ArrayList<Time> time) {
         this.time = time;
     }
-
 
     public boolean addTime(Time t) {
         for (int i = 0; i < time.size(); i++) {

@@ -30,6 +30,7 @@ public class ScheduleMgr {
         fDatabase = FirebaseDatabase.getInstance();
         DatabaseReference sRef = fDatabase.getReference("Schedules");
         uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
 
@@ -50,6 +51,32 @@ public class ScheduleMgr {
 
 
                 Log.d("Testing medication", schedule.getMedication().get(0).getName());
+                Log.d("Testing medication", schedule.getMedication().get(0).getDosage());
+                Log.d("Testing medication", schedule.getMedication().get(0).getUnit());
+                Log.d("Testing medication", schedule.getMedication().get(0).getType());
+                Log.d("Testing medication", schedule.getMedication().get(0).getComment());
+
+
+
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getMinute());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getMinute());
+
+
+                Log.d("Testing medication", schedule.getMedication().get(1).getName());
+                Log.d("Testing medication", schedule.getMedication().get(1).getDosage());
+                Log.d("Testing medication", schedule.getMedication().get(1).getUnit());
+                Log.d("Testing medication", schedule.getMedication().get(1).getType());
+                Log.d("Testing medication", schedule.getMedication().get(1).getComment());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getMinute());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getMinute());
+
+
+
+
 
                 Log.d("loading", "Loading data");
                 aca.initFragments();
@@ -96,13 +123,7 @@ public class ScheduleMgr {
 
 /*///////////vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//////////*/
     private void setMedicationSchedule(DataSnapshot dataSnapshot) {
-
-        if(dataSnapshot == null) {
-
-        }
-
         if(dataSnapshot.child("medication").exists()) {
-            System.out.println("HYN1");
             ArrayList<MedicationEntry> medication = new ArrayList<>();
             for(DataSnapshot entry : dataSnapshot.child("medication").getChildren()) {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -112,12 +133,13 @@ public class ScheduleMgr {
         }
         else {
             schedule.setMedication(new ArrayList<>());
+            System.out.println("MEDICATION do not exist");
         }
     }
 
     private MedicationEntry toMedicationEntry(DataSnapshot entry) {
         MedicationEntry medicationEntry = new MedicationEntry();
-        medicationEntry.setDosage(Integer.parseInt((String)entry.child("dosage").getValue()));
+        medicationEntry.setDosage((String)entry.child("dosage").getValue());
         medicationEntry.setUnit((String) entry.child("unit").getValue());
         medicationEntry.setComment((String) entry.child("comment").getValue());
         medicationEntry.setName((String) entry.child("name").getValue());
