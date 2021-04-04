@@ -11,11 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.model.MedicationEntry;
+import com.ntu.medcheck.model.Schedule;
+import com.ntu.medcheck.model.Time;
 
 
 public class MedicationMgr {
+
+    Schedule schedule = Schedule.getInstance();
+    ArrayList<MedicationEntry> medicationEntryArrayList = schedule.getMedication();
 
     public void dynamicDisplayMedication(View view) {
         ListView listView;
@@ -73,58 +80,93 @@ public class MedicationMgr {
     }
 
     public ArrayList<String> getComment() {
-        ArrayList<String> Comment = new ArrayList<>();
-        Comment.add("comment1");
-        Comment.add("comment2");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        Comment.add("comment3");
-        return Comment;
+        ArrayList<String> commentArrayList = new ArrayList<>();
+        String comment;
+        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
+            comment = medicationEntry.getComment();
+            commentArrayList.add(comment);
+        }
+       /* commentArrayList.add("comment1");
+        commentArrayList.add("comment2");
+        commentArrayList.add("comment3");
+        commentArrayList.add("comment3");
+        commentArrayList.add("comment3");
+        commentArrayList.add("comment3");
+        */
+        return commentArrayList;
     }
 
     public ArrayList<String> getFrequence() {
-        ArrayList<String> frequency = new ArrayList<>();
-        frequency.add("1");
-        frequency.add("2");
-        frequency.add("3");
-        frequency.add("2");
-        frequency.add("1");
-        frequency.add("2");
-        return frequency;
+        ArrayList<String> frequencyArrayList = new ArrayList<>();
+        String frequency;
+        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
+            frequency = medicationEntry.getFrequency();
+            frequencyArrayList.add(frequency);
+        }
+
+        /*frequencyArrayList.add("1");
+        frequencyArrayList.add("2");
+        frequencyArrayList.add("3");
+        frequencyArrayList.add("2");
+        frequencyArrayList.add("1");
+        frequencyArrayList.add("2");*/
+        return frequencyArrayList;
     }
 
     public ArrayList<String> getDosage() {
-        ArrayList<String> dosage = new ArrayList<>();
-        dosage.add("1230");
+        ArrayList<String> dosageArrayList = new ArrayList<>();
+        String dosage;
+        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
+            dosage = medicationEntry.getDosage();
+            dosageArrayList.add(dosage);
+        }
+
+        /*dosage.add("1230");
         dosage.add("1330");
         dosage.add("1530");
         dosage.add("1530");
         dosage.add("1530");
-        dosage.add("1530");
-        return dosage;
+        dosage.add("1530");*/
+        return dosageArrayList;
     }
 
     public ArrayList<String> getTime() {
-        ArrayList<String> time = new ArrayList<>();
-        time.add("1230");
+        ArrayList<String> timeArrayList = new ArrayList<>();
+        ArrayList<Time> timeTempList= new ArrayList<>();
+
+        String time = "";
+
+        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
+            timeTempList = medicationEntry.getTime();
+            time = "";
+            for(Time t : timeTempList) {
+                time += t.getHour() + ":" + t.getMinute() + " | ";
+            }
+            timeArrayList.add(time);
+        }
+
+        /*time.add("1230");
         time.add("1330");
         time.add("1530");
         time.add("1530");
         time.add("1530");
-        time.add("1530");
-        return time;
+        time.add("1530");*/
+        return timeArrayList;
     }
 
     public ArrayList<String> getTitle() {
-        ArrayList<String> title = new ArrayList<>();
-        title.add("heart medicine");
+        ArrayList<String> titleArrayList = new ArrayList<>();
+
+        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
+            titleArrayList.add(medicationEntry.getName());
+        }
+        /*title.add("heart medicine");
         title.add("liver medicine");
         title.add("lung medicine");
         title.add("lung medicine");
         title.add("lung medicine");
-        title.add("lung medicine");
-        return title;
+        title.add("lung medicine");*/
+        return titleArrayList;
     }
 
 }
