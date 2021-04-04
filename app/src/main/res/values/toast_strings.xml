@@ -5,18 +5,29 @@
     <string name="AddCheckupSuccess">New Check Up Added Successfully</string>
     <string name="AddMedicationSuccess">New Medication Added Successfully</string>
     <string name="saveSuccess">Saved</string>
+    <string name="regiSuccess">Registration successful, please verify email before login</string>
 
 
     <!-- Error Messages -->
     <string name="loginFailUser">Login failed, invalid user</string>
     <string name="loginFailPw">Login failed, wrong password</string>
     <string name="loginFailUnknown">Login failed, unknown error</string>
-    <string name="loginEmptyEmail">Please fill in email</string>
-    <string name="loginEmptyPw">Please fill in password</string>
+    <string name="regiFail">Registration failed, unknown error</string>
+    <string name="regiFailWeakPw">Registration failed, please use a stronger password</string>
+    <string name="regiFailEmailExist">Registration failed, email is already used</string>
+    <string name="regiFailRePw">Registration failed, re-entered password is different from password</string>
+    <string name="emptyUsername">Please fill in username</string>
+    <string name="emptyEmail">Please fill in email</string>
+    <string name="emptyPw">Please fill in password</string>
+    <string name="emptyGender">Please select gender</string>
+    <string name="emptyBd">Please select birthday</string>
+    <string name="emptyPhone">Please fill in phone number</string>
+
+
 
     <!-- login & account -->
     <string name="verifyEmail">Please check your email to verify your account</string>
     <string name="ResetPwEmail">Please check your email to reset your password</string>
     <string name="retry">Please try again</string>
-    <string name="logoutMessage">Logging out...</string>
+    <string name="logoutMessage">Logging out…</string>
 </resources>

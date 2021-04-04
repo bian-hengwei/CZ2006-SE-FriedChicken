@@ -14,6 +14,8 @@
     <string name="registerLabel">注册新账号</string>
     <string name="usernameLabel">用户名</string>
     <string name="confirmButton">确定修改</string>
+    <string name="phoneLabel">手机号码</string>
+    <string name="RePwLabel">再次输入密码</string>
 
     <!--    navigation-->
     <string name="hello_blank_fragment">哈咯</string>
@@ -88,4 +90,5 @@
     <string name="birthdayLabel">生日:</string>
     <string name="editProfileButton">修改用户信息</string>
     <string name="logout" >退出登录</string>
+
 </resources>

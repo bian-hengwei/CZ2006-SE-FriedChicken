@@ -69,11 +69,11 @@ public class LoginMgr {
 
     public boolean checkInputValid(String email, String password, Context context) {
         if (email.isEmpty()) {
-            Toast.makeText(context, R.string.loginEmptyEmail, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.emptyEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (password.isEmpty()) {
-            Toast.makeText(context, R.string.loginEmptyPw, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, R.string.emptyPw, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

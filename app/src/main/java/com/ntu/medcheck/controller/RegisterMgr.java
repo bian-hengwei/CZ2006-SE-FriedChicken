@@ -75,10 +75,10 @@ public class RegisterMgr {
                 DatabaseReference uRef = fDatabase.getReference("Users");
                 uRef.child(fAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
-                        Toast.makeText(aca, "Registration successful, please verify email and login", Toast.LENGTH_LONG).show();
+                        Toast.makeText(aca, R.string.regiSuccess, Toast.LENGTH_LONG).show();
                     } else {
-                        System.out.println("failed");
-                        Toast.makeText(aca, "Registration failed", Toast.LENGTH_LONG).show();
+                        System.out.println(R.string.regiFail);
+                        Toast.makeText(aca, R.string.regiFail, Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -88,13 +88,13 @@ public class RegisterMgr {
                 try {
                     throw task.getException();
                 } catch (FirebaseAuthWeakPasswordException e) {
-                    Toast.makeText(aca, "Registration unsuccessful, password too weak", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.regiFailWeakPw, Toast.LENGTH_LONG).show();
                 }
                 catch (FirebaseAuthUserCollisionException e) {
-                    Toast.makeText(aca, "Registration unsuccessful, email already used", Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.regiFailEmailExist, Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e) {
-                    System.out.println("Unknown Error");
+                    System.out.println(R.string.regiFail);
                 }
             }
         });
@@ -103,31 +103,31 @@ public class RegisterMgr {
     public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, String birthday, String phoneNo, Context context) {
 
         if (userName.isEmpty()) {
-            Toast.makeText(context, "Registration unsuccessful, username is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyUsername, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (emailAddress.isEmpty()) {
-            Toast.makeText(context, "Registration unsuccessful, email address is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (password.isEmpty()) {
-            Toast.makeText(context, "Registration unsuccessful, password is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyPw, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (!password.equals(rePassword)) {
-            Toast.makeText(context, "Registration unsuccessful, re-entered password is different from password", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.regiFailRePw, Toast.LENGTH_LONG).show();
             return false;
         }
         else if (gender == null) {
-            Toast.makeText(context, "Registration unsuccessful, gender is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyGender, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (birthday == null) {
-            Toast.makeText(context, "Registration unsuccessful, birthday is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyBd, Toast.LENGTH_LONG).show();
             return false;
         }
         else if (phoneNo.isEmpty()) {
-            Toast.makeText(context, "Registration unsuccessful, phone number is empty", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyPhone, Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
