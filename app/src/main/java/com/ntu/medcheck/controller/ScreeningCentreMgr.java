@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //get selection
                 choice = parent.getItemAtPosition(position).toString();
+                Log.i("choice", "choice is " + choice);
             }
             @Override
             //put nothing here
@@ -104,7 +106,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                if(choice.equals("Cervical screening centres")){
+                if(choice.equals("Cervical Screening Centre")){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -113,14 +115,13 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                         text_clinic_hyperlink.setText("");
                         text_clinic_postalcode.setText("");
                         text_clinic_streetname.setText("");
-                        //screeningCentreMgr.cervicalJson(getContext(), mView);
                         cervicalLayer();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (JSONException e) {
                         //e.printStackTrace();
                     }
-                }else if(choice.equals("Breast screening centres")){
+                }else if(choice.equals("Breast Screening Centre")){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -135,7 +136,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else{
+                }else if(choice.equals("CHAS Clinics")){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();

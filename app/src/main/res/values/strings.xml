@@ -44,7 +44,7 @@
     <string name="searchButton">Search</string>
         <!--clinicTypeSpinner-->
     <string-array name="clinic_choices">
-        <item><string name="clinicTypeDefault">choose clinic type</string></item>
+        <item><string name="clinicTypeDefault">Choose clinic type</string></item>
         <item><string name="clinicTypeBreast">Breast Screening Centre</string></item>
         <item><string name="clinicTypeCervical">Cervical Screening Centre</string></item>
         <item><string name="clinicTypeCHAS">CHAS Clinics</string></item>

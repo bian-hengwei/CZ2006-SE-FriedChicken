@@ -104,13 +104,13 @@ public class CheckUpMgr {
         med1.setType("type1");
         med1.setComment("comment1");
         med1.setUnit("ml");
+        med1.setFrequency("1f");
         ArrayList<Time> t = new ArrayList<>();
         Time med1Time = new Time("1020");
         t.add(med1Time);
         Time med1Time2 = new Time("1130");
         t.add(med1Time2);
         med1.setTime(t);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println(med1.getTime().get(0).getMinute());
 
 
@@ -119,20 +119,18 @@ public class CheckUpMgr {
         med2.setType("type2");
         med2.setComment("comment2");
         med2.setUnit("ml2");
+        med2.setFrequency("2f");
         Time med2Time = new Time("1520");
         ArrayList<Time> t2 = new ArrayList<>();
         t2.add(med2Time);
         Time med2Time2 = new Time("1830");
         t2.add(med2Time2);
         med2.setTime(t2);
-        ///////////////////////////////////////////////////////////////////////////
 
         schedule.getMedication().add(med1);
         schedule.getMedication().add(med2);
 
         suRef.setValue(schedule);
-
-        //suRef.child("medication").child("0").child("time").setValue(t);
     }
 
     public void dynamicDisplayCheckup(Fragment fragment, View view) {

@@ -10,6 +10,7 @@ public class MedicationEntry extends Entry{
 
     String dosage;
     String unit;
+    String frequency;
     ArrayList<Time> time = new ArrayList<>();
 
     public MedicationEntry() {
@@ -41,6 +42,14 @@ public class MedicationEntry extends Entry{
 
     public void setTime(ArrayList<Time> time) {
         this.time = time;
+    }
+
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
     }
 
     /* public boolean addTime(Time t) {

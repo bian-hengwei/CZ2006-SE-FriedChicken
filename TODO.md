@@ -6,7 +6,7 @@
  - [ ] TODO: User change password HENGWEI
  - [ ] TODO: Return to fragment instead of redrawing Home
      - [ ] TODO: Also change for register etc.
- - [ ] TODO: Medication entry data structure YINAN
+ - [x] TODO: Medication entry data structure YINAN
  - [ ] TODO: Medication database YINAN
  - [ ] TODO: Medication display on fragment YINAN
  - [ ] TODO: Add medication YINAN

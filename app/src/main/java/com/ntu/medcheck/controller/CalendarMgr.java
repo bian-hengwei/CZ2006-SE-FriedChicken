@@ -31,10 +31,6 @@ import java.util.Map;
 public class CalendarMgr implements OnNavigationButtonClickedListener {
 
     public CalendarMgr() {
-        CheckUpMgr checkUpMgr = new CheckUpMgr();
-        // for testing only
-        checkUpMgr.init();
-        checkUpMgr.save();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
