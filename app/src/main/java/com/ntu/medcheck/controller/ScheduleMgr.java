@@ -41,7 +41,35 @@ public class ScheduleMgr {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 setSchedule(dataSnapshot);
 
-                Log.d("loading", "Loading data");
+       /*         Log.d("Testing medication", schedule.getMedication().get(0).getName());
+                Log.d("Testing medication", schedule.getMedication().get(0).getDosage());
+                Log.d("Testing medication", schedule.getMedication().get(0).getUnit());
+                Log.d("Testing medication", schedule.getMedication().get(0).getType());
+                Log.d("Testing medication", schedule.getMedication().get(0).getComment());
+                if(schedule.getMedication().get(0).getTime().get(0).getHour() == null) {
+                    System.out.println(schedule.getMedication().get(0).getTime().get(0));
+                }
+                else {
+                    System.out.println("NOT NULLLL");
+                } */
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getMinute());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getMinute());
+             /*   Log.d("Testing medication", schedule.getMedication().get(1).getName());
+                Log.d("Testing medication", schedule.getMedication().get(1).getDosage());
+                Log.d("Testing medication", schedule.getMedication().get(1).getUnit());
+                Log.d("Testing medication", schedule.getMedication().get(1).getType());
+                Log.d("Testing medication", schedule.getMedication().get(1).getComment());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getMinute());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getHour());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getMinute());
+*/
+
+
+       Log.d("loading", "Loading data");
                 aca.initFragments();
             }
 
@@ -99,6 +127,7 @@ public class ScheduleMgr {
         medicationEntry.setComment((String) entry.child("comment").getValue());
         medicationEntry.setName((String) entry.child("name").getValue());
         medicationEntry.setType((String) entry.child("type").getValue());
+        medicationEntry.setFrequency((String)entry.child("frequency").getValue());
 
         DataSnapshot timeEntry = entry.child("time");
         ArrayList<Time> timeArrayList = new ArrayList<>();
@@ -108,9 +137,7 @@ public class ScheduleMgr {
             String minute = (String) time.child("minute").getValue();
             timeArrayList.add(new Time(hour + minute));
         }
-
         medicationEntry.setTime(timeArrayList);
-
         return medicationEntry;
     }
 }

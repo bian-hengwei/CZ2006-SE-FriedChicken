@@ -10,6 +10,7 @@ public class MedicationEntry extends Entry{
 
     String dosage;
     String unit;
+    String frequency;
     ArrayList<Time> time = new ArrayList<>();
 
     public MedicationEntry() {
@@ -43,7 +44,15 @@ public class MedicationEntry extends Entry{
         this.time = time;
     }
 
-    public boolean addTime(Time t) {
+    public String getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(String frequency) {
+        this.frequency = frequency;
+    }
+
+    /* public boolean addTime(Time t) {
         for (int i = 0; i < time.size(); i++) {
             if (time.get(i).getDay().equals(t.getDay()) && time.get(i).getMonth().equals(t.getMonth()) && time.get(i).getYear().equals(t.getYear()) && time.get(i).getHour().equals(t.getMinute())) {
                 return false;
@@ -51,7 +60,7 @@ public class MedicationEntry extends Entry{
         }
         time.add(t);
         return true;
-    }
+    }*/
 /*1
     public boolean removeTime(String t) {
         for (int i = 0; i < time.size(); i++) {

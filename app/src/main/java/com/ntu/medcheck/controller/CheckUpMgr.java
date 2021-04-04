@@ -104,6 +104,7 @@ public class CheckUpMgr {
         med1.setType("type1");
         med1.setComment("comment1");
         med1.setUnit("ml");
+        med1.setFrequency("1f");
         ArrayList<Time> t = new ArrayList<>();
         Time med1Time = new Time("1020");
         t.add(med1Time);
@@ -118,6 +119,7 @@ public class CheckUpMgr {
         med2.setType("type2");
         med2.setComment("comment2");
         med2.setUnit("ml2");
+        med2.setFrequency("2f");
         Time med2Time = new Time("1520");
         ArrayList<Time> t2 = new ArrayList<>();
         t2.add(med2Time);
