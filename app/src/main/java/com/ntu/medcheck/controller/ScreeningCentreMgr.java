@@ -97,9 +97,6 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        ScreeningCentreMgr screeningCentreMgr = new ScreeningCentreMgr(); //instantiating screeningCentremanager
-        FragmentActivity fragmentActivity = new FragmentActivity();
-
         search = mView.findViewById(R.id.searchbutton); //get search button
 
         //Conduct search whenever search button is clicked
@@ -172,8 +169,24 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         view.findViewById(R.id.addtoschedule).setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
+                String clinic_choice = text_clinic_name.getText().toString(); //get the string of at clinic name textview
+                String confirmed_clinic_choice = clinic_choice.substring(8);
+                Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
+                String type_of_checkup = null;
+                if(choice.equals("Cervical Screening Centre")){
+                   type_of_checkup = "Cervical checkup";
+                }else if(choice.equals("Breast Screening Centre")){
+                    type_of_checkup = "Breast checkup";
+                }else if(choice.equals("CHAS Clinics")){
+                    type_of_checkup = "Others";
+                }
+
+
                 Intent i = new Intent(ScreeningCentreMgr.this.getActivity(), AddCheckupActivity.class);
+                i.putExtra("Clinic name set", confirmed_clinic_choice); //passing the clinic name string through the intent
+                i.putExtra("type of checkup", type_of_checkup);
                 startActivity(i);
+
             }
         });
     }
