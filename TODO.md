@@ -10,10 +10,8 @@
  - [ ] TODO: Add medication YINAN
      - [ ] TODO: Dynamic time adding YINAN
  - [ ] TODO: Modify / delete medication YINAN
- - [ ] TODO: Add checkup HENGWEI
-     - [ ] TODO: Move clinic details to the other page YONGDING
-     - [ ] TODO: Screening center manager MVC YONGDING
+ - [ ] TODO: Move clinic details to the other page YONGDING
+ - [ ] TODO: Screening center manager MVC YONGDING
  - [ ] TODO: Modify / delete checkup HENGWEI
- - [ ] TODO: Refresh calendar HENGWEI
  - [ ] TODO: Notification YONGDING
  - [ ] TODO: Pack adapter YINAN
