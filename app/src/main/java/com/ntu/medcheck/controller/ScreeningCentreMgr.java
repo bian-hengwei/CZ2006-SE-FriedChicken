@@ -180,8 +180,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 }else if(choice.equals("CHAS Clinics")){
                     type_of_checkup = "Others";
                 }
-
-
+                mapView.onDestroy(); //destroy map before going to another activity
                 Intent i = new Intent(ScreeningCentreMgr.this.getActivity(), AddCheckupActivity.class);
                 i.putExtra("Clinic name set", confirmed_clinic_choice); //passing the clinic name string through the intent
                 i.putExtra("type of checkup", type_of_checkup);
