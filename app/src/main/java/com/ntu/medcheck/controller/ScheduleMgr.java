@@ -12,6 +12,7 @@ import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.model.MedicationEntry;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.model.Schedule;
+import com.ntu.medcheck.view.HomeActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +33,8 @@ public class ScheduleMgr {
     }
 
 
-    public void initialize() {
+    public void initialize(HomeActivity aca) {
+
         uRef.keepSynced(true);
 
         ValueEventListener postListener = new ValueEventListener() {
@@ -46,7 +48,11 @@ public class ScheduleMgr {
                 /*^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^*/
 
 
+
+                Log.d("Testing medication", schedule.getMedication().get(0).getName());
+
                 Log.d("loading", "Loading data");
+                aca.initFragments();
             }
 
             @Override
@@ -90,11 +96,22 @@ public class ScheduleMgr {
 
 /*///////////vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv//////////*/
     private void setMedicationSchedule(DataSnapshot dataSnapshot) {
+
+        if(dataSnapshot == null) {
+
+        }
+
         if(dataSnapshot.child("medication").exists()) {
+            System.out.println("HYN1");
             ArrayList<MedicationEntry> medication = new ArrayList<>();
             for(DataSnapshot entry : dataSnapshot.child("medication").getChildren()) {
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 medication.add(toMedicationEntry(entry));
             }
+            schedule.setMedication(medication);
+        }
+        else {
+            schedule.setMedication(new ArrayList<>());
         }
     }
 
@@ -106,9 +123,16 @@ public class ScheduleMgr {
         medicationEntry.setName((String) entry.child("name").getValue());
         medicationEntry.setType((String) entry.child("type").getValue());
 
-        for(DataSnapshot timeEntry : )
+        DataSnapshot timeEntry = entry.child("time");
+        ArrayList<Time> timeArrayList = new ArrayList<>();
 
-        medicationEntry.setTime();
+        for(DataSnapshot time : timeEntry.getChildren()) {
+            timeArrayList.add(new Time((String)time.child("hour").getValue() + (String)entry.child("minute").getValue()));
+        }
+
+        medicationEntry.setTime(timeArrayList);
+
+        return medicationEntry;
 
     }
 }

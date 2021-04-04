@@ -54,4 +54,13 @@ public class Schedule {
         }
         return str;
     }
+
+    public ArrayList<MedicationEntry> getMedication() {
+        return medication;
+    }
+
+    public void setMedication(ArrayList<MedicationEntry> medication) {
+        Log.d("medication", "setMedication: ");
+        this.medication = medication;
+    }
 }
