@@ -110,7 +110,6 @@ public class CheckUpMgr {
         Time med1Time2 = new Time("1130");
         t.add(med1Time2);
         med1.setTime(t);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println(med1.getTime().get(0).getMinute());
 
 
@@ -125,14 +124,11 @@ public class CheckUpMgr {
         Time med2Time2 = new Time("1830");
         t2.add(med2Time2);
         med2.setTime(t2);
-        ///////////////////////////////////////////////////////////////////////////
 
         schedule.getMedication().add(med1);
         schedule.getMedication().add(med2);
 
         suRef.setValue(schedule);
-
-        //suRef.child("medication").child("0").child("time").setValue(t);
     }
 
     public void dynamicDisplayCheckup(Fragment fragment, View view) {

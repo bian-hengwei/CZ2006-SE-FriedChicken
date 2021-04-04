@@ -36,8 +36,6 @@ public class CalendarFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    ListView listView;
-
     public CalendarFragment() {
         // Required empty public constructor
     }

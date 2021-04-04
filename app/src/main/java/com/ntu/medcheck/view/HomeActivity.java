@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.CheckUpMgr;
 import com.ntu.medcheck.controller.ScheduleMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
 import com.ntu.medcheck.model.User;
@@ -44,6 +45,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         focus = true;
+
+        CheckUpMgr checkUpMgr = new CheckUpMgr();
+        // for testing only
+        checkUpMgr.init();
+        checkUpMgr.save();
 
         UserProfileMgr userProfileMgr = new UserProfileMgr();
         userProfileMgr.initialize(this);
