@@ -56,10 +56,15 @@ public class ScheduleMgr {
                 Log.d("Testing medication", schedule.getMedication().get(0).getType());
                 Log.d("Testing medication", schedule.getMedication().get(0).getComment());
 
+                if(schedule.getMedication().get(0).getTime().get(0).getHour() == null) {
+                    System.out.println(schedule.getMedication().get(0).getTime().get(0));
+                }
+                else {
+                    System.out.println("NOT NULLLL");
+                }
 
-
-                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getHour());
-                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getMinute());
+                Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).);
+             /*   Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(0).getMinute());
                 Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getHour());
                 Log.d("Testing medication", schedule.getMedication().get(0).getTime().get(1).getMinute());
 
@@ -72,7 +77,7 @@ public class ScheduleMgr {
                 Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getHour());
                 Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(0).getMinute());
                 Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getHour());
-                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getMinute());
+                Log.d("Testing medication", schedule.getMedication().get(1).getTime().get(1).getMinute());*/
 
 
 
