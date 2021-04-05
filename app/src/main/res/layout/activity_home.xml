@@ -12,7 +12,7 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
-        android:background="#1976D2"
+        android:background="#142F7E"
         app:itemIconTint="@android:color/background_light"
         app:itemTextColor="@android:color/background_light"
         app:menu="@menu/nav_items"></com.google.android.material.bottomnavigation.BottomNavigationView>

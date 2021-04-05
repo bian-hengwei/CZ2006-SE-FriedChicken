@@ -18,7 +18,8 @@
     <string name="RePwLabel">Re-enter password</string>
 
     <!--    navigation-->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="splashDescript">Your personal healthcare scheduler!</string>
+    <string name="splashCredit">- Powered by NTU FriedChicken Team -</string>
     <string name="nav_calendar">Calendar</string>
     <string name="nav_schedule">Schedule</string>
     <string name="nav_home">Home</string>
