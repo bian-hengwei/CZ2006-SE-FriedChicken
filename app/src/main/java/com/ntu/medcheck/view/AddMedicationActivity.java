@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 public class AddMedicationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    MedicationMgr medicationMgr = new MedicationMgr();
+    MedicationMgr medicationMgr = MedicationMgr.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -15,25 +15,21 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.MedicationMgr;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 
 public class EditMedicationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    MedicationMgr medicationMgr = MedicationMgr.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_medication);
 
-        Button editMedButton = findViewById(R.id.editaddMed);
-        editMedButton.setOnClickListener(new SafeOnClickListener() {
-            @Override
-            public void onOneClick(View v) {
-                Toast editMedToast = Toast.makeText(EditMedicationActivity.this, R.string.AddMedicationSuccess, Toast.LENGTH_LONG);
-                editMedToast.setGravity(Gravity.CENTER, 0, 0);
-                editMedToast.show();
-                Intent i = new Intent(EditMedicationActivity.this, HomeActivity.class);
-                startActivity(i);
-            }
-        });
+        medicationMgr.displayEditMedication(this);
+
+
 
        /* Spinner editUnitList = findViewById(R.id.editUnitList);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dosageUnit, android.R.layout.simple_spinner_item);
