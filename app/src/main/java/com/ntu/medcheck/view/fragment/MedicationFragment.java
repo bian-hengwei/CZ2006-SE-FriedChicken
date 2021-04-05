@@ -32,7 +32,7 @@ public class MedicationFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    MedicationMgr medicationMgr = new MedicationMgr();
+    MedicationMgr medicationMgr = MedicationMgr.getInstance();
 
     public MedicationFragment() {
         // Required empty public constructor
@@ -69,7 +69,7 @@ public class MedicationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_medication, container, false);
-        medicationMgr.dynamicDisplayMedication(view);
+        medicationMgr.dynamicDisplayMedication(this, view);
 
         // Inflate the layout for this fragment
         return view;

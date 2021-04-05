@@ -105,5 +105,6 @@
     <string name="addTime">Add Time</string>
     <string name="deleteTime">Delete Time</string>
     <string name="atLeastOneTime">Cannot delete, need at least one time</string>
+    <string name="confirm">Confirm Change</string>
 
 </resources>
