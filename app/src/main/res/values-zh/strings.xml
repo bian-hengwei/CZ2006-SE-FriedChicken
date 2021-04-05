@@ -18,7 +18,8 @@
     <string name="RePwLabel">再次输入密码</string>
 
     <!--    navigation-->
-    <string name="hello_blank_fragment">哈咯</string>
+    <string name="splashDescript">您自己的健康计划表!</string>
+    <string name="splashCredit">- 本服务由NTU炸鸡组为您带来 -</string>
     <string name="nav_calendar">日历</string>
     <string name="nav_schedule">健康检查</string>
     <string name="nav_home">主界面</string>
