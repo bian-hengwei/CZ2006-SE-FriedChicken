@@ -1,6 +1,6 @@
 ### Tasks
  - [ ] TODO: Add medication HENGWEI
- - [ ] TODO: Modify / delete medication HENGWEI
+ - [ ] TODO: Delete medication HENGWEI
  - [ ] TODO: Modify / delete checkup HENGWEI
  - [ ] TODO: Notification YINAN
 
