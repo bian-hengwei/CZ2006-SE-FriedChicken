@@ -63,6 +63,13 @@ public class AddCheckupActivity extends AppCompatActivity {
                 }
             }
         });
+        findViewById(R.id.deleteCheckUp).setOnClickListener(new SafeOnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onOneClick(View v) {
+                finish();
+            }
+        });
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {

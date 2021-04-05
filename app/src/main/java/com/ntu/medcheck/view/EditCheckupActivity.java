@@ -65,12 +65,23 @@ public class EditCheckupActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.deleteCheckUp).setOnClickListener(new SafeOnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onOneClick(View v) {
+                finish();
+            }
+        });
+
         new CheckUpMgr().display(this, getIntent());
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Log.d("clicked", String.valueOf(item.getItemId()));
-            finish();
+            if (new CheckUpMgr().addCheckUp(EditCheckupActivity.this)) {
+                Toast addCheckupToast = Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
+                addCheckupToast.show();
+                finish();
+            }
         }
         return true;
     }

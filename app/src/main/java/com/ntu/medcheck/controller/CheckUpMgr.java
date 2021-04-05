@@ -85,6 +85,7 @@ public class CheckUpMgr {
             i.putExtra("minute", target.getTime().getMinute());
             i.putExtra("hour", target.getTime().getHour());
             fragment.startActivity(i);
+            new ScheduleMgr().save();
         });
     }
 
