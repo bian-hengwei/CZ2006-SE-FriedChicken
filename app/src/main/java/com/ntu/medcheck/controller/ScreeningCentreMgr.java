@@ -235,7 +235,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 enableUserLocation();
             }else{
                 //show a dialog that permission is not granted
-                Toast.makeText(getContext(),"Location service is not granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),R.string.GPSfail, Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -67,11 +67,11 @@
         <activity android:name=".view.HomeActivity"></activity>
         <activity
             android:name=".view.ForgetPasswordActivity"
-            android:label="Reset Password"
+            android:label="@string/pwResetButton"
             android:parentActivityName=".view.LoginActivity"></activity>
         <activity
             android:name=".view.RegisterActivity"
-            android:label="Registration"
+            android:label="@string/registerLabel"
             android:parentActivityName=".view.LoginActivity"></activity>
         <activity android:name=".view.LoginActivity">
         </activity>

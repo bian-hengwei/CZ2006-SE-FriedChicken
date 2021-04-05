@@ -110,9 +110,9 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
             String dateStr = atime.get(position).get(Calendar.HOUR) + "(hr)" + atime.get(position).get(Calendar.MINUTE) + "(min)";
 
             title.setText(atitle.get(position));
-            location.setText("Location: " + alocation.get(position));
-            time.setText("Time: " + dateStr);
-            comments.setText("Comments: " + acomments.get(position));
+            location.setText(calendar_row.getResources().getString(R.string.clinicName) + alocation.get(position));
+            time.setText(calendar_row.getResources().getString(R.string.eventTime) + dateStr);
+            comments.setText(calendar_row.getResources().getString(R.string.Comment) + acomments.get(position));
 
             return calendar_row;
         }

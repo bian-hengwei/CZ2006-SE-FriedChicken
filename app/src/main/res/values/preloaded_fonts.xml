@@ -2,8 +2,10 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/aclonica</item>
+        <item>@font/alike</item>
         <item>@font/bigshot_one</item>
         <item>@font/im_fell_double_pica_sc</item>
+        <item>@font/kurale</item>
         <item>@font/trade_winds</item>
     </array>
 </resources>

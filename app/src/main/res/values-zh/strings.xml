@@ -6,7 +6,7 @@
     <string name="timeMor">早晨</string>
     <string name="timeAft">下午</string>
     <string name="timeEve">晚上</string>
-    <string name="Comment">备注:</string>
+    <string name="Comment">备注：</string>
     <string name="AddButton">添加</string>
     <string name="emailLabel">电子邮箱</string>
     <string name="pwLabel">密码</string>
@@ -23,10 +23,9 @@
     <string name="splashCredit">- 本服务由NTU炸鸡组为您带来 -</string>
     <string name="nav_calendar">日历</string>
     <string name="nav_schedule">健康检查</string>
-    <string name="nav_home">主界面</string>
+    <string name="nav_home">用户中心</string>
     <string name="nav_medicine">用药记录</string>
     <string name="title_activity_home">主活动</string>
-    <string name="title_home">主界面</string>
     <string name="title_dashboard">大师包</string>
     <string name="title_notifications">消息通知</string>
 
@@ -39,17 +38,18 @@
 
     <!--    entries = checkup/medication-->
     <string name="eventName">事件</string>
-    <string name="clinicName">诊所:</string>
-    <string name="eventDate">日期:</string>
-    <string name="eventTime">时间:</string>
+    <string name="clinicName">诊所：</string>
+    <string name="eventDate">日期：</string>
+    <string name="eventTime">时间：</string>
+    <string name="eventFreq">频率：</string>
     <string name="addCheckupButton">添加新健康检查记录</string>
     <string name="addMedButton">添加新用药记录</string>
 
     <!--    ScreeningCenterMgr.java-->
-    <string name="postalLabel">邮编: </string>
-    <string name="streetLabel">街道名: </string>
-    <string name="clinicLabel">诊所: </string>
-    <string name="webLabel">网站: </string>
+    <string name="postalLabel">邮编：</string>
+    <string name="streetLabel">街道名：</string>
+    <string name="clinicLabel">诊所：</string>
+    <string name="webLabel">网站：</string>
 
     <!--    fragment_map.xml-->
     <string name="searchButton">检索</string>
@@ -66,15 +66,18 @@
     <string name="confirmClinicButton">确定诊所</string>
 
     <!--    activity_add_checkup.xml-->
-    <string name="newCheckupType">健康检查类型:</string>
+    <string name="newCheckupType">健康检查类型：</string>
 
     <!--    activity_add_medication.xml-->
-    <string name="newMedName">药品名:</string>
-    <string name="newMedDosageText">计量:</string>
-    <string name="newMedTimeText">提醒时间:</string>
-    <string name="newMedRepeat1">重复提醒: 每</string>
-    <string name="newMedRepeat2">天</string>
-    <string name="newMedAddimg">添加图片</string>
+    <string name="newMedName">药品名：</string>
+    <string name="newMedDosageText">剂量：</string>
+    <string name="newMedTimeText">提醒时间：</string>
+    <string name="newMedRepeat1">重复提醒：每</string>
+    <string name="newMedRepeat2">天一次</string>
+    <string name="addMedicationToReminder">添加至提醒列表</string>
+    <string name="addTime">增加提醒时间</string>
+    <string name="deleteTime">去除提醒时间</string>
+
     <!--unitListSpinner-->
     <string-array name="dosageUnit">
         <item><string name="unitListDefault">单位</string></item>
@@ -96,10 +99,10 @@
     <!--    fragment_user_home.xml-->
     <string name="welcomeBack">欢迎回来，</string>
     <string name="userProfile">用户信息</string>
-    <string name="genderLabel">性别:</string>
+    <string name="genderLabel">性别：</string>
     <string name="male_label">男</string>
     <string name="female_label">女</string>
-    <string name="birthdayLabel">生日:</string>
+    <string name="birthdayLabel">生日：</string>
     <string name="editProfileButton">修改用户信息</string>
     <string name="logout" >退出登录</string>
 

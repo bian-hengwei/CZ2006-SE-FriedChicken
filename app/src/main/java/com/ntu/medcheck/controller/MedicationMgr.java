@@ -206,10 +206,10 @@ public class MedicationMgr {
             TextView comments = medication_row.findViewById(R.id.commentMedicationRow);
 
             title.setText(atitle.get(position));
-            time.setText("Time: " + atime.get(position));
-            dosage.setText("Dosage: " + adosage.get(position));
-            frequency.setText("Frequency: " + afrequency.get(position));
-            comments.setText("Comments: " + acomment.get(position));
+            time.setText(medication_row.getResources().getString(R.string.eventTime) + atime.get(position));
+            dosage.setText(medication_row.getResources().getString(R.string.newMedDosageText) + adosage.get(position));
+            frequency.setText(medication_row.getResources().getString(R.string.eventFreq) + afrequency.get(position));
+            comments.setText(medication_row.getResources().getString(R.string.Comment) + acomment.get(position));
             return medication_row;
         }
 

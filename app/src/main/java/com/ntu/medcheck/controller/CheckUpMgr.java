@@ -185,10 +185,10 @@ public class CheckUpMgr {
             TextView comments = checkup_row.findViewById(R.id.commentCheckupRow);
 
             title.setText(atitle.get(position));
-            date.setText("Date: " + adate.get(position).substring(6, 8) + " / " + adate.get(position).substring(4, 6) + " / " + adate.get(position).substring(0, 4));
-            time.setText("Time: " + atime.get(position).substring(0, 2) + " : " + atime.get(position).substring(2, 4));
-            location.setText("Location: " + alocation.get(position));
-            comments.setText("Comments: " + acomment.get(position));
+            date.setText(checkup_row.getResources().getString(R.string.eventDate) + adate.get(position).substring(6, 8) + " / " + adate.get(position).substring(4, 6) + " / " + adate.get(position).substring(0, 4));
+            time.setText(checkup_row.getResources().getString(R.string.eventTime) + atime.get(position).substring(0, 2) + " : " + atime.get(position).substring(2, 4));
+            location.setText(checkup_row.getResources().getString(R.string.clinicName) + alocation.get(position));
+            comments.setText(checkup_row.getResources().getString(R.string.Comment) + acomment.get(position));
 
             return checkup_row;
         }

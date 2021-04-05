@@ -12,12 +12,6 @@
         android:text=""
         android:padding="5dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/timeH"
-        android:padding="5dp"/>
-
     <EditText
         android:id="@+id/addMedicationHour"
         android:layout_width="50dp"
@@ -29,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/timeM"
+        android:text=":"
         android:padding="5dp"/>
 
     <EditText

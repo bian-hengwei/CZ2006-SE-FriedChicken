@@ -23,10 +23,9 @@
     <string name="splashCredit">- Powered by NTU FriedChicken Team -</string>
     <string name="nav_calendar">Calendar</string>
     <string name="nav_schedule">Schedule</string>
-    <string name="nav_home">Home</string>
+    <string name="nav_home">UserHome</string>
     <string name="nav_medicine">Medicine</string>
     <string name="title_activity_home">MainActivity</string>
-    <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
@@ -39,9 +38,10 @@
 
     <!--    entries = checkup/medication-->
     <string name="eventName">Event</string>
-    <string name="clinicName">Clinic:</string>
-    <string name="eventDate">Date:</string>
-    <string name="eventTime">Time:</string>
+    <string name="clinicName">Clinic: </string>
+    <string name="eventDate">Date: </string>
+    <string name="eventTime">Time: </string>
+    <string name="eventFreq">Frequency: </string>
     <string name="addCheckupButton">Add New Checkup</string>
     <string name="addMedButton">Add New Medication</string>
 
@@ -74,7 +74,12 @@
     <string name="newMedTimeText">Reminder Time:</string>
     <string name="newMedRepeat1">Repeat: Once every</string>
     <string name="newMedRepeat2">day(s)</string>
-    <string name="newMedAddimg">Add Image</string>
+
+    <string name="addMedicationToReminder">Add To Reminder</string>
+    <string name="addTime">+ Timing</string>
+    <string name="deleteTime">- Timing</string>
+
+
         <!--unitListSpinner-->
     <string-array name="dosageUnit">
         <item><string name="unitListDefault">unit</string></item>
@@ -102,11 +107,5 @@
     <string name="birthdayLabel">Birthday:</string>
     <string name="editProfileButton">Edit profile</string>
     <string name="logout" >Logout</string>
-    <string name="time_label">Time</string>
-    <string name="addMedicationToReminder">Add To Reminder</string>
-    <string name="addTime">Add Time</string>
-    <string name="deleteTime">Delete Time</string>
-    <string name="atLeastOneTime">Cannot delete, need at least one time</string>
-    <string name="confirm">Confirm Change</string>
 
 </resources>

@@ -24,6 +24,7 @@
     <string name="emptyBd">请选择生日</string>
     <string name="emptyPhone">请填写手机号码</string>
     <string name="GPSfail">定位服务未授权</string>
+    <string name="atLeastOneTime">至少要有一个提醒时间！</string>
 
 
     <!-- login & account -->
