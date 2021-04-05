@@ -90,5 +90,6 @@
     <string name="birthdayLabel">Birthday:</string>
     <string name="editProfileButton">Edit profile</string>
     <string name="logout" >Logout</string>
+    <string name="time_label">Time</string>
 
 </resources>
