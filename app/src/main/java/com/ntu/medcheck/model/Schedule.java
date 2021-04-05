@@ -3,6 +3,7 @@ package com.ntu.medcheck.model;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,5 +59,16 @@ public class Schedule {
     public void setMedication(ArrayList<MedicationEntry> medication) {
         Log.d("medication", "setMedication: ");
         this.medication = medication;
+    }
+
+    public void remove(CheckUpEntry delEntry) {
+        for (ArrayList<CheckUpEntry> arr : checkup.values()) {
+            for (CheckUpEntry entry : arr) {
+                if (entry == delEntry) {
+                    arr.remove(entry);
+                    return;
+                }
+            }
+        }
     }
 }
