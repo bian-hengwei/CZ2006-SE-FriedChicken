@@ -89,6 +89,8 @@
             android:name="org.apache.http.legacy"
             android:required="false"
             tools:ignore="WrongManifestParent" />
+
+        <receiver android:name=".controller.ReminderBroadcast"/>
     </application>
 
 </manifest>
