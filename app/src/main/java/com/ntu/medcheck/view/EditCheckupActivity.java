@@ -28,6 +28,7 @@ import com.ntu.medcheck.view.fragment.CheckupFragment;
 public class EditCheckupActivity extends AppCompatActivity {
     public TextView clinic_name;
     public TextView checkup_type;
+    private boolean save = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -54,14 +55,8 @@ public class EditCheckupActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onOneClick(View v) {
-                if (new CheckUpMgr().addCheckUp(EditCheckupActivity.this)) {
-                    Toast addCheckupToast = Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
-                    addCheckupToast.show();
-                    finish();
-                }
-                else {
-                    Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
-                }
+                save = true;
+                finish();
             }
         });
 
@@ -77,13 +72,26 @@ public class EditCheckupActivity extends AppCompatActivity {
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if (new CheckUpMgr().addCheckUp(EditCheckupActivity.this)) {
-                Toast addCheckupToast = Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
-                addCheckupToast.show();
-                finish();
-            }
+            finish();
         }
         return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!save) {
+            new CheckUpMgr().display(this, getIntent());
+        }
+        if (new CheckUpMgr().addCheckUp(EditCheckupActivity.this)) {
+            Toast addCheckupToast = Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
+            addCheckupToast.show();
+            finish();
+        }
+        else {
+            Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+        }
     }
 
     @Override
