@@ -2,8 +2,11 @@ package com.ntu.medcheck.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
@@ -19,7 +22,10 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // back button
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null)
+            Log.d("ACTION BAR", "null");
+        else actionBar.setDisplayHomeAsUpEnabled(true);
 
         Button forgetPasswordBtn = findViewById(R.id.forgetPasswordResetPasswordButton);
         forgetPasswordBtn.setOnClickListener(v1 -> {
@@ -27,5 +33,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             Context context = getApplicationContext();
             userProfileMgr.resetPassword(this, context);
         });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Log.d("clicked", String.valueOf(item.getItemId()));
+            finish();
+        }
+        return true;
     }
 }

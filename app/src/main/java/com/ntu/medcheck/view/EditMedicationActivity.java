@@ -2,7 +2,9 @@ package com.ntu.medcheck.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
@@ -28,6 +31,11 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
         setContentView(R.layout.activity_edit_medication);
 
         medicationMgr.displayEditMedication(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null)
+            Log.d("ACTION BAR", "null");
+        else actionBar.setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -121,6 +129,14 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
                 }
             }
         });*/
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Log.d("clicked", String.valueOf(item.getItemId()));
+            finish();
+        }
+        return true;
     }
 
     @Override

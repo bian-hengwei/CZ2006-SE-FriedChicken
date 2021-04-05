@@ -3,12 +3,15 @@ package com.ntu.medcheck.view;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,6 +33,11 @@ public class AddCheckupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_checkup);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null)
+            Log.d("ACTION BAR", "null");
+        else actionBar.setDisplayHomeAsUpEnabled(true);
 
         checkup_type = findViewById(R.id.confirmed_checkup_type); //get the textview
         String setCheckUpType = getIntent().getStringExtra("type of checkup"); //get the string value from the intent
@@ -63,6 +71,13 @@ public class AddCheckupActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            Log.d("clicked", String.valueOf(item.getItemId()));
+            finish();
+        }
+        return true;
     }
 
     public void returnToScheduleFrag(View v) {
