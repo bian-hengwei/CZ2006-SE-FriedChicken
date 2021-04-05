@@ -14,6 +14,7 @@
     <string name="registerLabel">Register</string>
     <string name="usernameLabel">Username</string>
     <string name="confirmButton">Confirm</string>
+    <string name="deleteButton">Delete</string>
     <string name="phoneLabel">Phone Number</string>
     <string name="RePwLabel">Re-enter password</string>
 
@@ -30,7 +31,7 @@
     <string name="title_notifications">Notifications</string>
 
     <!--    headers-->
-    <string name="headerSearchClinic">Searching for Screening Centres</string>
+    <string name="headerSearchClinic">Search for Screening Centres</string>
     <string name="headerCheckupDetail">Checkup Detail</string>
     <string name="headerNewCheckup">New Checkup Schedule</string>
     <string name="headerNewMedication">New Medication Reminder</string>

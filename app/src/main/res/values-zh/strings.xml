@@ -14,6 +14,7 @@
     <string name="registerLabel">注册新账号</string>
     <string name="usernameLabel">用户名</string>
     <string name="confirmButton">确定修改</string>
+    <string name="deleteButton">删除本条</string>
     <string name="phoneLabel">手机号码</string>
     <string name="RePwLabel">再次输入密码</string>
 

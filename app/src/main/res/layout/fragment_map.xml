@@ -37,20 +37,19 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="21dp"
         android:layout_alignBottom="@id/mapview"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
         android:entries="@array/clinic_choices"
         app:layout_constraintBottom_toTopOf="@+id/mapview"
-        app:layout_constraintEnd_toStartOf="@+id/searchbutton"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="@+id/searchbutton"
+        app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.16" />
 
     <TextView
         android:id="@+id/clinic_name"
@@ -124,8 +123,9 @@
         android:text="@string/confirmClinicButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clinic_hyperlink"
-        app:layout_constraintVertical_bias="0.902" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.926" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
