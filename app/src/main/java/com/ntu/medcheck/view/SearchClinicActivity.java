@@ -25,13 +25,15 @@ public class SearchClinicActivity extends AppCompatActivity {
         if (actionBar == null)
             Log.d("ACTION BAR", "null");
         else actionBar.setDisplayHomeAsUpEnabled(true);
-        
+
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         ScreeningCentreMgr defaultMap = null;
         defaultMap = new ScreeningCentreMgr();// creating map fragment
         fragmentTransaction.add(R.id.Container, defaultMap); //putting map fragment on the activity
         fragmentTransaction.commit();
+
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

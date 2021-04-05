@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -25,16 +26,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
-
 import com.ntu.medcheck.model.MedicationEntry;
+import com.ntu.medcheck.model.Schedule;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.view.EditCheckupActivity;
-import com.ntu.medcheck.model.Schedule;
-
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 
 public class CheckUpMgr {
@@ -49,11 +48,14 @@ public class CheckUpMgr {
         ArrayList<String> time = new ArrayList<>();
         ArrayList<String> location = new ArrayList<>();
         ArrayList<String> comment = new ArrayList<>();
+        ArrayList<CheckUpEntry> entries = new ArrayList<>();
 
         listView = view.findViewById(R.id.checkupListView);
         Map<String, ArrayList<CheckUpEntry>> checkup = Schedule.getInstance().getCheckup();
-
-        for (ArrayList<CheckUpEntry> arr : checkup.values()) {
+        ArrayList<String> sortedKeys = new ArrayList<>(checkup.keySet());
+        Collections.sort(sortedKeys);
+        for (String key : sortedKeys) {
+            ArrayList<CheckUpEntry> arr = checkup.get(key);
             for (CheckUpEntry entry : arr) {
                 if (entry.getTime().toCalendar().after(Calendar.getInstance())) {
                     Log.d("future entry", "dynamicDisplayCheckup: ");
@@ -62,6 +64,7 @@ public class CheckUpMgr {
                     time.add(entry.getTime().getHour() + entry.getTime().getMinute());
                     location.add(entry.getClinic());
                     comment.add(entry.getComment());
+                    entries.add(entry);
                 }
             }
         }
@@ -70,8 +73,43 @@ public class CheckUpMgr {
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             System.out.println(title.get(position));
             Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
+            CheckUpEntry target = entries.remove(position);
+            Schedule.getInstance().remove(target);
+            i.putExtra("name", target.getName());
+            i.putExtra("comment", target.getComment());
+            i.putExtra("title", target.getTitle());
+            i.putExtra("clinic", target.getClinic());
+            i.putExtra("day", target.getTime().getDay());
+            i.putExtra("month", target.getTime().getMonth());
+            i.putExtra("year", target.getTime().getYear());
+            i.putExtra("minute", target.getTime().getMinute());
+            i.putExtra("hour", target.getTime().getHour());
             fragment.startActivity(i);
         });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void display(AppCompatActivity aca, Intent intent) {
+        String name = intent.getStringExtra("name");
+        String comment = intent.getStringExtra("comment");
+        String title = intent.getStringExtra("title");
+        String clinic = intent.getStringExtra("clinic");
+        String day = intent.getStringExtra("day");
+        String month = intent.getStringExtra("month");
+        String year = intent.getStringExtra("year");
+        String minute = intent.getStringExtra("minute");
+        String hour = intent.getStringExtra("hour");
+        TextView checkUpType = aca.findViewById(R.id.confirmed_checkup_type);
+        checkUpType.setText(title);
+        TextView clinicView = aca.findViewById(R.id.confirmed_clinic_name);
+        clinicView.setText(clinic);
+        EditText commentBox = aca.findViewById(R.id.commentBox);
+        commentBox.setText(comment);
+        DatePicker date = aca.findViewById(R.id.datePickerAddCheckup);
+        date.init(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day), null);
+        TimePicker time = aca.findViewById(R.id.timePickerAddCheckup);
+        time.setHour(Integer.parseInt(hour));
+            time.setMinute(Integer.parseInt(minute));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
