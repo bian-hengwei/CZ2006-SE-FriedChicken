@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/addMedicationTimeIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:padding="5dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timeH"
+        android:padding="5dp"/>
+
+    <EditText
+        android:id="@+id/addMedicationHour"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="time"
+        android:padding="5dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timeM"
+        android:padding="5dp"/>
+
+    <EditText
+        android:id="@+id/addMedicationMinute"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="time"
+        android:padding="5dp"/>
+</LinearLayout>

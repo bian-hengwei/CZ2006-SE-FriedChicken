@@ -33,6 +33,7 @@
     <string name="headerCheckupDetail">Checkup Detail</string>
     <string name="headerNewCheckup">New Checkup Schedule</string>
     <string name="headerNewMedication">New Medication Reminder</string>
+    <string name="headerMedicationDetail">Medication Detail</string>
 
     <!--    entries = checkup/medication-->
     <string name="eventName">Event</string>
@@ -41,6 +42,12 @@
     <string name="eventTime">Time:</string>
     <string name="addCheckupButton">Add New Checkup</string>
     <string name="addMedButton">Add New Medication</string>
+
+    <!--    ScreeningCenterMgr.java-->
+    <string name="postalLabel">Postal Code: </string>
+    <string name="streetLabel">Street Name: </string>
+    <string name="clinicLabel">Clinic: </string>
+    <string name="webLabel">Website: </string>
 
     <!--    fragment_map.xml-->
     <string name="searchButton">Search</string>
@@ -51,6 +58,9 @@
         <item><string name="clinicTypeCervical">Cervical Screening Centre</string></item>
         <item><string name="clinicTypeCHAS">CHAS Clinics</string></item>
     </string-array>
+    <string name="clinicBreast">Breast Screening Centre</string>
+    <string name="clinicCervical">Cervical Screening Centre</string>
+    <string name="clinicCHAS">CHAS Clinics</string>
     <string name="confirmClinicButton">Confirm Clinic</string>
 
     <!--    activity_add_checkup.xml-->
@@ -91,5 +101,9 @@
     <string name="editProfileButton">Edit profile</string>
     <string name="logout" >Logout</string>
     <string name="time_label">Time</string>
+    <string name="addMedicationToReminder">Add To Reminder</string>
+    <string name="addTime">Add Time</string>
+    <string name="deleteTime">Delete Time</string>
+    <string name="atLeastOneTime">Cannot delete, need at least one time</string>
 
 </resources>

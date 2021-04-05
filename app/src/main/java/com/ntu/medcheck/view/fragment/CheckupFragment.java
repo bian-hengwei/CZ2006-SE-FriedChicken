@@ -2,6 +2,7 @@ package com.ntu.medcheck.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.AddCheckupActivity;
 
 /**
@@ -69,15 +71,8 @@ public class CheckupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_checkup, container, false);
-
         ListView listView = view.findViewById(R.id.checkupListView);
-
-        if (listView == null) {
-            System.out.println("fragment list view is null");
-        }
-
-        checkUpMgr.dynamicDisplayCheckup(this,view);
-
+        checkUpMgr.dynamicDisplayCheckup(this, view);
         // Inflate the layout for this fragment
         return view;
     }
@@ -86,11 +81,12 @@ public class CheckupFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewCheckup = view.findViewById(R.id.addNewCheckup);
-        addNewCheckup.setOnClickListener(mListener);
+        addNewCheckup.setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
+                startActivity(i);
+            }
+        });
     }
-
-    private final View.OnClickListener mListener = view -> {
-        Intent i = new Intent(CheckupFragment.this.getActivity(), AddCheckupActivity.class);
-        startActivity(i);
-    };
 }

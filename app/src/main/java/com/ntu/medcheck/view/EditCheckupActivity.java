@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 
 public class EditCheckupActivity extends AppCompatActivity {
     @Override
@@ -15,19 +16,10 @@ public class EditCheckupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_checkup);
 
-        FloatingActionButton editCheckupType = findViewById(R.id.editEditType);
-        editCheckupType.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton editButton = findViewById(R.id.editClinic);
+        editButton.setOnClickListener(new SafeOnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(EditCheckupActivity.this, SearchClinicActivity.class);
-                startActivity(i);
-            }
-        });
-
-        FloatingActionButton editClinic = findViewById(R.id.editEditClinic);
-        editClinic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            public void onOneClick(View v) {
                 Intent i = new Intent(EditCheckupActivity.this, SearchClinicActivity.class);
                 startActivity(i);
             }

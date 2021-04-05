@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.MedicationMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.AddMedicationActivity;
 
 /**
@@ -78,11 +79,12 @@ public class MedicationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FloatingActionButton addNewMedication = view.findViewById(R.id.addNewMedication);
-        addNewMedication.setOnClickListener(mListener);
+        addNewMedication.setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                Intent i = new Intent(MedicationFragment.this.getActivity(), AddMedicationActivity.class);
+                startActivity(i);
+            }
+        });
     }
-
-    private final View.OnClickListener mListener = view -> {
-        Intent i = new Intent(MedicationFragment.this.getActivity(), AddMedicationActivity.class);
-        startActivity(i);
-    };
 }

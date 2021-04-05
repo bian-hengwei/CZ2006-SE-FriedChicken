@@ -97,16 +97,13 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
             }
         });
 
-        ScreeningCentreMgr screeningCentreMgr = new ScreeningCentreMgr(); //instantiating screeningCentremanager
-        FragmentActivity fragmentActivity = new FragmentActivity();
-
         search = mView.findViewById(R.id.searchbutton); //get search button
 
         //Conduct search whenever search button is clicked
-        search.setOnClickListener(new View.OnClickListener() {
+        search.setOnClickListener(new SafeOnClickListener() {
             @Override
-            public void onClick(View v){
-                if(choice.equals("Cervical Screening Centre")){
+            public void onOneClick(View v) {
+                if (choice.equals(mView.getResources().getString(R.string.clinicCervical))){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -121,7 +118,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         //e.printStackTrace();
                     }
-                }else if(choice.equals("Breast Screening Centre")){
+                }else if(choice.equals(mView.getResources().getString(R.string.clinicBreast))){
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -136,7 +133,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }else if(choice.equals("CHAS Clinics")){
+                } else if (choice.equals(mView.getResources().getString(R.string.clinicCHAS))) {
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -157,7 +154,6 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         return mView;
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -172,8 +168,23 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         view.findViewById(R.id.addtoschedule).setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
+                String clinic_choice = text_clinic_name.getText().toString(); //get the string of at clinic name textview
+                String confirmed_clinic_choice = clinic_choice.substring(8);
+                Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
+                String type_of_checkup = null;
+                if(choice.equals("Cervical Screening Centre")){
+                   type_of_checkup = "Cervical checkup";
+                }else if(choice.equals("Breast Screening Centre")){
+                    type_of_checkup = "Breast checkup";
+                }else if(choice.equals("CHAS Clinics")){
+                    type_of_checkup = "Others";
+                }
+                mapView.onDestroy(); //destroy map before going to another activity
                 Intent i = new Intent(ScreeningCentreMgr.this.getActivity(), AddCheckupActivity.class);
+                i.putExtra("Clinic name set", confirmed_clinic_choice); //passing the clinic name string through the intent
+                i.putExtra("type of checkup", type_of_checkup);
                 startActivity(i);
+
             }
         });
     }

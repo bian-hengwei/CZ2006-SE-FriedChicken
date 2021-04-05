@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.MedicationEntry;
@@ -38,6 +38,39 @@ public class MedicationMgr {
 
         // !!!!!!! on click, view in detail and can edit
         listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
+    }
+
+    public void dynamicAddTime(AppCompatActivity aca, ArrayList<String> indexIn) {
+        ArrayList<String> index = indexIn;
+        MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index);
+
+        ListView listView = aca.findViewById(R.id.addMedicationListView);
+        listView.setAdapter(arrayAdapter);
+
+        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
+    }
+
+    class MyAddMedicationAdapter extends ArrayAdapter<String> {
+        Context context;
+        ArrayList<String> index;
+
+        public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index) {
+            super(context, R.layout.add_medication_row, index);
+            System.out.println("4");
+            this.context = context;
+            this.index = index;
+        }
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View add_medication_row = layoutInflater.inflate(R.layout.add_medication_row, parent, false);
+            TextView indexText = add_medication_row.findViewById(R.id.addMedicationTimeIndex);
+            indexText.setText(index.get(position));
+            return add_medication_row;
+        }
+
     }
 
     class MyAdapter extends ArrayAdapter<String> {
@@ -78,6 +111,10 @@ public class MedicationMgr {
         }
 
     }
+
+
+
+
 
     public ArrayList<String> getComment() {
         ArrayList<String> commentArrayList = new ArrayList<>();
@@ -167,6 +204,13 @@ public class MedicationMgr {
         title.add("lung medicine");
         title.add("lung medicine");*/
         return titleArrayList;
+    }
+
+    public ArrayList<String> getIndex() {
+        ArrayList<String> index = new ArrayList<>();
+        index.add("1");
+        index.add("2");
+        return index;
     }
 
 }

@@ -13,9 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.model.Schedule;
@@ -79,7 +76,6 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
                 comments.add(child.getComment());
             }
         }
-
         ListView listView = view.findViewById(R.id.listView);
         MyAdapter adapter = new MyAdapter(view.getContext(), title, location, time, comments);
         listView.setAdapter(adapter);

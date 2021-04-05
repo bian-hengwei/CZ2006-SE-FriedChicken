@@ -34,8 +34,6 @@
             android:text="@string/addMedButton"
             android:textColor="@color/black"
             android:textSize="20sp" />
-
-
     </LinearLayout>
 
     <ListView

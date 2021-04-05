@@ -196,8 +196,11 @@ public class UserProfileMgr {
                     user.setUserName(userName);
 
                     // save email
+                    /*
                     String email = emailInput.getText().toString();
                     user.setEmailAddress(email);
+
+                     */
 
                     // save birthday
                     int day = birthdayInput.getDayOfMonth();
