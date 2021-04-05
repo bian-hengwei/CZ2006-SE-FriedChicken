@@ -180,11 +180,13 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     type_of_checkup = "Others";
                 }
                 mapView.onDestroy(); //destroy map before going to another activity
-                Intent i = new Intent(ScreeningCentreMgr.this.getActivity(), AddCheckupActivity.class);
+                Intent i = new Intent();
                 i.putExtra("Clinic name set", confirmed_clinic_choice); //passing the clinic name string through the intent
                 i.putExtra("type of checkup", type_of_checkup);
-                startActivity(i);
-
+                Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
+                Log.i("testingstring", "clinic string is" + type_of_checkup);
+                getActivity().setResult(Activity.RESULT_OK, i);
+                getActivity().finish();
             }
         });
     }

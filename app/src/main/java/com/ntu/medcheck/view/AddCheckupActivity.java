@@ -39,20 +39,12 @@ public class AddCheckupActivity extends AppCompatActivity {
             Log.d("ACTION BAR", "null");
         else actionBar.setDisplayHomeAsUpEnabled(true);
 
-        checkup_type = findViewById(R.id.confirmed_checkup_type); //get the textview
-        String setCheckUpType = getIntent().getStringExtra("type of checkup"); //get the string value from the intent
-        checkup_type.setText(setCheckUpType); //set checkup type
-
-        clinic_name = findViewById(R.id.confirmed_clinic_name); //get the textview
-        String setClinicName = getIntent().getStringExtra("Clinic name set"); //get the string value from the intent
-        clinic_name.setText(setClinicName);
-
         FloatingActionButton editButton = findViewById(R.id.editClinic);
         editButton.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
                 Intent i = new Intent(AddCheckupActivity.this, SearchClinicActivity.class);
-                startActivity(i);
+                startActivityForResult(i, 100);
             }
         });
 
@@ -80,10 +72,20 @@ public class AddCheckupActivity extends AppCompatActivity {
         return true;
     }
 
-    public void returnToScheduleFrag(View v) {
-        // TODO: can go back to fragment?
-        Intent i = new Intent(this, CheckupFragment.class);
-        startActivity(i);
-    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 100 && resultCode == RESULT_OK) {
 
+            Log.d("OnActivityResult", "onActivityResult: OK");
+            checkup_type = findViewById(R.id.confirmed_checkup_type); //get the textview
+            String setCheckUpType = data.getStringExtra("type of checkup"); //get the string value from the intent
+            checkup_type.setText(setCheckUpType); //set checkup type
+            Log.d("OnActivityResult", "onActivityResult: " + setCheckUpType);
+            clinic_name = findViewById(R.id.confirmed_clinic_name); //get the textview
+            String setClinicName = data.getStringExtra("Clinic name set"); //get the string value from the intent
+            clinic_name.setText(setClinicName);
+            Log.d("OnActivityResult", "onActivityResult: " + setClinicName);
+        }
+    }
 }
