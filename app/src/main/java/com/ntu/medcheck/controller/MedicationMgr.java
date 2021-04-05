@@ -205,12 +205,4 @@ public class MedicationMgr {
         title.add("lung medicine");*/
         return titleArrayList;
     }
-
-    public ArrayList<String> getIndex() {
-        ArrayList<String> index = new ArrayList<>();
-        index.add("1");
-        index.add("2");
-        return index;
-    }
-
 }
