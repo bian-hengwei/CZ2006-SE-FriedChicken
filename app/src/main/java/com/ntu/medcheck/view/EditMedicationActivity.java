@@ -92,7 +92,6 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
                 finish();
             }
         });
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,5 +118,4 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
         super.onDestroy();
         medicationMgr.destroy(this, save, delete);
     }
-
 }

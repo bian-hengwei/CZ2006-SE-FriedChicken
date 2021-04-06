@@ -124,7 +124,7 @@ public class MedicationMgr {
             minute.add(t.getMinute());
         }
 
-        MyAddMedicationEditAdapter arrayAdapter = new MyAddMedicationEditAdapter(aca.getApplicationContext(), index, hour, minute);
+        MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index, hour, minute);
 
         ListView listView = aca.findViewById(R.id.addMedicationListView);
         listView.setAdapter(arrayAdapter);
@@ -197,40 +197,7 @@ public class MedicationMgr {
         return true;
     }
 
-    class MyAddMedicationEditAdapter extends ArrayAdapter<String> {
-        Context context;
-        ArrayList<String> index;
-        ArrayList<String> hour;
-        ArrayList<String> minute;
-
-        public MyAddMedicationEditAdapter(@NonNull Context context, ArrayList<String> index, ArrayList<String> hour, ArrayList<String> minute) {
-            super(context, R.layout.add_medication_row, index);
-            System.out.println("4");
-            this.context = context;
-            this.index = index;
-            this.hour = hour;
-            this.minute = minute;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) context.getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View add_medication_row = layoutInflater.inflate(R.layout.add_medication_row, parent, false);
-            TextView indexText = add_medication_row.findViewById(R.id.addMedicationTimeIndex);
-            indexText.setText(index.get(position));
-            EditText hourText = add_medication_row.findViewById(R.id.addMedicationHour);
-            hourText.setText(hour.get(position));
-            EditText minuteText = add_medication_row.findViewById(R.id.addMedicationMinute);
-            minuteText.setText(minute.get(position));
-            return add_medication_row;
-        }
-
-    }
-
-
     public void dynamicAddTime(AppCompatActivity aca, ArrayList<String> indexIn) {
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@ this index need to change. change into many arraylists with different info
         ArrayList<String> index = indexIn;
         ArrayList<String> hour = new ArrayList<>();
         ArrayList<String> minute = new ArrayList<>();
@@ -259,20 +226,11 @@ public class MedicationMgr {
         listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
     }
 
-
-
     class MyAddMedicationAdapter extends ArrayAdapter<String> {
         Context context;
         ArrayList<String> index;
         ArrayList<String> hour;
         ArrayList<String> minute;
-
-        public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index) {
-            super(context, R.layout.add_medication_row, index);
-            System.out.println("4");
-            this.context = context;
-            this.index = index;
-        }
 
         public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index, ArrayList<String> hour, ArrayList<String> minute) {
             super(context, R.layout.add_medication_row, index);
@@ -339,6 +297,5 @@ public class MedicationMgr {
             comments.setText(medication_row.getResources().getString(R.string.Comment) + acomment.get(position));
             return medication_row;
         }
-
     }
 }
