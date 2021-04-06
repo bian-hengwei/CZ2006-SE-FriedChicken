@@ -149,6 +149,9 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                         e.printStackTrace();
                     }
                 }
+                else{
+                    Toast.makeText(getContext(), "Please select a type of clinic", Toast.LENGTH_SHORT).show(); //show message to remind user to select clinic type
+                }
             }
         });
         return mView;
@@ -157,8 +160,9 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mapView = mView.findViewById(R.id.mapview);
+        mapView = mView.findViewById(R.id.mapview); //getting mapview view
 
+        //initialising mapview
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();
@@ -313,6 +317,10 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 });
         // Access the RequestQueue through your singleton class.
         mQueue.add(apiObjectRequest);
+
+        //set camera to be on Singapore
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 10f));
+        map.setMinZoomPreference(1);
     }
 
     //adding breast screening centres on the map
@@ -389,6 +397,10 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 });
         // Access the RequestQueue through your singleton class.
         mQueue.add(apiObjectRequest);
+
+        //set camera to be on Singapore
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 10f));
+        map.setMinZoomPreference(1);
     }
 
     //adding chas clinic centres on the map
@@ -458,5 +470,9 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 });
         // Access the RequestQueue through your singleton class.
         mQueue.add(apiObjectRequest);
+
+        //set camera to be on Singapore
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 10f));
+        map.setMinZoomPreference(1);
     }
 }
