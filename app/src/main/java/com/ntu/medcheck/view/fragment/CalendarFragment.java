@@ -116,7 +116,7 @@ public class CalendarFragment extends Fragment {
             TextView date = getActivity().findViewById(R.id.calendarDate);
             date.setText(sDate);
 
-            calendarMgr.setDateOnClick(view, yearMonth, selectedDate.get(Calendar.DAY_OF_MONTH));
+            calendarMgr.setDateOnClick(this, view, yearMonth, selectedDate.get(Calendar.DAY_OF_MONTH));
         });
         // Inflate the layout for this fragment
         return view;

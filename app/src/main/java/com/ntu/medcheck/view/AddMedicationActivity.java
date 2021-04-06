@@ -1,17 +1,11 @@
 package com.ntu.medcheck.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.Button;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -20,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.MedicationMgr;
 import com.ntu.medcheck.utils.SafeOnClickListener;
-import com.ntu.medcheck.view.fragment.CheckupFragment;
 
 import java.util.ArrayList;
 

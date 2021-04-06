@@ -1,6 +1,7 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +13,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.model.Schedule;
+import com.ntu.medcheck.view.EditCheckupActivity;
 
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
 import org.naishadhparmar.zcustomcalendar.OnNavigationButtonClickedListener;
@@ -62,24 +65,42 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void setDateOnClick(View view, String yearMonth, int date) {
+    public void setDateOnClick(Fragment fragment, View view, String yearMonth, int date) {
         ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(yearMonth, new ArrayList<>());
         ArrayList<String> title = new ArrayList<>();
         ArrayList<Calendar> time = new ArrayList<>();
         ArrayList<String> location = new ArrayList<>();
         ArrayList<String> comments = new ArrayList<>();
+        ArrayList<CheckUpEntry> entries = new ArrayList<>();
         for (CheckUpEntry child : monthArray) {
             if (child.getTime().getDay().equals(String.format("%02d", date))) {
                 title.add(child.getTitle());
                 time.add(child.getTime().toCalendar());
                 location.add(child.getClinic());
                 comments.add(child.getComment());
+                entries.add(child);
             }
         }
         ListView listView = view.findViewById(R.id.listView);
         MyAdapter adapter = new MyAdapter(view.getContext(), title, location, time, comments);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(title.get(position)));
+        listView.setOnItemClickListener((parent, view1, position, id) -> {
+            System.out.println(title.get(position));
+            Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
+            CheckUpEntry target = entries.remove(position);
+            Schedule.getInstance().remove(target);
+            i.putExtra("name", target.getName());
+            i.putExtra("comment", target.getComment());
+            i.putExtra("title", target.getTitle());
+            i.putExtra("clinic", target.getClinic());
+            i.putExtra("day", target.getTime().getDay());
+            i.putExtra("month", target.getTime().getMonth());
+            i.putExtra("year", target.getTime().getYear());
+            i.putExtra("minute", target.getTime().getMinute());
+            i.putExtra("hour", target.getTime().getHour());
+            fragment.startActivity(i);
+            new ScheduleMgr().save();
+        });
     }
 
     class MyAdapter extends ArrayAdapter<String> {

@@ -169,6 +169,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
             @Override
             public void onOneClick(View v) {
                 String clinic_choice = text_clinic_name.getText().toString(); //get the string of at clinic name textview
+                if (clinic_choice.isEmpty()) return;
                 String confirmed_clinic_choice = clinic_choice.substring(8);
                 Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
                 String type_of_checkup = null;
@@ -178,7 +179,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     type_of_checkup = "Breast checkup";
                 }else if(choice.equals(mView.getResources().getString(R.string.clinicCHAS))){
                     type_of_checkup = "Others";
-                }
+                }else return;
                 mapView.onDestroy(); //destroy map before going to another activity
                 Intent i = new Intent();
                 i.putExtra("Clinic name set", confirmed_clinic_choice); //passing the clinic name string through the intent
