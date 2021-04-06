@@ -147,6 +147,19 @@ public class CheckUpMgr {
             arr.add(checkup);
             schedule.getCheckup().put(String.format("%02d%02d", year, month), arr);
         }
+
+        // Send notification
+        String notifDay = String.format("%d/%d/%d", day, month, year);
+        String notifTime = String.format("%d:%d", hour, minute);
+        String title = "";
+        String content = notifTime;
+        title = type.getText().toString() + " at " + clinic.getText().toString() + ", " + notifDay;
+        content += " " + comment.getText().toString();
+
+        NotificationScheduler notificationScheduler = new NotificationScheduler();
+        notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, "checkup"), 5000, aca);
+
+
         new ScheduleMgr().save();
         return true;
     }

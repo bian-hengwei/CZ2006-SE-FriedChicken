@@ -1,23 +1,27 @@
 package com.ntu.medcheck.view;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.controller.CheckUpMgr;
-import com.ntu.medcheck.controller.ReminderBroadcast;
+import com.ntu.medcheck.controller.MyNotificationPublisher;
+import com.ntu.medcheck.controller.NotificationScheduler;
 import com.ntu.medcheck.controller.ScheduleMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
@@ -46,25 +50,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-        ReminderBroadcast reminderBroadcast = new ReminderBroadcast();
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@ gonna create notification");
-        reminderBroadcast.createNotificationChannel(this.getApplicationContext());
-
-        Intent i = new Intent(this, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, i, 0);
-
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-
-        long timeAtButtonClick = System.currentTimeMillis();
-
-        long tenSecondInMillis = 1000 * 10;
-
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClick + tenSecondInMillis, pendingIntent);
-
-        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         focus = true;
 
         //CheckUpMgr checkUpMgr = new CheckUpMgr();
