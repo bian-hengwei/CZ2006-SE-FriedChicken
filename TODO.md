@@ -11,7 +11,6 @@
  - [ ] TODO: Add more language options X & J
  - [ ] TODO: Screening center manager MVC HENGWEI
  - [ ] TODO: Factory for adapter class YINAN
- - [ ] TODO: List view listener unsafe
 
 ### Needs to be verified repeatedly
  - [ ] TODO: Beautify activities X & J
