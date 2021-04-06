@@ -112,7 +112,7 @@ public class UserProfileMgr {
         male.setEnabled(false);
         female.setEnabled(false);
 
-        confirmBtn.setText("Logout");
+        confirmBtn.setText(aca.getResources().getString(R.string.logout));
         String userNameStr = user.getUserName();
         userNameView.setText(userNameStr);
 
@@ -147,7 +147,7 @@ public class UserProfileMgr {
         confirmBtn.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
-                if(confirmBtn.getText().equals("Logout")) {
+                if(confirmBtn.getText().equals(aca.getResources().getString(R.string.logout))) {
                     logout(aca);
                 }
             }
@@ -178,13 +178,13 @@ public class UserProfileMgr {
         male.setEnabled(true);
         female.setEnabled(true);
 
-        confirmBtn.setText("Confirm");
+        confirmBtn.setText(aca.getResources().getString(R.string.confirmButton));
 
         confirmBtn.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
 
-                if (confirmBtn.getText().equals("Logout")) {
+                if (confirmBtn.getText().equals(aca.getResources().getString(R.string.logout))) {
                     logout(aca);
                 }
                 else {

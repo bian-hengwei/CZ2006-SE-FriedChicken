@@ -172,11 +172,11 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 String confirmed_clinic_choice = clinic_choice.substring(8);
                 Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
                 String type_of_checkup = null;
-                if(choice.equals("Cervical Screening Centre")){
+                if(choice.equals(mView.getResources().getString(R.string.clinicCervical))){
                    type_of_checkup = "Cervical checkup";
-                }else if(choice.equals("Breast Screening Centre")){
+                }else if(choice.equals(mView.getResources().getString(R.string.clinicBreast))){
                     type_of_checkup = "Breast checkup";
-                }else if(choice.equals("CHAS Clinics")){
+                }else if(choice.equals(mView.getResources().getString(R.string.clinicCHAS))){
                     type_of_checkup = "Others";
                 }
                 mapView.onDestroy(); //destroy map before going to another activity

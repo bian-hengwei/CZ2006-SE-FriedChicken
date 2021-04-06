@@ -60,9 +60,9 @@
         <item><string name="clinicTypeCervical">宫颈检查中心</string></item>
         <item><string name="clinicTypeCHAS">CHAS诊所</string></item>
     </string-array>
-    <string name="clinicBreast">Breast Screening Centre</string>
-    <string name="clinicCervical">Cervical Screening Centre</string>
-    <string name="clinicCHAS">CHAS Clinics</string>
+    <string name="clinicBreast">乳腺检查中心</string>
+    <string name="clinicCervical">宫颈检查中心</string>
+    <string name="clinicCHAS">CHAS诊所</string>
     <string name="confirmClinicButton">确定诊所</string>
 
     <!--    activity_add_checkup.xml-->
