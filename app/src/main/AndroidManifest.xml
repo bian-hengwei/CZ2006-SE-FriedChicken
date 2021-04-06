@@ -91,7 +91,11 @@
             android:required="false"
             tools:ignore="WrongManifestParent" />
 
-        <receiver android:name=".controller.MyNotificationPublisher"/>
+        <receiver
+            android:name=".controller.MyNotificationPublisher"
+            android:enabled="true"
+            android:exported="true"
+            />
     </application>
 
 </manifest>

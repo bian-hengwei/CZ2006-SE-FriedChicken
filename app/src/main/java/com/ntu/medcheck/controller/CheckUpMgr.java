@@ -37,6 +37,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
+import java.util.Random;
 
 public class CheckUpMgr {
 
@@ -177,8 +178,11 @@ public class CheckUpMgr {
         String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, hour, minute, 0);
         long milliSecond = getMillisecond(dateString);
 
+        Random random = new Random();
+        int randomId = random.nextInt(100000);
+
         NotificationScheduler notificationScheduler = new NotificationScheduler();
-        notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca), milliSecond, aca, false);
+        notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, false, randomId);
 
 
         new ScheduleMgr().save();

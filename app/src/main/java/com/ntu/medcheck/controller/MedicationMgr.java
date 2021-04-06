@@ -34,6 +34,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 
 public class MedicationMgr {
@@ -219,6 +220,8 @@ public class MedicationMgr {
 
                 String title = name.getText().toString() + " at " + h + ":" + m;
                 String content = dosage.getText().toString() + " " + comment.getText().toString();
+                Random random = new Random();
+                int randomId = random.nextInt(100000);
 
                 if(future1 > current) {
                     // schedule today
@@ -230,7 +233,7 @@ public class MedicationMgr {
                     System.out.println(title);
 
                     NotificationScheduler notificationScheduler = new NotificationScheduler();
-                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca), milliSecond, aca, true);
+                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, true, randomId);
 
                 }
                 else {
@@ -246,7 +249,7 @@ public class MedicationMgr {
                     System.out.println(title);
 
                     NotificationScheduler notificationScheduler = new NotificationScheduler();
-                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca), milliSecond, aca, true);
+                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, true, randomId);
 
                 }
                 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
