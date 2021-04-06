@@ -77,8 +77,10 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onOneClick(View v) {
-                save = true;
-                finish();
+                if (medicationMgr.checkStatus(aca)) {
+                    save = true;
+                    finish();
+                }
             }
         });
 

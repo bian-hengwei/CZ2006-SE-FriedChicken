@@ -93,11 +93,6 @@ public class MedicationMgr {
         this.clickedPosition = position;
     }
 
-    public MedicationEntry getClickedMedication() {
-        return medicationEntryArrayList.get(clickedPosition);
-    }
-
-    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ need to set time, time is on
     public ArrayList<String> displayEditMedication(AppCompatActivity aca) {
         medicationEntryArrayList = Schedule.getInstance().getMedication();
         Log.d("IndexPos", Integer.toString(clickedPosition));
@@ -120,7 +115,7 @@ public class MedicationMgr {
         ArrayList<String> hour = new ArrayList<>();
         ArrayList<String> minute = new ArrayList<>();
         Integer i = 0;
-        for(Time t : timeArrayList) {
+        for (Time t : timeArrayList) {
             index.add(Integer.toString(i+1));
             i += 1;
 
@@ -135,6 +130,31 @@ public class MedicationMgr {
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
         return index;
+    }
+
+    public boolean checkStatus(AppCompatActivity aca) {
+        EditText name = aca.findViewById(R.id.editMedicationName);
+        EditText dosage = aca.findViewById(R.id.editDosageInt);
+        if (name.getText().toString() == null || name.getText().toString().isEmpty() ||
+                dosage.getText().toString() == null || dosage.getText().toString().isEmpty()) {
+            Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        ListView listView = aca.findViewById(R.id.addMedicationListView);
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            View v = listView.getChildAt(i);
+            EditText hour = v.findViewById(R.id.addMedicationHour);
+            EditText minute = v.findViewById(R.id.addMedicationMinute);
+            String h = hour.getText().toString();
+            String m = minute.getText().toString();
+            if (h.isEmpty() || m.isEmpty() ||
+                    Integer.parseInt(h) > 23 || Integer.parseInt(h) < 0 ||
+                    Integer.parseInt(m) > 60 || Integer.parseInt(m) < 0) {
+                Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean addMedication(AppCompatActivity aca) {

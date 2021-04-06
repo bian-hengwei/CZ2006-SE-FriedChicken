@@ -102,7 +102,7 @@ public class CalendarFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
 
         CalendarMgr calendarMgr = new CalendarMgr();
-        calendarMgr.getMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH)+1, view);
+        calendarMgr.getMonth(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, view);
 
         calendarMgr.setListeners(view);
 

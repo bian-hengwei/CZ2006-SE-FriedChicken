@@ -105,17 +105,17 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
 
     class MyAdapter extends ArrayAdapter<String> {
         Context context;
-        ArrayList<String> atitle;
-        ArrayList<String> alocation;
-        ArrayList<Calendar> atime;
-        ArrayList<String> acomments;
+        ArrayList<String> adapterTitle;
+        ArrayList<String> adapterLocation;
+        ArrayList<Calendar> adapterTime;
+        ArrayList<String> adapterComment;
         MyAdapter(Context context, ArrayList<String> title, ArrayList<String> location, ArrayList<Calendar> time, ArrayList<String> comments) {
             super(context, R.layout.calendar_row, title);
             this.context = context;
-            this.atitle = title;
-            this.alocation = location;
-            this.atime = time;
-            this.acomments = comments;
+            this.adapterTitle = title;
+            this.adapterLocation = location;
+            this.adapterTime = time;
+            this.adapterComment = comments;
         }
 
         @NonNull
@@ -128,12 +128,12 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
             TextView time = calendar_row.findViewById(R.id.time);
             TextView comments = calendar_row.findViewById(R.id.commentCheckupRow);
 
-            String dateStr = atime.get(position).get(Calendar.HOUR) + "(hr)" + atime.get(position).get(Calendar.MINUTE) + "(min)";
+            String dateStr = adapterTime.get(position).get(Calendar.HOUR) + "(hr)" + adapterTime.get(position).get(Calendar.MINUTE) + "(min)";
 
-            title.setText(atitle.get(position));
-            location.setText(calendar_row.getResources().getString(R.string.clinicName) + alocation.get(position));
+            title.setText(adapterTitle.get(position));
+            location.setText(calendar_row.getResources().getString(R.string.clinicName) + adapterLocation.get(position));
             time.setText(calendar_row.getResources().getString(R.string.eventTime) + dateStr);
-            comments.setText(calendar_row.getResources().getString(R.string.Comment) + acomments.get(position));
+            comments.setText(calendar_row.getResources().getString(R.string.Comment) + adapterComment.get(position));
 
             return calendar_row;
         }

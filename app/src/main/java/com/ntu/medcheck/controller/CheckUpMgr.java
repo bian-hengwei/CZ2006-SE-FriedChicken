@@ -21,12 +21,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
-import com.ntu.medcheck.model.MedicationEntry;
 import com.ntu.medcheck.model.Schedule;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.view.EditCheckupActivity;
@@ -49,6 +45,7 @@ public class CheckUpMgr {
         ArrayList<String> location = new ArrayList<>();
         ArrayList<String> comment = new ArrayList<>();
         ArrayList<CheckUpEntry> entries = new ArrayList<>();
+        Log.d("dyn dis che", "dynamicDisplayCheckup: ");
 
         listView = view.findViewById(R.id.checkupListView);
         Map<String, ArrayList<CheckUpEntry>> checkup = Schedule.getInstance().getCheckup();
@@ -110,7 +107,7 @@ public class CheckUpMgr {
         date.init(Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day), null);
         TimePicker time = aca.findViewById(R.id.timePickerAddCheckup);
         time.setHour(Integer.parseInt(hour));
-            time.setMinute(Integer.parseInt(minute));
+        time.setMinute(Integer.parseInt(minute));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -157,20 +154,20 @@ public class CheckUpMgr {
     // adapter class
     class MyAdapter extends ArrayAdapter<String> {
         Context context;
-        ArrayList<String> atitle;
-        ArrayList<String> adate;
-        ArrayList<String> atime;
-        ArrayList<String> alocation;
-        ArrayList<String> acomment;
+        ArrayList<String> adapterTitle;
+        ArrayList<String> adapterDate;
+        ArrayList<String> adapterTime;
+        ArrayList<String> adapterLocation;
+        ArrayList<String> adapterComment;
 
         MyAdapter(Context context, ArrayList<String> title, ArrayList<String> date, ArrayList<String> time, ArrayList<String> location, ArrayList<String> comments) {
             super(context, R.layout.checkup_row, title);
             this.context = context;
-            this.atitle = title;
-            this.adate = date;
-            this.atime = time;
-            this.alocation = location;
-            this.acomment = comments;
+            this.adapterTitle = title;
+            this.adapterDate = date;
+            this.adapterTime = time;
+            this.adapterLocation = location;
+            this.adapterComment = comments;
         }
 
         @NonNull
@@ -184,54 +181,13 @@ public class CheckUpMgr {
             TextView location = checkup_row.findViewById(R.id.locationCheckupRow);
             TextView comments = checkup_row.findViewById(R.id.commentCheckupRow);
 
-            title.setText(atitle.get(position));
-            date.setText(checkup_row.getResources().getString(R.string.eventDate) + adate.get(position).substring(6, 8) + " / " + adate.get(position).substring(4, 6) + " / " + adate.get(position).substring(0, 4));
-            time.setText(checkup_row.getResources().getString(R.string.eventTime) + atime.get(position).substring(0, 2) + " : " + atime.get(position).substring(2, 4));
-            location.setText(checkup_row.getResources().getString(R.string.clinicName) + alocation.get(position));
-            comments.setText(checkup_row.getResources().getString(R.string.Comment) + acomment.get(position));
+            title.setText(adapterTitle.get(position));
+            date.setText(checkup_row.getResources().getString(R.string.eventDate) + adapterDate.get(position).substring(6, 8) + " / " + adapterDate.get(position).substring(4, 6) + " / " + adapterDate.get(position).substring(0, 4));
+            time.setText(checkup_row.getResources().getString(R.string.eventTime) + adapterTime.get(position).substring(0, 2) + " : " + adapterTime.get(position).substring(2, 4));
+            location.setText(checkup_row.getResources().getString(R.string.clinicName) + adapterLocation.get(position));
+            comments.setText(checkup_row.getResources().getString(R.string.Comment) + adapterComment.get(position));
 
             return checkup_row;
         }
-    }
-    public void save() {
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference sRef = fDatabase.getReference("Schedules");
-        DatabaseReference suRef = sRef.child(fAuth.getCurrentUser().getUid());
-        Schedule schedule = Schedule.getInstance();
-        schedule.setMedication(new ArrayList<>());
-
-        MedicationEntry med1 = new MedicationEntry("med1");
-        med1.setDosage("1");
-        med1.setType("type1");
-        med1.setComment("comment1");
-        med1.setUnit("ml");
-        med1.setFrequency("1f");
-        ArrayList<Time> t = new ArrayList<>();
-        Time med1Time = new Time("1020");
-        t.add(med1Time);
-        Time med1Time2 = new Time("1130");
-        t.add(med1Time2);
-        med1.setTime(t);
-        System.out.println(med1.getTime().get(0).getMinute());
-
-
-        MedicationEntry med2 = new MedicationEntry("med2");
-        med2.setDosage("2");
-        med2.setType("type2");
-        med2.setComment("comment2");
-        med2.setUnit("ml2");
-        med2.setFrequency("2f");
-        Time med2Time = new Time("1520");
-        ArrayList<Time> t2 = new ArrayList<>();
-        t2.add(med2Time);
-        Time med2Time2 = new Time("1830");
-        t2.add(med2Time2);
-        med2.setTime(t2);
-
-        schedule.getMedication().add(med1);
-        schedule.getMedication().add(med2);
-
-        suRef.child("medication").setValue(schedule.getMedication());
     }
 }
