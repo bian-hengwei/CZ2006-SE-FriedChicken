@@ -9,13 +9,14 @@
     <string name="AddButton">Add</string>
     <string name="emailLabel">Email</string>
     <string name="pwLabel">Password</string>
-    <string name="app_name">Med Check</string>
+    <string name="app_name">medCheck</string>
     <string name="registerLabel">Register</string>
     <string name="usernameLabel">Username</string>
     <string name="confirmButton">Confirm</string>
     <string name="deleteButton">Delete</string>
     <string name="phoneLabel">Phone Number</string>
     <string name="RePwLabel">Re-enter password</string>
+    <string name="addToReminder">Add To Reminder</string>
 
     <!--    navigation-->
     <string name="splashDescript">Your personal healthcare scheduler!</string>
@@ -73,8 +74,6 @@
     <string name="newMedTimeText">Reminder Time:</string>
     <string name="newMedRepeat1">Repeat: Once every</string>
     <string name="newMedRepeat2">day(s)</string>
-
-    <string name="addMedicationToReminder">Add To Reminder</string>
     <string name="addTime">+ Timing</string>
     <string name="deleteTime">- Timing</string>
 

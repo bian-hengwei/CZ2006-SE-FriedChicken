@@ -52,6 +52,10 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                 int i = Integer.parseInt(index.get(index.size() - 1)) + 1;
                 index.add(Integer.toString(i));
                 medicationMgr.dynamicAddTime(aca, index);
+                if(i>3){
+                    Toast.makeText(aca, R.string.newMedTiming, Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -66,6 +70,7 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                 else{
                     index.remove(index.size() - 1);
                     medicationMgr.dynamicAddTime(aca, index);
+                    Toast.makeText(aca, R.string.removeMedTiming, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -76,10 +81,11 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
             @Override
             public void onOneClick(View v) {
                 if (MedicationMgr.getInstance().addMedication(AddMedicationActivity.this)) {
+                    Toast.makeText(aca, R.string.AddMedicationSuccess, Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else {
-                    Toast.makeText(AddMedicationActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+                    Toast.makeText(AddMedicationActivity.this, R.string.AddMedicationFailure, Toast.LENGTH_LONG);
                 }
             }
         });
@@ -88,6 +94,7 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onOneClick(View v) {
+                Toast.makeText(aca, R.string.DeleteMedicationSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
