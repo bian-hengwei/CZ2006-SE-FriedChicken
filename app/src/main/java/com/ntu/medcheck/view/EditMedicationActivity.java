@@ -17,6 +17,7 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.MedicationMgr;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -116,6 +117,10 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        medicationMgr.destroy(this, save, delete);
+        try {
+            medicationMgr.destroy(this, save, delete);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

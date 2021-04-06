@@ -17,6 +17,7 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.MedicationMgr;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 /**
@@ -74,12 +75,14 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
         addCheckButton.setOnClickListener(new SafeOnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onOneClick(View v) {
-                if (MedicationMgr.getInstance().addMedication(AddMedicationActivity.this)) {
-                    finish();
-                }
-                else {
-                    Toast.makeText(AddMedicationActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+            public void onOneClick(View v) throws ParseException {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (MedicationMgr.getInstance().addMedication(AddMedicationActivity.this)) {
+                        finish();
+                    }
+                    else {
+                        Toast.makeText(AddMedicationActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+                    }
                 }
             }
         });

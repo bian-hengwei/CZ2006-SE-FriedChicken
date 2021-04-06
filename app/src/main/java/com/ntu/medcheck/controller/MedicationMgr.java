@@ -2,6 +2,7 @@ package com.ntu.medcheck.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -23,7 +25,13 @@ import com.ntu.medcheck.model.Schedule;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.view.EditMedicationActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class MedicationMgr {
@@ -77,7 +85,8 @@ public class MedicationMgr {
         });
     }
 
-    public void destroy(AppCompatActivity aca, boolean save, boolean delete) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void destroy(AppCompatActivity aca, boolean save, boolean delete) throws ParseException {
         if (save) {
             Schedule.getInstance().getMedication().remove(clickedPosition);
             new ScheduleMgr().save();
@@ -157,7 +166,8 @@ public class MedicationMgr {
         return true;
     }
 
-    public boolean addMedication(AppCompatActivity aca) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean addMedication(AppCompatActivity aca) throws ParseException {
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
         TextView comment = aca.findViewById(R.id.commentMedication);
@@ -168,6 +178,8 @@ public class MedicationMgr {
         }
         MedicationEntry medication = new MedicationEntry();
 
+        ArrayList<String> time = new ArrayList<>();
+
         ListView listView = aca.findViewById(R.id.addMedicationListView);
         for (int i = 0; i < listView.getChildCount(); i++) {
             View v = listView.getChildAt(i);
@@ -175,6 +187,8 @@ public class MedicationMgr {
             EditText minute = v.findViewById(R.id.addMedicationMinute);
             String h = hour.getText().toString();
             String m = minute.getText().toString();
+
+
             if (h.isEmpty() || m.isEmpty() ||
                     Integer.parseInt(h) > 23 || Integer.parseInt(h) < 0 ||
                     Integer.parseInt(m) > 60 || Integer.parseInt(m) < 0) {
@@ -183,8 +197,59 @@ public class MedicationMgr {
             }
             else {
                 medication.getTime().add(new Time(String.format("%02d%02d", Integer.parseInt(h), Integer.parseInt(m))));
+
+                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                LocalDate date = LocalDate.now();
+                int day = date.getDayOfMonth();
+                int month = date.getMonthValue();
+                int year = date.getYear();
+
+                // if time is later than current time, schedule today, if time is earlier than current, schedule tmr
+                String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+                Date date1 = sdf.parse(dateString);
+                long future1 = date1.getTime();
+                Date now1 = new Date();
+                long current = now1.getTime();
+
+                String title = name.getText().toString() + " at " + h + ":" + m;
+                String content = dosage.getText().toString() + " " + comment.getText().toString();
+
+                if(future1 > current) {
+                    // schedule today
+                    System.out.println("*****&&&&&&&&&&&&&&&&&&&&&&&&&&&& today");
+                    long milliSecond = future1 - current;
+                    System.out.println(dateString);
+                    System.out.println(milliSecond);
+                    System.out.println(content);
+                    System.out.println(title);
+
+                    NotificationScheduler notificationScheduler = new NotificationScheduler();
+                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca), milliSecond, aca, true);
+
+                }
+                else {
+                    // schedule tmr
+                    dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day+1 , month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
+                    date1 = sdf.parse(dateString);
+                    future1 = date1.getTime();
+                    System.out.println("*****&&&&&&&&&&&&&&&&&&&&&&&&&&&& tomorrow");
+                    System.out.println(dateString);
+                    long milliSecond = future1 - current;
+                    System.out.println(milliSecond);
+                    System.out.println(content);
+                    System.out.println(title);
+
+                    NotificationScheduler notificationScheduler = new NotificationScheduler();
+                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca), milliSecond, aca, true);
+
+                }
+                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
             }
         }
+
+
+
         medication.setName(name.getText().toString().trim());
         medication.setDosage(dosage.getText().toString().trim());
         medication.setComment(comment.getText().toString().trim());
@@ -297,5 +362,24 @@ public class MedicationMgr {
             comments.setText(medication_row.getResources().getString(R.string.Comment) + acomment.get(position));
             return medication_row;
         }
+    }
+
+    public long getMillisecond(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        try{
+            //formatting the dateString to convert it into a Date
+            Date date = sdf.parse(dateString);
+            long future = date.getTime();
+            Date now = new Date();
+            long current = now.getTime();
+            System.out.println("Given Time in milliseconds : "+future);
+            System.out.println("Current in milliseconds : "+current);
+
+            long time = future - current;
+            return time;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

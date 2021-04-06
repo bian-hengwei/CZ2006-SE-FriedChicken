@@ -27,10 +27,13 @@ import com.ntu.medcheck.model.Schedule;
 import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.view.EditCheckupActivity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Map;
 
 public class CheckUpMgr {
@@ -156,6 +159,8 @@ public class CheckUpMgr {
         }
 
         // Send notification
+        //dd-M-yyyy hh:mm:ss
+
         String notifDay = String.format("%d/%d/%d", day, month, year);
         String notifTime = String.format("%d:%d", hour, minute);
         String title = "";
@@ -163,8 +168,12 @@ public class CheckUpMgr {
         title = type.getText().toString() + " at " + clinic.getText().toString() + ", " + notifDay;
         content += " " + comment.getText().toString();
 
+        //dd-M-yyyy hh:mm:ss   get time in millisecond
+        String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, hour, minute, 0);
+        long milliSecond = getMillisecond(dateString);
+
         NotificationScheduler notificationScheduler = new NotificationScheduler();
-        notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, "checkup"), 5000, aca);
+        notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca), milliSecond, aca, false);
 
 
         new ScheduleMgr().save();
@@ -209,5 +218,24 @@ public class CheckUpMgr {
 
             return checkup_row;
         }
+    }
+
+    public long getMillisecond(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        try{
+            //formatting the dateString to convert it into a Date
+            Date date = sdf.parse(dateString);
+            long future = date.getTime();
+            Date now = new Date();
+            long current = now.getTime();
+            System.out.println("Given Time in milliseconds : "+future);
+            System.out.println("Current in milliseconds : "+current);
+
+            long time = future - current;
+            return time;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
