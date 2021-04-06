@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 public class MedicationEntry extends Entry{
 
-    String dosage;
-    String unit;
-    String frequency;
+    String dosage = "";
+    String unit = "";
+    String frequency = "";
     ArrayList<Time> time = new ArrayList<>();
 
     public MedicationEntry() {

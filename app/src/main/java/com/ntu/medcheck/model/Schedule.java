@@ -25,6 +25,7 @@ public class Schedule {
     // constructor is made private
     private Schedule() {
         checkup = new HashMap<>();
+        medication = new ArrayList<>();
     }
 
     public static Schedule getInstance() {
@@ -68,6 +69,15 @@ public class Schedule {
                     arr.remove(entry);
                     return;
                 }
+            }
+        }
+    }
+
+    public void remove(MedicationEntry delEntry) {
+        for (MedicationEntry entry : medication) {
+            if (entry == delEntry) {
+                medication.remove(entry);
+                return;
             }
         }
     }

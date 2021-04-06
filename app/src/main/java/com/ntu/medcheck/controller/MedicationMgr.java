@@ -2,6 +2,7 @@ package com.ntu.medcheck.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,25 +10,26 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import java.util.ArrayList;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.MedicationEntry;
 import com.ntu.medcheck.model.Schedule;
 import com.ntu.medcheck.model.Time;
-import com.ntu.medcheck.view.EditCheckupActivity;
 import com.ntu.medcheck.view.EditMedicationActivity;
+
+import java.util.ArrayList;
 
 
 public class MedicationMgr {
 
     Schedule schedule = Schedule.getInstance();
-    ArrayList<MedicationEntry> medicationEntryArrayList = schedule.getMedication();
+    ArrayList<MedicationEntry> medicationEntryArrayList;
     int clickedPosition;
 
     private MedicationMgr() {}
@@ -39,17 +41,31 @@ public class MedicationMgr {
     }
 
     public void dynamicDisplayMedication(Fragment fragment, View view) {
+        medicationEntryArrayList = Schedule.getInstance().getMedication();
         ListView listView;
-        ArrayList<String> title = getTitle();
-        ArrayList<String> time = getTime();
-        ArrayList<String> dosage = getDosage();
-        ArrayList<String> frequency = getFrequence();  // Take once every x days
-        ArrayList<String> comment = getComment();
+        ArrayList<String> title = new ArrayList<>();
+        ArrayList<String> time = new ArrayList<>();
+        ArrayList<String> dosage = new ArrayList<>();
+        ArrayList<String> frequency = new ArrayList<>();
+        ArrayList<String> comment = new ArrayList<>();
+        ArrayList<MedicationEntry> entries = new ArrayList<>();
+        listView = view.findViewById(R.id.medicationListView);
 
-
+        for (MedicationEntry entry : medicationEntryArrayList) {
+            title.add(entry.getName());
+            dosage.add(entry.getDosage());
+            comment.add(entry.getComment());
+            frequency.add(entry.getFrequency());
+            entries.add(entry);
+            ArrayList<Time> timeTempList = entry.getTime();
+            String tStr = "";
+            for(Time t : timeTempList) {
+                tStr += t.getHour() + ":" + t.getMinute() + " | ";
+            }
+            time.add(tStr);
+        }
 
         MyAdapter adapter = new MyAdapter(view.getContext(), title, time, dosage, frequency, comment);
-        listView = view.findViewById(R.id.medicationListView);
         listView.setAdapter(adapter);
 
         // !!!!!!! on click, view in detail and can edit
@@ -61,6 +77,18 @@ public class MedicationMgr {
         });
     }
 
+    public void destroy(AppCompatActivity aca, boolean save, boolean delete) {
+        if (save) {
+            Schedule.getInstance().getMedication().remove(clickedPosition);
+            new ScheduleMgr().save();
+            addMedication(aca);
+        }
+        else if (delete) {
+            Schedule.getInstance().getMedication().remove(clickedPosition);
+            new ScheduleMgr().save();
+        }
+    }
+
     public void storeVariable(int position) {
         this.clickedPosition = position;
     }
@@ -70,22 +98,23 @@ public class MedicationMgr {
     }
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ need to set time, time is on
-    public void displayEditMedication(AppCompatActivity aca) {
+    public ArrayList<String> displayEditMedication(AppCompatActivity aca) {
+        medicationEntryArrayList = Schedule.getInstance().getMedication();
+        Log.d("IndexPos", Integer.toString(clickedPosition));
         MedicationEntry info = medicationEntryArrayList.get(clickedPosition);
         EditText name = aca.findViewById(R.id.editMedicationName);
-        EditText dosage = aca.findViewById(R.id.editDosageIntEditMed);
-        EditText frequency = aca.findViewById(R.id.repeatIntEditMed);
-        EditText comment = aca.findViewById(R.id.commentMedicationEditMed);
+        EditText dosage = aca.findViewById(R.id.editDosageInt);
+        EditText frequency = aca.findViewById(R.id.repeatInt);
+        EditText comment = aca.findViewById(R.id.commentMedication);
 
         name.setText(info.getName());
         dosage.setText(info.getDosage());
         frequency.setText(info.getFrequency());
         comment.setText(info.getComment());
-        dynamicAddTimeEditMedication(aca, info);
-
+        return dynamicAddTimeEditMedication(aca, info);
     }
 
-    public void dynamicAddTimeEditMedication(AppCompatActivity aca, MedicationEntry info) {
+    public ArrayList<String> dynamicAddTimeEditMedication(AppCompatActivity aca, MedicationEntry info) {
         ArrayList<Time> timeArrayList= info.getTime();
         ArrayList<String> index = new ArrayList<>();
         ArrayList<String> hour = new ArrayList<>();
@@ -102,10 +131,50 @@ public class MedicationMgr {
 
         MyAddMedicationEditAdapter arrayAdapter = new MyAddMedicationEditAdapter(aca.getApplicationContext(), index, hour, minute);
 
-        ListView listView = aca.findViewById(R.id.addMedicationListViewEditMed);
+        ListView listView = aca.findViewById(R.id.addMedicationListView);
         listView.setAdapter(arrayAdapter);
-
         listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
+        return index;
+    }
+
+    public boolean addMedication(AppCompatActivity aca) {
+        EditText name = aca.findViewById(R.id.editMedicationName);
+        EditText dosage = aca.findViewById(R.id.editDosageInt);
+        TextView comment = aca.findViewById(R.id.commentMedication);
+        if (name.getText().toString() == null || name.getText().toString().isEmpty() ||
+            dosage.getText().toString() == null || dosage.getText().toString().isEmpty()) {
+            Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        MedicationEntry medication = new MedicationEntry();
+
+        ListView listView = aca.findViewById(R.id.addMedicationListView);
+        for (int i = 0; i < listView.getChildCount(); i++) {
+            View v = listView.getChildAt(i);
+            EditText hour = v.findViewById(R.id.addMedicationHour);
+            EditText minute = v.findViewById(R.id.addMedicationMinute);
+            String h = hour.getText().toString();
+            String m = minute.getText().toString();
+            if (h.isEmpty() || m.isEmpty() ||
+                    Integer.parseInt(h) > 23 || Integer.parseInt(h) < 0 ||
+                    Integer.parseInt(m) > 60 || Integer.parseInt(m) < 0) {
+                Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            else {
+                medication.getTime().add(new Time(String.format("%02d%02d", Integer.parseInt(h), Integer.parseInt(m))));
+            }
+        }
+        medication.setName(name.getText().toString().trim());
+        medication.setDosage(dosage.getText().toString().trim());
+        medication.setComment(comment.getText().toString().trim());
+        medication.setType("medication");
+
+        schedule = Schedule.getInstance();
+        schedule.getMedication().add(medication);
+
+        new ScheduleMgr().save();
+        return true;
     }
 
     class MyAddMedicationEditAdapter extends ArrayAdapter<String> {
@@ -143,9 +212,28 @@ public class MedicationMgr {
     public void dynamicAddTime(AppCompatActivity aca, ArrayList<String> indexIn) {
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@ this index need to change. change into many arraylists with different info
         ArrayList<String> index = indexIn;
-        MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index);
+        ArrayList<String> hour = new ArrayList<>();
+        ArrayList<String> minute = new ArrayList<>();
 
         ListView listView = aca.findViewById(R.id.addMedicationListView);
+        for (int i = 0; i < index.size(); i++) {
+            if (listView.getChildAt(i) == null) {
+                hour.add("");
+                minute.add("");
+                continue;
+            }
+            View v = listView.getChildAt(i);
+            if (v.findViewById(R.id.addMedicationHour) != null) {
+                EditText hourText = v.findViewById(R.id.addMedicationHour);
+                hour.add(hourText.getText().toString().trim());
+            }
+            if (v.findViewById(R.id.addMedicationMinute) != null) {
+                EditText minuteText = v.findViewById(R.id.addMedicationMinute);
+                minute.add(minuteText.getText().toString().trim());
+            }
+        }
+
+        MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index, hour, minute);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
@@ -156,12 +244,23 @@ public class MedicationMgr {
     class MyAddMedicationAdapter extends ArrayAdapter<String> {
         Context context;
         ArrayList<String> index;
+        ArrayList<String> hour;
+        ArrayList<String> minute;
 
         public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index) {
             super(context, R.layout.add_medication_row, index);
             System.out.println("4");
             this.context = context;
             this.index = index;
+        }
+
+        public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index, ArrayList<String> hour, ArrayList<String> minute) {
+            super(context, R.layout.add_medication_row, index);
+            System.out.println("4");
+            this.context = context;
+            this.index = index;
+            this.hour = hour;
+            this.minute = minute;
         }
 
         @NonNull
@@ -171,6 +270,14 @@ public class MedicationMgr {
             View add_medication_row = layoutInflater.inflate(R.layout.add_medication_row, parent, false);
             TextView indexText = add_medication_row.findViewById(R.id.addMedicationTimeIndex);
             indexText.setText(index.get(position));
+            if (add_medication_row.findViewById(R.id.addMedicationHour) != null) {
+                EditText hourText = add_medication_row.findViewById(R.id.addMedicationHour);
+                hourText.setText(hour.get(position));
+            }
+            if (add_medication_row.findViewById(R.id.addMedicationMinute) != null) {
+                EditText minuteText = add_medication_row.findViewById(R.id.addMedicationMinute);
+                minuteText.setText(minute.get(position));
+            }
             return add_medication_row;
         }
 
@@ -213,99 +320,5 @@ public class MedicationMgr {
             return medication_row;
         }
 
-    }
-
-
-
-
-
-    public ArrayList<String> getComment() {
-        ArrayList<String> commentArrayList = new ArrayList<>();
-        String comment;
-        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
-            comment = medicationEntry.getComment();
-            commentArrayList.add(comment);
-        }
-       /* commentArrayList.add("comment1");
-        commentArrayList.add("comment2");
-        commentArrayList.add("comment3");
-        commentArrayList.add("comment3");
-        commentArrayList.add("comment3");
-        commentArrayList.add("comment3");
-        */
-        return commentArrayList;
-    }
-
-    public ArrayList<String> getFrequence() {
-        ArrayList<String> frequencyArrayList = new ArrayList<>();
-        String frequency;
-        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
-            frequency = medicationEntry.getFrequency();
-            frequencyArrayList.add(frequency);
-        }
-
-        /*frequencyArrayList.add("1");
-        frequencyArrayList.add("2");
-        frequencyArrayList.add("3");
-        frequencyArrayList.add("2");
-        frequencyArrayList.add("1");
-        frequencyArrayList.add("2");*/
-        return frequencyArrayList;
-    }
-
-    public ArrayList<String> getDosage() {
-        ArrayList<String> dosageArrayList = new ArrayList<>();
-        String dosage;
-        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
-            dosage = medicationEntry.getDosage();
-            dosageArrayList.add(dosage);
-        }
-
-        /*dosage.add("1230");
-        dosage.add("1330");
-        dosage.add("1530");
-        dosage.add("1530");
-        dosage.add("1530");
-        dosage.add("1530");*/
-        return dosageArrayList;
-    }
-
-    public ArrayList<String> getTime() {
-        ArrayList<String> timeArrayList = new ArrayList<>();
-        ArrayList<Time> timeTempList= new ArrayList<>();
-
-        String time = "";
-
-        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
-            timeTempList = medicationEntry.getTime();
-            time = "";
-            for(Time t : timeTempList) {
-                time += t.getHour() + ":" + t.getMinute() + " | ";
-            }
-            timeArrayList.add(time);
-        }
-
-        /*time.add("1230");
-        time.add("1330");
-        time.add("1530");
-        time.add("1530");
-        time.add("1530");
-        time.add("1530");*/
-        return timeArrayList;
-    }
-
-    public ArrayList<String> getTitle() {
-        ArrayList<String> titleArrayList = new ArrayList<>();
-
-        for(MedicationEntry medicationEntry : medicationEntryArrayList) {
-            titleArrayList.add(medicationEntry.getName());
-        }
-        /*title.add("heart medicine");
-        title.add("liver medicine");
-        title.add("lung medicine");
-        title.add("lung medicine");
-        title.add("lung medicine");
-        title.add("lung medicine");*/
-        return titleArrayList;
     }
 }

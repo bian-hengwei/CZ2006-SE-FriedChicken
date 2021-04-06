@@ -26,6 +26,7 @@
     <string name="emptyPhone">Please fill in phone number</string>
     <string name="GPSfail">Location service is not granted</string>
     <string name="atLeastOneTime">There must be at least one timing!</string>
+    <string name="emptyMedication">Please fill in medication details!</string>
 
 
 

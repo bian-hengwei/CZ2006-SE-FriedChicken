@@ -122,7 +122,7 @@ public class CheckUpMgr {
         TextView comment = aca.findViewById(R.id.commentBox);
         if (type.getText().toString() == null || type.getText().toString().isEmpty() ||
             clinic.getText().toString() == null || clinic.getText().toString().isEmpty()) {
-            Toast.makeText(aca, R.string.AddCheckupEmptyType, Toast.LENGTH_SHORT);
+            Toast.makeText(aca, R.string.AddCheckupEmptyType, Toast.LENGTH_SHORT).show();
             return false;
         }
         CheckUpEntry checkup = new CheckUpEntry();

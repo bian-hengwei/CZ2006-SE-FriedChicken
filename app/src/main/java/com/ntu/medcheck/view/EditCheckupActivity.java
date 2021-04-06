@@ -26,6 +26,7 @@ import com.ntu.medcheck.view.fragment.CheckupFragment;
  * calls schedule manager to add check up entry
  */
 public class EditCheckupActivity extends AppCompatActivity {
+
     public TextView clinic_name;
     public TextView checkup_type;
     private boolean save = false;

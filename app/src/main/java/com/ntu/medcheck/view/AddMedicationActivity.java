@@ -1,5 +1,6 @@
 package com.ntu.medcheck.view;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,7 +40,6 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
 
         ArrayList<String> index = new ArrayList<>();
         index.add("1");
-        String last = "1";
 
         AppCompatActivity aca = this;
 
@@ -66,6 +67,28 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                     index.remove(index.size() - 1);
                     medicationMgr.dynamicAddTime(aca, index);
                 }
+            }
+        });
+
+        Button addCheckButton = findViewById(R.id.addMed);
+        addCheckButton.setOnClickListener(new SafeOnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onOneClick(View v) {
+                if (MedicationMgr.getInstance().addMedication(AddMedicationActivity.this)) {
+                    finish();
+                }
+                else {
+                    Toast.makeText(AddMedicationActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+                }
+            }
+        });
+
+        findViewById(R.id.deleteMed).setOnClickListener(new SafeOnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onOneClick(View v) {
+                finish();
             }
         });
 

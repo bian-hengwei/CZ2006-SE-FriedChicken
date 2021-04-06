@@ -25,6 +25,7 @@
     <string name="emptyPhone">请填写手机号码</string>
     <string name="GPSfail">定位服务未授权</string>
     <string name="atLeastOneTime">至少要有一个提醒时间！</string>
+    <string name="emptyMedication">请输入用药详情！</string>
 
 
     <!-- login & account -->
