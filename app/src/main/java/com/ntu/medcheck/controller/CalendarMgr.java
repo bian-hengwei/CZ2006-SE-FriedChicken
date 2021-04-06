@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.model.Schedule;
+import com.ntu.medcheck.utils.SafeItemOnClickListener;
 import com.ntu.medcheck.view.EditCheckupActivity;
 
 import org.naishadhparmar.zcustomcalendar.CustomCalendar;
@@ -84,22 +86,25 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
         ListView listView = view.findViewById(R.id.listView);
         MyAdapter adapter = new MyAdapter(view.getContext(), title, location, time, comments);
         listView.setAdapter(adapter);
-        listView.setOnItemClickListener((parent, view1, position, id) -> {
-            System.out.println(title.get(position));
-            Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
-            CheckUpEntry target = entries.remove(position);
-            Schedule.getInstance().remove(target);
-            i.putExtra("name", target.getName());
-            i.putExtra("comment", target.getComment());
-            i.putExtra("title", target.getTitle());
-            i.putExtra("clinic", target.getClinic());
-            i.putExtra("day", target.getTime().getDay());
-            i.putExtra("month", target.getTime().getMonth());
-            i.putExtra("year", target.getTime().getYear());
-            i.putExtra("minute", target.getTime().getMinute());
-            i.putExtra("hour", target.getTime().getHour());
-            fragment.startActivity(i);
-            new ScheduleMgr().save();
+        listView.setOnItemClickListener(new SafeItemOnClickListener() {
+            @Override
+            public void onOneClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(title.get(position));
+                Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
+                CheckUpEntry target = entries.remove(position);
+                Schedule.getInstance().remove(target);
+                i.putExtra("name", target.getName());
+                i.putExtra("comment", target.getComment());
+                i.putExtra("title", target.getTitle());
+                i.putExtra("clinic", target.getClinic());
+                i.putExtra("day", target.getTime().getDay());
+                i.putExtra("month", target.getTime().getMonth());
+                i.putExtra("year", target.getTime().getYear());
+                i.putExtra("minute", target.getTime().getMinute());
+                i.putExtra("hour", target.getTime().getHour());
+                fragment.startActivity(i);
+                new ScheduleMgr().save();
+            }
         });
     }
 

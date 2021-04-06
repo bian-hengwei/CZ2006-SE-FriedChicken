@@ -1,5 +1,8 @@
 ### Tasks
  - [ ] TODO: Notification YINAN
+    - [ ] TODO: Schedule at correct time
+    - [ ] TODO: Edit time
+    - [ ] TODO: Remove schedule
 
 ### Not urgent
  - [ ] TODO: User profile page HENGWEI
