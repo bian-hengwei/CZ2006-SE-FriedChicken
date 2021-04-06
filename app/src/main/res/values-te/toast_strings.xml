@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Success Messages -->
+    <string name="loginSuccess">లాగిన్ విజయవంతంగా, స్వాగతం!</string>
+    <string name="AddCheckupSuccess">క్రొత్త తనిఖీ విజయవంతంగా జోడించబడింది</string>
+    <string name="AddCheckupFailure">విఫలమైంది</string>
+    <string name="AddCheckupEmptyType">దయచేసి చెక్ అప్ మరియు క్లినిక్ రకాన్ని ఎంచుకోండి!</string>
+    <string name="AddMedicationSuccess">కొత్త మందులు విజయవంతంగా జోడించబడ్డాయి</string>
+    <string name="saveSuccess">సేవ్ చేయబడింది</string>
+    <string name="regiSuccess">నమోదు విజయవంతమైంది, దయచేసి లాగిన్ చేయడానికి ముందు ఇమెయిల్‌ను ధృవీకరించండి</string>
+
+
+    <!-- Error Messages -->
+    <string name="loginFailUser">లాగిన్ విఫలమైంది, చెల్లని వినియోగదారు</string>
+    <string name="loginFailPw">లాగిన్ విఫలమైంది, తప్పు పాస్‌వర్డ్</string>
+    <string name="loginFailUnknown">లాగిన్ విఫలమైంది, తెలియని లోపం</string>
+    <string name="regiFail">నమోదు విఫలమైంది, తెలియని లోపం</string>
+    <string name="regiFailWeakPw">నమోదు విఫలమైంది, దయచేసి బలమైన పాస్‌వర్డ్‌ను ఉపయోగించండి</string>
+    <string name="regiFailEmailExist">నమోదు విఫలమైంది, ఇమెయిల్ ఇప్పటికే ఉపయోగించబడింది</string>
+    <string name="regiFailRePw">నమోదు విఫలమైంది, తిరిగి నమోదు చేసిన పాస్‌వర్డ్ పాస్‌వర్డ్‌కు భిన్నంగా ఉంటుంది</string>
+    <string name="emptyUsername">దయచేసి వినియోగదారు పేరు నింపండి</string>
+    <string name="emptyEmail">దయచేసి ఇమెయిల్ నింపండి</string>
+    <string name="emptyPw">దయచేసి పాస్‌వర్డ్ నింపండి</string>
+    <string name="emptyGender">దయచేసి లింగాన్ని ఎంచుకోండి</string>
+    <string name="emptyBd">దయచేసి పుట్టినరోజు ఎంచుకోండి</string>
+    <string name="emptyPhone">దయచేసి ఫోన్ నంబర్ నింపండి</string>
+    <string name="GPSfail">స్థాన సేవ మంజూరు చేయబడలేదు</string>
+    <string name="atLeastOneTime">కనీసం ఒక టైమింగ్ ఉండాలి!</string>
+    <string name="emptyMedication">దయచేసి మందుల వివరాలను పూరించండి!</string>
+
+
+
+    <!-- login & account -->
+    <string name="verifyEmail">దయచేసి మీ ఖాతాను ధృవీకరించడానికి మీ ఇమెయిల్‌ను తనిఖీ చేయండి</string>
+    <string name="ResetPwEmail">మీ పాస్‌వర్డ్‌ను రీసెట్ చేయడానికి దయచేసి మీ ఇమెయిల్‌ను తనిఖీ చేయండి</string>
+    <string name="retry">దయచేసి మళ్ళీ ప్రయత్నించండి</string>
+    <string name="logoutMessage">లాగ్ అవుట్…</string>
+</resources>

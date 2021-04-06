@@ -54,6 +54,7 @@ public class AddCheckupActivity extends AppCompatActivity {
             @Override
             public void onOneClick(View v) {
                 if (new CheckUpMgr().addCheckUp(AddCheckupActivity.this)) {
+                    Toast.makeText(AddCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_SHORT).show();
                     finish();
                 }
                 else {
@@ -65,6 +66,7 @@ public class AddCheckupActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onOneClick(View v) {
+                Toast.makeText(AddCheckupActivity.this, R.string.DeleteCheckupSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
