@@ -3,11 +3,16 @@
     <!-- Success Messages -->
     <string name="loginSuccess">登录成功，欢迎！</string>
     <string name="AddCheckupSuccess">新健康检查记录添加成功！</string>
-    <string name="AddCheckupFailure">添加失败</string>
+    <string name="EditCheckupSuccess">健康检查记录修改成功！</string>
+    <string name="DeleteCheckupSuccess">健康检查提醒已删除！</string>
     <string name="AddCheckupEmptyType">请选择检查项目和诊所</string>
     <string name="AddMedicationSuccess">新用药记录添加成功！</string>
+    <string name="EditMedicationSuccess">用药记录已修改！</string>
+    <string name="DeleteMedicationSuccess">用药记录提醒已删除！</string>
     <string name="saveSuccess">已保存</string>
     <string name="regiSuccess">注册成功，请验证邮箱后再登录</string>
+    <string name="newMedTiming">请下滑列表查看新提醒时间</string>
+    <string name="removeMedTiming">最后一项提醒时间已删去</string>
 
     <!-- Error Messages -->
     <string name="loginFailUser">登录失败，无此用户</string>
@@ -26,7 +31,10 @@
     <string name="GPSfail">定位服务未授权</string>
     <string name="atLeastOneTime">至少要有一个提醒时间！</string>
     <string name="emptyMedication">请输入用药详情！</string>
-
+    <string name="AddCheckupFailure">添加健康检查信息失败</string>
+    <string name="EditCheckupFailure">修改健康检查信息失败</string>
+    <string name="AddMedicationFailure">添加用药记录失败</string>
+    <string name="EditMedicationFailure">修改用药记录失败</string>
 
     <!-- login & account -->
     <string name="verifyEmail">请检查您的邮箱来验证账户</string>

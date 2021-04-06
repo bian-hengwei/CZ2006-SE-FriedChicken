@@ -94,27 +94,6 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/commentText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
-        android:text="@string/Comment"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/commentMedication"
-        android:layout_width="331dp"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:gravity="start|bottom"
-        android:inputType="textMultiLine"
-        android:lines="2"
-        android:maxLines="5"
-        android:scrollbars="vertical"
-        android:layout_gravity="center_horizontal"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -165,14 +144,33 @@
 
             </LinearLayout>
 
-
-            <Button
-                android:id="@+id/addMed"
+            <TextView
+                android:id="@+id/commentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:padding="10dp"
-                android:text="@string/addMedicationToReminder" />
+                android:layout_marginTop="20dp"
+                android:padding="15dp"
+                android:text="@string/Comment"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/commentMedication"
+                android:layout_width="331dp"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:gravity="start|bottom"
+                android:inputType="textMultiLine"
+                android:lines="2"
+                android:maxLines="5"
+                android:scrollbars="vertical"
+                android:layout_gravity="center_horizontal"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/deleteMed"
@@ -186,6 +184,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.904" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="                   ">
+            </TextView>
+
+            <Button
+                android:id="@+id/addMed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="@string/addToReminder" />
+
+
+        </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

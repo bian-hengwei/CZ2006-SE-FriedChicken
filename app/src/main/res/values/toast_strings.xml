@@ -2,13 +2,17 @@
 <resources>
     <!-- Success Messages -->
     <string name="loginSuccess">Logged in Successfully, Welcome!</string>
-    <string name="AddCheckupSuccess">New Check Up Added Successfully</string>
-    <string name="AddCheckupFailure">Failed</string>
+    <string name="AddCheckupSuccess">New Checkup Added Successfully</string>
+    <string name="EditCheckupSuccess">Checkup Reminder Edited</string>
+    <string name="DeleteCheckupSuccess">Checkup Reminder Deleted</string>
     <string name="AddCheckupEmptyType">Please select type of check up and clinic!</string>
     <string name="AddMedicationSuccess">New Medication Added Successfully</string>
+    <string name="EditMedicationSuccess">Medication Reminder Edited</string>
+    <string name="DeleteMedicationSuccess">Medication Reminder Deleted</string>
     <string name="saveSuccess">Saved</string>
     <string name="regiSuccess">Registration successful, please verify email before login</string>
-
+    <string name="newMedTiming">Please scroll down to view new timing item</string>
+    <string name="removeMedTiming">The Last Timing is deleted</string>
 
     <!-- Error Messages -->
     <string name="loginFailUser">Login failed, invalid user</string>
@@ -27,8 +31,10 @@
     <string name="GPSfail">Location service is not granted</string>
     <string name="atLeastOneTime">There must be at least one timing!</string>
     <string name="emptyMedication">Please fill in medication details!</string>
-
-
+    <string name="AddCheckupFailure">Failed to Add Checkup</string>
+    <string name="EditCheckupFailure">Failed to Edit Checkup</string>
+    <string name="AddMedicationFailure">Failed to Add Medication</string>
+    <string name="EditMedicationFailure">Failed to Edit Medication</string>
 
     <!-- login & account -->
     <string name="verifyEmail">Please check your email to verify your account</string>

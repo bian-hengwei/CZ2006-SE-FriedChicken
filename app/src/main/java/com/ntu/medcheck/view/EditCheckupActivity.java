@@ -58,6 +58,7 @@ public class EditCheckupActivity extends AppCompatActivity {
             @Override
             public void onOneClick(View v) {
                 save = true;
+                Toast.makeText(EditCheckupActivity.this, R.string.EditCheckupSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -67,6 +68,7 @@ public class EditCheckupActivity extends AppCompatActivity {
             @Override
             public void onOneClick(View v) {
                 delete = true;
+                Toast.makeText(EditCheckupActivity.this, R.string.DeleteCheckupSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -93,7 +95,7 @@ public class EditCheckupActivity extends AppCompatActivity {
             finish();
         }
         else {
-            Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+            Toast.makeText(EditCheckupActivity.this, R.string.EditCheckupFailure, Toast.LENGTH_LONG);
         }
     }
 

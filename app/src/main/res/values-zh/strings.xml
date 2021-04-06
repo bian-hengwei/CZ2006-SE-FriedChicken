@@ -17,6 +17,7 @@
     <string name="deleteButton">删除本条</string>
     <string name="phoneLabel">手机号码</string>
     <string name="RePwLabel">再次输入密码</string>
+    <string name="addToReminder">添加至提醒列表</string>
 
     <!--    navigation-->
     <string name="splashDescript">您自己的健康计划表!</string>
@@ -74,7 +75,6 @@
     <string name="newMedTimeText">提醒时间：</string>
     <string name="newMedRepeat1">重复提醒：每</string>
     <string name="newMedRepeat2">天一次</string>
-    <string name="addMedicationToReminder">添加至提醒列表</string>
     <string name="addTime">增加提醒时间</string>
     <string name="deleteTime">去除提醒时间</string>
 

@@ -55,6 +55,9 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
                 int i = Integer.parseInt(index.get(index.size() - 1)) + 1;
                 index.add(Integer.toString(i));
                 medicationMgr.dynamicAddTime(aca, index);
+                if(i>3){
+                    Toast.makeText(aca, R.string.newMedTiming, Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -69,6 +72,7 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
                 else{
                     index.remove(index.size() - 1);
                     medicationMgr.dynamicAddTime(aca, index);
+                    Toast.makeText(aca, R.string.removeMedTiming, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -80,6 +84,7 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
             public void onOneClick(View v) {
                 if (medicationMgr.checkStatus(aca)) {
                     save = true;
+                    Toast.makeText(aca, R.string.EditMedicationSuccess, Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -90,6 +95,7 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
             @Override
             public void onOneClick(View v) {
                 delete = true;
+                Toast.makeText(aca, R.string.DeleteMedicationSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
