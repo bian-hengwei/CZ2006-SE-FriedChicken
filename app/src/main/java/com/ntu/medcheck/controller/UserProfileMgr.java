@@ -35,11 +35,11 @@ public class UserProfileMgr {
     public UserProfileMgr() {
         user = User.getInstance();
         fDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference sRef = fDatabase.getReference("Users");
-        uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
     }
 
     public void initialize(HomeActivity aca) {
+        DatabaseReference sRef = fDatabase.getReference("Users");
+        uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         uRef.keepSynced(true);
 
         ValueEventListener postListener = new ValueEventListener() {
@@ -232,6 +232,8 @@ public class UserProfileMgr {
     } // to be overridden
 
     private void save() {
+        DatabaseReference sRef = fDatabase.getReference("Users");
+        uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         uRef.setValue(user);
     }
 

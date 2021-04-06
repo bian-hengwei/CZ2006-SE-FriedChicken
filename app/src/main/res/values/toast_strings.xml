@@ -12,7 +12,7 @@
 
     <!-- Error Messages -->
     <string name="loginFailUser">Login failed, invalid user</string>
-    <string name="loginFailPw">Login failed, wrong password</string>
+    <string name="loginFailPw">Login failed, wrong authentication</string>
     <string name="loginFailUnknown">Login failed, unknown error</string>
     <string name="regiFail">Registration failed, unknown error</string>
     <string name="regiFailWeakPw">Registration failed, please use a stronger password</string>

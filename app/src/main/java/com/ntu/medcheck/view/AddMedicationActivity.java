@@ -52,7 +52,6 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                 int i = Integer.parseInt(index.get(index.size() - 1)) + 1;
                 index.add(Integer.toString(i));
                 medicationMgr.dynamicAddTime(aca, index);
-
             }
         });
 

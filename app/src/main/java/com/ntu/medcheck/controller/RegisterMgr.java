@@ -94,7 +94,7 @@ public class RegisterMgr {
                     Toast.makeText(aca, R.string.regiFailEmailExist, Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e) {
-                    System.out.println(R.string.regiFail);
+                    Toast.makeText(aca,R.string.regiFail, Toast.LENGTH_SHORT).show();
                 }
             }
         });
