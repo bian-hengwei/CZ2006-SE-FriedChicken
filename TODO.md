@@ -1,6 +1,4 @@
 ### Tasks
- - [ ] TODO: Add medication HENGWEI
- - [ ] TODO: Modify / delete medication HENGWEI
  - [ ] TODO: Notification YINAN
 
 ### Not urgent
