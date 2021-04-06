@@ -22,6 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Test">
+        <activity android:name=".view.EActivity"></activity>
         <activity android:name=".view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,17 +33,17 @@
         <activity
             android:name=".view.SearchClinicActivity"
             android:label="@string/headerSearchClinic"
-            android:parentActivityName=".view.AddCheckupActivity"></activity>
+            android:parentActivityName=".view.AddCheckupActivity" />
         <activity
             android:name=".view.EditCheckupActivity"
             android:label="@string/headerCheckupDetail"
             android:parentActivityName=".view.HomeActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.EditMedicationActivity"
             android:label="@string/headerMedicationDetail"
             android:parentActivityName=".view.HomeActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -54,30 +55,32 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBsp4RgrmSeEFYxuBowSLqb5EssVry4IwI" />
+
         <activity
             android:name=".view.AddCheckupActivity"
             android:label="@string/headerNewCheckup"
             android:parentActivityName=".view.HomeActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.AddMedicationActivity"
             android:label="@string/headerNewMedication"
             android:parentActivityName=".view.HomeActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".view.HomeActivity"></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".view.HomeActivity" />
         <activity
             android:name=".view.ForgetPasswordActivity"
             android:label="@string/pwResetButton"
-            android:parentActivityName=".view.LoginActivity"></activity>
+            android:parentActivityName=".view.LoginActivity" />
         <activity
             android:name=".view.RegisterActivity"
             android:label="@string/registerLabel"
-            android:parentActivityName=".view.LoginActivity"></activity>
-        <activity android:name=".view.LoginActivity">
-        </activity>
+            android:parentActivityName=".view.LoginActivity" />
+        <activity android:name=".view.LoginActivity"></activity>
+
         <receiver
             android:name=".controller.NotificationReceiver"
             android:enabled="true" />
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -90,7 +93,7 @@
             android:required="false"
             tools:ignore="WrongManifestParent" />
 
-        <receiver android:name=".controller.ReminderBroadcast"/>
+        <receiver android:name=".controller.ReminderBroadcast" />
     </application>
 
 </manifest>

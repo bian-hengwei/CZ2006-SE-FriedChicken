@@ -1,4 +1,3 @@
-
 <resources>
     <!--    Common Terms-->
     <string name="timeH">Hour</string>
@@ -53,7 +52,7 @@
 
     <!--    fragment_map.xml-->
     <string name="searchButton">Search</string>
-        <!--clinicTypeSpinner-->
+    <!--clinicTypeSpinner-->
     <string-array name="clinic_choices">
         <item><string name="clinicTypeDefault">Choose clinic type</string></item>
         <item><string name="clinicTypeBreast">Breast Screening Centre</string></item>
@@ -80,7 +79,7 @@
     <string name="deleteTime">- Timing</string>
 
 
-        <!--unitListSpinner-->
+    <!--unitListSpinner-->
     <string-array name="dosageUnit">
         <item><string name="unitListDefault">unit</string></item>
         <item><string name="unitListTab">tablet</string></item>
@@ -100,12 +99,12 @@
 
     <!--    fragment_user_home.xml-->
     <string name="welcomeBack">Welcome back, </string>
-    <string name="userProfile" >User Profile</string>
+    <string name="userProfile">User Profile</string>
     <string name="genderLabel">Gender:</string>
-    <string name="male_label" >Male</string>
+    <string name="male_label">Male</string>
     <string name="female_label">Female</string>
     <string name="birthdayLabel">Birthday:</string>
     <string name="editProfileButton">Edit profile</string>
-    <string name="logout" >Logout</string>
+    <string name="logout">Logout</string>
 
 </resources>

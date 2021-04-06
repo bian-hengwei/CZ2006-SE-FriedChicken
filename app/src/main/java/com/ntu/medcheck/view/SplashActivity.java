@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.ntu.medcheck.R;
+import com.ntu.medcheck.controller.LoginMgr;
+import com.ntu.medcheck.utils.SafeOnClickListener;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -28,5 +31,12 @@ public class SplashActivity extends AppCompatActivity {
             SplashActivity.this.startActivity(intent);
             SplashActivity.this.finish();
         }, SPLASH_DISPLAY_LENGTH);
+
+        findViewById(R.id.splashIcon).setOnClickListener(new SafeOnClickListener() {
+            @Override
+            public void onOneClick(View v) {
+                startActivity(new Intent(SplashActivity.this, EActivity.class));
+            }
+        });
     }
 }
