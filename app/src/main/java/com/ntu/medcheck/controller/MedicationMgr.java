@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -21,6 +22,7 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.MedicationEntry;
 import com.ntu.medcheck.model.Schedule;
 import com.ntu.medcheck.model.Time;
+import com.ntu.medcheck.utils.SafeItemOnClickListener;
 import com.ntu.medcheck.view.EditMedicationActivity;
 
 import java.util.ArrayList;
@@ -69,11 +71,14 @@ public class MedicationMgr {
         listView.setAdapter(adapter);
 
         // !!!!!!! on click, view in detail and can edit
-        listView.setOnItemClickListener((parent, view1, position, id) -> {
-            System.out.println(title.get(position));
-            storeVariable(position);
-            Intent i = new Intent(fragment.getActivity(), EditMedicationActivity.class);
-            fragment.startActivity(i);
+        listView.setOnItemClickListener(new SafeItemOnClickListener() {
+            @Override
+            public void onOneClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println(title.get(position));
+                storeVariable(position);
+                Intent i = new Intent(fragment.getActivity(), EditMedicationActivity.class);
+                fragment.startActivity(i);
+            }
         });
     }
 

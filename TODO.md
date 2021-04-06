@@ -1,5 +1,8 @@
 ### Tasks
  - [ ] TODO: Notification YINAN
+    - [ ] TODO: Schedule at correct time
+    - [ ] TODO: Edit time
+    - [ ] TODO: Remove schedule
 
 ### Not urgent
  - [ ] TODO: User profile page HENGWEI
@@ -8,6 +11,7 @@
  - [ ] TODO: Add more language options X & J
  - [ ] TODO: Screening center manager MVC HENGWEI
  - [ ] TODO: Factory for adapter class YINAN
+ - [ ] TODO: List view listener unsafe
 
 ### Needs to be verified repeatedly
  - [ ] TODO: Beautify activities X & J
