@@ -30,6 +30,7 @@ import com.ntu.medcheck.view.EditCheckupActivity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 public class CheckUpMgr {
@@ -53,6 +54,12 @@ public class CheckUpMgr {
         Collections.sort(sortedKeys);
         for (String key : sortedKeys) {
             ArrayList<CheckUpEntry> arr = checkup.get(key);
+            Collections.sort(arr, (o1, o2) -> {
+                if (o1.getTime().toCalendar().after(o2.getTime().toCalendar())) {
+                    return 1;
+                }
+                return -1;
+            });
             for (CheckUpEntry entry : arr) {
                 if (entry.getTime().toCalendar().after(Calendar.getInstance())) {
                     Log.d("future entry", "dynamicDisplayCheckup: ");

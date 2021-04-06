@@ -10,7 +10,7 @@
     <string name="AddButton">Add</string>
     <string name="emailLabel">Email</string>
     <string name="pwLabel">Password</string>
-    <string name="app_name">medCheck</string>
+    <string name="app_name">Med Check</string>
     <string name="registerLabel">Register</string>
     <string name="usernameLabel">Username</string>
     <string name="confirmButton">Confirm</string>

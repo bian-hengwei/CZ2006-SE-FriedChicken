@@ -30,6 +30,7 @@ public class EditCheckupActivity extends AppCompatActivity {
     public TextView clinic_name;
     public TextView checkup_type;
     private boolean save = false;
+    private boolean delete = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -65,6 +66,7 @@ public class EditCheckupActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onOneClick(View v) {
+                delete = true;
                 finish();
             }
         });
@@ -82,12 +84,12 @@ public class EditCheckupActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (delete) return;
         if (!save) {
+            Log.d("onDestroy", "onDestroy: resetting");
             new CheckUpMgr().display(this, getIntent());
         }
         if (new CheckUpMgr().addCheckUp(EditCheckupActivity.this)) {
-            Toast addCheckupToast = Toast.makeText(EditCheckupActivity.this, R.string.AddCheckupSuccess, Toast.LENGTH_LONG);
-            addCheckupToast.show();
             finish();
         }
         else {
