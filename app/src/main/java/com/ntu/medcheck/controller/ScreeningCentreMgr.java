@@ -34,11 +34,19 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.Layer;
+import com.google.maps.android.data.geojson.GeoJsonFeature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonLineStringStyle;
+import com.google.maps.android.data.geojson.GeoJsonMultiPolygon;
+import com.google.maps.android.data.geojson.GeoJsonPoint;
+import com.google.maps.android.data.geojson.GeoJsonPointStyle;
+import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.AddCheckupActivity;
@@ -245,6 +253,16 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         }
     }
 
+    //method to reset the colour of all the markers of the geojsonlayer
+    public void resetLayer(GeoJsonLayer geoJsonLayer){
+        BitmapDescriptor normalIcon = BitmapDescriptorFactory.defaultMarker(); //normal icon
+        GeoJsonPointStyle geoJsonPointStyle = new GeoJsonPointStyle();
+        geoJsonPointStyle.setIcon(normalIcon);
+        for (GeoJsonFeature feature : geoJsonLayer.getFeatures()) {
+            feature.setPointStyle(geoJsonPointStyle); //change color of the feature clicked
+        }
+    }
+
     //adding cervical screening centres on the map
     public void cervicalLayer() throws IOException, JSONException{
         mQueue = Volley.newRequestQueue(getContext());
@@ -276,6 +294,16 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                                         cervicalgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
                                             @Override
                                             public void onFeatureClick(Feature feature) {
+                                                resetLayer(cervicalgeojsonlayer);
+
+                                                // Get the icon for the feature
+                                                BitmapDescriptor pointIcon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE); //set color
+                                                GeoJsonPointStyle geoJsonPointStyle = new GeoJsonPointStyle();
+                                                geoJsonPointStyle.setIcon(pointIcon);
+                                                ((GeoJsonFeature) feature).setPointStyle(geoJsonPointStyle); //change color of the feature clicked
+
+
+
                                                 String description = feature.getProperty("Description");
                                                 int addresspostalcode_index = description.lastIndexOf("ADDRESSPOSTALCODE"); //start of ADDRESSPOSTALCODE
                                                 int addressstreetname_index = description.lastIndexOf("ADDRESSSTREETNAME"); //start of ADDRESSTREETNAME
@@ -353,8 +381,13 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                                         breastgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
                                             @Override
                                             public void onFeatureClick(Feature feature) {
-                                                GeoJsonLineStringStyle lineStringStyle = new GeoJsonLineStringStyle();
-                                                lineStringStyle.setColor(Color.RED);
+                                                resetLayer(breastgeojsonlayer);
+
+                                                // Get the icon for the feature
+                                                BitmapDescriptor pointIcon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE); //set color
+                                                GeoJsonPointStyle geoJsonPointStyle = new GeoJsonPointStyle();
+                                                geoJsonPointStyle.setIcon(pointIcon);
+                                                ((GeoJsonFeature) feature).setPointStyle(geoJsonPointStyle); //change color of the feature clicked
 
                                                 String description = feature.getProperty("Description");
                                                 int addresspostalcode_index = description.lastIndexOf("ADDRESSPOSTALCODE"); //start of ADDRESSPOSTALCODE
@@ -433,6 +466,14 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                                         chasgeojsonlayer.setOnFeatureClickListener(new Layer.OnFeatureClickListener() {
                                             @Override
                                             public void onFeatureClick(Feature feature) {
+                                                resetLayer(chasgeojsonlayer);
+
+                                                // Get the icon for the feature
+                                                BitmapDescriptor pointIcon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE); //set color
+                                                GeoJsonPointStyle geoJsonPointStyle = new GeoJsonPointStyle();
+                                                geoJsonPointStyle.setIcon(pointIcon);
+                                                ((GeoJsonFeature) feature).setPointStyle(geoJsonPointStyle); //change color of the feature clicked
+
                                                 String description = feature.getProperty("Description");
                                                 int hciname_index = description.lastIndexOf("HCI_NAME"); //start of HCI_NAME
                                                 int licence_type_index = description.lastIndexOf("LICENCE_TYPE"); //start of LICENCE_TYPE
