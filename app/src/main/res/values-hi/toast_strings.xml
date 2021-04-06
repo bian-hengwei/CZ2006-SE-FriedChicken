@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Success Messages -->
+    <string name="loginSuccess">लोग इन सफल हुआ, आपका स्वागत है!</string>
+    <string name="AddCheckupSuccess">नया चेक उप जोड़ा गया है</string>
+    <string name="AddCheckupFailure">असफल हुआ</string>
+    <string name="AddCheckupEmptyType">कृपया चेक अप और क्लिनिक का प्रकार चुनें!</string>
+    <string name="AddMedicationSuccess">नई दवाएं जोड़ी गईं</string>
+    <string name="saveSuccess">सेव सफल हुआ</string>
+    <string name="regiSuccess">पंजीकरण सफल, कृपया लॉगिन से पहले ईमेल को सत्यापित करें</string>
+
+
+    <!-- Error Messages -->
+    <string name="loginFailUser">लॉगिन विफल, अमान्य उपयोगकर्ता</string>
+    <string name="loginFailPw">लॉगिन विफल, गलत पासवर्ड</string>
+    <string name="loginFailUnknown">लॉगिन विफल, अज्ञात त्रुटि</string>
+    <string name="regiFail">पंजीकरण विफल, अज्ञात त्रुटि</string>
+    <string name="regiFailWeakPw">पंजीकरण विफल हुआ, कृपया एक मजबूत पासवर्ड का उपयोग करें</string>
+    <string name="regiFailEmailExist">पंजीकरण विफल रहा, ईमेल पहले से ही उपयोग किया गया है</string>
+    <string name="regiFailRePw">पंजीकरण विफल रहा, पासवर्ड फिर से दर्ज पासवर्ड से अलग है</string>
+    <string name="emptyUsername">कृपया उपयोगकर्ता नाम भरें</string>
+    <string name="emptyEmail">कृपया ईमेल भरें</string>
+    <string name="emptyPw">कृपया पासवर्ड भरें</string>
+    <string name="emptyGender">कृपया लिंग चुनें</string>
+    <string name="emptyBd">कृपया जन्मदिन का चयन करें</string>
+    <string name="emptyPhone">कृपया फ़ोन नंबर भरें</string>
+    <string name="GPSfail">स्थानीय सेवा प्रदान नहीं की गई है</string>
+    <string name="atLeastOneTime">कम से कम एक टाइमिंग होनी चाहिए!</string>
+    <string name="emptyMedication">कृपया दवा विवरण भरें!</string>
+
+
+
+    <!-- login & account -->
+    <string name="verifyEmail">अपने खाते को सत्यापित करने के लिए, कृपया अपना ईमेल देखें</string>
+    <string name="ResetPwEmail">अपना पासवर्ड रीसेट करने के लिए कृपया अपना ईमेल देखें</string>
+    <string name="retry">कृपया पुन: प्रयास करें</string>
+    <string name="logoutMessage">लॉग आउट हो रहा है</string>
+</resources>

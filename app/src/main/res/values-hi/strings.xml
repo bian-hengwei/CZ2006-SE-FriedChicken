@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Common Terms-->
+    <string name="timeH">घंटे</string>
+    <string name="timeM">मिनट</string>
+    <string name="timeMor">सुबह</string>
+    <string name="timeAft">दोपहर</string>
+    <string name="timeEve">संध्या</string>
+    <string name="Comment">टिप्पणी:</string>
+    <string name="AddButton">जोड़ें</string>
+    <string name="emailLabel">ईमेल</string>
+    <string name="pwLabel">पासवर्ड</string>
+    <string name="app_name">मेड चेक</string>
+    <string name="registerLabel">रजिस्टर करें</string>
+    <string name="usernameLabel">उपयोगकर्ता नाम</string>
+    <string name="confirmButton">पुष्टि करें</string>
+    <string name="deleteButton">हटाएं</string>
+    <string name="phoneLabel">फ़ोन नंबर</string>
+    <string name="RePwLabel">पासवर्ड फिर से दर्ज करें</string>
+    <string name="addToReminder">रिमाइंडर में जोड़ें</string>
+
+    <!--    navigation-->
+    <string name="splashDescript">आपका व्यक्तिगत स्वास्थ्य देखभाल अनुसूचक!</string>
+    <string name="splashCredit">- NTU FriedChicken टीम द्वारा संचालित -</string>
+    <string name="nav_calendar">पंचांग</string>
+    <string name="nav_schedule">अनुसूची</string>
+    <string name="nav_home">उपयोगकर्ता</string>
+    <string name="nav_medicine">दवा</string>
+    <string name="title_activity_home">मुख्य गतिविधि</string>
+    <string name="title_dashboard">डैशबोर्ड</string>
+    <string name="title_notifications">सूचनाएं</string>
+
+    <!--    headers-->
+    <string name="headerSearchClinic">स्क्रीनिंग केंद्रों की खोज करें</string>
+    <string name="headerCheckupDetail">चेकअप डिटेल</string>
+    <string name="headerNewCheckup">नया चेकअप शेड्यूल</string>
+    <string name="headerNewMedication">नई दवा अनुस्मारक</string>
+    <string name="headerMedicationDetail">दवा विस्तार</string>
+
+    <!--    entries = checkup/medication-->
+    <string name="eventName">प्रतिस्पर्धा</string>
+    <string name="clinicName">क्लिनिक: </string>
+    <string name="eventDate">दिनांक:</string>
+    <string name="eventTime">समय: </string>
+    <string name="eventFreq">आवृत्ति: </string>
+    <string name="addCheckupButton">नया चेकअप जोड़ें</string>
+    <string name="addMedButton">नया दवा जोड़ें</string>
+
+    <!--    ScreeningCenterMgr.java-->
+    <string name="postalLabel">डाक कोड: </string>
+    <string name="streetLabel">सड़क का नाम: </string>
+    <string name="clinicLabel">क्लिनिक: </string>
+    <string name="webLabel">वेबसाइट: </string>
+
+    <!--    fragment_map.xml-->
+    <string name="searchButton">खोज</string>
+    <!--clinicTypeSpinner-->
+    <string-array name="clinic_choices">
+        <item><string name="clinicTypeDefault">क्लिनिक प्रकार चुनें</string></item>
+        <item><string name="clinicTypeBreast">स्तन स्क्रीनिंग केंद्र</string></item>
+        <item><string name="clinicTypeCervical">सरवाइकल स्क्रीनिंग सेंटर</string></item>
+        <item><string name="clinicTypeCHAS">CHAS क्लीनिक</string></item>
+    </string-array>
+    <string name="clinicBreast">स्तन स्क्रीनिंग केंद्र</string>
+    <string name="clinicCervical">सरवाइकल स्क्रीनिंग सेंटर</string>
+    <string name="clinicCHAS">CHAS क्लीनिक</string>
+    <string name="confirmClinicButton">क्लिनिक की पुष्टि करें</string>
+
+    <!--    activity_add_checkup.xml-->
+    <string name="newCheckupType">चेकअप का प्रकार:</string>
+
+    <!--    activity_add_medication.xml-->
+    <string name="newMedName">दवा का नाम:</string>
+    <string name="newMedDosageText">खुराक:</string>
+    <string name="newMedTimeText">अनुस्मारक समय:</string>
+    <string name="newMedRepeat1">दोहराना: एक बार हर</string>
+    <string name="newMedRepeat2">दिन</string>
+    <string name="addTime">+ समय</string>
+    <string name="deleteTime">- समय</string>
+
+
+    <!--unitListSpinner-->
+    <string-array name="dosageUnit">
+        <item><string name="unitListDefault">इकाई</string></item>
+        <item><string name="unitListTab">गोली</string></item>
+        <item><string name="unitListDrop">ड्रॉप</string></item>
+        <item><string name="unitListMl">ml</string></item>
+    </string-array>
+
+    <!--    activity_add_medication.xml-->
+    <string name="pwResetButton">पासवर्ड रीसेट</string>
+
+    <!--    activity_login.xml-->
+    <string name="loginButton">लॉग इन करें</string>
+    <string name="forgotPwButton">पासवर्ड भूल गए?</string>
+
+    <!--    activity_register.xml-->
+    <string name="confirmPwButton">पासवर्ड की पुष्टि कीजिये</string>
+
+    <!--    fragment_user_home.xml-->
+    <string name="welcomeBack">वापसी पर स्वागत है, </string>
+    <string name="userProfile">उपयोगकर्ता रूपरेखा</string>
+    <string name="genderLabel">लिंग:</string>
+    <string name="male_label">पुरुष</string>
+    <string name="female_label">महिला</string>
+    <string name="birthdayLabel">जन्मदिन:</string>
+    <string name="editProfileButton">प्रोफ़ाइल संपादित करें</string>
+    <string name="logout">लॉग आउट</string>
+
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    Common Terms-->
+    <string name="timeH">గంట</string>
+    <string name="timeM">నిమిషాలు</string>
+    <string name="timeMor">ఉదయం</string>
+    <string name="timeAft">మధ్యాహ్నం</string>
+    <string name="timeEve">సాయంత్రం</string>
+    <string name="Comment">వ్యాఖ్య:</string>
+    <string name="AddButton">జోడించు</string>
+    <string name="emailLabel">ఇమెయిల్</string>
+    <string name="pwLabel">పాస్వర్డ్</string>
+    <string name="app_name">మెడ్ చెక్</string>
+    <string name="registerLabel">నమోదు చేయండి</string>
+    <string name="usernameLabel">వినియోగదారు పేరు</string>
+    <string name="confirmButton">నిర్ధారించండి</string>
+    <string name="deleteButton">తొలగించు</string>
+    <string name="phoneLabel">ఫోను నంబరు</string>
+    <string name="RePwLabel">పాస్వర్డ్ను తిరిగి నమోదు చేయండి</string>
+    <string name="addToReminder">రిమైండర్‌కు జోడించు</string>
+
+    <!--    navigation-->
+    <string name="splashDescript">మీ వ్యక్తిగత ఆరోగ్య సంరక్షణ షెడ్యూలర్!</string>
+    <string name="splashCredit">- NTU ఫ్రైడ్‌చికెన్ బృందం ఆధారితం -</string>
+    <string name="nav_calendar">క్యాలెండర్</string>
+    <string name="nav_schedule">షెడ్యూల్</string>
+    <string name="nav_home">యూజర్హోమ్</string>
+    <string name="nav_medicine">మందు</string>
+    <string name="title_activity_home">మెయిన్ యాక్టివిటీ</string>
+    <string name="title_dashboard">డాష్బోర్డ్</string>
+    <string name="title_notifications">నోటిఫికేషన్‌లు</string>
+
+    <!--    headers-->
+    <string name="headerSearchClinic">స్క్రీనింగ్ కేంద్రాల కోసం శోధించండి</string>
+    <string name="headerCheckupDetail">చెకప్ వివరాలు</string>
+    <string name="headerNewCheckup">క్రొత్త చెకప్ షెడ్యూల్</string>
+    <string name="headerNewMedication">కొత్త మందుల రిమైండర్</string>
+    <string name="headerMedicationDetail">మందుల వివరాలు</string>
+
+    <!--    entries = checkup/medication-->
+    <string name="eventName">ఈవెంట్</string>
+    <string name="clinicName">క్లినిక్: </string>
+    <string name="eventDate">తేదీ: </string>
+    <string name="eventTime">సమయం: </string>
+    <string name="eventFreq">తరచుదనం: </string>
+    <string name="addCheckupButton">క్రొత్త తనిఖీని జోడించండి</string>
+    <string name="addMedButton">కొత్త మందులను జోడించండి</string>
+
+    <!--    ScreeningCenterMgr.java-->
+    <string name="postalLabel">పోస్టల్ కోడ్: </string>
+    <string name="streetLabel">వీధీ పేరు: </string>
+    <string name="clinicLabel">క్లినిక్:</string>
+    <string name="webLabel">వెబ్‌సైట్: </string>
+
+    <!--    fragment_map.xml-->
+    <string name="searchButton">వెతకండి</string>
+    <!--clinicTypeSpinner-->
+    <string-array name="clinic_choices">
+        <item><string name="clinicTypeDefault">క్లినిక్ రకాన్ని ఎంచుకోండి</string></item>
+        <item><string name="clinicTypeBreast">బ్రెస్ట్ స్క్రీనింగ్ సెంటర్</string></item>
+        <item><string name="clinicTypeCervical">గర్భాశయ స్క్రీనింగ్ కేంద్రం</string></item>
+        <item><string name="clinicTypeCHAS">చాస్ క్లినిక్స్</string></item>
+    </string-array>
+    <string name="clinicBreast">బ్రెస్ట్ స్క్రీనింగ్ సెంటర్</string>
+    <string name="clinicCervical">గర్భాశయ స్క్రీనింగ్ కేంద్రం</string>
+    <string name="clinicCHAS">చాస్ క్లినిక్స్</string>
+    <string name="confirmClinicButton">క్లినిక్ నిర్ధారించండి</string>
+
+    <!--    activity_add_checkup.xml-->
+    <string name="newCheckupType">చెకప్ రకం:</string>
+
+    <!--    activity_add_medication.xml-->
+    <string name="newMedName">మందుల పేరు:</string>
+    <string name="newMedDosageText">మోతాదు:</string>
+    <string name="newMedTimeText">రిమైండర్ సమయం:</string>
+    <string name="newMedRepeat1">పునరావృతం: ప్రతి ఒకసారి</string>
+    <string name="newMedRepeat2">రోజులు</string>
+    <string name="addTime">+ సమయం</string>
+    <string name="deleteTime">- టైమింగ్</string>
+
+
+    <!--unitListSpinner-->
+    <string-array name="dosageUnit">
+        <item><string name="unitListDefault">యూనిట్</string></item>
+        <item><string name="unitListTab">టాబ్లెట్</string></item>
+        <item><string name="unitListDrop">డ్రాప్</string></item>
+        <item><string name="unitListMl">ml</string></item>
+    </string-array>
+
+    <!--    activity_add_medication.xml-->
+    <string name="pwResetButton">రహస్యపదాన్ని మార్చుకోండి</string>
+
+    <!--    activity_login.xml-->
+    <string name="loginButton">ప్రవేశించండి</string>
+    <string name="forgotPwButton">పాస్‌వర్డ్ మర్చిపోయారా?</string>
+
+    <!--    activity_register.xml-->
+    <string name="confirmPwButton">పాస్వర్డ్ను నిర్ధారించండి</string>
+
+    <!--    fragment_user_home.xml-->
+    <string name="welcomeBack">పునఃస్వాగతం </string>
+    <string name="userProfile">వినియోగదారు వివరాలు</string>
+    <string name="genderLabel">లింగం:</string>
+    <string name="male_label">పురుషుడు</string>
+    <string name="female_label">స్త్రీ</string>
+    <string name="birthdayLabel">పుట్టినరోజు:</string>
+    <string name="editProfileButton">ప్రొఫైల్‌ను సవరించండి</string>
+    <string name="logout">లాగ్ అవుట్</string>
+
+</resources>
