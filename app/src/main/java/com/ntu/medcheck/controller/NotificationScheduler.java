@@ -37,7 +37,7 @@ public class NotificationScheduler {
         NotificationCompat.Builder builder = new NotificationCompat.Builder( aca, default_notification_channel_id ) ;
         builder.setContentTitle(title) ;
         builder.setContentText(content) ;
-        builder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        builder.setSmallIcon(R.drawable.icon_tight) ;
         builder.setAutoCancel( true ) ;
         builder.setContentIntent(resultPendingIntent);
         builder.setChannelId( NOTIFICATION_CHANNEL_ID ) ;
