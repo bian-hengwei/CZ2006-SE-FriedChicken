@@ -65,10 +65,4 @@ public class NotificationScheduler {
         builder.setChannelId("10001");
         return builder.build();
     }
-
-
-
-
-
-
 }

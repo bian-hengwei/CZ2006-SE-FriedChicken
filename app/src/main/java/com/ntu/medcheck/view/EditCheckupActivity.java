@@ -1,5 +1,8 @@
 package com.ntu.medcheck.view;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
+import com.ntu.medcheck.controller.MyNotificationPublisher;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
 
@@ -63,11 +67,25 @@ public class EditCheckupActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.deleteCheckUp).setOnClickListener(new SafeOnClickListener() {
+        Button deleteCheckButton = findViewById(R.id.deleteCheckUp);
+        deleteCheckButton.setOnClickListener(new SafeOnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onOneClick(View v) {
                 delete = true;
+
+                // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                // delete notification
+                int requestCode = 1;
+
+                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE );
+                Intent intent = new Intent(EditCheckupActivity.this, MyNotificationPublisher.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(EditCheckupActivity.this, requestCode, intent, 0);
+
+                alarmManager.cancel(pendingIntent);
+                System.out.println("@#@#@#@#@#@#@#@#@#@#@#@#@#@# alarm cancelled");
+                // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
                 Toast.makeText(EditCheckupActivity.this, R.string.DeleteCheckupSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }

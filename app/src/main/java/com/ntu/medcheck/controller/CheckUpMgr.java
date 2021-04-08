@@ -179,7 +179,8 @@ public class CheckUpMgr {
         long milliSecond = getMillisecond(dateString);
 
         Random random = new Random();
-        int randomId = random.nextInt(100000);
+        // int randomId = random.nextInt(100000);
+        int randomId = 1;
 
         NotificationScheduler notificationScheduler = new NotificationScheduler();
         notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, false, randomId);
