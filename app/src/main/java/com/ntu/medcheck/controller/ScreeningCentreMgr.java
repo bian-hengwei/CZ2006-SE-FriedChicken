@@ -99,6 +99,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                 choice = parent.getItemAtPosition(position).toString();
                 Log.i("choice", "choice is " + choice);
             }
+
             @Override
             //put nothing here
             public void onNothingSelected(AdapterView<?> parent) {
@@ -111,7 +112,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         search.setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
-                if (choice.equals(mView.getResources().getString(R.string.clinicCervical))){
+                if (choice.equals(mView.getResources().getString(R.string.clinicCervical))) {
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -124,9 +125,9 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (JSONException e) {
-                        //e.printStackTrace();
+                        e.printStackTrace();
                     }
-                }else if(choice.equals(mView.getResources().getString(R.string.clinicBreast))){
+                } else if (choice.equals(mView.getResources().getString(R.string.clinicBreast))) {
                     try {
                         //reset the map before adding layers onto it
                         map.clear();
@@ -156,8 +157,7 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                }
-                else{
+                } else {
                     Toast.makeText(getContext(), "Please select a type of clinic", Toast.LENGTH_SHORT).show(); //show message to remind user to select clinic type
                 }
             }
@@ -177,27 +177,28 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
             mapView.getMapAsync(this);
         }
 
+
         view.findViewById(R.id.addtoschedule).setOnClickListener(new SafeOnClickListener() {
             @Override
             public void onOneClick(View v) {
                 String clinic_choice = text_clinic_name.getText().toString(); //get the string of at clinic name textview
                 if (clinic_choice.isEmpty()) return;
                 String confirmed_clinic_choice = clinic_choice.substring(8);
-                Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
+                //Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
                 String type_of_checkup = null;
-                if(choice.equals(mView.getResources().getString(R.string.clinicCervical))){
-                   type_of_checkup = "Cervical checkup";
-                }else if(choice.equals(mView.getResources().getString(R.string.clinicBreast))){
+                if (choice.equals(mView.getResources().getString(R.string.clinicCervical))) {
+                    type_of_checkup = "Cervical checkup";
+                } else if (choice.equals(mView.getResources().getString(R.string.clinicBreast))) {
                     type_of_checkup = "Breast checkup";
-                }else if(choice.equals(mView.getResources().getString(R.string.clinicCHAS))){
+                } else if (choice.equals(mView.getResources().getString(R.string.clinicCHAS))) {
                     type_of_checkup = "Others";
-                }else return;
+                } else return;
                 mapView.onDestroy(); //destroy map before going to another activity
                 Intent i = new Intent();
                 i.putExtra("Clinic name set", confirmed_clinic_choice); //passing the clinic name string through the intent
                 i.putExtra("type of checkup", type_of_checkup);
-                Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
-                Log.i("testingstring", "clinic string is" + type_of_checkup);
+                //Log.i("testingstring", "clinic string is" + confirmed_clinic_choice);
+                //Log.i("testingstring", "clinic string is" + type_of_checkup);
                 getActivity().setResult(Activity.RESULT_OK, i);
                 getActivity().finish();
             }
@@ -213,44 +214,31 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
 
         //user location
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Log.i("permission granted", "going to call enableUserLocation function");
             enableUserLocation();
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(), Manifest.permission.ACCESS_FINE_LOCATION)) {
                 //show user a dialog
+                Log.i("request permission", "ask user for permission here");
                 ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
-            } else {
-                ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ACCESS_LOCATION_REQUEST_CODE);
+                Log.i("request permission2", "user asked");
             }
         }
+
         //set camera to be on Singapore
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(1.3521, 103.8198), 10f));
         map.setMinZoomPreference(1);
+
+        Log.i("map check", "map finish loading");
     }
 
     private void enableUserLocation() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            //if denied, go here
             return;
         }
+        Log.i("location", "location is enabled here");
         map.setMyLocationEnabled(true);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == ACCESS_LOCATION_REQUEST_CODE){
-            if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                enableUserLocation();
-            }else{
-                //show a dialog that permission is not granted
-                Toast.makeText(getContext(),R.string.GPSfail, Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
     //method to reset the colour of all the markers of the geojsonlayer
