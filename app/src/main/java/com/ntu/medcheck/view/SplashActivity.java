@@ -1,15 +1,14 @@
 package com.ntu.medcheck.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.controller.LoginMgr;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 
 public class SplashActivity extends AppCompatActivity {

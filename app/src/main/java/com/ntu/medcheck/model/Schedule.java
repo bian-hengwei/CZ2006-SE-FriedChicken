@@ -3,7 +3,6 @@ package com.ntu.medcheck.model;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,8 +19,6 @@ public class Schedule {
     // singleton pattern
     private static Schedule scheduleInstance = new Schedule();
 
-    // read schedule in from local database
-
     // constructor is made private
     private Schedule() {
         checkup = new HashMap<>();
@@ -37,20 +34,7 @@ public class Schedule {
     }
 
     public void setCheckup(Map<String, ArrayList<CheckUpEntry>> checkup) {
-        Log.d("wuwuwu", "setCheckup: ");
         this.checkup = checkup;
-    }
-
-    public String toString() {
-        String str = "";
-        for (ArrayList<CheckUpEntry> list : checkup.values()) {
-            str += "Hi";
-            for (CheckUpEntry checkUpEntry : list) {
-                str += checkUpEntry.getTitle();
-                str += "\n";
-            }
-        }
-        return str;
     }
 
     public ArrayList<MedicationEntry> getMedication() {
@@ -74,11 +58,6 @@ public class Schedule {
     }
 
     public void remove(MedicationEntry delEntry) {
-        for (MedicationEntry entry : medication) {
-            if (entry == delEntry) {
-                medication.remove(entry);
-                return;
-            }
-        }
+        medication.remove(delEntry);
     }
 }

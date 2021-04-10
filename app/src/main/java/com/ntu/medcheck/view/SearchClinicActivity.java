@@ -32,8 +32,6 @@ public class SearchClinicActivity extends AppCompatActivity {
         defaultMap = new ScreeningCentreMgr();// creating map fragment
         fragmentTransaction.add(R.id.Container, defaultMap); //putting map fragment on the activity
         fragmentTransaction.commit();
-
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -43,6 +41,5 @@ public class SearchClinicActivity extends AppCompatActivity {
         }
         return true;
     }
-
 }
 

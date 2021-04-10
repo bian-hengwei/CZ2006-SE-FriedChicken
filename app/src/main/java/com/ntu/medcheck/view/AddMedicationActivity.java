@@ -85,7 +85,7 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
                         finish();
                     }
                     else {
-                        Toast.makeText(AddMedicationActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+                        Toast.makeText(AddMedicationActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_SHORT);
                     }
                 }
             }
@@ -117,5 +117,4 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
-
 }

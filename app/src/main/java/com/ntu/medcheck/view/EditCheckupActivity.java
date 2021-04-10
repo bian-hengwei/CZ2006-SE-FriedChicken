@@ -22,7 +22,6 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
 import com.ntu.medcheck.controller.MyNotificationPublisher;
 import com.ntu.medcheck.utils.SafeOnClickListener;
-import com.ntu.medcheck.view.fragment.CheckupFragment;
 
 /**
  * Add check up page
@@ -73,19 +72,6 @@ public class EditCheckupActivity extends AppCompatActivity {
             @Override
             public void onOneClick(View v) {
                 delete = true;
-
-                // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                // delete notification
-                int requestCode = 1;
-
-                AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE );
-                Intent intent = new Intent(EditCheckupActivity.this, MyNotificationPublisher.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(EditCheckupActivity.this, requestCode, intent, 0);
-
-                alarmManager.cancel(pendingIntent);
-                System.out.println("@#@#@#@#@#@#@#@#@#@#@#@#@#@# alarm cancelled");
-                // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
                 Toast.makeText(EditCheckupActivity.this, R.string.DeleteCheckupSuccess, Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -93,6 +79,7 @@ public class EditCheckupActivity extends AppCompatActivity {
 
         new CheckUpMgr().display(this, getIntent());
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
@@ -106,14 +93,13 @@ public class EditCheckupActivity extends AppCompatActivity {
         super.onDestroy();
         if (delete) return;
         if (!save) {
-            Log.d("onDestroy", "onDestroy: resetting");
             new CheckUpMgr().display(this, getIntent());
         }
         if (new CheckUpMgr().addCheckUp(EditCheckupActivity.this)) {
             finish();
         }
         else {
-            Toast.makeText(EditCheckupActivity.this, R.string.EditCheckupFailure, Toast.LENGTH_LONG);
+            Toast.makeText(EditCheckupActivity.this, R.string.EditCheckupFailure, Toast.LENGTH_SHORT);
         }
     }
 

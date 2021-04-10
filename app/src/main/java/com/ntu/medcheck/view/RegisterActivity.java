@@ -1,6 +1,5 @@
 package com.ntu.medcheck.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;

@@ -15,48 +15,43 @@ import androidx.core.app.NotificationCompat;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.view.HomeActivity;
 
-import java.util.Calendar;
-import java.util.Random;
-
 public class NotificationScheduler {
 
 
-    public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
-    private final static String default_notification_channel_id = "default" ;
-    Random random = new Random();
+    public static final String NOTIFICATION_CHANNEL_ID = "10001";
+    private final static String default_notification_channel_id = "default";
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void scheduleNotification (Notification notification , long delay, AppCompatActivity aca, boolean repeat, int id) {
+    public void scheduleNotification(Notification notification, long delay, Context context, boolean repeat, int id) {
 
-        int notificationId = random.nextInt(10000);
-
-        Intent notificationIntent = new Intent( aca, MyNotificationPublisher. class );
-        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID , id );
-        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION , notification);
-        PendingIntent pendingIntent = PendingIntent. getBroadcast ( aca, id , notificationIntent , PendingIntent. FLAG_UPDATE_CURRENT );
-        long futureInMillis = SystemClock.elapsedRealtime () + delay;
-        AlarmManager alarmManager = (AlarmManager) aca.getSystemService(Context. ALARM_SERVICE );
+        Intent notificationIntent = new Intent(context, MyNotificationPublisher.class);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION_ID, id);
+        notificationIntent.putExtra(MyNotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
-        if(repeat) {
-            Calendar calendar = Calendar.getInstance();
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent);
-
-            //alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
-            System.out.println("*****&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& gonna repeat");
-
-            //alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent);
-            //alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        if (repeat) {
+            //alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+            alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
         }
         else {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP , futureInMillis , pendingIntent);
         }
     }
 
-    public Notification getNotification (String content,String title, AppCompatActivity aca, int id) {
-        Intent resultIntent = new Intent(aca, HomeActivity.class);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(aca, id, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder( aca, default_notification_channel_id );
+    public void cancelNotification(Context context, int id) {
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, MyNotificationPublisher.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        alarmManager.cancel(pendingIntent);
+    }
+
+    public Notification getNotification(String content, String title, Context context, int id) {
+        Intent resultIntent = new Intent(context, HomeActivity.class);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, id, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, default_notification_channel_id);
         builder.setContentTitle(title);
         builder.setContentText(content);
         builder.setSmallIcon(R.drawable.icon_tight);

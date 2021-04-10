@@ -75,10 +75,10 @@ public class RegisterMgr {
                 DatabaseReference uRef = fDatabase.getReference("Users");
                 uRef.child(fAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
-                        Toast.makeText(aca, R.string.regiSuccess, Toast.LENGTH_LONG).show();
+                        Toast.makeText(aca, R.string.regiSuccess, Toast.LENGTH_SHORT).show();
                     } else {
                         System.out.println(R.string.regiFail);
-                        Toast.makeText(aca, R.string.regiFail, Toast.LENGTH_LONG).show();
+                        Toast.makeText(aca, R.string.regiFail, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -88,10 +88,10 @@ public class RegisterMgr {
                 try {
                     throw task.getException();
                 } catch (FirebaseAuthWeakPasswordException e) {
-                    Toast.makeText(aca, R.string.regiFailWeakPw, Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.regiFailWeakPw, Toast.LENGTH_SHORT).show();
                 }
                 catch (FirebaseAuthUserCollisionException e) {
-                    Toast.makeText(aca, R.string.regiFailEmailExist, Toast.LENGTH_LONG).show();
+                    Toast.makeText(aca, R.string.regiFailEmailExist, Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e) {
                     Toast.makeText(aca,R.string.regiFail, Toast.LENGTH_SHORT).show();
@@ -115,7 +115,7 @@ public class RegisterMgr {
             return false;
         }
         else if (!password.equals(rePassword)) {
-            Toast.makeText(context, R.string.regiFailRePw, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.regiFailRePw, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (gender == null) {
@@ -123,11 +123,11 @@ public class RegisterMgr {
             return false;
         }
         else if (birthday == null) {
-            Toast.makeText(context, R.string.emptyBd, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyBd, Toast.LENGTH_SHORT).show();
             return false;
         }
         else if (phoneNo.isEmpty()) {
-            Toast.makeText(context, R.string.emptyPhone, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.emptyPhone, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

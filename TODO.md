@@ -1,18 +1,19 @@
-### Tasks
- - [ ] TODO: Notification YINAN
-    - [ ] TODO: Schedule at correct time
-    - [ ] TODO: Edit time
-    - [ ] TODO: Remove schedule
+# TODO
 
-### Not urgent
- - [ ] TODO: User profile page HENGWEI
-    - [ ] TODO: User change password
-    - [ ] TODO: User change email
- - [ ] TODO: Add more language options X & J
- - [ ] TODO: Screening center manager MVC HENGWEI
- - [ ] TODO: Factory for adapter class YINAN
+ - [x] Notification
+    - [x] Modify data structure of entries to include id
+    - [x] Schedule at correct time
+    - [x] Edit time
+    - [x] Remove schedule
 
-### Needs to be verified repeatedly
- - [ ] TODO: Beautify activities X & J
- - [ ] TODO: Fix all strings X & J
- - [ ] TODO: Set listeners safe X & J
+ - [x] Calendar
+    - [x] Remove redundant
+
+ - [ ] User profile
+    - [ ] User change password
+    - [ ] User change email
+
+ - [ ] Screening center manager MVC
+
+ - [ ] Factory for adapter class
+

@@ -6,6 +6,7 @@ public class Time {
 
     String year, month, day;
     String hour, minute;
+    int id;
 
     public Time() {
     }
@@ -108,5 +109,13 @@ public class Time {
                 );
         }
         return calendar;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -37,7 +37,6 @@ public class ForgetPasswordActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Log.d("clicked", String.valueOf(item.getItemId()));
             finish();
         }
         return true;

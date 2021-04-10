@@ -77,25 +77,10 @@ public class CalendarFragment extends Fragment {
 
         HashMap<Object, Property> descHashMap = new HashMap<>();
 
-        Property defaultProperty = new Property();
-        defaultProperty.layoutResource = R.layout.default_view;
-        defaultProperty.dateTextViewResource = R.id.text_view;
-        descHashMap.put("default", defaultProperty);
-
         Property currentProperty = new Property();
         currentProperty.layoutResource = R.layout.current_view;
         currentProperty.dateTextViewResource = R.id.text_view;
         descHashMap.put("current", currentProperty);
-
-        Property presentProperty = new Property();
-        presentProperty.layoutResource = R.layout.present_view;
-        presentProperty.dateTextViewResource = R.id.text_view;
-        descHashMap.put("present", presentProperty);
-
-        Property absentProperty = new Property();
-        absentProperty.layoutResource = R.layout.absent_view;
-        absentProperty.dateTextViewResource = R.id.text_view;
-        descHashMap.put("absent", absentProperty);
 
         customCalendar.setMapDescToProp(descHashMap);
 
@@ -107,9 +92,9 @@ public class CalendarFragment extends Fragment {
         calendarMgr.setListeners(view);
 
         customCalendar.setOnDateSelectedListener((view1, selectedDate, desc) -> {
-            String sDate = selectedDate.get(Calendar.DAY_OF_MONTH)
-                    + "/" + (selectedDate.get(Calendar.MONTH) + 1)
-                    + "/" + selectedDate.get(Calendar.YEAR);
+            String sDate = selectedDate.get(Calendar.DAY_OF_MONTH)  + "/" +
+                            (selectedDate.get(Calendar.MONTH) + 1)  + "/" +
+                            selectedDate.get(Calendar.YEAR);
 
             String yearMonth = String.format("%04d%02d", selectedDate.get(Calendar.YEAR), selectedDate.get(Calendar.MONTH) + 1);
 
@@ -118,7 +103,6 @@ public class CalendarFragment extends Fragment {
 
             calendarMgr.setDateOnClick(this, view, yearMonth, selectedDate.get(Calendar.DAY_OF_MONTH));
         });
-        // Inflate the layout for this fragment
         return view;
     }
 }

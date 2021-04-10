@@ -27,7 +27,7 @@ import java.util.ArrayList;
  */
 public class EditMedicationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    MedicationMgr medicationMgr = MedicationMgr.getInstance();
+    private MedicationMgr medicationMgr = MedicationMgr.getInstance();
     private boolean save = false;
     private boolean delete = false;
 
@@ -46,8 +46,6 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
 
         AppCompatActivity aca = this;
 
-        //medicationMgr.dynamicAddTime(this, index);
-
         Button addTime = findViewById(R.id.addMedTime);
         addTime.setOnClickListener(new SafeOnClickListener() {
             @Override
@@ -55,7 +53,7 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
                 int i = Integer.parseInt(index.get(index.size() - 1)) + 1;
                 index.add(Integer.toString(i));
                 medicationMgr.dynamicAddTime(aca, index);
-                if(i>3){
+                if(i > 3){
                     Toast.makeText(aca, R.string.newMedTiming, Toast.LENGTH_SHORT).show();
                 }
 
@@ -117,9 +115,8 @@ public class EditMedicationActivity extends AppCompatActivity implements Adapter
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
-    @RequiresApi(api = Build.VERSION_CODES.M)
 
-
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onDestroy() {
         super.onDestroy();

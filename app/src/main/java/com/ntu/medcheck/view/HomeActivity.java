@@ -1,33 +1,29 @@
 package com.ntu.medcheck.view;
 
-import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ntu.medcheck.R;
-import com.ntu.medcheck.controller.MyNotificationPublisher;
-import com.ntu.medcheck.controller.NotificationScheduler;
+import com.ntu.medcheck.controller.CheckUpMgr;
+import com.ntu.medcheck.controller.MedicationMgr;
 import com.ntu.medcheck.controller.ScheduleMgr;
 import com.ntu.medcheck.controller.UserProfileMgr;
+import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.view.fragment.CalendarFragment;
 import com.ntu.medcheck.view.fragment.CheckupFragment;
 import com.ntu.medcheck.view.fragment.MedicationFragment;
 import com.ntu.medcheck.view.fragment.UserHomeFragment;
+
+import java.text.ParseException;
 
 /**
  * This activity calls different fragments like MedicineFragment, ScheduleFragment, MapFragment
@@ -42,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment userHomeFragment;
     private Fragment medicineFragment;
     private String lastFragment;
-    FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransaction;
     private boolean focus;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -52,15 +48,19 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         focus = true;
 
-        //CheckUpMgr checkUpMgr = new CheckUpMgr();
-        // for testing only
-        //checkUpMgr.save();
-
         UserProfileMgr userProfileMgr = new UserProfileMgr();
         userProfileMgr.initialize(this);
 
         ScheduleMgr scheduleMgr = new ScheduleMgr();
         scheduleMgr.initialize(this);
+        try {
+            scheduleMgr.setNotifications();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        CheckUpMgr.setContext(getApplicationContext());
+        MedicationMgr.setContext(getApplicationContext());
 
         navFrame = findViewById(R.id.navigationFrame);
         bottomNavigation = findViewById(R.id.bottomNavigationBar);
@@ -72,7 +72,6 @@ public class HomeActivity extends AppCompatActivity {
             }
             switch (item.getItemId()) {
                 case R.id.navCalendar:
-                    // set colour
                     setFragment(calendarFragment);
                     return true;
 
@@ -87,10 +86,8 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.navMedicine:
                     setFragment(medicineFragment);
                     return true;
-
-                default:
-                    return false;
             }
+            return false;
         });
     }
 
@@ -108,11 +105,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void initFragments() {
+
         Log.d("initFragments", "initFragments: start");
         if (!focus) {
             Log.d("initFragments", "initFragments: not focused");
             return;
         }
+
         if (calendarFragment != null)
             getSupportFragmentManager().beginTransaction().remove(calendarFragment).commit();
         if (scheduleFragment != null)
@@ -121,11 +120,13 @@ public class HomeActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().remove(userHomeFragment).commit();
         if (medicineFragment != null)
             getSupportFragmentManager().beginTransaction().remove(medicineFragment).commit();
+
         Log.d("initFragments", "initFragments: new");
         calendarFragment = new CalendarFragment();
         scheduleFragment = new CheckupFragment();
         userHomeFragment = new UserHomeFragment();
         medicineFragment = new MedicationFragment();
+
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Log.d("initFragments", "initFragments: begin transaction");
         fragmentTransaction.add(R.id.navigationFrame, calendarFragment);
@@ -137,6 +138,7 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.navigationFrame, medicineFragment);
         fragmentTransaction.hide(medicineFragment);
         fragmentTransaction.commit();
+
         if (lastFragment == null) {
             Log.d("initFragments", "initFragments: null last fragment");
             lastFragment = "calendarFragment";
@@ -177,7 +179,7 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public Fragment getLast() {
+    private Fragment getLast() {
         Fragment last;
         switch (lastFragment) {
             case "userHomeFragment":

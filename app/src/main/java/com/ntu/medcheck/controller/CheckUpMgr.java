@@ -1,5 +1,6 @@
 package com.ntu.medcheck.controller;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -34,14 +35,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Map;
 import java.util.Random;
 
 public class CheckUpMgr {
 
+    private static Context context;
+
     public CheckUpMgr() {
+    }
+
+    public static void setContext(Context context) {
+        CheckUpMgr.context = context;
+    }
+
+    public static Context getContext() {
+        return context;
     }
 
     public void dynamicDisplayCheckup(Fragment fragment, View view) {
@@ -52,7 +62,6 @@ public class CheckUpMgr {
         ArrayList<String> location = new ArrayList<>();
         ArrayList<String> comment = new ArrayList<>();
         ArrayList<CheckUpEntry> entries = new ArrayList<>();
-        Log.d("dyn dis che", "dynamicDisplayCheckup: ");
 
         listView = view.findViewById(R.id.checkupListView);
         Map<String, ArrayList<CheckUpEntry>> checkup = Schedule.getInstance().getCheckup();
@@ -68,7 +77,6 @@ public class CheckUpMgr {
             });
             for (CheckUpEntry entry : arr) {
                 if (entry.getTime().toCalendar().after(Calendar.getInstance())) {
-                    Log.d("future entry", "dynamicDisplayCheckup: ");
                     title.add(entry.getTitle());
                     date.add(entry.getTime().getYear() + entry.getTime().getMonth() + entry.getTime().getDay());
                     time.add(entry.getTime().getHour() + entry.getTime().getMinute());
@@ -86,7 +94,7 @@ public class CheckUpMgr {
                 System.out.println(title.get(position));
                 Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
                 CheckUpEntry target = entries.remove(position);
-                Schedule.getInstance().remove(target);
+                removeCheckUp(target);
                 i.putExtra("name", target.getName());
                 i.putExtra("comment", target.getComment());
                 i.putExtra("title", target.getTitle());
@@ -97,9 +105,14 @@ public class CheckUpMgr {
                 i.putExtra("minute", target.getTime().getMinute());
                 i.putExtra("hour", target.getTime().getHour());
                 fragment.startActivity(i);
-                new ScheduleMgr().save();
             }
         });
+    }
+
+    public void removeCheckUp(CheckUpEntry checkup) {
+        Schedule.getInstance().remove(checkup);
+        new NotificationScheduler().cancelNotification(context, checkup.getTime().getId());
+        new ScheduleMgr().save();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -164,30 +177,44 @@ public class CheckUpMgr {
             schedule.getCheckup().put(String.format("%02d%02d", year, month), arr);
         }
 
-        // Send notification
-        //dd-M-yyyy hh:mm:ss
-
-        String notifDay = String.format("%d/%d/%d", day, month, year);
-        String notifTime = String.format("%d:%d", hour, minute);
-        String title = "";
-        String content = notifTime;
-        title = type.getText().toString() + " at " + clinic.getText().toString() + ", " + notifDay;
-        content += " " + comment.getText().toString();
-
-        //dd-M-yyyy hh:mm:ss   get time in millisecond
-        String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, hour, minute, 0);
-        long milliSecond = getMillisecond(dateString);
-
-        Random random = new Random();
-        // int randomId = random.nextInt(100000);
-        int randomId = 1;
-
-        NotificationScheduler notificationScheduler = new NotificationScheduler();
-        notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, false, randomId);
-
+        int id = new Random().nextInt(100000);
+        checkup.getTime().setId(id);
+        setNotification(checkup);
 
         new ScheduleMgr().save();
         return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void setNotification(CheckUpEntry checkup) {
+        // Send notification
+        //dd-M-yyyy hh:mm:ss
+
+        int day = Integer.parseInt(checkup.getTime().getDay());
+        int month = Integer.parseInt(checkup.getTime().getMonth());
+        int year = Integer.parseInt(checkup.getTime().getYear());
+        String notificationDay = String.format("%d/%d/%d", day, month, year);
+        int hour = Integer.parseInt(checkup.getTime().getHour());
+        int minute = Integer.parseInt(checkup.getTime().getMinute());
+        String notificationTime = String.format("%d:%d", hour, minute);
+        String content = notificationTime;
+        String name = checkup.getName();
+        String clinic = checkup.getClinic();
+        String comment = checkup.getComment();
+        String title = name + " at " + clinic + ", " + notificationDay;
+        content += " " + comment;
+
+        //dd-M-yyyy hh:mm:ss   get time in millisecond
+        String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, hour, minute, 0);
+        Log.d("DateString", "setNotification: " + dateString);
+        long milliSecond = getMillisecond(dateString);
+        Log.d("Millisecond", "setNotification: " + milliSecond);
+
+        int id = checkup.getTime().getId();
+
+        NotificationScheduler notificationScheduler = new NotificationScheduler();
+        Notification notification = notificationScheduler.getNotification(content, title , context, id);
+        notificationScheduler.scheduleNotification(notification, milliSecond, context, false, id);
     }
 
     // adapter class
@@ -232,18 +259,17 @@ public class CheckUpMgr {
 
     public long getMillisecond(String dateString) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-        try{
+        try {
             //formatting the dateString to convert it into a Date
             Date date = sdf.parse(dateString);
             long future = date.getTime();
             Date now = new Date();
             long current = now.getTime();
-            System.out.println("Given Time in milliseconds : "+future);
-            System.out.println("Current in milliseconds : "+current);
-
+            System.out.println("Given Time in milliseconds : " + future);
+            System.out.println("Current in milliseconds : " + current);
             long time = future - current;
             return time;
-        }catch(ParseException e){
+        } catch(ParseException e) {
             e.printStackTrace();
         }
         return 0;

@@ -1,5 +1,6 @@
 package com.ntu.medcheck.controller;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -30,20 +31,28 @@ import com.ntu.medcheck.view.EditMedicationActivity;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
 
 public class MedicationMgr {
 
+    private static Context context;
+
     Schedule schedule = Schedule.getInstance();
     ArrayList<MedicationEntry> medicationEntryArrayList;
     int clickedPosition;
 
     private MedicationMgr() {}
+
+    public static void setContext(Context context) {
+        MedicationMgr.context = context;
+    }
+
+    public static Context getContext() {
+        return context;
+    }
 
     private static MedicationMgr medicationMgrInstance = new MedicationMgr();
 
@@ -79,7 +88,6 @@ public class MedicationMgr {
         MyAdapter adapter = new MyAdapter(view.getContext(), title, time, dosage, frequency, comment);
         listView.setAdapter(adapter);
 
-        // !!!!!!! on click, view in detail and can edit
         listView.setOnItemClickListener(new SafeItemOnClickListener() {
             @Override
             public void onOneClick(AdapterView<?> parent, View view, int position, long id) {
@@ -94,13 +102,20 @@ public class MedicationMgr {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void destroy(AppCompatActivity aca, boolean save, boolean delete) throws ParseException {
         if (save) {
-            Schedule.getInstance().getMedication().remove(clickedPosition);
+            removeMedication();
             new ScheduleMgr().save();
             addMedication(aca);
         }
         else if (delete) {
-            Schedule.getInstance().getMedication().remove(clickedPosition);
+            removeMedication();
             new ScheduleMgr().save();
+        }
+    }
+
+    public void removeMedication() {
+        MedicationEntry entry = Schedule.getInstance().getMedication().remove(clickedPosition);
+        for (Time time : entry.getTime()) {
+            new NotificationScheduler().cancelNotification(context, time.getId());
         }
     }
 
@@ -184,7 +199,10 @@ public class MedicationMgr {
         }
         MedicationEntry medication = new MedicationEntry();
 
-        ArrayList<String> time = new ArrayList<>();
+        medication.setName(name.getText().toString().trim());
+        medication.setDosage(dosage.getText().toString().trim());
+        medication.setComment(comment.getText().toString().trim());
+        medication.setType("medication");
 
         ListView listView = aca.findViewById(R.id.addMedicationListView);
         for (int i = 0; i < listView.getChildCount(); i++) {
@@ -194,7 +212,6 @@ public class MedicationMgr {
             String h = hour.getText().toString();
             String m = minute.getText().toString();
 
-
             if (h.isEmpty() || m.isEmpty() ||
                     Integer.parseInt(h) > 23 || Integer.parseInt(h) < 0 ||
                     Integer.parseInt(m) > 60 || Integer.parseInt(m) < 0) {
@@ -202,72 +219,55 @@ public class MedicationMgr {
                 return false;
             }
             else {
-                medication.getTime().add(new Time(String.format("%02d%02d", Integer.parseInt(h), Integer.parseInt(m))));
-
-                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                LocalDate date = LocalDate.now();
-                int day = date.getDayOfMonth();
-                int month = date.getMonthValue();
-                int year = date.getYear();
-
-                // if time is later than current time, schedule today, if time is earlier than current, schedule tmr
-                String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-                Date date1 = sdf.parse(dateString);
-                long future1 = date1.getTime();
-                Date now1 = new Date();
-                long current = now1.getTime();
-
-                String title = name.getText().toString() + " at " + h + ":" + m;
-                String content = dosage.getText().toString() + " " + comment.getText().toString();
-                Random random = new Random();
-                int randomId = random.nextInt(100000);
-
-                if(future1 > current) {
-                    // schedule today
-                    System.out.println("*****&&&&&&&&&&&&&&&&&&&&&&&&&&&& today");
-                    long milliSecond = future1 - current;
-                    System.out.println(dateString);
-                    System.out.println(milliSecond);
-                    System.out.println(content);
-                    System.out.println(title);
-
-                    NotificationScheduler notificationScheduler = new NotificationScheduler();
-                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, true, randomId);
-
-                }
-                else {
-                    // schedule tmr
-                    dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day+1 , month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
-                    date1 = sdf.parse(dateString);
-                    future1 = date1.getTime();
-                    System.out.println("*****&&&&&&&&&&&&&&&&&&&&&&&&&&&& tomorrow");
-                    System.out.println(dateString);
-                    long milliSecond = future1 - current;
-                    System.out.println(milliSecond);
-                    System.out.println(content);
-                    System.out.println(title);
-
-                    NotificationScheduler notificationScheduler = new NotificationScheduler();
-                    notificationScheduler.scheduleNotification(notificationScheduler.getNotification(content, title , aca, randomId), milliSecond, aca, true, randomId);
-
-                }
-                //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                int id = new Random().nextInt(100000);
+                Time newTime = new Time(String.format("%02d%02d", Integer.parseInt(h), Integer.parseInt(m)));
+                newTime.setId(id);
+                medication.getTime().add(newTime);
+                setNotification(medication, newTime);
             }
         }
-
-
-
-        medication.setName(name.getText().toString().trim());
-        medication.setDosage(dosage.getText().toString().trim());
-        medication.setComment(comment.getText().toString().trim());
-        medication.setType("medication");
 
         schedule = Schedule.getInstance();
         schedule.getMedication().add(medication);
 
         new ScheduleMgr().save();
         return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setNotification(MedicationEntry entry, Time time) throws ParseException {
+        LocalDate date = LocalDate.now();
+        int day = date.getDayOfMonth();
+        int month = date.getMonthValue();
+        int year = date.getYear();
+
+        String h = time.getHour();
+        String m = time.getMinute();
+
+        // if time is later than current time, schedule today, if time is earlier than current, schedule tmr
+        String dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day, month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+        Date date1 = sdf.parse(dateString);
+        long future1 = date1.getTime();
+        Date now1 = new Date();
+        long current = now1.getTime();
+
+        String title = entry.getName() + " at " + h + ":" + m;
+        String content = entry.getDosage() + " " + entry.getComment();
+
+        long milliSecond;
+
+        if (!(future1 > current)) {
+            // schedule tmr
+            dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day+1 , month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
+            date1 = sdf.parse(dateString);
+            future1 = date1.getTime();
+        }
+
+        milliSecond = future1 - current;
+        NotificationScheduler notificationScheduler = new NotificationScheduler();
+        Notification notification = notificationScheduler.getNotification(content, title , context, time.getId());
+        notificationScheduler.scheduleNotification(notification, milliSecond, context, true, time.getId());
     }
 
     public void dynamicAddTime(AppCompatActivity aca, ArrayList<String> indexIn) {
@@ -307,7 +307,6 @@ public class MedicationMgr {
 
         public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index, ArrayList<String> hour, ArrayList<String> minute) {
             super(context, R.layout.add_medication_row, index);
-            System.out.println("4");
             this.context = context;
             this.index = index;
             this.hour = hour;
@@ -331,25 +330,24 @@ public class MedicationMgr {
             }
             return add_medication_row;
         }
-
     }
 
     class MyAdapter extends ArrayAdapter<String> {
         Context context;
-        ArrayList<String> atitle;
-        ArrayList<String> atime;
-        ArrayList<String> adosage;
-        ArrayList<String> afrequency;
-        ArrayList<String> acomment;
+        ArrayList<String> adapterTitle;
+        ArrayList<String> adapterTime;
+        ArrayList<String> adapterDosage;
+        ArrayList<String> adapterFrequency;
+        ArrayList<String> adapterComment;
 
         MyAdapter(Context context, ArrayList<String> title, ArrayList<String> time, ArrayList<String> dosage, ArrayList<String> frequency, ArrayList<String> comments) {
             super(context, R.layout.checkup_row, title);
             this.context = context;
-            this.atitle = title;
-            this.atime = time;
-            this.adosage = dosage;
-            this.afrequency = frequency;
-            this.acomment = comments;
+            this.adapterTitle = title;
+            this.adapterTime = time;
+            this.adapterDosage = dosage;
+            this.adapterFrequency = frequency;
+            this.adapterComment = comments;
         }
 
         @NonNull
@@ -363,31 +361,12 @@ public class MedicationMgr {
             TextView frequency = medication_row.findViewById(R.id.frequencyMedicationRow);
             TextView comments = medication_row.findViewById(R.id.commentMedicationRow);
 
-            title.setText(atitle.get(position));
-            time.setText(medication_row.getResources().getString(R.string.eventTime) + atime.get(position));
-            dosage.setText(medication_row.getResources().getString(R.string.newMedDosageText) + adosage.get(position));
-            frequency.setText(medication_row.getResources().getString(R.string.eventFreq) + afrequency.get(position));
-            comments.setText(medication_row.getResources().getString(R.string.Comment) + acomment.get(position));
+            title.setText(adapterTitle.get(position));
+            time.setText(medication_row.getResources().getString(R.string.eventTime) + adapterTime.get(position));
+            dosage.setText(medication_row.getResources().getString(R.string.newMedDosageText) + adapterDosage.get(position));
+            frequency.setText(medication_row.getResources().getString(R.string.eventFreq) + adapterFrequency.get(position));
+            comments.setText(medication_row.getResources().getString(R.string.Comment) + adapterComment.get(position));
             return medication_row;
         }
-    }
-
-    public long getMillisecond(String dateString) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-        try{
-            //formatting the dateString to convert it into a Date
-            Date date = sdf.parse(dateString);
-            long future = date.getTime();
-            Date now = new Date();
-            long current = now.getTime();
-            System.out.println("Given Time in milliseconds : "+future);
-            System.out.println("Current in milliseconds : "+current);
-
-            long time = future - current;
-            return time;
-        }catch(ParseException e){
-            e.printStackTrace();
-        }
-        return 0;
     }
 }

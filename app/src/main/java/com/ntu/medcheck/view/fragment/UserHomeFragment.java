@@ -30,8 +30,6 @@ public class UserHomeFragment extends Fragment {
 
     UserProfileMgr userProfileMgr;
 
-    private Button changePasswordBtn;
-
     public UserHomeFragment() {
         // Required empty public constructor
     }

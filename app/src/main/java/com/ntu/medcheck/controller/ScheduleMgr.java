@@ -1,6 +1,8 @@
 package com.ntu.medcheck.controller;
 
-import android.util.Log;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -10,11 +12,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ntu.medcheck.model.CheckUpEntry;
 import com.ntu.medcheck.model.MedicationEntry;
-import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.model.Schedule;
+import com.ntu.medcheck.model.Time;
 import com.ntu.medcheck.view.HomeActivity;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,24 +31,58 @@ public class ScheduleMgr {
 
     public ScheduleMgr() {
         schedule = Schedule.getInstance();
-        uRef = FirebaseDatabase.getInstance().getReference("Schedules").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        uRef = FirebaseDatabase.getInstance().getReference("Schedules").child(uid);
     }
 
     public void initialize(HomeActivity aca) {
         uRef.keepSynced(true);
-        ValueEventListener postListener = new ValueEventListener() {
+        uRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
                 setSchedule(dataSnapshot);
                 aca.initFragments();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
-                Log.w("Err", "loadPost:onCancelled", databaseError.toException());
             }
-        };
-        uRef.addValueEventListener(postListener);
+        });
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void setNotifications() throws ParseException {
+        schedule = Schedule.getInstance();
+        for (String key : schedule.getCheckup().keySet()) {
+            ArrayList<CheckUpEntry> arr = schedule.getCheckup().get(key);
+            for (CheckUpEntry entry : arr) {
+                if (entry.getTime().toCalendar().after(Calendar.getInstance())) {
+                    new CheckUpMgr().setNotification(entry);
+                }
+            }
+        }
+        for (MedicationEntry entry : schedule.getMedication()) {
+            for (Time t : entry.getTime()) {
+                MedicationMgr.getInstance().setNotification(entry, t);
+            }
+        }
+    }
+
+    public void cancelNotifications() {
+        NotificationScheduler scheduler = new NotificationScheduler();
+        schedule = Schedule.getInstance();
+        for (String key : schedule.getCheckup().keySet()) {
+            ArrayList<CheckUpEntry> arr = schedule.getCheckup().get(key);
+            for (CheckUpEntry entry : arr) {
+                if (entry.getTime().toCalendar().after(Calendar.getInstance())) {
+                    scheduler.cancelNotification(CheckUpMgr.getContext(), entry.getTime().getId());
+                }
+            }
+        }
+        for (MedicationEntry entry : schedule.getMedication()) {
+            for (Time t : entry.getTime()) {
+                scheduler.cancelNotification(MedicationMgr.getContext(), t.getId());
+            }
+        }
     }
 
     public void save() {
@@ -52,7 +92,7 @@ public class ScheduleMgr {
     private void setSchedule(DataSnapshot dataSnapshot) {
         if (dataSnapshot.child("checkup").exists()) {
             Map<String, ArrayList<CheckUpEntry>> checkup = new HashMap<>();
-            for (DataSnapshot yearMonth : dataSnapshot.child("checkup").getChildren()) {
+            for (DataSnapshot yearMonth: dataSnapshot.child("checkup").getChildren()) {
                 checkup.put(yearMonth.getKey(), new ArrayList<>());
                 for (DataSnapshot entry : yearMonth.getChildren()) {
                     checkup.get(yearMonth.getKey()).add(toCheckUpEntry(entry));
@@ -64,9 +104,9 @@ public class ScheduleMgr {
             schedule.setCheckup(new HashMap<>());
         }
 
-        if(dataSnapshot.child("medication").exists()) {
+        if (dataSnapshot.child("medication").exists()) {
             ArrayList<MedicationEntry> medication = new ArrayList<>();
-            for(DataSnapshot entry : dataSnapshot.child("medication").getChildren()) {
+            for (DataSnapshot entry: dataSnapshot.child("medication").getChildren()) {
                 medication.add(toMedicationEntry(entry));
             }
             schedule.setMedication(medication);
@@ -83,7 +123,7 @@ public class ScheduleMgr {
         checkUpEntry.setName((String) entry.child("name").getValue());
         checkUpEntry.setTitle((String) entry.child("title").getValue());
         checkUpEntry.setType((String) entry.child("type").getValue());
-        checkUpEntry.setTime(entry.child("time").getValue(Time.class));
+        checkUpEntry.setTime(toTime(entry.child("time")));
         return checkUpEntry;
     }
 
@@ -94,17 +134,27 @@ public class ScheduleMgr {
         medicationEntry.setComment((String) entry.child("comment").getValue());
         medicationEntry.setName((String) entry.child("name").getValue());
         medicationEntry.setType((String) entry.child("type").getValue());
-        medicationEntry.setFrequency((String)entry.child("frequency").getValue());
+        medicationEntry.setFrequency((String) entry.child("frequency").getValue());
 
         DataSnapshot timeEntry = entry.child("time");
         ArrayList<Time> timeArrayList = new ArrayList<>();
-
-        for(DataSnapshot time : timeEntry.getChildren()) {
-            String hour = (String) time.child("hour").getValue();
-            String minute = (String) time.child("minute").getValue();
-            timeArrayList.add(new Time(hour + minute));
+        for (DataSnapshot time : timeEntry.getChildren()) {
+            timeArrayList.add(toTime(time));
         }
         medicationEntry.setTime(timeArrayList);
         return medicationEntry;
+    }
+
+    private Time toTime(DataSnapshot timeSnapshot) {
+        String hour = (String) timeSnapshot.child("hour").getValue();
+        String minute = (String) timeSnapshot.child("minute").getValue();
+        Time t = new Time(hour + minute);
+        if (timeSnapshot.hasChild("year")) {
+            t.setYear((String) timeSnapshot.child("year").getValue());
+            t.setMonth((String) timeSnapshot.child("month").getValue());
+            t.setDay((String) timeSnapshot.child("day").getValue());
+        }
+        t.setId(((Long) timeSnapshot.child("id").getValue()).intValue());
+        return t;
     }
 }

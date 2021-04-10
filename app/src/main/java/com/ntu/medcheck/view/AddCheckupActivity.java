@@ -1,5 +1,6 @@
 package com.ntu.medcheck.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,7 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.CheckUpMgr;
 import com.ntu.medcheck.utils.SafeOnClickListener;
-import com.ntu.medcheck.view.fragment.CheckupFragment;
 
 /**
  * Add check up page
@@ -58,7 +58,7 @@ public class AddCheckupActivity extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    Toast.makeText(AddCheckupActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_LONG);
+                    Toast.makeText(AddCheckupActivity.this, R.string.AddCheckupFailure, Toast.LENGTH_SHORT);
                 }
             }
         });
@@ -71,6 +71,7 @@ public class AddCheckupActivity extends AppCompatActivity {
             }
         });
     }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Log.d("clicked", String.valueOf(item.getItemId()));
@@ -83,7 +84,6 @@ public class AddCheckupActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 100 && resultCode == RESULT_OK) {
-
             Log.d("OnActivityResult", "onActivityResult: OK");
             checkup_type = findViewById(R.id.confirmed_checkup_type); //get the textview
             String setCheckUpType = data.getStringExtra("type of checkup"); //get the string value from the intent
@@ -94,5 +94,9 @@ public class AddCheckupActivity extends AppCompatActivity {
             clinic_name.setText(setClinicName);
             Log.d("OnActivityResult", "onActivityResult: " + setClinicName);
         }
+    }
+
+    public Context getContext() {
+        return getApplicationContext();
     }
 }

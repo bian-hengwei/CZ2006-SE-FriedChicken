@@ -80,7 +80,7 @@ public class UserProfileMgr {
 
         auth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Toast.makeText(aca, R.string.ResetPwEmail, Toast.LENGTH_LONG).show();
+                Toast.makeText(aca, R.string.ResetPwEmail, Toast.LENGTH_SHORT).show();
             }
             else {
                 Toast.makeText(aca, R.string.retry, Toast.LENGTH_SHORT).show();
@@ -238,6 +238,8 @@ public class UserProfileMgr {
     }
 
     public void logout(AppCompatActivity aca) {
+        new ScheduleMgr().cancelNotifications();
+
         FirebaseAuth mFirebaseAuth;
 
         mFirebaseAuth = FirebaseAuth.getInstance();

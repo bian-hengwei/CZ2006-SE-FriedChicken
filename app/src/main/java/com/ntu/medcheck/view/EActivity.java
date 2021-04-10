@@ -1,10 +1,8 @@
 package com.ntu.medcheck.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ntu.medcheck.R;
 
@@ -19,7 +17,6 @@ public class EActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("Easter egg", "onStop: ");
         finish();
     }
 }

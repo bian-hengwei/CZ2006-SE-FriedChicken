@@ -41,7 +41,7 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
         String yearMonth = String.format("%04d%02d", year, month);
         ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(yearMonth, new ArrayList<>());
         for (CheckUpEntry child : monthArray) {
-            map.put(Integer.parseInt((child.getTime().getDay())), "absent");
+            map.put(Integer.parseInt((child.getTime().getDay())), "current");
         }
         CustomCalendar customCalendar = view.findViewById(R.id.custom_calendar);
         customCalendar.setDate(Calendar.getInstance(), map);
@@ -61,7 +61,7 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
         arr[0] = new HashMap<>();
         ArrayList<CheckUpEntry> monthArray = Schedule.getInstance().getCheckup().getOrDefault(yearMonth, new ArrayList<>());
         for (CheckUpEntry child : monthArray) {
-            arr[0].put(Integer.parseInt((child.getTime().getDay())), "absent");
+            arr[0].put(Integer.parseInt((child.getTime().getDay())), "current");
         }
         return arr;
     }
@@ -92,7 +92,7 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
                 System.out.println(title.get(position));
                 Intent i = new Intent(fragment.getActivity(), EditCheckupActivity.class);
                 CheckUpEntry target = entries.remove(position);
-                Schedule.getInstance().remove(target);
+                new CheckUpMgr().removeCheckUp(target);
                 i.putExtra("name", target.getName());
                 i.putExtra("comment", target.getComment());
                 i.putExtra("title", target.getTitle());
@@ -103,7 +103,6 @@ public class CalendarMgr implements OnNavigationButtonClickedListener {
                 i.putExtra("minute", target.getTime().getMinute());
                 i.putExtra("hour", target.getTime().getHour());
                 fragment.startActivity(i);
-                new ScheduleMgr().save();
             }
         });
     }
