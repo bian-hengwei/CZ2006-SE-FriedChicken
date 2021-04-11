@@ -25,10 +25,16 @@ import java.util.ArrayList;
  * contains textfields prompting medication entry details
  * calls schedule manager to add medication entry
  */
-public class AddMedicationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddMedicationActivity extends AppCompatActivity {
 
     MedicationMgr medicationMgr = MedicationMgr.getInstance();
 
+    /**
+     * Saves the changes made in add medication activity
+     * Saves the time, medication user enters
+     * Saves the new state of medication schedule if user deletes any medication
+      * @param savedInstanceState save any changes made on add medication activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,19 +108,16 @@ public class AddMedicationActivity extends AppCompatActivity implements AdapterV
 
     }
 
+    /**
+     * Finish the current page and return to the homepage if user clicks on back button
+     * @param item passes the MenuItem selected
+     * @return return a boolean to indicate the menu item is handled successfully
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Log.d("clicked", String.valueOf(item.getItemId()));
             finish();
         }
         return true;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
     }
 }

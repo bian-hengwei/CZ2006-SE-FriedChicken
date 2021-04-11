@@ -29,6 +29,11 @@ public class AddCheckupActivity extends AppCompatActivity {
     public TextView clinic_name;
     public TextView checkup_type;
 
+    /**
+     * Save the changes made in add checkup activity
+     * @param savedInstanceState to save the state of the add checkup activity if user has made
+     * any change on the page
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +77,11 @@ public class AddCheckupActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Finish the current page and return to the homepage if user clicks on back button
+     * @param item passes the MenuItem selected
+     * @return return a boolean to indicate the menu item is handled successfully
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Log.d("clicked", String.valueOf(item.getItemId()));
@@ -80,6 +90,12 @@ public class AddCheckupActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -96,6 +112,10 @@ public class AddCheckupActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @return the context
+     */
     public Context getContext() {
         return getApplicationContext();
     }
