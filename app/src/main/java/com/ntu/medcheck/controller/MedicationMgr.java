@@ -205,6 +205,7 @@ public class MedicationMgr {
      * @return ArrayList of medication index
      */
     public ArrayList<String> displayEditMedication(AppCompatActivity aca) {
+        Log.d(TAG, "displayEditMedication: displaying medication information");
         medicationEntryArrayList = Schedule.getInstance().getMedication();
         MedicationEntry info = medicationEntryArrayList.get(clickedPosition);
         EditText name = aca.findViewById(R.id.editMedicationName);
@@ -220,15 +221,15 @@ public class MedicationMgr {
     }
 
     /**
-     *
-     * @param aca
-     * @return
+     * Check if valid for saving medication.
+     * @param aca EditMedicationActivity.
+     * @return If valid.
      */
     public boolean checkStatus(AppCompatActivity aca) {
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
-        name.getText().toString();
         if (name.getText().toString().isEmpty() || dosage.getText().toString().isEmpty()) {
+            Log.d(TAG, "checkStatus: medication details not filled in correctly");
             Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -242,6 +243,7 @@ public class MedicationMgr {
             if (h.isEmpty() || m.isEmpty() ||
                     Integer.parseInt(h) > 23 || Integer.parseInt(h) < 0 ||
                     Integer.parseInt(m) > 60 || Integer.parseInt(m) < 0) {
+                Log.d(TAG, "checkStatus: medication times not filled in correctly");
                 Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -249,13 +251,22 @@ public class MedicationMgr {
         return true;
     }
 
+    /**
+     * Adds medication to schedule according to data in aca.
+     * Then sets all time added to notification.
+     * @param aca Activity that calls the method.
+     * @return If successful.
+     * @throws ParseException
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public boolean addMedication(AppCompatActivity aca) throws ParseException {
+        Log.d(TAG, "addMedication: adding new medication");
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
         TextView comment = aca.findViewById(R.id.commentMedication);
         if (name.getText().toString() == null || name.getText().toString().isEmpty() ||
             dosage.getText().toString() == null || dosage.getText().toString().isEmpty()) {
+            Log.d(TAG, "addMedication: medication details not filled in correctly");
             Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -274,9 +285,11 @@ public class MedicationMgr {
             String h = hour.getText().toString();
             String m = minute.getText().toString();
 
+            // give up if  time is invalid
             if (h.isEmpty() || m.isEmpty() ||
                     Integer.parseInt(h) > 23 || Integer.parseInt(h) < 0 ||
                     Integer.parseInt(m) > 60 || Integer.parseInt(m) < 0) {
+                Log.d(TAG, "addMedication: medication time not filled in correctly");
                 Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -285,10 +298,12 @@ public class MedicationMgr {
                 Time newTime = new Time(String.format("%02d%02d", Integer.parseInt(h), Integer.parseInt(m)));
                 newTime.setId(id);
                 medication.getTime().add(newTime);
-                setNotification(medication, newTime);
             }
         }
-
+        Log.d(TAG, "addMedication: times added successfully");
+        for (Time t : medication.getTime()) {
+            MedicationMgr.getInstance().setNotification(medication, t);
+        }
         schedule = Schedule.getInstance();
         schedule.getMedication().add(medication);
 
@@ -296,8 +311,15 @@ public class MedicationMgr {
         return true;
     }
 
+    /**
+     * Set medication notification at time.
+     * @param entry Medication entry to set notification.
+     * @param time Notification time.
+     * @throws ParseException
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setNotification(MedicationEntry entry, Time time) throws ParseException {
+        Log.d(TAG, "setNotification: setting notification");
         LocalDate date = LocalDate.now();
         int day = date.getDayOfMonth();
         int month = date.getMonthValue();
@@ -321,6 +343,7 @@ public class MedicationMgr {
 
         if (!(future1 > current)) {
             // schedule tmr
+            Log.d(TAG, "setNotification: notification set for tomorrow");
             dateString = String.format("%02d-%d-%04d %02d:%02d:%02d", day+1 , month, year, Integer.parseInt(h), Integer.parseInt(m), 0);
             date1 = sdf.parse(dateString);
             future1 = date1.getTime();
@@ -332,12 +355,19 @@ public class MedicationMgr {
         notificationScheduler.scheduleNotification(notification, milliSecond, context, true, time.getId());
     }
 
+    /**
+     * Display all current added times to EditMedicationActivity.
+     * @param aca EditMedicationActivity.
+     * @param info MedicationEntry with information to add.
+     * @return Array of medication index
+     */
     public ArrayList<String> dynamicAddTimeEditMedication(AppCompatActivity aca, MedicationEntry info) {
+        Log.d(TAG, "dynamicAddTimeEditMedication: displaying times for EditMedicationActivity");
         ArrayList<Time> timeArrayList= info.getTime();
         ArrayList<String> index = new ArrayList<>();
         ArrayList<String> hour = new ArrayList<>();
         ArrayList<String> minute = new ArrayList<>();
-        Integer i = 0;
+        int i = 0;
         for (Time t : timeArrayList) {
             index.add(Integer.toString(++i));
             hour.add(t.getHour());
@@ -345,14 +375,19 @@ public class MedicationMgr {
         }
 
         MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index, hour, minute);
-
         ListView listView = aca.findViewById(R.id.addMedicationListView);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener((parent, view1, position, id) -> Log.d(TAG, "dynamicAddTimeEditMedication: " + position + " clicked"));
         return index;
     }
 
+    /**
+     * Draws the dynamic add time view in AddCheckupActivity.
+     * @param aca AddCheckupActivity.
+     * @param indexIn Index array of all medications.
+     */
     public void dynamicAddTime(AppCompatActivity aca, ArrayList<String> indexIn) {
+        Log.d(TAG, "dynamicAddTime: dynamically display add time");
         ArrayList<String> index = indexIn;
         ArrayList<String> hour = new ArrayList<>();
         ArrayList<String> minute = new ArrayList<>();
@@ -379,13 +414,22 @@ public class MedicationMgr {
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener((parent, view1, position, id) -> Log.d(TAG, "dynamicAddTimeEditMedication: " + position + " clicked"));
     }
-
+    /**
+     * Private class used to draw the dynamic time entries.
+     */
     class MyAddMedicationAdapter extends ArrayAdapter<String> {
         Context context;
         ArrayList<String> index;
         ArrayList<String> hour;
         ArrayList<String> minute;
 
+        /**
+         * Constructor of MyAddMedicationAdapter.
+         * @param context Context.
+         * @param index Index of medications.
+         * @param hour Hour of medications.
+         * @param minute Minute of medications.
+         */
         public MyAddMedicationAdapter(@NonNull Context context, ArrayList<String> index, ArrayList<String> hour, ArrayList<String> minute) {
             super(context, R.layout.add_medication_row, index);
             this.context = context;
@@ -394,6 +438,13 @@ public class MedicationMgr {
             this.minute = minute;
         }
 
+        /**
+         * Called to get the dynamic time view.
+         * @param position Subview position.
+         * @param convertView Convert view not used.
+         * @param parent Parent view.
+         * @return Checkup view that contains time details.
+         */
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -413,6 +464,9 @@ public class MedicationMgr {
         }
     }
 
+    /**
+     * Private class used to draw the dynamic checkup displays.
+     */
     class MyAdapter extends ArrayAdapter<String> {
         Context context;
         ArrayList<String> adapterTitle;
@@ -421,6 +475,15 @@ public class MedicationMgr {
         ArrayList<String> adapterFrequency;
         ArrayList<String> adapterComment;
 
+        /**
+         * Constructor of MyAdapter
+         * @param context Context to initialize.
+         * @param title Titles array.
+         * @param time Time string array.
+         * @param dosage Dosage string array.
+         * @param frequency Frequency string array.
+         * @param comments Comments string array.
+         */
         MyAdapter(Context context, ArrayList<String> title, ArrayList<String> time, ArrayList<String> dosage, ArrayList<String> frequency, ArrayList<String> comments) {
             super(context, R.layout.checkup_row, title);
             this.context = context;
@@ -431,6 +494,13 @@ public class MedicationMgr {
             this.adapterComment = comments;
         }
 
+        /**
+         * Called to get the dynamic checkup view.
+         * @param position Subview position.
+         * @param convertView Convert view not used.
+         * @param parent Parent view.
+         * @return Checkup view that contains checkup details.
+         */
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
