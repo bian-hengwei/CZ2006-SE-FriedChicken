@@ -47,18 +47,13 @@
 
         <EditText
             android:id="@+id/editDosageInt"
-            android:layout_width="50sp"
+            android:layout_width="112dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number"
-            android:maxLength="3"
-            android:padding="5dp"/>
+            android:inputType="textPersonName"
+            android:maxLength="10"
+            android:padding="5dp" />
 
-        <Spinner
-            android:id="@+id/unitList"
-            android:layout_width="wrap_content"
-            android:layout_height="38sp"
-            android:padding="5dp"/>
     </LinearLayout>
 
     <LinearLayout
