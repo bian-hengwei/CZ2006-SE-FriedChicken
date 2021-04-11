@@ -262,6 +262,7 @@ public class MedicationMgr {
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
         TextView comment = aca.findViewById(R.id.commentMedication);
+        Log.d(TAG, "addMedication: created variable name, dosage, comment");
         if (name.getText().toString() == null || name.getText().toString().isEmpty() ||
             dosage.getText().toString() == null || dosage.getText().toString().isEmpty()) {
             Log.d(TAG, "addMedication: medication details not filled in correctly");
@@ -276,12 +277,14 @@ public class MedicationMgr {
         medication.setType("medication");
 
         ListView listView = aca.findViewById(R.id.addMedicationListView);
+        Log.d(TAG, "addMedication: created variable medication, listView");
         for (int i = 0; i < listView.getChildCount(); i++) {
             View v = listView.getChildAt(i);
             EditText hour = v.findViewById(R.id.addMedicationHour);
             EditText minute = v.findViewById(R.id.addMedicationMinute);
             String h = hour.getText().toString();
             String m = minute.getText().toString();
+            Log.d(TAG, "addMedication: created variable v,h,m");
 
             // give up if  time is invalid
             if (h.isEmpty() || m.isEmpty() ||
@@ -296,6 +299,7 @@ public class MedicationMgr {
                 Time newTime = new Time(String.format("%02d%02d", Integer.parseInt(h), Integer.parseInt(m)));
                 newTime.setId(id);
                 medication.getTime().add(newTime);
+                Log.d(TAG, "addMedication: time added for new medication");
             }
         }
         Log.d(TAG, "addMedication: times added successfully");
