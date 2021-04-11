@@ -59,34 +59,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
-        <TextView
-            android:id="@+id/repeatText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/newMedRepeat1"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:padding="5dp"/>
-
-        <EditText
-            android:id="@+id/repeatInt"
-            android:layout_width="40sp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:maxLength="3"
-            android:padding="5dp"/>
-
-        <TextView
-            android:id="@+id/repeatText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/newMedRepeat2"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:padding="5dp"/>
-    </LinearLayout>
+        android:padding="10dp"/>
 
 
 

@@ -210,12 +210,10 @@ public class MedicationMgr {
         MedicationEntry info = medicationEntryArrayList.get(clickedPosition);
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
-        EditText frequency = aca.findViewById(R.id.repeatInt);
         EditText comment = aca.findViewById(R.id.commentMedication);
 
         name.setText(info.getName());
         dosage.setText(info.getDosage());
-        frequency.setText(info.getFrequency());
         comment.setText(info.getComment());
         return dynamicAddTimeEditMedication(aca, info);
     }

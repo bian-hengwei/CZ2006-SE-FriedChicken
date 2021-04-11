@@ -26,17 +26,29 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
 import com.ntu.medcheck.view.HomeActivity;
 import com.ntu.medcheck.view.LoginActivity;
 
+/**
+ * UserProfile class deals with all logic regarding editing user profile and logout.
+ * Used by UserHomeFragment.
+ */
 public class UserProfileMgr {
 
     User user;
     FirebaseDatabase fDatabase;
     DatabaseReference uRef;
 
+    /**
+     * Constructor for UserProfileMgr class.
+     * Gets instance of the user and firebase database.
+     */
     public UserProfileMgr() {
         user = User.getInstance();
         fDatabase = FirebaseDatabase.getInstance();
     }
 
+    /**
+     * set up to keep information in User class in sync with information on firebase database.
+     * @param aca HomeActivity
+     */
     public void initialize(HomeActivity aca) {
         DatabaseReference sRef = fDatabase.getReference("Users");
         uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -64,7 +76,8 @@ public class UserProfileMgr {
     }
 
     /**
-     * reset password using firebase and email verification
+     * Reset password using firebase and email verification.
+     * Checks if email is valid before sending.
      */
     public void resetPassword(AppCompatActivity aca, Context context) {
 
@@ -88,6 +101,13 @@ public class UserProfileMgr {
         });
     }
 
+    /**
+     * Checks if user submitted an empty email.
+     * Display a toast if email is empty.
+     * @param email user entered email
+     * @param context
+     * @return
+     */
     public boolean checkValid(String email, Context context) {
         if(email.isEmpty()) {
             Toast.makeText(context, R.string.emptyEmail, Toast.LENGTH_SHORT).show();
@@ -96,6 +116,13 @@ public class UserProfileMgr {
         return true;
     }
 
+    /**
+     * Display user profile on UserHomeFragment.
+     * Logout user if user clicks logout button.
+     * Allow user to edit if user clicks edit button
+     * @param aca
+     * @param view
+     */
     public void displayInfoOnUserHome(AppCompatActivity aca, View view) {
         TextView userNameView = view.findViewById(R.id.welcomeMessageUserName);
         EditText userNameInput = view.findViewById(R.id.userProfileUsernameInput);
@@ -162,7 +189,8 @@ public class UserProfileMgr {
     }
 
     /**
-     * update user profile and save to local database
+     * Retrieve user's updated profile from UserHomeFragment.
+     * Save information onto firebase database useing save() method.
      */
     public void editProfile(AppCompatActivity aca, View view){
         EditText userNameInput = view.findViewById(R.id.userProfileUsernameInput);
@@ -228,15 +256,22 @@ public class UserProfileMgr {
                 }
             }
         });
+    }
 
-    } // to be overridden
-
+    /**
+     * Called by editProfile method to save user's edited profile onto firebase database.
+     */
     private void save() {
         DatabaseReference sRef = fDatabase.getReference("Users");
         uRef = sRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         uRef.setValue(user);
     }
 
+    /**
+     * Logout user
+     * Returns back to login page
+     * @param aca
+     */
     public void logout(AppCompatActivity aca) {
         new ScheduleMgr().cancelNotifications();
 
