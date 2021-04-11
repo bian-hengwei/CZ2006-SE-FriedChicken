@@ -18,6 +18,10 @@ import com.ntu.medcheck.controller.RegisterMgr;
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
+    /**
+     * This method is called when RegisterActivity is started
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -35,6 +39,11 @@ public class RegisterActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * This method is called when user clicks register button
+     * register method from RegisterMgr will be called to perform the registration
+     * @param v
+     */
     public void register(View v) {
         RegisterMgr registerMgr = new RegisterMgr();
         registerMgr.register(this);

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Add medication page
  * contains textfields prompting medication entry details
- * calls schedule manager to add medication entry
+ * calls MedicationMgr to add medication entry to schedule
  */
 public class AddMedicationActivity extends AppCompatActivity {
 
@@ -31,9 +31,9 @@ public class AddMedicationActivity extends AppCompatActivity {
 
     /**
      * Saves the changes made in add medication activity
-     * Saves the time, medication user enters
+     * Saves the time and medication user enters
      * Saves the new state of medication schedule if user deletes any medication
-      * @param savedInstanceState save any changes made on add medication activity
+     * @param savedInstanceState save any changes made on add medication activity
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

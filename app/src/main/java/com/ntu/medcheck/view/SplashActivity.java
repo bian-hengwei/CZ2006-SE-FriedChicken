@@ -11,9 +11,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 
+/**
+ * This page displays the splash page for users when user opens the application
+ * This page displays the logo of the application
+ */
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
+    /**
+     * This method is called to display the splash when app is opened
+     * @param savedInstanceState
+     */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);

@@ -12,12 +12,21 @@ import androidx.fragment.app.FragmentTransaction;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.ScreeningCentreMgr;
 
+/**
+ * This page displays search clinic page for users
+ */
+
 public class SearchClinicActivity extends AppCompatActivity {
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
     @Override
+    /**
+     * This method is called when this activity is created
+     * It displays the map
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_map);

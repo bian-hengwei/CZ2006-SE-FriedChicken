@@ -23,7 +23,7 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
 /**
  * Add check up page
  * contains textfields prompting check up entry details
- * calls schedule manager to add check up entry
+ * calls CheckupMgr to add check up entry to schedule
  */
 public class AddCheckupActivity extends AppCompatActivity {
     public TextView clinic_name;
@@ -91,7 +91,6 @@ public class AddCheckupActivity extends AppCompatActivity {
     }
 
     /**
-     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -113,7 +112,7 @@ public class AddCheckupActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * Get application context
      * @return the context
      */
     public Context getContext() {

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Add medication page
  * contains textfields prompting medication entry details
- * calls schedule manager to add medication entry
+ * calls MedicationMgr to add medication entry and save results
  */
 public class EditMedicationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

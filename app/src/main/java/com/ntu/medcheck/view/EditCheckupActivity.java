@@ -27,7 +27,7 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
  * Edit check up page
  * Use the same page as AddCheckupActivity
  * Contains textfields prompting check up entry details
- * Calls checkup manager to edit check up entry
+ * Calls CheckupMgr to edit check up entry and save edited checkup
  */
 public class EditCheckupActivity extends AppCompatActivity {
 
@@ -93,9 +93,6 @@ public class EditCheckupActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     *
-     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onDestroy() {

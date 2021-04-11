@@ -26,7 +26,7 @@ import com.ntu.medcheck.view.fragment.UserHomeFragment;
 import java.text.ParseException;
 
 /**
- * This activity calls different fragments like MedicineFragment, ScheduleFragment, MapFragment
+ * This activity calls different fragments like MedicationFragment, CheckupFragment, CalendarFragment and UserHomeFragment
  * It also displays the navigation bars
  */
 public class HomeActivity extends AppCompatActivity {
@@ -104,8 +104,10 @@ public class HomeActivity extends AppCompatActivity {
         focus = false;
     }
 
+    /**
+     * This method initializes the four fragments
+     */
     public void initFragments() {
-
         Log.d("initFragments", "initFragments: start");
         if (!focus) {
             Log.d("initFragments", "initFragments: not focused");
@@ -150,6 +152,10 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is called to set a fragment when a fragment is chosen on the bottom navigation bar
+     * @param fragment
+     */
     private void setFragment(Fragment fragment) {
         Log.d("setFragments", "setFragments: start");
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -169,6 +175,9 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    /**
+     * This method is called to set the last fragment
+     */
     private void setLastFragment() {
         Log.d("setLastFragments", "setLastFragments: start");
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -179,6 +188,10 @@ public class HomeActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
+    /**
+     * this method is called to get the last fragment
+     * @return last fragment
+     */
     private Fragment getLast() {
         Fragment last;
         switch (lastFragment) {

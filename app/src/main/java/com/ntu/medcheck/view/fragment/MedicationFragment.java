@@ -39,7 +39,7 @@ public class MedicationFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
+     * Use this method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.

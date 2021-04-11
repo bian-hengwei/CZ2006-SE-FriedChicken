@@ -35,7 +35,7 @@ public class UserHomeFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
+     * Use this method to create a new instance of
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
@@ -72,9 +72,4 @@ public class UserHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
-    public void changePassword() {
-        // TODO: change password
-    }
-
 }

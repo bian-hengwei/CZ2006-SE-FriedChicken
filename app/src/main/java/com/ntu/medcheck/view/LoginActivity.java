@@ -13,13 +13,14 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
 /**
  * This class displays login page for users
  * and calls the HomeActivity when successfully logged in
- * The class also calls RegisterActivity when user clicks on register button
- * It will call the forgetPassword if user clicks on forget password button
+ * This class also calls RegisterActivity when user clicks on register button
+ * It will call the ForgetPasswordActivity if user clicks on forget password button
  */
 public class LoginActivity extends AppCompatActivity {
 
     /**
-     *
+     * This method is called when activity is created
+     * If user clicks login button, verifyLogin in LoginMgr is called to verify login
      * @param savedInstanceState
      */
     @Override
@@ -36,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * This method is called when user clicks register button. RegisterActivity will be started when this method is executed
      * @param v
      */
     public void register (View v) {
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     *
+     * This method is called when user clicks forgot password button. ForgetPasswordActivity will be started when this method is executed
      * @param v
      */
     public void forgetPassword(View v) {

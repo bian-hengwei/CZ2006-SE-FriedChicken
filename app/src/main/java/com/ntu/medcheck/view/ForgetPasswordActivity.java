@@ -13,7 +13,7 @@ import com.ntu.medcheck.R;
 import com.ntu.medcheck.controller.UserProfileMgr;
 
 /**
- * The class allows users to reset password if they forget the current password
+ * The class allows users enter their email and reset password if they forget the current password
  */
 
 public class ForgetPasswordActivity extends AppCompatActivity {
