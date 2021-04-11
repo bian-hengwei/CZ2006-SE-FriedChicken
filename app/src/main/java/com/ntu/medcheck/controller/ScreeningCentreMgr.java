@@ -75,10 +75,18 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
     private RequestQueue mQueue;
 
 
-    //constructor
-    public ScreeningCentreMgr() {// Required empty public constructor
-    }
+    /**
+     * empty public constructor
+     */
+    public ScreeningCentreMgr() {}
 
+    /**
+     * Method to create and return the view
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -165,6 +173,11 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         return mView;
     }
 
+    /**
+     * called after onCreateView
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -205,7 +218,10 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         });
     }
 
-    //called when the map is ready
+    /**
+     * Method called after initialising mapview
+     * @param googleMap Google Map object
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         MapsInitializer.initialize(getContext());
@@ -232,6 +248,9 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         Log.i("map check", "map finish loading");
     }
 
+    /**
+     * method to enable location service
+     */
     private void enableUserLocation() {
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             //if denied, go here
@@ -241,7 +260,10 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         map.setMyLocationEnabled(true);
     }
 
-    //method to reset the colour of all the markers of the geojsonlayer
+    /**
+     * Method to reset the colours of the markers in the GeoJsonLayer
+     * @param geoJsonLayer a GeoJsonLayer
+     */
     public void resetLayer(GeoJsonLayer geoJsonLayer){
         BitmapDescriptor normalIcon = BitmapDescriptorFactory.defaultMarker(); //normal icon
         GeoJsonPointStyle geoJsonPointStyle = new GeoJsonPointStyle();
@@ -251,7 +273,11 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    //adding cervical screening centres on the map
+    /**
+     * A method to display location of cervical screening centres
+     * @throws IOException
+     * @throws JSONException
+     */
     public void cervicalLayer() throws IOException, JSONException{
         mQueue = Volley.newRequestQueue(getContext());
         String apiUrl = "https://data.gov.sg/api/action/resource_show?id=21c6f2dd-7b8d-418a-8d7c-c5f8de1ca184"; //api for CKAN Resource Show
@@ -339,7 +365,12 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         map.setMinZoomPreference(1);
     }
 
-    //adding breast screening centres on the map
+
+    /**
+     * A method to display location of breast screening centres
+     * @throws IOException
+     * @throws JSONException
+     */
     public void breastLayer() throws IOException, JSONException{
         mQueue = Volley.newRequestQueue(getContext());
         String apiUrl = "https://data.gov.sg/api/action/resource_show?id=7ca09c2e-112f-4e8d-b476-738e5a91fc7f"; //api for CKAN Resource Show
@@ -424,7 +455,11 @@ public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
         map.setMinZoomPreference(1);
     }
 
-    //adding chas clinic centres on the map
+    /**
+     * A method to display location of CHAS clinics
+     * @throws IOException
+     * @throws JSONException
+     */
     public void chasLayer() throws IOException, JSONException{
         mQueue = Volley.newRequestQueue(getContext());
         String apiUrl = "https://data.gov.sg/api/action/resource_show?id=cb94adc3-aaf6-4352-982e-01014f6a5716"; //api for CKAN Resource Show
