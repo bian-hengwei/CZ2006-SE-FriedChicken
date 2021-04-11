@@ -5,6 +5,7 @@ import java.util.Calendar;
 /**
  * Used as Time object stored in all scheduled checkups and medications.
  * Contains an id used to identify the notification linked to this time.
+ * @author He Yinan
  */
 public class Time {
 

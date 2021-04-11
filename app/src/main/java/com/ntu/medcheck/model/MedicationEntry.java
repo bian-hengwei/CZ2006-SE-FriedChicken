@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  * Medication entry is a subclass of entry
  * type of entry that stores medication details
+ * @author Fu Yongding
  */
 public class MedicationEntry extends Entry{
 

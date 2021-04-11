@@ -28,6 +28,7 @@ import java.text.ParseException;
 /**
  * This activity calls different fragments like MedicationFragment, CheckupFragment, CalendarFragment and UserHomeFragment
  * It also displays the navigation bars
+ * @author Wang Xuege
  */
 public class HomeActivity extends AppCompatActivity {
 

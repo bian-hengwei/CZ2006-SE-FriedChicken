@@ -20,6 +20,7 @@ import com.ntu.medcheck.view.AddMedicationActivity;
  * A simple {@link Fragment} subclass.
  * Use the {@link MedicationFragment#newInstance} factory method to
  * create an instance of this fragment.
+ * @author Yin Jiarui
  */
 public class MedicationFragment extends Fragment {
 

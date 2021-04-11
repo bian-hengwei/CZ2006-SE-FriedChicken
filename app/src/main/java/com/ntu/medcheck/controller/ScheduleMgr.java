@@ -27,6 +27,7 @@ import java.util.Map;
 /**
  * ScheduleMgr class deals with all the logic of setting and cancelling notification and
  * syncing schedule to firebase database.
+ * @author Bian Hengwei
  */
 
 public class ScheduleMgr {

@@ -12,6 +12,7 @@ import static com.ntu.medcheck.controller.NotificationScheduler.NOTIFICATION_CHA
 
 /**
  * MyNotificationPublisher deals with all receiving notifications on alarm ring.
+ * @author He Yinan
  */
 public class MyNotificationPublisher extends BroadcastReceiver {
 

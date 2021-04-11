@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * Add medication page
  * contains textfields prompting medication entry details
  * calls MedicationMgr to add medication entry and save results
+ * @author Wang Xuege
  */
 public class EditMedicationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

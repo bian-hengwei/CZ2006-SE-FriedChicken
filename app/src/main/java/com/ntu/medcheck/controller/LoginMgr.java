@@ -17,6 +17,7 @@ import com.ntu.medcheck.view.HomeActivity;
 
 /**
  * Deals with all logic from LoginActivity.
+ * @author  He Yinan
  */
 public class LoginMgr {
 

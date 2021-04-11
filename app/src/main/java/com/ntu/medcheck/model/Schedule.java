@@ -10,6 +10,7 @@ import java.util.Map;
  * Schedule class.
  * stores a list of two types of entries.
  * Uses singleton design pattern.
+ * @author Fu Yongding
  */
 public class Schedule {
 

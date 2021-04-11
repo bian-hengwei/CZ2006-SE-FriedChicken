@@ -4,6 +4,10 @@ import android.view.View;
 
 import java.text.ParseException;
 
+/**
+ * SafeOnClickListener prevents multiple clicks on buttons
+ * @author  Bian Hengwei
+ */
 public abstract class SafeOnClickListener implements View.OnClickListener {
     private static long lastClickMs = 0;
     private static long TOO_SOON_DURATION_MS = 700;

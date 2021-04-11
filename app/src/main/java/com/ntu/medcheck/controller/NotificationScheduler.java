@@ -17,6 +17,7 @@ import com.ntu.medcheck.view.HomeActivity;
 
 /**
  * Notification scheduler class use alarms to schedule notifications and cancel notifications.
+ * @author He Yinan
  */
 public class NotificationScheduler {
 

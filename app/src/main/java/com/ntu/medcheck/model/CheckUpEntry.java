@@ -3,6 +3,7 @@ package com.ntu.medcheck.model;
 /**
  * Check up entry is the entry object
  * storing health screening time and other details of a checkup
+ * @author Fu Yongding
  */
 public class CheckUpEntry extends Entry {
 

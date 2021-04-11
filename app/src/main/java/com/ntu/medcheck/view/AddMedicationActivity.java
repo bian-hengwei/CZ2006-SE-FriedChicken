@@ -24,6 +24,7 @@ import java.util.ArrayList;
  * Add medication page
  * contains textfields prompting medication entry details
  * calls MedicationMgr to add medication entry to schedule
+ * @author Yin Jiarui
  */
 public class AddMedicationActivity extends AppCompatActivity {
 

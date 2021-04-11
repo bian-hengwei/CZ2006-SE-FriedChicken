@@ -36,6 +36,7 @@ import java.util.Map;
  * deals with all logic in CalendarFragment.
  * Implements OnNavigationButtonClickedListener from the calendar package
  * to override onNavigationButtonClicked and deal with on click of calendar elements.
+ * @author Bian Hengwei
  */
 public class CalendarMgr implements OnNavigationButtonClickedListener {
 

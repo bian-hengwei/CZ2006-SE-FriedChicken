@@ -29,6 +29,7 @@ import com.ntu.medcheck.view.LoginActivity;
 /**
  * UserProfile class deals with all logic regarding editing user profile and logout.
  * Used by UserHomeFragment.
+ * @author Fu Yongding
  */
 public class UserProfileMgr {
 

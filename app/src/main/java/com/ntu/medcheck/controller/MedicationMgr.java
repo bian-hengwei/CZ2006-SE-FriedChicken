@@ -39,6 +39,7 @@ import java.util.Random;
  * MedicationManager class deals with all issues of adding,
  * editing, and deleting medications.
  * Used by MedicationFragment, AddMedicationActivity, EditMedicationActivity.
+ * @author Bian Hengwei
  */
 public class MedicationMgr {
     /**

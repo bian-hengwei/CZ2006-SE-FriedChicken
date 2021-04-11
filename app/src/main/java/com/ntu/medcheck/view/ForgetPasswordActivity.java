@@ -14,6 +14,7 @@ import com.ntu.medcheck.controller.UserProfileMgr;
 
 /**
  * The class allows users enter their email and reset password if they forget the current password
+ * @author Wang Xuege
  */
 
 public class ForgetPasswordActivity extends AppCompatActivity {

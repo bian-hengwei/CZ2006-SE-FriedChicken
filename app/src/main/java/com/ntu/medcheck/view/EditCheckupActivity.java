@@ -28,6 +28,7 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
  * Use the same page as AddCheckupActivity
  * Contains textfields prompting check up entry details
  * Calls CheckupMgr to edit check up entry and save edited checkup
+ * @author Yin Jiarui
  */
 public class EditCheckupActivity extends AppCompatActivity {
 

@@ -16,6 +16,7 @@ import com.ntu.medcheck.controller.UserProfileMgr;
  * A simple {@link Fragment} subclass.
  * Use the {@link UserHomeFragment#newInstance} factory method to
  * create an instance of this fragment.
+ * @author Yin Jiarui
  */
 public class UserHomeFragment extends Fragment {
 

@@ -14,6 +14,7 @@ import com.ntu.medcheck.controller.ScreeningCentreMgr;
 
 /**
  * This page displays search clinic page for users
+ * @author Wang Xuege
  */
 
 public class SearchClinicActivity extends AppCompatActivity {

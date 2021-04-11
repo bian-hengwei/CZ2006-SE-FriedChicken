@@ -15,6 +15,7 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
  * and calls the HomeActivity when successfully logged in
  * This class also calls RegisterActivity when user clicks on register button
  * It will call the ForgetPasswordActivity if user clicks on forget password button
+ * @author Wang Xuege
  */
 public class LoginActivity extends AppCompatActivity {
 

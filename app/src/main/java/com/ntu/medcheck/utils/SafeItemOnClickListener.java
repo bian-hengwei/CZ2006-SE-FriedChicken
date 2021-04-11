@@ -3,6 +3,10 @@ package com.ntu.medcheck.utils;
 import android.view.View;
 import android.widget.AdapterView;
 
+/**
+ * SafeListener implementing AdapterView.OnItemClickListener to prevent multiple clicks on adapter view
+ * @author Bian Hengwei
+ */
 public abstract class SafeItemOnClickListener implements AdapterView.OnItemClickListener {
 
     private static long lastClickMs = 0;

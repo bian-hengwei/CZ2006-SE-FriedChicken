@@ -19,6 +19,7 @@ import com.ntu.medcheck.model.User;
 
 /**
  * Deals with all logic from RegisterActivity
+ * @author He Yinan
  */
 
 public class RegisterMgr {

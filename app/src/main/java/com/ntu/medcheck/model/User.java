@@ -4,6 +4,7 @@ package com.ntu.medcheck.model;
  * User object.
  * keeps track of current user details.
  * Uses Singleton design pattern.
+ * @author He Yinan
  */
 public class User {
 

@@ -14,6 +14,7 @@ import com.ntu.medcheck.controller.RegisterMgr;
 /**
  * This page displays register page for users
  * and calls HomeActivity after successful registration
+ * @author Wang Xuege
  */
 public class RegisterActivity extends AppCompatActivity {
 

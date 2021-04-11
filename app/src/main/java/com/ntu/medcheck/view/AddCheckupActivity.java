@@ -24,6 +24,7 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
  * Add check up page
  * contains textfields prompting check up entry details
  * calls CheckupMgr to add check up entry to schedule
+ * @author Yin Jiarui
  */
 public class AddCheckupActivity extends AppCompatActivity {
     public TextView clinic_name;

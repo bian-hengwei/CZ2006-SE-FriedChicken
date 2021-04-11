@@ -3,6 +3,7 @@ package com.ntu.medcheck.model;
 /**
  * General entry class
  * extended by checkup and medication entry
+ * @author Fu Yongding
  */
 public class Entry {
     String name;

@@ -14,6 +14,7 @@ import com.ntu.medcheck.utils.SafeOnClickListener;
 /**
  * This page displays the splash page for users when user opens the application
  * This page displays the logo of the application
+ * @author Wang Xuege
  */
 
 public class SplashActivity extends AppCompatActivity {

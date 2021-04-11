@@ -43,6 +43,7 @@ import java.util.Random;
  * CheckUpManager class deals with all issues of adding,
  * editing, and deleting checkups.
  * Used by CheckupFragment, AddCheckupActivity, EditCheckupActivity.
+ * @author Bian Hengwei
  */
 public class CheckUpMgr {
 

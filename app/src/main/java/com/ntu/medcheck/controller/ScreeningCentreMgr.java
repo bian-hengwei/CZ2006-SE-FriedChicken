@@ -56,7 +56,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-
+/**
+ * @author Fu Yongding
+ */
 public class ScreeningCentreMgr extends Fragment implements OnMapReadyCallback {
     private int ACCESS_LOCATION_REQUEST_CODE = 10001;
     GoogleMap map;
