@@ -1,6 +1,7 @@
 package com.ntu.medcheck.controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -21,6 +22,10 @@ import com.ntu.medcheck.model.User;
  */
 
 public class RegisterMgr {
+    /**
+     * Log tag for debugging.
+     */
+    private static final String TAG = "RegisterManager";
 
     /**
      * Try to register user using firebase
@@ -44,14 +49,19 @@ public class RegisterMgr {
         String rePassword = rePasswordInput.getText().toString().trim();
 
         String gender;
+        Log.d(TAG, "register: created variables userName, emailAddress, password, rePassword etc.");
+
         if (maleInput.isChecked()) {
             gender = "male";
+            Log.d(TAG, "register: gender is male");
         }
         else if (femaleInput.isChecked()) {
             gender = "female";
+            Log.d(TAG, "register: gender is female");
         }
         else {
             gender = null;
+            Log.d(TAG, "register: gender is NULL");
         }
 
         int day = birthdayInput.getDayOfMonth();
@@ -62,12 +72,15 @@ public class RegisterMgr {
 
         String phoneNo = phoneNoInput.getText().toString().trim();
         boolean valid = checkInputValid(userName, emailAddress, password, rePassword, gender, birthdayStr, phoneNo, aca);
+        Log.d(TAG, "register: created variables day, month, year, birthdayStr, phoneNo, boolean valid");
 
         if (!valid) {
+            Log.d(TAG, "register: input is not valid, return");
             return;
         }
 
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        Log.d(TAG, "register: created FirebaseAuth, fAuth, get its instance");
 
         fAuth.createUserWithEmailAndPassword(emailAddress, password).addOnCompleteListener(task -> {
             //if successful register
@@ -79,30 +92,40 @@ public class RegisterMgr {
                 user.setEmailAddress(emailAddress);
                 user.setGender(gender);
                 user.setPhoneNo(phoneNo);
+                Log.d(TAG, "register: set username, birthday, email, gender, phoneNo");
 
                 FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference uRef = fDatabase.getReference("Users");
+                Log.d(TAG, "register: get instance of FirebaseDatabase fDatabase");
+
                 uRef.child(fAuth.getCurrentUser().getUid()).setValue(user).addOnCompleteListener(task1 -> {
                     if (task1.isSuccessful()) {
+                        Log.d(TAG, "register: registration successful, please verify email before login");
                         Toast.makeText(aca, R.string.regiSuccess, Toast.LENGTH_SHORT).show();
                     } else {
                         System.out.println(R.string.regiFail);
+                        Log.d(TAG, "register: registration failed, unknown error");
                         Toast.makeText(aca, R.string.regiFail, Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 fAuth.getCurrentUser().sendEmailVerification();
+                Log.d(TAG, "register: please check email for verification");
             }
             else {
                 try {
+                    Log.d(TAG, "register: registration failed, handling error");
                     throw task.getException();
                 } catch (FirebaseAuthWeakPasswordException e) {
+                    Log.d(TAG, "register: registration failed, please use a stronger password");
                     Toast.makeText(aca, R.string.regiFailWeakPw, Toast.LENGTH_SHORT).show();
                 }
                 catch (FirebaseAuthUserCollisionException e) {
+                    Log.d(TAG, "register: registration failed, email is already used");
                     Toast.makeText(aca, R.string.regiFailEmailExist, Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e) {
+                    Log.d(TAG, "register: registration failed, unknown error");
                     Toast.makeText(aca,R.string.regiFail, Toast.LENGTH_SHORT).show();
                 }
             }
