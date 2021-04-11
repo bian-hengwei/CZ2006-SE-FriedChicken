@@ -358,13 +358,11 @@ public class MedicationMgr {
             TextView title = medication_row.findViewById(R.id.titleMedicationRow);
             TextView time = medication_row.findViewById(R.id.timeMedicationRow);
             TextView dosage = medication_row.findViewById(R.id.dosageMedicationRow);
-            TextView frequency = medication_row.findViewById(R.id.frequencyMedicationRow);
             TextView comments = medication_row.findViewById(R.id.commentMedicationRow);
 
             title.setText(adapterTitle.get(position));
             time.setText(medication_row.getResources().getString(R.string.eventTime) + adapterTime.get(position));
             dosage.setText(medication_row.getResources().getString(R.string.newMedDosageText) + adapterDosage.get(position));
-            frequency.setText(medication_row.getResources().getString(R.string.eventFreq) + adapterFrequency.get(position));
             comments.setText(medication_row.getResources().getString(R.string.Comment) + adapterComment.get(position));
             return medication_row;
         }
