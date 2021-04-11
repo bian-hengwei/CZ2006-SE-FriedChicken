@@ -35,32 +35,85 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-
+/**
+ * MedicationManager class deals with all issues of adding,
+ * editing, and deleting medications.
+ * Used by MedicationFragment, AddMedicationActivity, EditMedicationActivity.
+ */
 public class MedicationMgr {
+    /**
+     * Log tag for debugging.
+     */
+    private static final String TAG = "MedicationManager";
 
+    /**
+     * Static context object initialized on HomeActivity onCreate.
+     * Used for setting and cancelling notifications.
+     */
     private static Context context;
 
+    /**
+     * Schedule instance.
+     */
     Schedule schedule = Schedule.getInstance();
+
+    /**
+     * A list of all medication entries
+     * got from schedule instance.
+     */
     ArrayList<MedicationEntry> medicationEntryArrayList;
+
+    /**
+     * Position of whichever medication view is selected.
+     */
     int clickedPosition;
 
-    private MedicationMgr() {}
+    /**
+     * Private default constructor.
+     */
+    private MedicationMgr() {
+    }
 
+    /**
+     * Setter for static context called by HomeActivity.
+     * @param context HomeActivity context.
+     */
     public static void setContext(Context context) {
+        Log.d(TAG, "setContext: context set successfully by HomeActivity");
         MedicationMgr.context = context;
     }
 
+    /**
+     * Called when setting or cancelling notifications.
+     * @return HomeActivity context.
+     */
     public static Context getContext() {
         return context;
     }
 
+    /**
+     * Stores a MedicationManager instance following singleton design pattern.
+     * Initialized only once.
+     */
     private static MedicationMgr medicationMgrInstance = new MedicationMgr();
 
+    /**
+     * Returns medicationMgrInstance following singleton pattern.
+     * @return medicationMgrInstance.
+     */
     public static MedicationMgr getInstance() {
         return medicationMgrInstance;
     }
 
+    /**
+     * Displays checkups in the medication page.
+     * Called by MedicationFragment.
+     * Displays all medications and set onclick for them.
+     * @param fragment Fragment, used to set onclick.
+     * @param view View, used to find listView object.
+     */
     public void dynamicDisplayMedication(Fragment fragment, View view) {
+        Log.d(TAG, "dynamicDisplayMedication: trying to display all medications");
         medicationEntryArrayList = Schedule.getInstance().getMedication();
         ListView listView;
         ArrayList<String> title = new ArrayList<>();
@@ -71,6 +124,7 @@ public class MedicationMgr {
         ArrayList<MedicationEntry> entries = new ArrayList<>();
         listView = view.findViewById(R.id.medicationListView);
 
+        // add all medications and display
         for (MedicationEntry entry : medicationEntryArrayList) {
             title.add(entry.getName());
             dosage.add(entry.getDosage());
@@ -87,11 +141,14 @@ public class MedicationMgr {
 
         MyAdapter adapter = new MyAdapter(view.getContext(), title, time, dosage, frequency, comment);
         listView.setAdapter(adapter);
-
         listView.setOnItemClickListener(new SafeItemOnClickListener() {
             @Override
             public void onOneClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println(title.get(position));
+                /*
+                 * Once clicked any position
+                 * store the clicked position and go to EditMedicationActivity
+                 */
+                Log.d(TAG, "onOneClick: " + position + " item clicked");
                 storeVariable(position);
                 Intent i = new Intent(fragment.getActivity(), EditMedicationActivity.class);
                 fragment.startActivity(i);
@@ -99,33 +156,56 @@ public class MedicationMgr {
         });
     }
 
+    /**
+     * Called on destroy of EditMedicationActivity.
+     * Give up, update, or remove current medication.
+     * @param aca EditMedicationActivity.
+     * @param save If save changes.
+     * @param delete If delete current medication;
+     * @throws ParseException
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void destroy(AppCompatActivity aca, boolean save, boolean delete) throws ParseException {
         if (save) {
+            Log.d(TAG, "destroy: updating medication");
             removeMedication();
             new ScheduleMgr().save();
             addMedication(aca);
         }
         else if (delete) {
+            Log.d(TAG, "destroy: removing medication");
             removeMedication();
             new ScheduleMgr().save();
         }
     }
 
+    /**
+     * Removes medication on clickedPosition.
+     * Removes all scheduled notifications related.
+     */
     public void removeMedication() {
         MedicationEntry entry = Schedule.getInstance().getMedication().remove(clickedPosition);
         for (Time time : entry.getTime()) {
+            Log.d(TAG, "removeMedication: removing notification with id " + time.getId());
             new NotificationScheduler().cancelNotification(context, time.getId());
         }
     }
 
+    /**
+     * Stores current clicked position.
+     * @param position Current clicked position to be stored.
+     */
     public void storeVariable(int position) {
         this.clickedPosition = position;
     }
 
+    /**
+     * Initialize and display EditMedicationActivity.
+     * @param aca EditMedicationActivity.
+     * @return ArrayList of medication index
+     */
     public ArrayList<String> displayEditMedication(AppCompatActivity aca) {
         medicationEntryArrayList = Schedule.getInstance().getMedication();
-        Log.d("IndexPos", Integer.toString(clickedPosition));
         MedicationEntry info = medicationEntryArrayList.get(clickedPosition);
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
@@ -139,34 +219,16 @@ public class MedicationMgr {
         return dynamicAddTimeEditMedication(aca, info);
     }
 
-    public ArrayList<String> dynamicAddTimeEditMedication(AppCompatActivity aca, MedicationEntry info) {
-        ArrayList<Time> timeArrayList= info.getTime();
-        ArrayList<String> index = new ArrayList<>();
-        ArrayList<String> hour = new ArrayList<>();
-        ArrayList<String> minute = new ArrayList<>();
-        Integer i = 0;
-        for (Time t : timeArrayList) {
-            index.add(Integer.toString(i+1));
-            i += 1;
-
-            hour.add(t.getHour());
-
-            minute.add(t.getMinute());
-        }
-
-        MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index, hour, minute);
-
-        ListView listView = aca.findViewById(R.id.addMedicationListView);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
-        return index;
-    }
-
+    /**
+     *
+     * @param aca
+     * @return
+     */
     public boolean checkStatus(AppCompatActivity aca) {
         EditText name = aca.findViewById(R.id.editMedicationName);
         EditText dosage = aca.findViewById(R.id.editDosageInt);
-        if (name.getText().toString() == null || name.getText().toString().isEmpty() ||
-                dosage.getText().toString() == null || dosage.getText().toString().isEmpty()) {
+        name.getText().toString();
+        if (name.getText().toString().isEmpty() || dosage.getText().toString().isEmpty()) {
             Toast.makeText(aca, R.string.emptyMedication, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -270,6 +332,26 @@ public class MedicationMgr {
         notificationScheduler.scheduleNotification(notification, milliSecond, context, true, time.getId());
     }
 
+    public ArrayList<String> dynamicAddTimeEditMedication(AppCompatActivity aca, MedicationEntry info) {
+        ArrayList<Time> timeArrayList= info.getTime();
+        ArrayList<String> index = new ArrayList<>();
+        ArrayList<String> hour = new ArrayList<>();
+        ArrayList<String> minute = new ArrayList<>();
+        Integer i = 0;
+        for (Time t : timeArrayList) {
+            index.add(Integer.toString(++i));
+            hour.add(t.getHour());
+            minute.add(t.getMinute());
+        }
+
+        MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index, hour, minute);
+
+        ListView listView = aca.findViewById(R.id.addMedicationListView);
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener((parent, view1, position, id) -> Log.d(TAG, "dynamicAddTimeEditMedication: " + position + " clicked"));
+        return index;
+    }
+
     public void dynamicAddTime(AppCompatActivity aca, ArrayList<String> indexIn) {
         ArrayList<String> index = indexIn;
         ArrayList<String> hour = new ArrayList<>();
@@ -295,8 +377,7 @@ public class MedicationMgr {
 
         MyAddMedicationAdapter arrayAdapter = new MyAddMedicationAdapter(aca.getApplicationContext(), index, hour, minute);
         listView.setAdapter(arrayAdapter);
-
-        listView.setOnItemClickListener((parent, view1, position, id) -> System.out.println(index.get(position)));
+        listView.setOnItemClickListener((parent, view1, position, id) -> Log.d(TAG, "dynamicAddTimeEditMedication: " + position + " clicked"));
     }
 
     class MyAddMedicationAdapter extends ArrayAdapter<String> {
