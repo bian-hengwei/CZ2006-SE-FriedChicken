@@ -24,9 +24,10 @@ import com.ntu.medcheck.controller.MyNotificationPublisher;
 import com.ntu.medcheck.utils.SafeOnClickListener;
 
 /**
- * Add check up page
- * contains textfields prompting check up entry details
- * calls schedule manager to add check up entry
+ * Edit check up page
+ * Use the same page as AddCheckupActivity
+ * Contains textfields prompting check up entry details
+ * Calls checkup manager to edit check up entry
  */
 public class EditCheckupActivity extends AppCompatActivity {
 
@@ -80,6 +81,11 @@ public class EditCheckupActivity extends AppCompatActivity {
         new CheckUpMgr().display(this, getIntent());
     }
 
+    /**
+     * Finish the current page and return to the homepage if user clicks on back button
+     * @param item passes the MenuItem selected
+     * @return return a boolean to indicate the menu item is handled successfully
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
@@ -87,6 +93,9 @@ public class EditCheckupActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *
+     */
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onDestroy() {
