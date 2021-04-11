@@ -265,7 +265,7 @@ public class CheckUpMgr {
         String notificationDay = String.format("%d/%d/%d", day, month, year);
         int hour = Integer.parseInt(checkup.getTime().getHour());
         int minute = Integer.parseInt(checkup.getTime().getMinute());
-        String notificationTime = String.format("%d:%d", hour, minute);
+        String notificationTime = String.format("%02d:%02d", hour, minute);
         String content = notificationTime;
         String name = checkup.getName();
         String clinic = checkup.getClinic();
