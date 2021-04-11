@@ -53,7 +53,7 @@ public class MedicationMgr {
     private static Context context;
 
     /**
-     * Schedule instance.
+     * Schedule instance, Singleton design pattern is used here.
      */
     Schedule schedule = Schedule.getInstance();
 

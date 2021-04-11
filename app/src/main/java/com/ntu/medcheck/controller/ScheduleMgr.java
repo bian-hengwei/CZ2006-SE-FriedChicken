@@ -24,17 +24,33 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * ScheduleMgr class deals with all the logic of setting and cancelling notification and
+ * syncing schedule to firebase database.
+ */
+
 public class ScheduleMgr {
 
     Schedule schedule;
+    /**
+     * Database reference for a particular user.
+     */
     DatabaseReference uRef;
 
+    /**
+     * Constructor for ScheduleMgr class.
+     * Get an instance of schedule and creates the user reference to firebase database.
+     */
     public ScheduleMgr() {
         schedule = Schedule.getInstance();
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         uRef = FirebaseDatabase.getInstance().getReference("Schedules").child(uid);
     }
 
+    /**
+     * set up to keep information in classes in sync with information on firebase database.
+     * @param aca HomeActivity
+     */
     public void initialize(HomeActivity aca) {
         uRef.keepSynced(true);
         uRef.addValueEventListener(new ValueEventListener() {
@@ -49,6 +65,10 @@ public class ScheduleMgr {
         });
     }
 
+    /**
+     * Set notification for schedules saved in Schedule.
+     * @throws ParseException
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setNotifications() throws ParseException {
         schedule = Schedule.getInstance();
@@ -67,6 +87,10 @@ public class ScheduleMgr {
         }
     }
 
+    /**
+     * Cancel a notification.
+     * This method is called when user delete or edit a checkup or medication.
+     */
     public void cancelNotifications() {
         NotificationScheduler scheduler = new NotificationScheduler();
         schedule = Schedule.getInstance();
@@ -85,10 +109,19 @@ public class ScheduleMgr {
         }
     }
 
+    /**
+     * Save any changes user made in the application.
+     * Called when user adds, deletes or edit anything that needs to be saved.
+     */
     public void save() {
         uRef.setValue(schedule);
     }
 
+    /**
+     * Retrieve schedule saved in firebase database to local objects.
+     * Called when initializing.
+     * @param dataSnapshot
+     */
     private void setSchedule(DataSnapshot dataSnapshot) {
         if (dataSnapshot.child("checkup").exists()) {
             Map<String, ArrayList<CheckUpEntry>> checkup = new HashMap<>();
@@ -116,6 +149,12 @@ public class ScheduleMgr {
         }
     }
 
+    /**
+     * Set the values for CheckUpEntries which are retireved from firebase database.
+     * Called in setSchedule method.
+     * @param entry
+     * @return
+     */
     private CheckUpEntry toCheckUpEntry(DataSnapshot entry) {
         CheckUpEntry checkUpEntry = new CheckUpEntry();
         checkUpEntry.setClinic((String) entry.child("clinic").getValue());
@@ -127,6 +166,12 @@ public class ScheduleMgr {
         return checkUpEntry;
     }
 
+    /**
+     * Set the values for MedicationEntries which are retireved from firebase database.
+     * Called in setSchedule method.
+     * @param entry
+     * @return
+     */
     private MedicationEntry toMedicationEntry(DataSnapshot entry) {
         MedicationEntry medicationEntry = new MedicationEntry();
         medicationEntry.setDosage((String)entry.child("dosage").getValue());
@@ -145,6 +190,12 @@ public class ScheduleMgr {
         return medicationEntry;
     }
 
+    /**
+     * Create a Time object using time retrieved from firebase database.
+     * Called in toMedicationEntry and toCheckUpEntry.
+     * @param timeSnapshot
+     * @return
+     */
     private Time toTime(DataSnapshot timeSnapshot) {
         String hour = (String) timeSnapshot.child("hour").getValue();
         String minute = (String) timeSnapshot.child("minute").getValue();

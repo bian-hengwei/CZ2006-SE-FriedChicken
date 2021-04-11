@@ -16,8 +16,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ntu.medcheck.R;
 import com.ntu.medcheck.model.User;
 
+/**
+ * Deals with all logic from RegisterActivity
+ */
+
 public class RegisterMgr {
 
+    /**
+     * Try to register user using firebase
+     * Gets input from RegisterActivity and verify and then register
+     * @param aca RegisterActivity
+     */
     public void register(AppCompatActivity aca) {
 
         EditText userNameInput = aca.findViewById(R.id.registerNameInput);
@@ -100,6 +109,20 @@ public class RegisterMgr {
         });
     }
 
+    /**
+     * Verify if user inputs are valid
+     * All fields must not be empty
+     * Password and re-entered password must be equal
+     * @param userName
+     * @param emailAddress
+     * @param password
+     * @param rePassword
+     * @param gender
+     * @param birthday
+     * @param phoneNo
+     * @param context
+     * @return boolean representing whether the inputs are valid
+     */
     public boolean checkInputValid(String userName, String emailAddress, String password, String rePassword, String gender, String birthday, String phoneNo, Context context) {
 
         if (userName.isEmpty()) {
